@@ -1,0 +1,8 @@
+node_modules
+Export
+.git
+.gitignore
+dist
+.tmp
+*.log
+README.md

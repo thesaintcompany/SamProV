@@ -1,0 +1,12 @@
+services:
+  sampro-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sampro-cloud-web
+    restart: unless-stopped
+    ports:
+      - "3043:3043"
+    environment:
+      - PORT=3043
+      - NODE_ENV=production

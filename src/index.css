@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #0066ff;
+    --color-primary-dark: #0050cb;
+    --color-cyan: #00d2ff;
+    --color-navy: #020b1b;
+    --color-navy-card: #06152b;
+    --color-navy-border: rgba(255, 255, 255, 0.1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #020b1b;
+    color: #f1f5f9;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Tabular numbers for VIN, plates, currency */
+  .font-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Glassmorphism & Cyber Motorsport Effects */
+.glass-panel {
+  background: rgba(7, 21, 43, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(13, 34, 68, 0.85);
+  border-color: rgba(0, 210, 255, 0.3);
+  box-shadow: 0 12px 35px -8px rgba(0, 102, 255, 0.25);
+}
+
+.glass-panel-bright {
+  background: rgba(14, 38, 77, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 210, 255, 0.25);
+}
+
+.glow-blue {
+  box-shadow: 0 0 50px -10px rgba(0, 102, 255, 0.45);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 40px -10px rgba(0, 210, 255, 0.4);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 35px -10px rgba(16, 185, 129, 0.4);
+}
+
+.grid-matrix {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.f1-slash {
+  transform: skewX(-15deg);
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020b1b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 2px solid #020b1b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0066ff;
+}
