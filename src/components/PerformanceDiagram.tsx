@@ -72,27 +72,28 @@ export const PerformanceDiagram: React.FC = () => {
         </div>
 
         {/* F1 Car Benchmark Card */}
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 p-6 sm:p-10 shadow-2xl min-h-[340px]">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl min-h-[340px]">
 
-          {/* ── Full-Bleed Cinematic Background ── */}
+          {/* ── Full-Bleed Cinematic Background — car visible bottom-right ── */}
           <img
             src="/assets/hero-bg-dark.jpg"
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
+            className="absolute inset-0 w-full h-full object-cover object-[center_bottom] pointer-events-none select-none"
           />
 
-          {/* ── Dual-layer contrast scrim ── */}
-          {/* 1. Subtle dark overlay — let image breathe */}
-          <div className="absolute inset-0 bg-[#020b1b]/50 pointer-events-none" />
-          {/* 2. Strong left→right gradient: solid dark on text side, transparent on image side */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#020b1b]/98 via-[#020b1b]/80 to-transparent pointer-events-none" />
-          {/* 3. Bottom fade */}
-          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#020b1b]/60 to-transparent pointer-events-none" />
+          {/* ── Contrast scrims ─────────────────────────────────────────── */}
+          {/* Subtle all-over darkener */}
+          <div className="absolute inset-0 bg-[#020b1b]/45 pointer-events-none" />
+          {/* Strong left-to-right: keeps left text zone fully readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#020b1b]/98 via-[#020b1b]/70 to-transparent pointer-events-none" />
+          {/* Bottom fade */}
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#020b1b]/55 to-transparent pointer-events-none" />
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div className="lg:col-span-7 space-y-4">
+          {/* ── Content — spans full width, text on left, car visible right ── */}
+          <div className="relative z-10 p-6 sm:p-10">
+            <div className="max-w-2xl space-y-4">
+
               <div className="inline-block px-3 py-1 rounded-lg bg-blue-500/20 border border-blue-400/30 text-[#00D2FF] font-mono text-xs font-bold tracking-wider">
                 BENCHMARK TELEMETRIE WORKSHOP 2026
               </div>
@@ -101,50 +102,41 @@ export const PerformanceDiagram: React.FC = () => {
                 Timp redus cu 74% per deviz de reparație
               </h3>
 
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
-                Prin scanarea rapidă a numărului de înmatriculare, preluarea oficială a istoricului RAR Autopass și aprobarea imediată pe WhatsApp direct de către client.
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Prin scanarea rapidă a numărului de înmatriculare, preluarea oficială a istoricului RAR Autopass
+                și aprobarea imediată pe WhatsApp direct de către client.
               </p>
 
               {/* Trio Metrics */}
-              <div className="grid grid-cols-3 gap-3 pt-3 max-w-lg">
-                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/5">
+              <div className="grid grid-cols-3 gap-3 pt-2 max-w-md">
+                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm">
                   <div className="text-[11px] text-slate-400 font-mono uppercase">Rată Acceptare</div>
                   <div className="text-2xl sm:text-3xl font-black text-white mt-1">+24%</div>
                   <div className="text-[10px] text-emerald-400 font-semibold">față de clasic</div>
                 </div>
-
-                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/5">
+                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm">
                   <div className="text-[11px] text-slate-400 font-mono uppercase">Oferte / Zi</div>
                   <div className="text-2xl sm:text-3xl font-black text-[#00D2FF] mt-1 font-mono">3.2x</div>
                   <div className="text-[10px] text-blue-200">volum procesat</div>
                 </div>
-
-                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/5">
+                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm">
                   <div className="text-[11px] text-slate-400 font-mono uppercase">Timp Ofertă</div>
                   <div className="text-2xl sm:text-3xl font-black text-emerald-400 mt-1 font-mono">4 min</div>
                   <div className="text-[10px] text-slate-400">de la 25 min</div>
                 </div>
               </div>
-            </div>
 
-            <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
-              <div className="relative w-full group">
-                <div className="absolute inset-0 bg-[#00D2FF]/20 blur-2xl rounded-full scale-90 group-hover:scale-100 transition-all duration-700"></div>
-                <img 
-                  src="/assets/f1-car.png" 
-                  alt="SAMpro F1 Speed Car" 
-                  className="relative z-10 w-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,102,255,0.4)] group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="flex items-center justify-between w-full mt-2 px-3 text-[11px] font-mono text-slate-400 border-t border-white/10 pt-2">
+              {/* Chassis label row */}
+              <div className="flex items-center gap-4 pt-2 text-[11px] font-mono text-slate-500 border-t border-white/10">
                 <span>CHASSIS: SPEEDFLOW V3</span>
                 <span className="text-[#00D2FF] font-bold">ZERO FRICTION PIPELINE</span>
               </div>
-            </div>
 
+            </div>
           </div>
+
         </div>
+
 
         {/* 4 Stages Comparative Cards Grid */}
         <div className="space-y-4">
