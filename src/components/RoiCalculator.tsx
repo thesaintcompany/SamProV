@@ -32,26 +32,26 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
   const roiMultiplier = (additionalRevenueMonth / estimatedSoftwareCost).toFixed(1);
 
   return (
-    <section id="calculator-roi" className="py-24 sm:py-32 bg-[#041024] relative overflow-hidden text-white border-b border-white/10">
+    <section id="calculator-roi" className="py-24 sm:py-32 bg-white dark:bg-[#041024] relative overflow-hidden text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
       
       {/* Background Glows */}
-      <div className="absolute top-1/2 right-10 w-96 h-96 bg-[#00D2FF]/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#0066FF]/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/2 right-10 w-96 h-96 bg-blue-500/5 dark:bg-[#00D2FF]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-500/5 dark:bg-[#0066FF]/15 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-xs font-mono font-bold text-[#00D2FF] mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 text-xs font-mono font-bold text-[#0066FF] dark:text-[#00D2FF] mb-4">
             <Calculator className="w-3.5 h-3.5" />
             CALCULATOR RENTABILITATE &amp; ORE ECONOMISITE
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
             Cât Câștigă Service-ul Tău cu SAMpro?
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
             Reglează parametrii atelierului tău pentru a vedea numărul de ore economisite la recepție și veniturile suplimentare generate prin aprobarea 1-tap a devizelor.
           </p>
         </div>
@@ -59,18 +59,18 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
           
           {/* Controls Left Column */}
-          <div className="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-[#07172f]/90 border border-white/10 space-y-6 shadow-xl">
+          <div className="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-slate-50 dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 space-y-6 shadow-xs dark:shadow-xl">
             
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
-              <span className="font-bold text-white text-base">Date Atelier Auto</span>
-              <span className="text-xs font-mono text-[#00D2FF]">Parametri Ajustabili</span>
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10">
+              <span className="font-bold text-slate-900 dark:text-white text-base">Date Atelier Auto</span>
+              <span className="text-xs font-mono text-[#0066FF] dark:text-[#00D2FF] font-semibold">Parametri Ajustabili</span>
             </div>
 
             {/* Slider 1: Elevatoare */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-sm">
-                <label className="text-slate-300 font-medium">Număr Elevatoare / Posturi:</label>
-                <span className="font-mono font-black text-white text-lg px-3 py-0.5 rounded-lg bg-white/10">
+                <label className="text-slate-700 dark:text-slate-300 font-medium">Număr Elevatoare / Posturi:</label>
+                <span className="font-mono font-black text-slate-900 dark:text-white text-lg px-3 py-0.5 rounded-lg bg-white dark:bg-white/10 border border-slate-200 dark:border-transparent shadow-xs">
                   {hoists} {hoists === 1 ? 'post' : 'elevatoare'}
                 </span>
               </div>

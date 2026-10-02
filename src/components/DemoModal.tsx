@@ -59,19 +59,19 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
       <div 
-        className="w-full max-w-lg rounded-3xl bg-[#07172f] border border-white/20 shadow-2xl p-6 sm:p-8 text-white relative overflow-hidden"
+        className="w-full max-w-lg rounded-3xl bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/20 shadow-2xl p-6 sm:p-8 text-slate-900 dark:text-white relative overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         
         {/* Glow corner accent */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-[#0066FF]/20 rounded-full blur-2xl pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 dark:bg-[#0066FF]/20 rounded-full blur-2xl pointer-events-none"></div>
 
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors"
+          className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors cursor-pointer"
           aria-label="Închide formularul"
         >
           <X className="w-5 h-5" />
@@ -79,25 +79,25 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
 
         {submitted ? (
           <div className="py-8 text-center space-y-4 animate-in zoom-in-95 duration-200">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-400/30 flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-400/30 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-9 h-9" />
             </div>
 
-            <h3 className="text-2xl font-black text-white">
+            <h3 className="text-2xl font-black text-slate-900 dark:text-white">
               Cerere Transmisă cu Succes!
             </h3>
 
-            <p className="text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-md mx-auto">
               Mulțumim, <strong>{contactName || 'domnule consilier'}</strong>! Echipa <strong>SAMpro / BUU.RO</strong> a primit solicitarea pentru <strong>{serviceName || 'service-ul dumneavoastră'}</strong>.
             </p>
 
-            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-xs text-slate-300 font-mono">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 text-xs text-slate-600 dark:text-slate-300 font-mono">
               Un specialist tehnic te va contacta în maximum <strong>15 minute</strong> pentru activarea instanței demo de 14 zile și configurarea elevatoarelor.
             </div>
 
             <button
               onClick={handleReset}
-              className="mt-4 px-8 py-3 rounded-full bg-gradient-to-r from-[#0066FF] to-[#00D2FF] text-white font-bold text-sm shadow-md hover:scale-105 transition-all"
+              className="mt-4 px-8 py-3 rounded-full bg-[#0066FF] hover:bg-[#0052cc] text-white font-bold text-sm shadow-md hover:scale-105 transition-all cursor-pointer"
             >
               Închide și continuă navigarea
             </button>
@@ -107,17 +107,17 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
             
             {/* Header */}
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 text-[#00D2FF] font-mono text-xs font-bold mb-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/20 text-[#0066FF] dark:text-[#00D2FF] font-mono text-xs font-bold mb-2">
                 <Rocket className="w-3.5 h-3.5" />
                 ACCES DEMO 14 ZILE GRATUIT
               </div>
 
-              <h3 className="text-2xl font-black text-white tracking-tight">
+              <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
                 Pornește Motorul Service-ului Tău
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-300">
-                Pachet selectat: <span className="text-[#00D2FF] font-bold">{selectedPlan}</span>. Configurare în 10 minute, fără card de credit necesar.
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                Pachet selectat: <span className="text-[#0066FF] dark:text-[#00D2FF] font-bold">{selectedPlan}</span>. Configurare în 10 minute, fără card de credit necesar.
               </p>
             </div>
 
@@ -126,8 +126,8 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
               
               {/* Service Name */}
               <div className="space-y-1">
-                <label className="text-slate-300 font-semibold flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-[#00D2FF]" />
+                <label className="text-slate-700 dark:text-slate-300 font-semibold flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF]" />
                   Nume Service Auto / Atelier *
                 </label>
                 <input
@@ -136,14 +136,14 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
                   value={serviceName}
                   onChange={(e) => setServiceName(e.target.value)}
                   placeholder="ex. AutoPro Serv Cluj"
-                  className="w-full h-11 px-3.5 rounded-xl bg-[#030d22] border border-white/15 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D2FF] transition-all text-xs"
+                  className="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-[#030d22] border border-slate-200 dark:border-white/15 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-[#0066FF] dark:focus:border-[#00D2FF] transition-all text-xs"
                 />
               </div>
 
               {/* Contact Person */}
               <div className="space-y-1">
-                <label className="text-slate-300 font-semibold flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-[#00D2FF]" />
+                <label className="text-slate-700 dark:text-slate-300 font-semibold flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF]" />
                   Nume Persoană de Contact *
                 </label>
                 <input
@@ -152,15 +152,15 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
                   placeholder="ex. Cristian Popescu (Manager / Șef Atelier)"
-                  className="w-full h-11 px-3.5 rounded-xl bg-[#030d22] border border-white/15 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D2FF] transition-all text-xs"
+                  className="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-[#030d22] border border-slate-200 dark:border-white/15 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-[#0066FF] dark:focus:border-[#00D2FF] transition-all text-xs"
                 />
               </div>
 
               {/* Phone & City Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-slate-300 font-semibold flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-[#00D2FF]" />
+                  <label className="text-slate-700 dark:text-slate-300 font-semibold flex items-center gap-1.5">
+                    <Phone className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF]" />
                     Telefon Mobil (România) *
                   </label>
                   <input
@@ -169,13 +169,13 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="07xx xxx xxx"
-                    className="w-full h-11 px-3.5 rounded-xl bg-[#030d22] border border-white/15 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D2FF] transition-all font-mono text-xs"
+                    className="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-[#030d22] border border-slate-200 dark:border-white/15 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-[#0066FF] dark:focus:border-[#00D2FF] transition-all font-mono text-xs"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-slate-300 font-semibold flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#00D2FF]" />
+                  <label className="text-slate-700 dark:text-slate-300 font-semibold flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF]" />
                     Oraș / Județ
                   </label>
                   <input
@@ -183,21 +183,21 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder="ex. Cluj-Napoca, București"
-                    className="w-full h-11 px-3.5 rounded-xl bg-[#030d22] border border-white/15 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D2FF] transition-all text-xs"
+                    className="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-[#030d22] border border-slate-200 dark:border-white/15 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-[#0066FF] dark:focus:border-[#00D2FF] transition-all text-xs"
                   />
                 </div>
               </div>
 
               {/* Number of Hoists */}
               <div className="space-y-1">
-                <label className="text-slate-300 font-semibold flex items-center gap-1.5">
-                  <Wrench className="w-3.5 h-3.5 text-[#00D2FF]" />
+                <label className="text-slate-700 dark:text-slate-300 font-semibold flex items-center gap-1.5">
+                  <Wrench className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF]" />
                   Număr Elevatoare / Mecanici
                 </label>
                 <select
                   value={hoists}
                   onChange={(e) => setHoists(e.target.value)}
-                  className="w-full h-11 px-3.5 rounded-xl bg-[#030d22] border border-white/15 text-white focus:outline-none focus:border-[#00D2FF] transition-all text-xs"
+                  className="w-full h-11 px-3.5 rounded-xl bg-slate-50 dark:bg-[#030d22] border border-slate-200 dark:border-white/15 text-slate-900 dark:text-white focus:outline-none focus:border-[#0066FF] dark:focus:border-[#00D2FF] transition-all text-xs"
                 >
                   <option value="1-2">1 - 2 Elevatoare (Atelier mic / Start)</option>
                   <option value="3-5">3 - 5 Elevatoare (Service mediu)</option>
@@ -214,10 +214,10 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
                   checked={gdprChecked}
                   onChange={(e) => setGdprChecked(e.target.checked)}
                   required
-                  className="mt-0.5 rounded text-[#0066FF] focus:ring-0 bg-slate-900 border-white/20"
+                  className="mt-0.5 rounded text-[#0066FF] focus:ring-0 bg-white dark:bg-slate-900 border-slate-300 dark:border-white/20"
                 />
-                <label htmlFor="modalGdpr" className="text-slate-400 text-[11px] leading-tight cursor-pointer">
-                  Sunt de acord cu prelucrarea datelor pentru contactarea în vederea prezentării SAMpro conform <span className="text-[#00D2FF] underline">Politicii GDPR</span>. Datele nu sunt înstrăinate terților.
+                <label htmlFor="modalGdpr" className="text-slate-600 dark:text-slate-400 text-[11px] leading-tight cursor-pointer">
+                  Sunt de acord cu prelucrarea datelor pentru contactarea în vederea prezentării SAMpro conform <span className="text-[#0066FF] dark:text-[#00D2FF] underline">Politicii GDPR</span>. Datele nu sunt înstrăinate terților.
                 </label>
               </div>
 
@@ -225,7 +225,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full h-12 mt-2 rounded-full bg-gradient-to-r from-[#0066FF] to-[#00D2FF] hover:from-[#0072ff] hover:to-[#00d8ff] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 active:scale-95 transition-all"
+                className="w-full h-12 mt-2 rounded-full bg-[#0066FF] hover:bg-[#0052cc] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 active:scale-95 transition-all cursor-pointer"
               >
                 {submitting ? (
                   <span>Se transmite solicitarea...</span>

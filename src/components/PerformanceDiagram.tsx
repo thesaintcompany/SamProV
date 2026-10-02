@@ -44,29 +44,29 @@ export const PerformanceDiagram: React.FC = () => {
   ];
 
   return (
-    <section id="performanta" className="py-24 sm:py-32 bg-[#020b1b] relative overflow-hidden text-white">
+    <section id="performanta" className="py-24 sm:py-32 bg-slate-50 dark:bg-[#020b1b] relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-300">
       
       {/* Halo Lights */}
-      <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-[#0066FF]/15 rounded-full blur-[140px] pointer-events-none"></div>
-      <div className="absolute bottom-10 right-10 w-[600px] h-[450px] bg-[#00D2FF]/10 rounded-full blur-[130px] pointer-events-none"></div>
+      <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-blue-500/5 dark:bg-[#0066FF]/15 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute bottom-10 right-10 w-[600px] h-[450px] bg-cyan-500/5 dark:bg-[#00D2FF]/10 rounded-full blur-[130px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         
         {/* Apple Style Editorial Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-xs font-mono font-bold text-[#00D2FF]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 text-xs font-mono font-bold text-[#0066FF] dark:text-[#00D2FF]">
             <Zap className="w-3.5 h-3.5" />
             IMPACT MĂSURAT PE CONSILIERI SERVICE &amp; VÂNZĂRI
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
             Viteza de Formula 1 Adusă în <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D2FF] via-[#0066FF] to-blue-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-cyan-500 dark:from-[#00D2FF] dark:via-[#0066FF] dark:to-blue-400">
               Performanța Consilierilor SAMpro
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
             Analiză comparativă pas cu pas: cum fluxul digital SAMpro transformă un consilier auto tradițional într-un top-performer de înaltă precizie.
           </p>
         </div>

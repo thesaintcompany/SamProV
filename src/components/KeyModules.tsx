@@ -108,29 +108,29 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
   ];
 
   return (
-    <section id="module" className="py-24 sm:py-32 bg-[#041024] relative overflow-hidden text-white">
+    <section id="module" className="py-24 sm:py-32 bg-slate-50 dark:bg-[#041024] relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-300">
       
       {/* Background accents */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#0066FF]/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#00D2FF]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-500/5 dark:bg-[#0066FF]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/5 dark:bg-[#00D2FF]/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold text-[#00D2FF] mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/10 border border-blue-200 dark:border-white/15 text-xs font-mono font-bold text-[#0066FF] dark:text-[#00D2FF] mb-4">
             <Layers className="w-3.5 h-3.5" />
             ARHITECTURA ECOSISTEMULUI SAMPRO
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
             Cinci Module Puternice.<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D2FF] via-[#0066FF] to-blue-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-cyan-500 dark:from-[#00D2FF] dark:via-[#0066FF] dark:to-blue-400">
               Un Singur Flux Continuu.
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
             Creat din perspectiva consilierului de service, a mecanicului și a proprietarului de atelier din România. Fără funcții inutile. Doar viteză, claritate și profitabilitate.
           </p>
         </div>
@@ -147,18 +147,18 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                 key={mod.id}
                 className={`rounded-3xl p-7 transition-all duration-300 relative flex flex-col justify-between group ${
                   isFeatured 
-                    ? 'md:col-span-2 lg:col-span-2 bg-gradient-to-br from-[#071d3d] via-[#082855] to-[#04152e] border-2 border-[#00D2FF]/40 shadow-[0_15px_40px_rgba(0,102,255,0.25)]' 
-                    : 'bg-[#07172f]/80 hover:bg-[#0c2347] border border-white/10 hover:border-white/20'
+                    ? 'md:col-span-2 lg:col-span-2 bg-gradient-to-br from-[#071d3d] via-[#082855] to-[#04152e] text-white border-2 border-[#0066FF] dark:border-[#00D2FF]/40 shadow-[0_15px_40px_rgba(0,102,255,0.25)]' 
+                    : 'bg-white dark:bg-[#07172f]/80 hover:bg-slate-50 dark:hover:bg-[#0c2347] border border-slate-200 dark:border-white/10 hover:border-[#0066FF]/40 dark:hover:border-white/20 shadow-xs dark:shadow-none'
                 }`}
               >
                 <div>
                   
                   {/* Top Bar with Icon & Tag */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg ${
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-md ${
                       isFeatured 
                         ? 'bg-gradient-to-br from-[#0066FF] to-[#00D2FF] text-white' 
-                        : 'bg-white/10 text-[#00D2FF]'
+                        : 'bg-blue-50 dark:bg-white/10 text-[#0066FF] dark:text-[#00D2FF]'
                     }`}>
                       <Icon className="w-7 h-7" />
                     </div>
@@ -169,23 +169,27 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-[#00D2FF] transition-colors">
+                  <h3 className={`text-xl sm:text-2xl font-bold mb-2 tracking-tight transition-colors ${
+                    isFeatured 
+                      ? 'text-white group-hover:text-[#00D2FF]' 
+                      : 'text-slate-900 dark:text-white group-hover:text-[#0066FF] dark:group-hover:text-[#00D2FF]'
+                  }`}>
                     {mod.title}
                   </h3>
 
-                  <p className="text-sm font-semibold text-blue-200/90 mb-3">
+                  <p className={`text-sm font-semibold mb-3 ${isFeatured ? 'text-blue-200/90' : 'text-[#0066FF] dark:text-blue-200/90'}`}>
                     {mod.subtitle}
                   </p>
 
-                  <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                  <p className={`text-sm leading-relaxed mb-6 ${isFeatured ? 'text-slate-200' : 'text-slate-600 dark:text-slate-300'}`}>
                     {mod.desc}
                   </p>
 
                   {/* Checkmark Bullets */}
                   <div className="space-y-2.5 mb-6">
                     {mod.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-start gap-2.5 text-xs text-slate-200">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <div key={fIdx} className={`flex items-start gap-2.5 text-xs ${isFeatured ? 'text-slate-200' : 'text-slate-700 dark:text-slate-200'}`}>
+                        <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -194,8 +198,8 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                 </div>
 
                 {/* Bottom Bar: Stats & Simulator Jump */}
-                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                  <div className="text-xs font-mono font-bold text-emerald-400 flex items-center gap-1.5">
+                <div className={`pt-4 border-t flex flex-wrap items-center justify-between gap-3 ${isFeatured ? 'border-white/15' : 'border-slate-100 dark:border-white/10'}`}>
+                  <div className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5" />
                     {mod.stats}
                   </div>
@@ -203,7 +207,11 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                   {mod.action && (
                     <button
                       onClick={mod.action}
-                      className="inline-flex items-center text-xs font-bold text-[#00D2FF] hover:text-white transition-colors group/btn"
+                      className={`inline-flex items-center text-xs font-bold transition-colors group/btn cursor-pointer ${
+                        isFeatured 
+                          ? 'text-[#00D2FF] hover:text-white' 
+                          : 'text-[#0066FF] dark:text-[#00D2FF] hover:underline'
+                      }`}
                     >
                       <span>{mod.actionText}</span>
                       <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-1 transition-transform" />
@@ -216,37 +224,37 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
           })}
 
           {/* Quick Bonus Tile: Zero Complicat / Cloud Native */}
-          <div className="rounded-3xl p-7 bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 flex flex-col justify-between">
+          <div className="rounded-3xl p-7 bg-white dark:bg-gradient-to-br dark:from-white/5 dark:to-white/[0.02] border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-none flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-6">
-                <Smartphone className="w-6 h-6 text-[#00D2FF]" />
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-white/10 text-[#0066FF] dark:text-[#00D2FF] flex items-center justify-center mb-6">
+                <Smartphone className="w-6 h-6" />
               </div>
               
-              <h3 className="text-xl font-bold text-white mb-2">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
                 100% Cloud Web — Fără Instalare
               </h3>
 
-              <p className="text-sm text-slate-300 leading-relaxed mb-4">
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                 Rulează impecabil pe laptop la recepție, pe tableta mecanicilor în atelier sau pe telefonul managerului când este plecat din service.
               </p>
 
-              <div className="space-y-2 text-xs text-slate-300 font-mono">
+              <div className="space-y-2 text-xs text-slate-700 dark:text-slate-300 font-mono">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                   Compatibil Windows, Mac, Android, iOS
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                   Actualizări automate periodice incluse
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                   Backup zilnic georedundant (ISO 27001)
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 text-xs text-slate-400">
+            <div className="mt-6 pt-4 border-t border-slate-100 dark:border-white/10 text-xs text-slate-500 dark:text-slate-400">
               Asistență tehnică dedicată prin telefon și AnyDesk.
             </div>
           </div>

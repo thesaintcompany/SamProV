@@ -14,10 +14,10 @@ interface RarAutopassSectionProps {
 
 export const RarAutopassSection: React.FC<RarAutopassSectionProps> = ({ onScrollToSimulator, onOpenDemo }) => {
   return (
-    <section id="rar-autopass" className="py-24 sm:py-32 bg-[#020b1b] relative overflow-hidden text-white border-t border-white/10">
+    <section id="rar-autopass" className="py-24 sm:py-32 bg-white dark:bg-[#020b1b] relative overflow-hidden text-slate-900 dark:text-white border-t border-slate-200 dark:border-white/10 transition-colors duration-300">
       
       {/* Background Glow */}
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/3 left-10 w-96 h-96 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -26,55 +26,55 @@ export const RarAutopassSection: React.FC<RarAutopassSectionProps> = ({ onScroll
           {/* Left Column: Context & Vision */}
           <div className="lg:col-span-6 space-y-6">
             
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-xs font-mono font-bold text-emerald-400">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-200 dark:border-emerald-400/30 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">
               <ShieldCheck className="w-4 h-4" />
               CONECTARE OFICIALĂ REGISTRUL AUTO ROMÂN
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
               Transformă Obligația Legală RAR într-un <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-[#00D2FF]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-[#0066FF] dark:from-emerald-400 dark:via-teal-300 dark:to-[#00D2FF]">
                 Certificat de Încredere &amp; Siguranță
               </span>
             </h2>
 
-            <p className="text-base text-slate-300 leading-relaxed font-normal">
+            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
               Pentru multe ateliere, raportarea către RAR este o corvoadă birocratică. <strong>SAMpro transformă această cerință într-un avantaj competitiv uriaș</strong>: fiecare mașină care iese din service-ul tău primește un <strong>Pașaport Tehnic de Calitate și Siguranță</strong> oficial.
             </p>
 
             {/* Key Pillars */}
             <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#06152b] border border-white/10">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 font-bold">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-[#06152b] border border-slate-200 dark:border-white/10 shadow-xs">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 font-bold">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-base font-bold text-white">Validare Instantă a Odometrului (Km Reali)</h4>
-                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  <h4 className="text-base font-bold text-slate-900 dark:text-white">Validare Instantă a Odometrului (Km Reali)</h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
                     Sistemul compară kilometrajul declarat la intrarea pe elevator cu istoricul înregistrat oficial la fiecare ITP anterior, alertând consilierul în cazul oricărei discrepanțe.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#06152b] border border-white/10">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-[#00D2FF] flex items-center justify-center shrink-0 font-bold">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-[#06152b] border border-slate-200 dark:border-white/10 shadow-xs">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-[#0066FF] dark:text-[#00D2FF] flex items-center justify-center shrink-0 font-bold">
                   <FileCheck2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-base font-bold text-white">Raportare Automată la Ieșirea din Service</h4>
-                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  <h4 className="text-base font-bold text-slate-900 dark:text-white">Raportare Automată la Ieșirea din Service</h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
                     Datele intervenției și kilometrajul se transmit direct conform normativelor RAR Autopass, fără a fi nevoie de reintroducerea manuală a datelor în alte portaluri.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#06152b] border border-white/10">
-                <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center shrink-0 font-bold">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-[#06152b] border border-slate-200 dark:border-white/10 shadow-xs">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-300 flex items-center justify-center shrink-0 font-bold">
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-base font-bold text-white">Păstrarea Valorii de Revânzare a Mașinii Clientului</h4>
-                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  <h4 className="text-base font-bold text-slate-900 dark:text-white">Păstrarea Valorii de Revânzare a Mașinii Clientului</h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
                     Clientul primește confirmarea certă că mașina sa este conformă la cele mai înalte standarde naționale, garantând istoricul real pentru viitorii cumpărători.
                   </p>
                 </div>
@@ -84,7 +84,7 @@ export const RarAutopassSection: React.FC<RarAutopassSectionProps> = ({ onScroll
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
                 onClick={onScrollToSimulator}
-                className="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/30 transition-all"
+                className="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/30 transition-all cursor-pointer"
               >
                 <span>Simulează o Căutare RAR Autopass</span>
                 <ArrowRight className="w-4 h-4" />
@@ -92,7 +92,7 @@ export const RarAutopassSection: React.FC<RarAutopassSectionProps> = ({ onScroll
 
               <button
                 onClick={onOpenDemo}
-                className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-xs sm:text-sm border border-white/15 transition-all"
+                className="px-6 py-3 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/15 text-slate-800 dark:text-white font-semibold text-xs sm:text-sm border border-slate-200 dark:border-white/15 transition-all cursor-pointer"
               >
                 Solicită Integrarea în Service
               </button>

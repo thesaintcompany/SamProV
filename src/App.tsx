@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { KeyModules } from './components/KeyModules';
@@ -13,6 +13,28 @@ import { DemoModal } from './components/DemoModal';
 import { GdprModal } from './components/GdprModal';
 
 export const App: React.FC = () => {
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('sampro_theme');
+      return saved === 'dark' ? 'dark' : 'light';
+    }
+    return 'light';
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('sampro_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [selectedPlanForDemo, setSelectedPlanForDemo] = useState('Plan Pro (Recomandat)');
   const [isGdprModalOpen, setIsGdprModalOpen] = useState(false);
@@ -50,12 +72,14 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#020b1b] text-slate-100 flex flex-col font-sans selection:bg-[#0066FF] selection:text-white antialiased">
+    <div className="min-h-screen bg-white dark:bg-[#020b1b] text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-[#0066FF] selection:text-white antialiased transition-colors duration-300">
       
       {/* Sticky Navigation Bar */}
       <Navbar 
         onOpenDemo={() => handleOpenDemo()} 
         onOpenLegal={handleOpenLegal} 
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
 
       {/* Main Page Flow */}
