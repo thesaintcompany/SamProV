@@ -88,6 +88,7 @@ export const App: React.FC = () => {
         <Hero 
           onOpenDemo={() => handleOpenDemo('Plan Pro')} 
           onScrollToSimulator={() => handleScrollToSimulator('whatsapp')} 
+          theme={theme}
         />
 
         {/* 5 Core ERP/CRM Modules (Bento Architecture) */}

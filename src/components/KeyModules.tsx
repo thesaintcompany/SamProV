@@ -6,10 +6,9 @@ import {
   Car, 
   Users, 
   ArrowRight, 
-  CheckCircle2, 
-  Smartphone, 
-  Sparkles,
-  Layers
+  Check, 
+  Terminal,
+  Cpu
 } from 'lucide-react';
 
 interface KeyModulesProps {
@@ -17,251 +16,237 @@ interface KeyModulesProps {
 }
 
 export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) => {
-
   const modules = [
     {
       id: 'calendar',
+      index: '01',
+      code: 'ATELIER',
       icon: Calendar,
-      tag: 'GESTIUNE ATELIER',
-      title: 'Calendar & Planificator Elevatoare',
-      subtitle: 'Elimină complet timpii morți dintre programări și elevatoare goale.',
-      desc: 'Alocă intervențiile vizual pe fiecare mecanic și elevator. Monitorizează durata lucrărilor în timp real, previne suprapunerile și asigură respectarea exactă a orei promise de predare către client.',
-      stats: '+42% mai multe mașini finalizate la timp',
-      color: 'from-blue-600 to-indigo-600',
-      badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-400/30',
+      tag: 'GESTIUNE ELEVATOARE',
+      title: 'Planificator Elevatoare & Mecanici',
+      subtitle: 'Elimină timpii morți dintre programări și elevatoare neocupate.',
+      desc: 'Alocă vizual intervențiile pe fiecare post de lucru și mecanic. Monitorizează durata efectivă în timp real, previne suprapunerile și garantează ora promisă de predare.',
+      metricLabel: 'PRODUCTIVITATE',
+      metricVal: '+42% MAȘINI FINALIZATE LA TIMP',
       features: [
-        'Vizualizare drag-and-drop pe ore, zile și posturi de lucru',
-        'Notificare automată la depășirea timpului estimat per elevator',
-        'Fișă de lucru digitală pe tableta mecanicului'
+        'Planificare drag-and-drop pe ore, zile și posturi specifice',
+        'Alertă automată la depășirea timpului estimat de lucru',
+        'Fișă digitală sincronizată pe tableta mecanicului'
       ],
       action: () => onSelectSimulatorTab && onSelectSimulatorTab('hoists'),
-      actionText: 'Testează Planificatorul în Simulator'
+      actionText: 'SIMULEAZĂ PLANIFICATORUL'
     },
     {
       id: 'devize',
+      index: '02',
+      code: 'VÂNZĂRI',
       icon: Send,
-      tag: 'TRANSFORMARE VÂNZĂRI',
-      title: 'Devize Inteligente & Aprobare 1-Tap pe WhatsApp',
-      subtitle: 'Clienții văd exact ce se schimbă și aprobă lucrarea în sub 60 de secunde.',
-      desc: 'Trimite clientului pe WhatsApp sau SMS un deviz interactiv, clar și elegant. Cu dovezi foto/video atașate din atelier și separare pe intervenții „Critice de Siguranță” vs. „Recomandate”, elimini discuțiile tensionate și crești rata de aprobare.',
-      stats: '+35% creștere rată aprobare devize',
-      color: 'from-[#0066FF] to-[#00D2FF]',
-      badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/30',
+      tag: 'CONVERSIE RAPIDĂ',
+      title: 'Devize & Aprobare 1-Tap WhatsApp',
+      subtitle: 'Clienții văd piesele, manopera și aprobă lucrarea în sub 60 de secunde.',
+      desc: 'Transmite devizul interactiv direct pe telefonul clientului. Include dovezi foto/video din atelier și separare automată a operațiunilor de urgență vs. recomandate.',
+      metricLabel: 'CONVERSIE',
+      metricVal: '+35% CREȘTERE RATĂ APROBARE',
       features: [
-        'Aprobare 1-tap pe ecranul telefonului clientului',
+        'Aprobare instantanee cu semnătură digitală pe mobil',
         'Atașare foto/video direct din constatarea consilierului',
-        'Transparentizare totală a pieselor și manoperei calificate'
+        'Claritate totală pe piese OEM/AM și ore manoperă'
       ],
       action: () => onSelectSimulatorTab && onSelectSimulatorTab('whatsapp'),
-      actionText: 'Vezi Devizul Interactiv WhatsApp'
+      actionText: 'VEZI DEVIZUL INTERACTIV'
     },
     {
       id: 'rar',
+      index: '03',
+      code: 'LEGAL_RO',
       icon: Car,
       tag: 'CONFORMITATE OFICIALĂ',
-      title: 'Hub Etic RAR & RAR Autopass',
-      subtitle: 'Sincronizare directă cu Registrul Auto Român și emitere Pașaport de Calitate.',
-      desc: 'Interoghează baza oficială RAR dintr-un clic la introducerea numărului de înmatriculare sau a seriei de șasiu (VIN). Validezi automat odometrul (km reali), istoricul ITP și emiți automat un „Certificat de Calitate și Siguranță” la predarea mașinii.',
-      stats: 'Conformitate legală 100% garantată',
-      color: 'from-emerald-600 to-teal-600',
-      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/30',
+      title: 'Gateway Direct RAR & Pașaport Tehnic',
+      subtitle: 'Sincronizare cu Registrul Auto Român și emitere certificat de calitate.',
+      desc: 'Interoghează baza RAR la introducerea numărului de înmatriculare sau VIN. Validezi odometrul oficial, istoricul ITP și generezi automat Pașaportul de Siguranță.',
+      metricLabel: 'CONFORMITATE',
+      metricVal: '100% CONFORMITATE LEGEA HG 152/2023',
       features: [
         'Interogare VIN cu istoric kilometraj și valabilitate ITP',
-        'Emitere Certificat de Siguranță SAMpro pentru client',
-        'Protecție împotriva fraudelor și atestare reparații în service autorizat'
+        'Emitere automată Certificat de Siguranță la predare',
+        'Protecție legală și atestare reparații în service autorizat'
       ],
       action: () => onSelectSimulatorTab && onSelectSimulatorTab('rar'),
-      actionText: 'Simulează Interogare RAR Autopass'
+      actionText: 'SIMULEAZĂ INTEROGARE RAR'
     },
     {
       id: 'piese',
+      index: '04',
+      code: 'APROVIZIONARE',
       icon: ShieldCheck,
       tag: 'SECURITATE COMERCIALĂ',
       title: 'Protecție Cod Piese & Cataloage OEM',
-      subtitle: 'Comenzi fără greșeli la distribuitori și protejarea adaosului comercial.',
-      desc: 'Integrare automată cu cataloagele marilor distribuitori de piese auto din România. Sistemul verifică compatibilitatea seriei de șasiu, protejează codurile interne de aprovizionare și optimizează marjele fără bătăi de cap.',
-      stats: '0 retururi de piese greșite la furnizori',
-      color: 'from-amber-600 to-orange-600',
-      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-400/30',
+      subtitle: 'Comenzi fără erori la distribuitori și protejarea marjei comerciale.',
+      desc: 'Conectare directă cu cataloagele marilor distribuitori auto din România. Sistemul verifică compatibilitatea seriei de șasiu, protejează codurile interne și optimizează adaosul.',
+      metricLabel: 'ACURATEȚE',
+      metricVal: '0 RETURURI DE PIESE GREȘITE',
       features: [
-        'Verificare compatibilitate VIN cu baze de date OEM',
+        'Verificare compatibilitate VIN cu baze de date tehnice OEM',
         'Calcul automat al adaosului comercial optim per categorie',
-        'Evitarea pierderii de timp prin căutări în taburi multiple'
+        'Comandă directă fără căutări manuale în portaluri externe'
       ]
     },
     {
       id: 'crm',
+      index: '05',
+      code: 'RETENȚIE',
       icon: Users,
-      tag: 'FIDELIZARE & SMART PR',
-      title: 'Smart PR & CRM Empatic pentru Clienți',
-      subtitle: 'Transformă fiecare client ocazional într-un partener fidel pe viață.',
-      desc: 'Fiecare pas este un exercițiu de Smart PR. De la mesajul cald „Mașina a intrat pe elevatorul 2”, la remindere automate pentru revizie, ITP sau schimb anvelope sezoniere și solicitare automată de recenzie Google de 5 stele.',
-      stats: '98% scor de satisfacție a clienților (CSAT)',
-      color: 'from-purple-600 to-pink-600',
-      badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-400/30',
+      tag: 'FIDELIZARE & PR',
+      title: 'Smart PR & CRM Automatizat',
+      subtitle: 'Transformă clienții ocazionali în parteneri pe termen lung.',
+      desc: 'Notificări automate la fiecare etapă: intrarea pe elevator, finalizarea testelor, alerte de revizie/ITP și solicitare automată de recenzii de 5 stele pe Google Maps.',
+      metricLabel: 'RETENȚIE',
+      metricVal: '98% SATISFACȚIE CLIENȚI (CSAT)',
       features: [
-        'Notificări automate personalizate pe WhatsApp & SMS',
-        'Remindere de sezon: verificare ITP, revizie, anvelope iarnă/vară',
-        'Colectare organică de recenzii pozitive pe Google Maps'
+        'Actualizări automate de status pe WhatsApp & SMS',
+        'Alerte sezoniere: ITP, revizie ulei, anvelope iarnă/vară',
+        'Creșterea organică a ratingului pe Google Maps'
+      ]
+    },
+    {
+      id: 'cloud',
+      index: '06',
+      code: 'INFRASTRUCTURĂ',
+      icon: Cpu,
+      tag: 'ARHITECTURĂ CLOUD',
+      title: 'Cloud Native — Zero Instalare',
+      subtitle: 'Acces securizat instant de pe laptop, tabletă mecanic sau telefon.',
+      desc: 'Infrastructură distribuită georedundantă în centre de date europene conform ISO 27001 și GDPR. Actualizările se aplică automat în fundal fără întreruperea activității.',
+      metricLabel: 'DISPONIBILITATE',
+      metricVal: '99.98% UPTIME SERVICE LEVEL',
+      features: [
+        'Compatibil Windows, macOS, Android, iOS în browser',
+        'Actualizări automate periodice incluse în abonament',
+        'Copii de siguranță zilnice criptate pe noduri redundante'
       ]
     }
   ];
 
   return (
-    <section id="module" className="py-24 sm:py-32 bg-slate-50 dark:bg-[#041024] relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-300">
+    <section id="module" className="py-24 sm:py-32 bg-slate-50 dark:bg-[#030c1d] relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-500 border-t border-slate-200 dark:border-white/10">
       
-      {/* Background accents */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-500/5 dark:bg-[#0066FF]/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/5 dark:bg-[#00D2FF]/10 rounded-full blur-3xl pointer-events-none"></div>
-
+      {/* Precision grid backdrop lines */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/10 border border-blue-200 dark:border-white/15 text-xs font-mono font-bold text-[#0066FF] dark:text-[#00D2FF] mb-4">
-            <Layers className="w-3.5 h-3.5" />
-            ARHITECTURA ECOSISTEMULUI SAMPRO
+        {/* Section Header: Swiss Grotesk & Technical Metadata */}
+        <div className="max-w-4xl mb-16 sm:mb-20">
+          
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 font-mono text-[11px] font-semibold tracking-wider uppercase text-slate-700 dark:text-slate-300 mb-5">
+            <Terminal className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF]" />
+            <span>ARHITECTURA DE PRECIZIE // SAMPRO SUITE</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
-            Cinci Module Puternice.<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-cyan-500 dark:from-[#00D2FF] dark:via-[#0066FF] dark:to-blue-400">
-              Un Singur Flux Continuu.
-            </span>
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white uppercase leading-[0.98] mb-6">
+            Șase Module Structurale.<br />
+            <span className="text-[#0066FF] dark:text-[#00D2FF]">Un Singur Flux Continuu.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            Creat din perspectiva consilierului de service, a mecanicului și a proprietarului de atelier din România. Fără funcții inutile. Doar viteză, claritate și profitabilitate.
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-2xl">
+            Proiectat strict din perspectiva consilierului de service, a mecanicului și a managerului de atelier. Fără elemente decorative inutile. Doar viteză de execuție, trasabilitate tehnică și profitabilitate controlată.
           </p>
         </div>
 
-        {/* 5-Module Bento Matrix Array */}
+        {/* Swiss Precision Modular Matrix (Rigid 3x2 Grid) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          
-          {modules.map((mod, idx) => {
+          {modules.map((mod) => {
             const Icon = mod.icon;
-            const isFeatured = idx === 1; // WhatsApp closing is featured
             
             return (
               <div 
                 key={mod.id}
-                className={`rounded-3xl p-7 transition-all duration-300 relative flex flex-col justify-between group ${
-                  isFeatured 
-                    ? 'md:col-span-2 lg:col-span-2 bg-gradient-to-br from-[#071d3d] via-[#082855] to-[#04152e] text-white border-2 border-[#0066FF] dark:border-[#00D2FF]/40 shadow-[0_15px_40px_rgba(0,102,255,0.25)]' 
-                    : 'bg-white dark:bg-[#07172f]/80 hover:bg-slate-50 dark:hover:bg-[#0c2347] border border-slate-200 dark:border-white/10 hover:border-[#0066FF]/40 dark:hover:border-white/20 shadow-xs dark:shadow-none'
-                }`}
+                className="bg-white dark:bg-[#051124] border border-slate-200 dark:border-white/10 p-7 sm:p-8 flex flex-col justify-between hover:border-[#0066FF] dark:hover:border-[#00D2FF]/60 transition-colors duration-300 relative group shadow-[0_2px_12px_rgba(0,0,0,0.02)] dark:shadow-none"
               >
+                {/* Structural Crosshair in Top-Right Corner */}
+                <div className="absolute top-3 right-3 font-mono text-slate-300 dark:text-white/20 text-xs select-none pointer-events-none">
+                  +
+                </div>
+
                 <div>
-                  
-                  {/* Top Bar with Icon & Tag */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-md ${
-                      isFeatured 
-                        ? 'bg-gradient-to-br from-[#0066FF] to-[#00D2FF] text-white' 
-                        : 'bg-blue-50 dark:bg-white/10 text-[#0066FF] dark:text-[#00D2FF]'
-                    }`}>
-                      <Icon className="w-7 h-7" />
+                  {/* Card Header: Monospace Index & Sector Tag */}
+                  <div className="flex items-center justify-between pb-5 border-b border-slate-100 dark:border-white/10 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white flex items-center justify-center shrink-0">
+                        <Icon className="w-5 h-5 text-[#0066FF] dark:text-[#00D2FF]" />
+                      </div>
+                      <span className="font-mono text-xs font-bold text-slate-900 dark:text-white">
+                        [{mod.index} // {mod.code}]
+                      </span>
                     </div>
 
-                    <span className={`text-[11px] font-mono font-bold px-3 py-1 rounded-full border ${mod.badgeColor}`}>
+                    <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-white/5 px-2.5 py-1 border border-slate-200/80 dark:border-white/5">
                       {mod.tag}
                     </span>
                   </div>
 
-                  {/* Title & Subtitle */}
-                  <h3 className={`text-xl sm:text-2xl font-bold mb-2 tracking-tight transition-colors ${
-                    isFeatured 
-                      ? 'text-white group-hover:text-[#00D2FF]' 
-                      : 'text-slate-900 dark:text-white group-hover:text-[#0066FF] dark:group-hover:text-[#00D2FF]'
-                  }`}>
+                  {/* Title & Core Subtitle */}
+                  <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight leading-snug mb-2 group-hover:text-[#0066FF] dark:group-hover:text-[#00D2FF] transition-colors">
                     {mod.title}
                   </h3>
 
-                  <p className={`text-sm font-semibold mb-3 ${isFeatured ? 'text-blue-200/90' : 'text-[#0066FF] dark:text-blue-200/90'}`}>
+                  <p className="text-xs font-semibold text-[#0066FF] dark:text-slate-300 mb-3 tracking-wide">
                     {mod.subtitle}
                   </p>
 
-                  <p className={`text-sm leading-relaxed mb-6 ${isFeatured ? 'text-slate-200' : 'text-slate-600 dark:text-slate-300'}`}>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-6 font-normal">
                     {mod.desc}
                   </p>
 
-                  {/* Checkmark Bullets */}
-                  <div className="space-y-2.5 mb-6">
+                  {/* Technical Spec List */}
+                  <div className="space-y-2 mb-6 pt-2 border-t border-slate-100 dark:border-white/5">
                     {mod.features.map((feat, fIdx) => (
-                      <div key={fIdx} className={`flex items-start gap-2.5 text-xs ${isFeatured ? 'text-slate-200' : 'text-slate-700 dark:text-slate-200'}`}>
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" />
-                        <span>{feat}</span>
+                      <div key={fIdx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300">
+                        <span className="text-[#0066FF] dark:text-[#00D2FF] shrink-0 font-mono font-bold">
+                          —
+                        </span>
+                        <span className="leading-snug">{feat}</span>
                       </div>
                     ))}
                   </div>
 
                 </div>
 
-                {/* Bottom Bar: Stats & Simulator Jump */}
-                <div className={`pt-4 border-t flex flex-wrap items-center justify-between gap-3 ${isFeatured ? 'border-white/15' : 'border-slate-100 dark:border-white/10'}`}>
-                  <div className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    {mod.stats}
+                {/* Card Footer: Data Readout & Simulator Link */}
+                <div className="pt-4 border-t border-slate-100 dark:border-white/10 flex flex-col gap-3">
+                  
+                  {/* Monospaced Metric Badge */}
+                  <div className="flex items-center justify-between font-mono text-[11px] bg-slate-50 dark:bg-white/[0.03] p-2 border border-slate-200/60 dark:border-white/5">
+                    <span className="text-slate-400 dark:text-slate-500 text-[10px]">{mod.metricLabel}:</span>
+                    <span className="font-bold text-slate-900 dark:text-white">
+                      {mod.metricVal}
+                    </span>
                   </div>
 
-                  {mod.action && (
+                  {/* Action Link (if simulator available) */}
+                  {mod.action ? (
                     <button
                       onClick={mod.action}
-                      className={`inline-flex items-center text-xs font-bold transition-colors group/btn cursor-pointer ${
-                        isFeatured 
-                          ? 'text-[#00D2FF] hover:text-white' 
-                          : 'text-[#0066FF] dark:text-[#00D2FF] hover:underline'
-                      }`}
+                      className="w-full py-2.5 px-3 bg-slate-100 hover:bg-[#0066FF] text-slate-900 hover:text-white dark:bg-white/5 dark:hover:bg-[#0066FF] dark:text-white font-mono text-[11px] font-bold tracking-wider uppercase flex items-center justify-between transition-colors cursor-pointer border border-slate-200 dark:border-white/10"
                     >
                       <span>{mod.actionText}</span>
-                      <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
+                  ) : (
+                    <div className="py-2.5 px-3 font-mono text-[11px] text-slate-400 dark:text-slate-600 uppercase tracking-wider flex items-center justify-between">
+                      <span>INTEGRAT ÎN NUCLEUL SAMPRO</span>
+                      <Check className="w-3.5 h-3.5 text-emerald-500" />
+                    </div>
                   )}
+
                 </div>
 
               </div>
             );
           })}
-
-          {/* Quick Bonus Tile: Zero Complicat / Cloud Native */}
-          <div className="rounded-3xl p-7 bg-white dark:bg-gradient-to-br dark:from-white/5 dark:to-white/[0.02] border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-none flex flex-col justify-between">
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-white/10 text-[#0066FF] dark:text-[#00D2FF] flex items-center justify-center mb-6">
-                <Smartphone className="w-6 h-6" />
-              </div>
-              
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
-                100% Cloud Web — Fără Instalare
-              </h3>
-
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                Rulează impecabil pe laptop la recepție, pe tableta mecanicilor în atelier sau pe telefonul managerului când este plecat din service.
-              </p>
-
-              <div className="space-y-2 text-xs text-slate-700 dark:text-slate-300 font-mono">
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  Compatibil Windows, Mac, Android, iOS
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  Actualizări automate periodice incluse
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  Backup zilnic georedundant (ISO 27001)
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-slate-100 dark:border-white/10 text-xs text-slate-500 dark:text-slate-400">
-              Asistență tehnică dedicată prin telefon și AnyDesk.
-            </div>
-          </div>
-
         </div>
 
       </div>
     </section>
   );
 };
+
+export default KeyModules;

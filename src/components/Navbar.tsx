@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Menu, 
   X, 
@@ -10,7 +10,6 @@ import {
   Car,
   Boxes,
   Users,
-  Sparkles,
   ArrowRight,
   Sun,
   Moon
@@ -26,9 +25,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [modulesDropdownOpen, setModulesDropdownOpen] = useState(false);
   const [mobileModulesExpanded, setMobileModulesExpanded] = useState(false);
-  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,19 +34,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleMouseEnter = () => {
-    if (dropdownTimeoutRef.current) {
-      clearTimeout(dropdownTimeoutRef.current);
-    }
-    setModulesDropdownOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    dropdownTimeoutRef.current = setTimeout(() => {
-      setModulesDropdownOpen(false);
-    }, 150);
-  };
 
   const moduleFlyoutItems = [
     {
@@ -114,128 +98,51 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
             </a>
           </div>
 
-          {/* Desktop Navigation Links (Single-word + Mega-Flyout) */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium">
+          {/* Desktop Navigation Links matching exact screenshot */}
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-3 text-sm font-medium">
             
             {/* Acasă */}
             <a
               href="#"
-              className="px-3.5 py-2 rounded-lg text-sm tracking-tight text-[#0066FF] font-semibold border-b-2 border-[#0066FF] rounded-b-none"
+              className="px-3 py-1.5 text-sm tracking-tight font-bold text-white relative after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#0066FF] after:rounded-full"
             >
               Acasă
             </a>
 
-            {/* Module Trigger with Interactive Hover Flyout */}
-            <div 
-              className="relative"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <a
-                href="#module"
-                className={`inline-flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm tracking-tight transition-all duration-200 ${
-                  modulesDropdownOpen 
-                    ? 'text-[#0066FF] bg-blue-50 dark:bg-white/10 shadow-xs' 
-                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/5'
-                }`}
-              >
-                <span>Module</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${modulesDropdownOpen ? 'rotate-180 text-[#0066FF]' : 'text-slate-400'}`} />
-              </a>
-
-              {/* Mega-Flyout Popover */}
-              {modulesDropdownOpen && (
-                <div 
-                  className="absolute top-full left-0 w-[580px] -ml-6 pt-3 animate-in fade-in zoom-in-95 duration-200 z-50"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className="bg-white/95 dark:bg-[#041126]/95 backdrop-blur-2xl border border-slate-200/80 dark:border-white/15 rounded-2xl p-5 shadow-[0_20px_60px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.7)] grid grid-cols-12 gap-5 ring-1 ring-black/5 dark:ring-white/10">
-                    
-                    {/* Left: Module List (7 cols) */}
-                    <div className="col-span-7 space-y-1">
-                      <div className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-400 px-2.5 pb-1">
-                        Capabilități Ecosistem
-                      </div>
-                      {moduleFlyoutItems.map((item) => {
-                        const Icon = item.icon;
-                        return (
-                          <a
-                            key={item.title}
-                            href={item.href}
-                            onClick={() => setModulesDropdownOpen(false)}
-                            className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-white/10 transition-colors group"
-                          >
-                            <div className={`p-2 rounded-lg border ${item.color} shrink-0 mt-0.5 group-hover:scale-105 transition-transform`}>
-                              <Icon className="w-4 h-4" />
-                            </div>
-                            <div className="min-w-0">
-                              <div className="text-xs font-semibold text-slate-900 dark:text-white group-hover:text-[#0066FF] transition-colors flex items-center gap-1">
-                                {item.title}
-                              </div>
-                              <div className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5 leading-snug">
-                                {item.desc}
-                              </div>
-                            </div>
-                          </a>
-                        );
-                      })}
-                    </div>
-
-                    {/* Right: Featured Card */}
-                    <div className="col-span-5 flex flex-col justify-between p-4 rounded-xl bg-gradient-to-br from-blue-50 via-blue-100/50 to-white dark:from-blue-900/40 dark:via-blue-950/30 dark:to-black/60 border border-blue-200/80 dark:border-blue-400/20 relative overflow-hidden group">
-                      <div className="space-y-2 relative z-10">
-                        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-500/20 border border-blue-200 dark:border-blue-400/30 text-[10px] font-mono font-bold text-[#0066FF] dark:text-[#00D2FF]">
-                          <Sparkles className="w-3 h-3 text-[#0066FF] dark:text-[#00D2FF]" />
-                          Impact Dovedit
-                        </div>
-                        <div className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
-                          -74% Timp Devize &amp; Fără Retururi de Piese
-                        </div>
-                        <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
-                          Creat special pentru ritmul din atelierele și service-urile din România.
-                        </p>
-                      </div>
-
-                      <button
-                        onClick={() => {
-                          setModulesDropdownOpen(false);
-                          onOpenDemo();
-                        }}
-                        className="mt-3 w-full py-2 px-3 rounded-lg bg-[#0066FF] hover:bg-[#0052cc] text-white text-[11px] font-semibold flex items-center justify-between transition-colors shadow-xs"
-                      >
-                        <span>Cere Prezentare</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-1 transition-transform" />
-                      </button>
-                    </div>
-
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Rezultate */}
+            {/* Funcționalități */}
             <a
-              href="#performanta"
-              className="px-3.5 py-2 rounded-lg text-sm tracking-tight text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/5 transition-all"
+              href="#module"
+              className="px-3 py-1.5 text-sm tracking-tight text-slate-300 hover:text-white transition-colors"
             >
-              Rezultate
-            </a>
-
-            {/* Calculator */}
-            <a
-              href="#calculator-roi"
-              className="px-3.5 py-2 rounded-lg text-sm tracking-tight text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/5 transition-all"
-            >
-              Calculator
+              Funcționalități
             </a>
 
             {/* Prețuri */}
             <a
               href="#preturi"
-              className="px-3.5 py-2 rounded-lg text-sm tracking-tight text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/5 transition-all"
+              className="px-3 py-1.5 text-sm tracking-tight text-slate-300 hover:text-white transition-colors"
             >
               Prețuri
+            </a>
+
+            {/* Despre noi */}
+            <a
+              href="#performanta"
+              className="px-3 py-1.5 text-sm tracking-tight text-slate-300 hover:text-white transition-colors"
+            >
+              Despre noi
+            </a>
+
+            {/* Contact */}
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                onOpenDemo();
+              }}
+              className="px-3 py-1.5 text-sm tracking-tight text-slate-300 hover:text-white transition-colors"
+            >
+              Contact
             </a>
           </nav>
 
