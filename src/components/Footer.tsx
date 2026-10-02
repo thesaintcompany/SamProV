@@ -30,13 +30,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal }) => {
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <img 
-                src="/assets/logo-white.png" 
+                src="/assets/logo-dark.png" 
                 alt="SAMpro Logo" 
-                className="h-9 w-auto object-contain"
+                className="h-8 sm:h-9 w-auto object-contain"
               />
               <div className="flex flex-col">
-                <span className="font-bold text-white text-base leading-none">SAMpro</span>
-                <span className="text-[10px] font-mono text-[#00D2FF] tracking-wider uppercase mt-0.5">
+                <span className="text-[10px] font-mono text-[#00D2FF] tracking-wider uppercase">
                   by BUU.RO
                 </span>
               </div>

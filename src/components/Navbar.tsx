@@ -100,12 +100,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Brand Logo (Styled exactly as SAMPro in screenshot: black/white SAM + electric blue Pro) */}
+          {/* Brand Logo (Official logo variants for Day/Light mode and Dark mode) */}
           <div className="flex items-center space-x-3">
-            <a href="#" className="flex items-center gap-1.5 group">
-              <span className="text-2xl font-black tracking-tight text-slate-950 dark:text-white">
-                SAM<span className="text-[#0066FF]">Pro</span>
-              </span>
+            <a href="#" className="flex items-center gap-2 group">
+              <img 
+                src={theme === 'dark' ? '/assets/logo-dark.png' : '/assets/logo-light.png'} 
+                alt="SAMpro - Service Auto Management Pro" 
+                className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+              />
               <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200/60 dark:border-blue-400/20 text-[#0066FF] dark:text-[#00D2FF] font-mono text-[10px] font-semibold">
                 v3.4
               </span>
