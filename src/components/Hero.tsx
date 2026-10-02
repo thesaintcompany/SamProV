@@ -10,6 +10,8 @@ import {
   Activity, 
   Sparkles
 } from 'lucide-react';
+import heroBgLight from '../assets/hero-bg-light.jpg';
+import heroBgDark from '../assets/hero-bg-dark.jpg';
 
 interface HeroProps {
   onOpenDemo: () => void;
@@ -73,7 +75,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
           <div className="absolute bottom-0 right-0 h-full w-full md:w-[70%] lg:w-[62%] xl:w-[56%] pointer-events-none">
             {/* Day / Light Mode Image */}
             <img
-              src="/assets/hero-bg-light.jpg"
+              src={heroBgLight}
               alt="SAMpro Formula 1 Speed Car Light"
               className={`absolute bottom-0 right-0 h-full w-full object-cover md:object-contain object-right-bottom transition-opacity duration-700 ease-in-out ${
                 isDark ? 'opacity-0' : 'opacity-100'
@@ -82,7 +84,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
 
             {/* Night / Dark Mode Image */}
             <img
-              src="/assets/hero-bg-dark.jpg"
+              src={heroBgDark}
               alt="SAMpro Formula 1 Speed Car Dark"
               className={`absolute bottom-0 right-0 h-full w-full object-cover md:object-contain object-right-bottom transition-opacity duration-700 ease-in-out ${
                 isDark ? 'opacity-100' : 'opacity-0'
