@@ -72,8 +72,25 @@ export const PerformanceDiagram: React.FC = () => {
         </div>
 
         {/* F1 Car Benchmark Card */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#061833] via-[#08244c] to-[#041226] border border-white/15 p-6 sm:p-10 shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 p-6 sm:p-10 shadow-2xl min-h-[340px]">
+
+          {/* ── Full-Bleed Cinematic Background ── */}
+          <img
+            src="/assets/hero-bg-dark.jpg"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
+          />
+
+          {/* ── Dual-layer contrast scrim ── */}
+          {/* 1. Subtle dark overlay — let image breathe */}
+          <div className="absolute inset-0 bg-[#020b1b]/50 pointer-events-none" />
+          {/* 2. Strong left→right gradient: solid dark on text side, transparent on image side */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#020b1b]/98 via-[#020b1b]/80 to-transparent pointer-events-none" />
+          {/* 3. Bottom fade */}
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#020b1b]/60 to-transparent pointer-events-none" />
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-block px-3 py-1 rounded-lg bg-blue-500/20 border border-blue-400/30 text-[#00D2FF] font-mono text-xs font-bold tracking-wider">
