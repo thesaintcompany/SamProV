@@ -39,9 +39,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator }) =
             <span className="text-slate-300">Viteză de Formula 1 pentru Service-ul Tău</span>
           </div>
 
-          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
+          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold">
             <CheckCircle className="w-3.5 h-3.5" />
-            <span>Conectare Oficială RAR Autopass Activă</span>
+            <span>RAR AUTOPASS</span>
           </div>
         </div>
 
