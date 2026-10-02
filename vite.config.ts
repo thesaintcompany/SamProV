@@ -11,11 +11,13 @@ export default defineConfig({
   server: {
     port: 3043,
     host: '0.0.0.0',
-    strictPort: true
+    strictPort: true,
+    allowedHosts: true
   },
   preview: {
     port: 3043,
     host: '0.0.0.0',
-    strictPort: true
+    strictPort: true,
+    allowedHosts: true
   }
 })
