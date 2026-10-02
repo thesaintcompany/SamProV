@@ -50,33 +50,39 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
           {/* Center image zone — capped at 2560 px so ultrawide doesn't
               stretch the photo into oblivion. The outer section bg fills
               the remaining space. */}
-          <div
-            className="absolute inset-y-0 left-1/2 -translate-x-1/2 overflow-hidden"
-            style={{ width: 'min(100vw, 2560px)' }}
-          >
+          {/* Image container — spans entire width to prevent any visible container boundary */}
+          <div className="absolute inset-0 overflow-hidden flex items-end justify-end pointer-events-none">
             {/* Light bg */}
             <img
               src={heroBgLight}
               alt=""
               aria-hidden="true"
-              className={`absolute inset-0 w-full h-full object-cover object-bottom transition-opacity duration-700 ${isDark ? 'opacity-0' : 'opacity-100'}`}
+              className={`h-full w-full sm:w-auto max-w-full sm:max-w-[80%] lg:max-w-[60%] xl:max-w-[54%] object-cover sm:object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-0' : 'opacity-100'}`}
+              style={{
+                maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)'
+              }}
             />
             {/* Dark bg */}
             <img
               src={heroBgDark}
               alt=""
               aria-hidden="true"
-              className={`absolute inset-0 w-full h-full object-cover object-bottom transition-opacity duration-700 ${isDark ? 'opacity-100' : 'opacity-0'}`}
+              className={`h-full w-full sm:w-auto max-w-full sm:max-w-[80%] lg:max-w-[60%] xl:max-w-[54%] object-cover sm:object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-100' : 'opacity-0'}`}
+              style={{
+                maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)'
+              }}
             />
           </div>
 
           {/* ── Left text-column scrim ─────────────────────────────────── */}
           <div
-            className="absolute inset-y-0 left-0 w-full md:w-[62%] lg:w-[54%] pointer-events-none transition-colors duration-700"
+            className="absolute inset-y-0 left-0 w-full md:w-[65%] lg:w-[56%] pointer-events-none transition-colors duration-700 z-[1]"
             style={{
               background: isDark
-                ? 'linear-gradient(to right, #020b1b 0%, #020b1b 30%, rgba(2,11,27,0.82) 60%, transparent 100%)'
-                : 'linear-gradient(to right, #f8fafc 0%, #f8fafc 30%, rgba(248,250,252,0.85) 60%, transparent 100%)',
+                ? 'linear-gradient(to right, #020b1b 0%, #020b1b 45%, rgba(2,11,27,0.75) 75%, transparent 100%)'
+                : 'linear-gradient(to right, #f8fafc 0%, #f8fafc 45%, rgba(248,250,252,0.8) 75%, transparent 100%)',
             }}
           />
 
