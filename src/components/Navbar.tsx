@@ -104,7 +104,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
             {/* Acasă */}
             <a
               href="#"
-              className="px-3 py-1.5 text-sm tracking-tight font-bold text-white relative after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#0066FF] after:rounded-full"
+              className={`px-3 py-1.5 text-sm tracking-tight font-bold relative after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#0066FF] after:rounded-full ${
+                scrolled && theme === 'light' ? 'text-slate-900' : 'text-white'
+              }`}
             >
               Acasă
             </a>
@@ -112,7 +114,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
             {/* Funcționalități */}
             <a
               href="#module"
-              className="px-3 py-1.5 text-sm tracking-tight text-slate-300 hover:text-white transition-colors"
+              className={`px-3 py-1.5 text-sm tracking-tight transition-colors ${
+                scrolled && theme === 'light'
+                  ? 'text-slate-600 hover:text-slate-900'
+                  : 'text-slate-300 hover:text-white'
+              }`}
             >
               Funcționalități
             </a>
@@ -120,7 +126,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
             {/* Prețuri */}
             <a
               href="#preturi"
-              className="px-3 py-1.5 text-sm tracking-tight text-slate-300 hover:text-white transition-colors"
+              className={`px-3 py-1.5 text-sm tracking-tight transition-colors ${
+                scrolled && theme === 'light'
+                  ? 'text-slate-600 hover:text-slate-900'
+                  : 'text-slate-300 hover:text-white'
+              }`}
             >
               Prețuri
             </a>
@@ -128,7 +138,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
             {/* Despre noi */}
             <a
               href="#performanta"
-              className="px-3 py-1.5 text-sm tracking-tight text-slate-300 hover:text-white transition-colors"
+              className={`px-3 py-1.5 text-sm tracking-tight transition-colors ${
+                scrolled && theme === 'light'
+                  ? 'text-slate-600 hover:text-slate-900'
+                  : 'text-slate-300 hover:text-white'
+              }`}
             >
               Despre noi
             </a>
@@ -140,7 +154,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
                 e.preventDefault();
                 onOpenDemo();
               }}
-              className="px-3 py-1.5 text-sm tracking-tight text-slate-300 hover:text-white transition-colors"
+              className={`px-3 py-1.5 text-sm tracking-tight transition-colors ${
+                scrolled && theme === 'light'
+                  ? 'text-slate-600 hover:text-slate-900'
+                  : 'text-slate-300 hover:text-white'
+              }`}
             >
               Contact
             </a>
