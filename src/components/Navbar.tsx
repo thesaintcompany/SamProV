@@ -88,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
           <div className="flex items-center space-x-3">
             <a href="#" className="flex items-center gap-2 group">
               <img 
-                src={theme === 'dark' ? '/assets/logo-dark.png' : '/assets/logo-light.png'} 
+                src={theme === 'dark' ? '/assets/logo-white-full.png' : '/assets/logo-light.png'} 
                 alt="SAMpro - Service Auto Management Pro" 
                 className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />

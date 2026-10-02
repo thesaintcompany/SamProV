@@ -16,9 +16,9 @@ export const App: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('sampro_theme');
-      return saved === 'dark' ? 'dark' : 'light';
+      if (saved === 'dark' || saved === 'light') return saved;
     }
-    return 'light';
+    return 'dark';
   });
 
   useEffect(() => {
