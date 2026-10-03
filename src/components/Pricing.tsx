@@ -94,7 +94,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            Fără costuri ascunse. Fără perioade minime obligatorii de contract. Schimbi sau anulezi abonamentul oricând dorești.
+            Fără costuri ascunse. Alege flexibilitatea lunară fără obligații sau economisește 20% prin facturarea anuală cu angajament pe 24 de luni.
           </p>
 
           {/* Billing Interval Toggle (Monthly / Annual) */}
@@ -118,7 +118,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
             >
               <span>Facturare Anuală</span>
               <span className="px-2 py-0.5 rounded-full bg-emerald-400 text-slate-950 text-[10px] font-black uppercase">
-                -20% Reducere
+                -20% • Angajament 24 Luni
               </span>
             </button>
           </div>
@@ -179,7 +179,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
                           </span>
                         </div>
                         <div className={`text-[11px] mt-1 font-mono ${plan.popular ? 'text-[#00D2FF]' : 'text-emerald-600 dark:text-[#00D2FF]'}`}>
-                          {isAnnual ? 'Facturat anual (economisești 2 luni)' : 'Fără angajament pe termen lung'}
+                          {isAnnual ? 'Facturat anual • Angajament 24 de luni (economisești 20%)' : 'Facturare lunară • Fără angajament pe termen lung'}
                         </div>
                       </div>
                     )}

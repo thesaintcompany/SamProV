@@ -110,12 +110,13 @@ Modulul de protecție a codurilor de piese criptează codurile interne de aprovi
       id: 'sec6',
       num: '6',
       icon: CreditCard,
-      title: 'Tarife, Facturare, Garanții & Reziliere Fără Penalități',
-      badge: 'TARIFE & REZILIERE',
-      summary: 'Fără contracte restrictive de lungă durată. Schimbi sau anulezi abonamentul cu un simplu clic.',
+      title: 'Tarife, Facturare, Garanții & Reziliere',
+      badge: 'TARIFE & CONTRACT',
+      summary: 'Transparență totală: opțiune lunară flexibilă sau facturare anuală cu angajament pe 24 de luni.',
       content: `Tarifele serviciului SAMpro sunt exprimate în RON (fără TVA) și sunt facturate lunar sau anual în funcție de opțiunea clientului.
+- Flexibilitate Facturare Lunară: Fără perioadă minimă contractuală; utilizatorul poate anula sau modifica abonamentul lunar oricând direct din panoul de administrare.
+- Facturare Anuală (Angajament 24 Luni): Beneficiază de un tarif redus cu 20% și garanția înghețării prețului pe toată durata contractului de 24 de luni.
 - Migrare Asistată: Migrarea poate fi asistată de echipa SAMpro pentru preluarea clienților și a stocurilor din vechile programe.
-- Fără Perioadă Minimă Obligatorie: Utilizatorul poate renunța oricând la abonament direct din panoul de administrare, fără penalități sau clauze abuzive.
 - Export Gratuit al Datelor: La încetarea raporturilor contractuale, utilizatorul are dreptul de a descărca integral baza de date în format deschis (.CSV, .JSON, .PDF) în termen de 30 de zile.`
     },
     {

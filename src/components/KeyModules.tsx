@@ -1,24 +1,24 @@
 import React, { useState, useRef } from 'react';
-import { 
-  Zap, 
-  Target, 
-  ShieldCheck, 
-  ArrowRight, 
-  Check, 
+import {
+  Zap,
+  Target,
+  ShieldCheck,
+  ArrowRight,
+  Check,
   X,
-  PhoneCall, 
-  Calendar, 
-  ClipboardCheck, 
-  Wrench, 
-  FileSpreadsheet, 
-  Send, 
-  CreditCard, 
-  BarChart3, 
-  Clock, 
-  Coins, 
-  Lock, 
-  Building2, 
-  Scale, 
+  PhoneCall,
+  Calendar,
+  ClipboardCheck,
+  Wrench,
+  FileSpreadsheet,
+  Send,
+  CreditCard,
+  BarChart3,
+  Clock,
+  Coins,
+  Lock,
+  Building2,
+  Scale,
   Quote,
   Sparkles,
   Layers,
@@ -116,18 +116,18 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
 
   return (
     <section id="module" className="py-24 sm:py-32 bg-slate-50 dark:bg-[#030c1d] relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-500 border-t border-slate-200 dark:border-white/10">
-      
+
       {/* Background ambient glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-[#0066FF]/10 via-[#00D2FF]/5 to-transparent rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-24">
-        
+
         {/* ════════════════════════════════════════════════════════════════════════
             1. SECTION HERO & BUSINESS VALUE PROPOSITION
         ════════════════════════════════════════════════════════════════════════ */}
         <div className="text-center max-w-4xl mx-auto space-y-6">
-          
+
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs sm:text-sm font-bold tracking-wide text-[#0066FF] dark:text-[#00D2FF]">
             <Sparkles className="w-4 h-4" />
             <span>SAMPRO CA BOOST PENTRU BUSINESS</span>
@@ -136,12 +136,12 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
             SAMPRO <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00A3FF] to-[#00D2FF]">
-              Acceleratorul și Scutul Afacerii Tale
+              Accelereaza afacere ta oprin birocratie automatizată.
             </span>
           </h2>
 
           <p className="text-base sm:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto">
-            SAMPRO nu este doar un software de gestiune. Este platforma care conectează tot ce se întâmplă în service — de la primul telefon al clientului până la factura finală și follow-up. 
+            SAMPRO nu este doar un software de gestiune. Este platforma care conectează tot ce se întâmplă în service — de la primul telefon al clientului până la factura finală și follow-up.
             <span className="font-semibold text-slate-900 dark:text-white"> Și o face fără întreruperi, fără reintroducere de date, fără haos.</span>
           </p>
 
@@ -167,12 +167,12 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
             2. THE 3 CORE PILLARS OF WORKSHOP DOMINANCE
         ════════════════════════════════════════════════════════════════════════ */}
         <div className="space-y-12">
-          
+
           {/* ─────────────────────────────────────────────────────────────────
               PILONUL 1: ACCELERARE
           ───────────────────────────────────────────────────────────────── */}
           <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 shadow-xl space-y-8 relative overflow-hidden group hover:border-[#0066FF]/60 dark:hover:border-[#00D2FF]/50 transition-all duration-300">
-            
+
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
               <div className="flex items-start sm:items-center gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-[#0066FF]/10 dark:bg-[#00D2FF]/10 border border-[#0066FF]/20 dark:border-[#00D2FF]/20 text-[#0066FF] dark:text-[#00D2FF] flex items-center justify-center shrink-0 shadow-md">
@@ -197,7 +197,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
+
               <div className="lg:col-span-7 space-y-6">
                 <p className="text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
                   Unul dintre cele mai mari avantaje ale SAMPRO este că <strong>nu mai sari între programe</strong>. Dispatch, comenzi de lucru, devize, facturare și inventar — toate funcționează sincronizat în același loc.
@@ -263,7 +263,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
 
               {/* Visual Flow Timeline Box */}
               <div className="lg:col-span-5 p-6 rounded-3xl bg-slate-900 dark:bg-[#040f21] border border-slate-800 dark:border-white/10 text-white space-y-5 shadow-2xl">
-                
+
                 <div className="flex items-center justify-between pb-3 border-b border-white/10">
                   <span className="text-xs font-bold uppercase tracking-wider text-[#00D2FF] flex items-center gap-2">
                     <Layers className="w-4 h-4" />
@@ -279,19 +279,17 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                     const StepIcon = step.icon;
                     const isSelected = activeStep === step.id;
                     return (
-                      <div 
+                      <div
                         key={step.id}
                         onClick={() => setActiveStep(step.id)}
-                        className={`p-2.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-between ${
-                          isSelected 
-                            ? 'bg-[#0066FF] border-[#00D2FF] shadow-lg shadow-blue-500/30' 
-                            : 'bg-white/[0.04] border-white/5 hover:bg-white/[0.08] hover:border-white/20'
-                        }`}
+                        className={`p-2.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-between ${isSelected
+                          ? 'bg-[#0066FF] border-[#00D2FF] shadow-lg shadow-blue-500/30'
+                          : 'bg-white/[0.04] border-white/5 hover:bg-white/[0.08] hover:border-white/20'
+                          }`}
                       >
                         <div className="flex items-center gap-3">
-                          <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${
-                            isSelected ? 'bg-white text-[#0066FF]' : 'bg-white/10 text-white'
-                          }`}>
+                          <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${isSelected ? 'bg-white text-[#0066FF]' : 'bg-white/10 text-white'
+                            }`}>
                             {step.id}
                           </div>
                           <div>
@@ -335,7 +333,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               PILONUL 2: OPTIMIZARE
           ───────────────────────────────────────────────────────────────── */}
           <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 shadow-xl space-y-8 relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-300">
-            
+
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
               <div className="flex items-start sm:items-center gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 flex items-center justify-center shrink-0 shadow-md">
@@ -359,7 +357,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               </div>
             </div>
 
-            <div 
+            <div
               ref={optimizareRef}
               onScroll={(e) => {
                 const el = e.currentTarget;
@@ -371,7 +369,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               }}
               className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none gap-4 md:gap-6 pb-2 -mx-2 px-2 md:mx-0 md:px-0 md:grid-cols-3"
             >
-              
+
               {/* Feature Box 1: Resurse */}
               <div className="w-[86vw] xs:w-[80vw] md:w-auto shrink-0 md:shrink snap-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
@@ -476,11 +474,10 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                     key={idx}
                     type="button"
                     onClick={() => scrollToOptimizareCard(idx)}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      activeOptimizareIndex === idx
-                        ? 'w-6 bg-emerald-500'
-                        : 'w-2 bg-slate-300 dark:bg-white/20'
-                    }`}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeOptimizareIndex === idx
+                      ? 'w-6 bg-emerald-500'
+                      : 'w-2 bg-slate-300 dark:bg-white/20'
+                      }`}
                     aria-label={`Sari la cardul ${idx + 1}`}
                   />
                 ))}
@@ -524,7 +521,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               PILONUL 3: SIGURANȚĂ
           ───────────────────────────────────────────────────────────────── */}
           <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 shadow-xl space-y-8 relative overflow-hidden group hover:border-indigo-500/50 transition-all duration-300">
-            
+
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
               <div className="flex items-start sm:items-center gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 flex items-center justify-center shrink-0 shadow-md">
@@ -548,7 +545,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               </div>
             </div>
 
-            <div 
+            <div
               ref={sigurantaRef}
               onScroll={(e) => {
                 const el = e.currentTarget;
@@ -560,7 +557,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               }}
               className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none gap-4 md:gap-6 pb-2 -mx-2 px-2 md:mx-0 md:px-0 md:grid-cols-3"
             >
-              
+
               {/* Pillar 3 Item 1 */}
               <div className="w-[86vw] xs:w-[80vw] md:w-auto shrink-0 md:shrink snap-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-3 flex flex-col justify-between">
                 <div className="space-y-3">
@@ -635,11 +632,10 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                     key={idx}
                     type="button"
                     onClick={() => scrollToSigurantaCard(idx)}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      activeSigurantaIndex === idx
-                        ? 'w-6 bg-indigo-500'
-                        : 'w-2 bg-slate-300 dark:bg-white/20'
-                    }`}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSigurantaIndex === idx
+                      ? 'w-6 bg-indigo-500'
+                      : 'w-2 bg-slate-300 dark:bg-white/20'
+                      }`}
                     aria-label={`Sari la cardul ${idx + 1}`}
                   />
                 ))}
@@ -676,7 +672,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
             3. REZULTATUL FINAL — CE SIMTE PATRONUL (COMPARISON SPLIT MATRIX)
         ════════════════════════════════════════════════════════════════════════ */}
         <div className="p-8 sm:p-12 rounded-3xl bg-slate-900 dark:bg-[#071d3d] border-2 border-[#0066FF]/30 dark:border-[#00D2FF]/40 text-white shadow-2xl space-y-8 relative overflow-hidden">
-          
+
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-rounded font-bold tracking-wider text-[#00D2FF] uppercase">
               TRANSFORMAREA CONCRETĂ A WORKSHOP-ULUI
@@ -706,7 +702,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
             </div>
 
             {comparisonRows.map((row, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="grid grid-cols-1 md:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.07] border border-white/5 transition-colors"
               >
@@ -735,7 +731,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
             4. ÎN ESENȚĂ — CONCLUZIA DE CONVERSIE
         ════════════════════════════════════════════════════════════════════════ */}
         <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-blue-900/40 via-[#07172f] to-[#040f21] border border-[#0066FF]/40 dark:border-[#00D2FF]/30 shadow-2xl relative overflow-hidden text-center space-y-6">
-          
+
           <div className="max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-rounded font-bold uppercase tracking-widest text-[#00D2FF]">
               CONCLUZIA PENTRU MANAGEMENTUL SERVICE-ULUI TĂU
