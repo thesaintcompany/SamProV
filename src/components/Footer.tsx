@@ -61,41 +61,41 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal }) => {
             <div className="text-xs font-mono font-bold text-white uppercase tracking-wider">
               Navigare Rapidă
             </div>
-            <ul className="space-y-2 text-xs text-slate-400">
+            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-x-4 gap-y-2.5 text-xs text-slate-400">
               <li>
-                <a href="#" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#0066FF]" />
-                  Acasă
+                <a href="#" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1.5">
+                  <ChevronRight className="w-3 h-3 text-[#0066FF] shrink-0" />
+                  <span>Acasă</span>
                 </a>
               </li>
               <li>
-                <a href="#module" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#0066FF]" />
-                  Module &amp; Elevatoare
+                <a href="#module" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1.5">
+                  <ChevronRight className="w-3 h-3 text-[#0066FF] shrink-0" />
+                  <span>Module &amp; Elevatoare</span>
                 </a>
               </li>
               <li>
-                <a href="#simulator" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#0066FF]" />
-                  Simulator Live
+                <a href="#simulator" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1.5">
+                  <ChevronRight className="w-3 h-3 text-[#0066FF] shrink-0" />
+                  <span>Simulator Live</span>
                 </a>
               </li>
               <li>
-                <a href="#rar-autopass" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#0066FF]" />
-                  Conexiune RAR
+                <a href="#rar-autopass" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1.5">
+                  <ChevronRight className="w-3 h-3 text-[#0066FF] shrink-0" />
+                  <span>Conexiune RAR</span>
                 </a>
               </li>
               <li>
-                <a href="#performanta" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#0066FF]" />
-                  Performanță SAM
+                <a href="#performanta" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1.5">
+                  <ChevronRight className="w-3 h-3 text-[#0066FF] shrink-0" />
+                  <span>Performanță SAM</span>
                 </a>
               </li>
               <li>
-                <a href="#preturi" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#0066FF]" />
-                  Planuri &amp; Prețuri
+                <a href="#preturi" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1.5">
+                  <ChevronRight className="w-3 h-3 text-[#0066FF] shrink-0" />
+                  <span>Planuri &amp; Prețuri</span>
                 </a>
               </li>
             </ul>

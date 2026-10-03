@@ -30,7 +30,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
         'Calendar programări pe mecanic',
         'Generare deviz în format PDF cu siglă service',
         'Securitate Cloud & backup zilnic automat',
-        'Suport tehnic dedicat prin email și telefon'
+        'Suport tehnic dedicat prin email sau tiket.'
       ],
       ctaText: 'Alege Plan Start'
     },
@@ -282,8 +282,8 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
                 type="button"
                 onClick={() => scrollToPlan(idx)}
                 className={`transition-all duration-300 rounded-full cursor-pointer ${activePlanIdx === idx
-                    ? 'w-7 h-2.5 bg-[#0066FF] dark:bg-[#00D2FF]'
-                    : 'w-2.5 h-2.5 bg-slate-300 dark:bg-white/25 hover:bg-slate-400 dark:hover:bg-white/40'
+                  ? 'w-7 h-2.5 bg-[#0066FF] dark:bg-[#00D2FF]'
+                  : 'w-2.5 h-2.5 bg-slate-300 dark:bg-white/25 hover:bg-slate-400 dark:hover:bg-white/40'
                   }`}
                 aria-label={`Vezi ${plan.name}`}
               />

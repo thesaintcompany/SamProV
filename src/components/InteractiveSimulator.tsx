@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
   Smartphone,
@@ -67,6 +67,45 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
     setPrevInitialTab(initialTab);
     setActiveTab(initialTab);
   }
+
+  const tabsRef = useRef<HTMLDivElement>(null);
+
+  const scrollToTab = (tabKey: 'whatsapp' | 'mechanic' | 'rar' | 'hoists') => {
+    setActiveTab(tabKey);
+    if (tabsRef.current && window.innerWidth < 768) {
+      const tabOrder: ('whatsapp' | 'rar' | 'hoists')[] = ['whatsapp', 'rar', 'hoists'];
+      const idx = tabOrder.indexOf(tabKey as any);
+      if (idx !== -1) {
+        const children = Array.from(tabsRef.current.children) as HTMLElement[];
+        const target = children[idx];
+        if (target) {
+          const left = target.offsetLeft - (tabsRef.current.offsetWidth - target.offsetWidth) / 2;
+          tabsRef.current.scrollTo({
+            left: Math.max(0, left),
+            behavior: 'smooth'
+          });
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (tabsRef.current && window.innerWidth < 768) {
+      const tabOrder: ('whatsapp' | 'rar' | 'hoists')[] = ['whatsapp', 'rar', 'hoists'];
+      const idx = tabOrder.indexOf(activeTab as any);
+      if (idx !== -1) {
+        const children = Array.from(tabsRef.current.children) as HTMLElement[];
+        const target = children[idx];
+        if (target) {
+          const left = target.offsetLeft - (tabsRef.current.offsetWidth - target.offsetWidth) / 2;
+          tabsRef.current.scrollTo({
+            left: Math.max(0, left),
+            behavior: 'smooth'
+          });
+        }
+      }
+    }
+  }, [activeTab]);
 
   // --- STATE FOR TAB 1: WHATSAPP DEVIZ SIMULATOR (STREAMLINED 5-STEP JOURNEY) ---
   const [waStep, setWaStep] = useState<1 | 2 | 3 | 4 | 5>(1);
@@ -595,40 +634,79 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
             Alege un scenariu mai jos și testează cum aprobă clientul devizul  , transmiterea cu 1-click a datelor către RAR AutoPass și organizarea elevatoarelor în atelier.
           </p>
 
-          {/* Navigation Tabs - Responsive Grid without horizontal scroll */}
-          <div className="mt-8 w-full max-w-4xl mx-auto p-1.5 rounded-2xl bg-slate-200/70 dark:bg-[#07172f] border border-slate-300/80 dark:border-white/15 grid grid-cols-1 md:grid-cols-3 gap-2">
-            <button
-              onClick={() => setActiveTab('whatsapp')}
-              className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'whatsapp'
-                ? 'bg-[#0066FF] text-white shadow-md'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
-                }`}
+          {/* Navigation Tabs - Carousel on Mobile (< md), Grid on Tablet & Desktop (md+) */}
+          <div className="mt-8 w-full max-w-4xl mx-auto">
+            <div
+              ref={tabsRef}
+              onScroll={(e) => {
+                const el = e.currentTarget;
+                const scrollLeft = el.scrollLeft;
+                const children = Array.from(el.children) as HTMLElement[];
+                if (children.length > 0) {
+                  const offsets = children.map((c) => Math.abs(c.offsetLeft - scrollLeft - (el.offsetWidth - c.offsetWidth) / 2));
+                  const closest = offsets.indexOf(Math.min(...offsets));
+                  const tabKeys: ('whatsapp' | 'rar' | 'hoists')[] = ['whatsapp', 'rar', 'hoists'];
+                  if (closest >= 0 && closest < tabKeys.length && tabKeys[closest] !== activeTab) {
+                    setActiveTab(tabKeys[closest]);
+                  }
+                }
+              }}
+              className="p-1.5 rounded-2xl bg-slate-200/70 dark:bg-[#07172f] border border-slate-300/80 dark:border-white/15 flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none gap-2 md:grid-cols-3 -mx-2 px-2 sm:mx-0 sm:px-1.5"
             >
-              <Smartphone className="w-4 h-4 shrink-0" />
-              <span className="leading-snug">1. Deviz WhatsApp (Client)</span>
-            </button>
+              <button
+                onClick={() => scrollToTab('whatsapp')}
+                className={`w-[82vw] xs:w-[76vw] sm:w-[50vw] md:w-full shrink-0 md:shrink snap-center py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'whatsapp'
+                  ? 'bg-[#0066FF] text-white shadow-md'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
+                  }`}
+              >
+                <Smartphone className="w-4 h-4 shrink-0" />
+                <span className="leading-snug">1. Deviz WhatsApp (Client)</span>
+              </button>
 
-            <button
-              onClick={() => setActiveTab('rar')}
-              className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'rar'
-                ? 'bg-[#0066FF] text-white shadow-md'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
-                }`}
-            >
-              <Car className="w-4 h-4 shrink-0" />
-              <span className="leading-snug">2. Transmitere Date RAR AutoPass (1-Click)</span>
-            </button>
+              <button
+                onClick={() => scrollToTab('rar')}
+                className={`w-[82vw] xs:w-[76vw] sm:w-[50vw] md:w-full shrink-0 md:shrink snap-center py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'rar'
+                  ? 'bg-[#0066FF] text-white shadow-md'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
+                  }`}
+              >
+                <Car className="w-4 h-4 shrink-0" />
+                <span className="leading-snug">2. Transmitere Date RAR AutoPass (1-Click)</span>
+              </button>
 
-            <button
-              onClick={() => setActiveTab('hoists')}
-              className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'hoists'
-                ? 'bg-[#0066FF] text-white shadow-md'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
-                }`}
-            >
-              <Calendar className="w-4 h-4 shrink-0" />
-              <span className="leading-snug">3. Gestiune Elevatoare Atelier</span>
-            </button>
+              <button
+                onClick={() => scrollToTab('hoists')}
+                className={`w-[82vw] xs:w-[76vw] sm:w-[50vw] md:w-full shrink-0 md:shrink snap-center py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'hoists'
+                  ? 'bg-[#0066FF] text-white shadow-md'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
+                  }`}
+              >
+                <Calendar className="w-4 h-4 shrink-0" />
+                <span className="leading-snug">3. Gestiune Elevatoare Atelier</span>
+              </button>
+            </div>
+
+            {/* Mobile Carousel Indicators (< md) */}
+            <div className="md:hidden flex items-center justify-center gap-2 pt-3">
+              {[
+                { id: 'whatsapp', label: '1' },
+                { id: 'rar', label: '2' },
+                { id: 'hoists', label: '3' }
+              ].map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => scrollToTab(t.id as any)}
+                  className={`transition-all duration-300 rounded-full cursor-pointer ${
+                    activeTab === t.id
+                      ? 'w-6 h-2 bg-[#0066FF] dark:bg-[#00D2FF]'
+                      : 'w-2 h-2 bg-slate-300 dark:bg-white/20 hover:bg-slate-400'
+                  }`}
+                  aria-label={`Tab ${t.label}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
 

@@ -39,7 +39,7 @@ export const PerformanceDiagram: React.FC = () => {
     {
       num: '03',
       tag: 'CLOSING',
-      title: 'Aprobare WhatsApp',
+      title: '  Aprobare Client',
       desc: 'Deviz interactiv trimis direct pe telefonul proprietarului cu foto/video atașate.',
       classic: { time: '~4 ore', text: 'Sunat clienți, mesaje vocale, ezitări repetate și refuzuri din lipsă de încredere.' },
       sampro: { time: '8 min', text: 'Acceptare printr-un singur tap securizat de pe mobil cu transparență totală.' },
