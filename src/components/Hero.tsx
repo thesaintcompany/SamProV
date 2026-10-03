@@ -42,52 +42,52 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       {/* ═══════════════════════════════════════════════════════════════════
           1.  CINEMATIC HERO STAGE
       ═══════════════════════════════════════════════════════════════════ */}
-      <div className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] pt-28 sm:pt-36 pb-16 sm:pb-20 flex flex-col justify-between overflow-hidden">
+      <div className="relative w-full max-w-[2000px] mx-auto min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] pt-28 sm:pt-36 pb-16 sm:pb-20 flex flex-col justify-between overflow-hidden">
 
-        {/* ── Background layer ─────────────────────────────────────────── */}
+        {/* ── Background & Car Stage ───────────────────────────────────── */}
         <div className="absolute inset-0 pointer-events-none select-none">
 
-          {/* Center image zone — capped at 2560 px so ultrawide doesn't
-              stretch the photo into oblivion. The outer section bg fills
-              the remaining space. */}
-          {/* 1. Car Image Stage — on mobile shows only the front shield ("scutul") */}
-          <div className="absolute inset-0 overflow-hidden flex items-end justify-end pointer-events-none select-none z-[1]">
-            <div 
-              className="relative h-full pointer-events-none
-                w-[185%] sm:w-[90%] md:w-[75%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
-                translate-x-[52%] sm:translate-x-0
-                transition-transform duration-500"
-            >
-              {/* Car Images (Light & Dark) — stacked in exact same coordinate space */}
-              <img
-                src={heroBgLight}
-                alt=""
-                aria-hidden="true"
-                className={`absolute inset-0 w-full h-full max-h-[96%] object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-0' : 'opacity-100'}`}
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)'
-                }}
-              />
-              <img
-                src={heroBgDark}
-                alt=""
-                aria-hidden="true"
-                className={`absolute inset-0 w-full h-full max-h-[96%] object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-100' : 'opacity-0'}`}
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)'
-                }}
-              />
-            </div>
+          {/* 1. Car Image Stage — on mobile shows only the front shield ("scutul"), on tablet/desktop/ultrawide fully visible anchored bottom-right */}
+          <div 
+            className="absolute inset-y-0 right-0 overflow-hidden flex items-end justify-end pointer-events-none select-none z-[1]
+              w-[165%] sm:w-[90%] md:w-[78%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
+              translate-x-[48%] sm:translate-x-0
+              transition-transform duration-500"
+          >
+            {/* Car Images (Light & Dark) — stacked in exact same coordinate space, anchored bottom-right */}
+            <img
+              src={heroBgLight}
+              alt=""
+              aria-hidden="true"
+              className={`absolute inset-0 w-full h-full max-h-[96%] object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-0' : 'opacity-100'}`}
+              style={{
+                maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)'
+              }}
+            />
+            <img
+              src={heroBgDark}
+              alt=""
+              aria-hidden="true"
+              className={`absolute inset-0 w-full h-full max-h-[96%] object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-100' : 'opacity-0'}`}
+              style={{
+                maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)'
+              }}
+            />
           </div>
 
-          {/* 2. Tracking Widgets Stage — Strictly anchored to the visible car area across all screen sizes */}
-          <div className="absolute inset-y-0 right-0 w-full sm:w-[90%] md:w-[75%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%] overflow-hidden pointer-events-none z-[2]">
+          {/* 2. Tracking Widgets Stage — Strictly anchored to the car area across mobile, tablet, desktop and ultrawide */}
+          <div 
+            className="absolute inset-y-0 right-0 pointer-events-none z-[2]
+              w-[165%] sm:w-[90%] md:w-[78%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
+              translate-x-[48%] sm:translate-x-0
+              transition-transform duration-500"
+          >
             
-            {/* ── TRACKING WIDGET 1: Mai multă productivitate (Points directly at the front wheel/cockpit on desktop, floats neatly above shield on mobile) ── */}
+            {/* ── TRACKING WIDGET 1: Mai multă productivitate (Positioned 100px lower as requested, anchored to cockpit/wheel on desktop, floats neatly above shield on mobile) ── */}
             <div 
-              className="absolute top-[26%] sm:top-[20%] lg:top-[22%] right-3 sm:right-auto sm:left-[34%] lg:left-[35%] z-20 flex flex-col items-center pointer-events-auto transition-all duration-300 scale-[0.72] xs:scale-[0.8] sm:scale-100 origin-top-right sm:origin-bottom"
+              className="absolute top-[26%] sm:top-[20%] lg:top-[22%] translate-y-[100px] right-3 sm:right-auto sm:left-[34%] lg:left-[35%] z-20 flex flex-col items-center pointer-events-auto transition-all duration-300 scale-[0.72] xs:scale-[0.8] sm:scale-100 origin-top-right sm:origin-bottom"
             >
               <div className={`backdrop-blur-xl border rounded-2xl px-3 sm:px-4 py-1.5 sm:py-2.5 shadow-xl flex items-center gap-2.5 sm:gap-3 ${isDark ? 'bg-[#0c2246]/85 border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.5)]' : 'bg-white/90 border-slate-200/90 shadow-[0_12px_35px_rgba(0,102,255,0.08)]'}`}>
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#1e3d75] flex items-center justify-center shadow-md shrink-0">
@@ -128,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
 
           {/* ── Left text-column scrim ─────────────────────────────────── */}
           <div
-            className="absolute inset-y-0 left-0 w-full md:w-[65%] lg:w-[56%] pointer-events-none transition-colors duration-700 z-[1]"
+            className="absolute inset-y-0 left-0 w-full sm:w-[80%] md:w-[65%] lg:w-[56%] pointer-events-none transition-colors duration-700 z-[1]"
             style={{
               background: isDark
                 ? 'linear-gradient(to right, #020b1b 0%, #020b1b 45%, rgba(2,11,27,0.75) 75%, transparent 100%)'
@@ -138,20 +138,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
 
           {/* ── Bottom fade ───────────────────────────────────────────── */}
           <div
-            className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
+            className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-[1]"
             style={{ background: `linear-gradient(to top, ${bg}, transparent)` }}
           />
 
-          {/* ── ULTRAWIDE LATERAL WINGS ──────────────────────────────────
-               Visible only when viewport > ~1920 px.
-               We use the CSS calc trick: wing width = (100vw − 2560px) / 2.
-               On ≤ 2560 px screens this resolves to ≤ 0 so wings are hidden.
+          {/* ── ULTRAWIDE LATERAL AMBIENCE ────────────────────────────────
+               On monitors wider than 2000px, subtle telemetry line accents
+               blend smoothly without ever covering the car.
           ─────────────────────────────────────────────────────────────── */}
-
-          {/* Left wing */}
           <div
-            className="absolute inset-y-0 left-0 pointer-events-none overflow-hidden"
-            style={{ width: 'max(0px, calc((100vw - 2560px) / 2 + 120px))' }}
+            className="absolute inset-y-0 left-0 pointer-events-none overflow-hidden opacity-50"
+            style={{ width: 'max(0px, calc((100vw - 2000px) / 2))' }}
           >
             <div
               className="absolute inset-0"
@@ -169,79 +166,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#gridL)" />
-              {/* Horizontal scan lines */}
-              {[0.18, 0.36, 0.54, 0.72, 0.88].map((y, i) => (
-                <line
-                  key={i}
-                  x1="0" y1={`${y * 100}%`}
-                  x2="100%" y2={`${y * 100}%`}
-                  stroke={accent} strokeWidth="0.8" strokeOpacity="0.4"
-                  strokeDasharray="6 12"
-                />
-              ))}
             </svg>
-            {/* Crosshair bottom-right corner of wing */}
-            <svg
-              className="absolute bottom-16 right-4 w-10 h-10 opacity-20"
-              viewBox="0 0 40 40" fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="20" cy="20" r="8" stroke={accent} strokeWidth="1" />
-              <line x1="20" y1="0" x2="20" y2="40" stroke={accent} strokeWidth="0.8" />
-              <line x1="0" y1="20" x2="40" y2="20" stroke={accent} strokeWidth="0.8" />
-            </svg>
-            {/* Right-edge fade so wing blends into image */}
-            <div
-              className="absolute inset-y-0 right-0 w-24"
-              style={{ background: `linear-gradient(to left, transparent, ${bg})` }}
-            />
           </div>
 
-          {/* Right wing */}
-          <div
-            className="absolute inset-y-0 right-0 pointer-events-none overflow-hidden"
-            style={{ width: 'max(0px, calc((100vw - 2560px) / 2 + 120px))' }}
-          >
-            <div
-              className="absolute inset-0"
-              style={{ background: isDark ? '#020b1b' : '#f8fafc' }}
-            />
-            {/* Speed-streak SVG accent */}
-            <svg
-              className="absolute inset-0 w-full h-full opacity-[0.07]"
-              preserveAspectRatio="xMidYMid slice"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <pattern id="gridR" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke={accent} strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#gridR)" />
-              {/* Diagonal speed streaks */}
-              {[0.3, 0.45, 0.6, 0.75].map((pct, i) => (
-                <line
-                  key={i}
-                  x1="0" y1={`${pct * 100}%`}
-                  x2="100%" y2={`${(pct - 0.15) * 100}%`}
-                  stroke={accent} strokeWidth="1" strokeOpacity="0.35"
-                  strokeDasharray={`${8 + i * 6} ${20 + i * 4}`}
-                />
-              ))}
-            </svg>
-            {/* Telemetry data label */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 font-mono text-[9px] tracking-[0.3em] uppercase whitespace-nowrap opacity-15 select-none"
-              style={{ color: accent }}
-            >
-              SAMPRO · TELEMETRIE · LIVE
-            </div>
-            {/* Left-edge fade so wing blends into image */}
-            <div
-              className="absolute inset-y-0 left-0 w-24"
-              style={{ background: `linear-gradient(to right, transparent, ${bg})` }}
-            />
-          </div>
         </div>
 
         {/* ── Hero Content ─────────────────────────────────────────────── */}
@@ -249,7 +176,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
             {/* Left Column */}
-            <div className="lg:col-span-6 flex flex-col items-start space-y-4 pt-2">
+            <div className="lg:col-span-6 max-w-xl lg:max-w-none flex flex-col items-start space-y-4 pt-2">
 
               <div className={`inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold tracking-widest uppercase ${isDark ? 'text-[#00D2FF]' : 'text-[#0066FF]'}`}>
                 <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${isDark ? 'bg-[#00D2FF]' : 'bg-[#0066FF]'}`} />
