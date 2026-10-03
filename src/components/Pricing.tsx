@@ -51,7 +51,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
         'Modul Smart PR: notificări de status și remindere ITP',
         'Raportare avansată asupra bazinului auto procesat',
         'App Note de Constatare si Receptie',
-        'Migrarea poate fi asistată de echipa SAMpro'
+        'Modul Inventar Service'
       ],
       ctaText: 'Alege Plan Pro (Recomandat)'
     },
