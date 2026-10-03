@@ -95,6 +95,42 @@
   transform: skewX(-15deg);
 }
 
+/* ─── HERO ARTWORK ────────────────────────────────────────────────────────
+   Mobile: portrait art, focal point slightly below centre.
+   Tablet → Ultrawide: image fills the whole header, anchored bottom-right,
+   so the car always stays in the lower-right corner regardless of ratio. */
+.hero-art {
+  object-position: 50% 62%;
+  transform: scale(1.38);
+  transform-origin: 50% 62%;
+}
+@media (min-width: 640px) {
+  .hero-art {
+    object-position: 100% 100%;
+    transform: none;
+  }
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.hero-float {
+  animation: hero-float 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-float { animation: none; }
+}
+
+/* Hide scrollbars on touch carousels */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* Custom modern scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
