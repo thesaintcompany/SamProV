@@ -53,17 +53,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
           {/* 1. Car Image Stage — on mobile shows only the front shield ("scutul") */}
           <div className="absolute inset-0 overflow-hidden flex items-end justify-end pointer-events-none select-none z-[1]">
             <div 
-              className="relative h-full flex items-end justify-end pointer-events-none
+              className="relative h-full pointer-events-none
                 w-[185%] sm:w-[90%] md:w-[75%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
                 translate-x-[52%] sm:translate-x-0
                 transition-transform duration-500"
             >
-              {/* Car Images (Light & Dark) */}
+              {/* Car Images (Light & Dark) — stacked in exact same coordinate space */}
               <img
                 src={heroBgLight}
                 alt=""
                 aria-hidden="true"
-                className={`w-full h-full max-h-[96%] object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-0' : 'opacity-100'}`}
+                className={`absolute inset-0 w-full h-full max-h-[96%] object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-0' : 'opacity-100'}`}
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)'
@@ -73,7 +73,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
                 src={heroBgDark}
                 alt=""
                 aria-hidden="true"
-                className={`w-full h-full max-h-[96%] object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-100' : 'opacity-0'}`}
+                className={`absolute inset-0 w-full h-full max-h-[96%] object-contain object-right-bottom transition-opacity duration-700 ${isDark ? 'opacity-100' : 'opacity-0'}`}
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%)'
