@@ -27,12 +27,13 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
       popular: false,
       features: [
         { text: 'Până la 2 elevatoare / posturi de lucru', included: true },
-        { text: 'Devize și oferte rapide nelimitate', included: true },
-        { text: 'Calendar programări pe mecanic', included: true },
+        { text: 'Devize și oferte rapide 40/zi', included: true },
+        { text: 'Calendarul Ofertelor si Devizelor', included: true },
         { text: 'Generare deviz în format PDF conform RAR', included: true },
         { text: 'Securitate Cloud & backup zilnic automat', included: true },
         { text: 'Suport tehnic dedicat prin email sau tiket.', included: true },
-        { text: 'Fără Protecție coduri piese (disponibil în Pro)', included: false }
+        { text: 'Protecție coduri piese (disponibil în Pro)', included: false },
+        { text: 'Vizualizare Flota (disponibil în Pro)', included: false }
       ],
       ctaText: 'Alege Plan Start'
     },
@@ -243,19 +244,17 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
                     {plan.features.map((feat, fIdx) => (
                       <div
                         key={fIdx}
-                        className={`flex items-start gap-2.5 text-xs ${
-                          feat.included
+                        className={`flex items-start gap-2.5 text-xs ${feat.included
                             ? plan.popular
                               ? 'text-slate-200'
                               : 'text-slate-700 dark:text-slate-200'
                             : 'text-slate-400 dark:text-slate-500 line-through opacity-85'
-                        }`}
+                          }`}
                       >
                         {feat.included ? (
                           <CheckCircle2
-                            className={`w-4 h-4 shrink-0 mt-0.5 ${
-                              plan.popular ? 'text-[#00D2FF]' : 'text-[#0066FF] dark:text-emerald-400'
-                            }`}
+                            className={`w-4 h-4 shrink-0 mt-0.5 ${plan.popular ? 'text-[#00D2FF]' : 'text-[#0066FF] dark:text-emerald-400'
+                              }`}
                           />
                         ) : (
                           <XCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-500/80 dark:text-rose-400/80" />
