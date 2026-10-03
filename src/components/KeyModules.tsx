@@ -136,7 +136,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
             SAMPRO <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00A3FF] to-[#00D2FF]">
-              Accelereaza afacere ta oprin birocratie automatizată.
+              Accelereaza afacere ta prin birocratie automatizată.
             </span>
           </h2>
 

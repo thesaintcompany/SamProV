@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import {
   Smartphone,
@@ -61,12 +61,12 @@ interface VehicleTransmission {
 
 export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ initialTab = 'whatsapp' }) => {
   const [activeTab, setActiveTab] = useState<'whatsapp' | 'mechanic' | 'rar' | 'hoists'>(initialTab);
+  const [prevInitialTab, setPrevInitialTab] = useState(initialTab);
 
-  useEffect(() => {
-    if (initialTab) {
-      setActiveTab(initialTab);
-    }
-  }, [initialTab]);
+  if (prevInitialTab !== initialTab) {
+    setPrevInitialTab(initialTab);
+    setActiveTab(initialTab);
+  }
 
   // --- STATE FOR TAB 1: WHATSAPP DEVIZ SIMULATOR (STREAMLINED 5-STEP JOURNEY) ---
   const [waStep, setWaStep] = useState<1 | 2 | 3 | 4 | 5>(1);
@@ -2421,7 +2421,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10 gap-3">
               <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+                <h3 className="text-xl font-bold text-[#0080ff] dark:text-[#00D2FF] tracking-tight">
                   Panou Live Atelier &amp; Elevatoare (Service Auto Expert)
                 </h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400">

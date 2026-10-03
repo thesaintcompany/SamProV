@@ -10,6 +10,7 @@ export const Testimonials: React.FC = () => {
       city: 'Cluj-Napoca',
       hoists: '6 Elevatoare',
       stars: 5,
+      avatar: '/assets/avatar-cristian-popescu.jpg',
       text: 'Trimiterea devizului pe WhatsApp cu fotografii atașate a schimbat radical relația cu clienții. Înainte pierdeam ore întregi sunând după aprobări; acum, în 5 minute avem devizul confirmat de pe telefonul clientului. Rata noastră de acceptare a crescut cu peste 30%!'
     },
     {
@@ -19,6 +20,7 @@ export const Testimonials: React.FC = () => {
       city: 'București, Sector 6',
       hoists: '10 Elevatoare & ITP',
       stars: 5,
+      avatar: '/assets/avatar-radu-dumitru.jpg',
       text: 'Integrarea directă cu RAR Autopass este genială. Nu mai stăm să tastăm manual serii de șasiu sau să verificăm datele de ITP din alte site-uri. La recepție introducem numărul și avem istoricul complet în 3 secunde. Protecția codurilor de piese ne-a salvat mii de euro.'
     },
     {
@@ -28,6 +30,7 @@ export const Testimonials: React.FC = () => {
       city: 'Timișoara',
       hoists: '4 Elevatoare',
       stars: 5,
+      avatar: '/assets/avatar-mihai-vasilescu.jpg',
       text: 'Faptul că e 100% în cloud și merge de pe tabletele mecanicilor a adus o disciplină extraordinară pe fiecare elevator. Știm în orice moment dacă o mașină e gata sau dacă așteptăm piese. Suportul celor de la BUU.RO e impecabil.'
     }
   ];
@@ -73,23 +76,36 @@ export const Testimonials: React.FC = () => {
                 </p>
               </div>
 
-              {/* Author Info */}
-              <div className="pt-4 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between">
-                <div>
-                  <div className="font-bold text-slate-900 dark:text-white text-sm">
-                    {r.name}
+              {/* Author Info with Round Profile Picture */}
+              <div className="pt-4 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3.5">
+                  <div className="relative shrink-0">
+                    <img
+                      src={r.avatar}
+                      alt={r.name}
+                      className="w-12 h-12 rounded-full object-cover ring-2 ring-[#0066FF]/40 dark:ring-[#00D2FF]/40 shadow-md"
+                      loading="lazy"
+                    />
+                    <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#06152b]" title="Client verificat SAMpro" />
                   </div>
-                  <div className="text-xs text-[#0066FF] dark:text-[#00D2FF]">
-                    {r.role} • {r.service}
-                  </div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5 font-mono">
-                    <MapPin className="w-3 h-3" />
-                    {r.city} • {r.hoists}
+
+                  <div>
+                    <div className="font-bold text-slate-900 dark:text-white text-sm">
+                      {r.name}
+                    </div>
+                    <div className="text-xs text-[#0066FF] dark:text-[#00D2FF] font-medium">
+                      {r.role} • {r.service}
+                    </div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5 font-mono">
+                      <MapPin className="w-3 h-3" />
+                      {r.city} • {r.hoists}
+                    </div>
                   </div>
                 </div>
 
-                <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-white/10 text-[#0066FF] dark:text-white flex items-center justify-center font-bold text-xs">
-                  {r.name.charAt(0)}
+                <div className="hidden sm:flex shrink-0 px-2 py-1 rounded-md bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-400/20 text-emerald-700 dark:text-emerald-400 text-[10px] font-mono font-bold items-center gap-1">
+                  <ShieldCheck className="w-3 h-3" />
+                  <span>Verificat</span>
                 </div>
               </div>
 
