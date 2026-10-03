@@ -7,6 +7,7 @@ import {
 
 const heroBgLight = '/assets/hero-bg-light.jpg';
 const heroBgDark  = '/assets/hero-bg-dark.jpg';
+const heroBgMobile = '/assets/hero-f1-mobile.jpg';
 
 interface HeroProps {
   onOpenDemo: () => void;
@@ -80,20 +81,40 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       {/* ═══════════════════════════════════════════════════════════════════
           1.  CINEMATIC HERO STAGE
       ═══════════════════════════════════════════════════════════════════ */}
-      <div className="relative w-full max-w-[2000px] mx-auto min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] pt-28 sm:pt-36 pb-16 sm:pb-20 flex flex-col justify-between overflow-hidden">
+      <div className="relative w-full max-w-[2000px] mx-auto min-h-[640px] sm:min-h-[640px] lg:min-h-[720px] pt-28 sm:pt-36 pb-16 sm:pb-20 flex flex-col justify-between overflow-hidden">
 
         {/* ── Background & Car Stage ───────────────────────────────────── */}
         <div className="absolute inset-0 pointer-events-none select-none">
 
-          {/* 1. Car Image Stage — on mobile positioned 150px left and 200px higher as requested, on tablet/desktop/ultrawide fully visible anchored bottom-right */}
+          {/* 1. Dedicated Mobile Hero Background (< sm): Portrait F1 with Zoom */}
+          <div className="sm:hidden absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <img
+                src={heroBgMobile}
+                alt="SAMpro Formula 1 Car"
+                aria-hidden="true"
+                className="w-full h-full object-cover object-[center_62%] scale-[1.38] transition-transform duration-700"
+              />
+            </div>
+
+            {/* Subtle Gradient Overlays for optimal readability of title, text & CTAs on mobile */}
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: isDark
+                  ? 'linear-gradient(to bottom, rgba(2,11,27,0.88) 0%, rgba(2,11,27,0.72) 34%, rgba(2,11,27,0.2) 58%, rgba(2,11,27,0.8) 88%, #020b1b 100%)'
+                  : 'linear-gradient(to bottom, rgba(248,250,252,0.92) 0%, rgba(248,250,252,0.78) 34%, rgba(248,250,252,0.25) 58%, rgba(248,250,252,0.85) 88%, #f8fafc 100%)'
+              }}
+            />
+          </div>
+
+          {/* 2. Desktop & Tablet Car Image Stage (sm and above): Stacked Light & Dark cars anchored bottom-right */}
           <div 
-            className="absolute inset-y-0 right-0 flex items-end justify-end pointer-events-none select-none z-[1]
-              w-[165%] sm:w-[90%] md:w-[78%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
-              translate-x-[calc(48%-150px)] sm:translate-x-0
-              -translate-y-[200px] sm:translate-y-0
+            className="hidden sm:flex absolute inset-y-0 right-0 items-end justify-end pointer-events-none select-none z-[1]
+              sm:w-[90%] md:w-[78%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
+              sm:translate-x-0 sm:translate-y-0
               transition-transform duration-500"
           >
-            {/* Car Images (Light & Dark) — stacked in exact same coordinate space, anchored bottom-right */}
             <img
               src={heroBgLight}
               alt=""
@@ -116,47 +137,46 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
             />
           </div>
 
-          {/* 2. Tracking Widgets Stage — Strictly anchored to the car area across mobile, tablet, desktop and ultrawide */}
+          {/* 3. Tracking Widgets Stage (Desktop/Tablet) — Anchored strictly to the car area */}
           <div 
-            className="absolute inset-y-0 right-0 pointer-events-none z-[2]
-              w-[165%] sm:w-[90%] md:w-[78%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
-              translate-x-[calc(48%-150px)] sm:translate-x-0
-              -translate-y-[200px] sm:translate-y-0
+            className="hidden sm:block absolute inset-y-0 right-0 pointer-events-none z-[2]
+              sm:w-[90%] md:w-[78%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
+              sm:translate-x-0 sm:translate-y-0
               transition-transform duration-500"
           >
             
-            {/* ── TRACKING WIDGET 1: Mai multă productivitate (Positioned 100px lower as requested, anchored to cockpit/wheel on desktop, floats neatly above shield on mobile) ── */}
+            {/* ── TRACKING WIDGET 1: Mai multă productivitate ── */}
             <div 
-              className="absolute top-[26%] sm:top-[20%] lg:top-[22%] translate-y-[100px] right-3 sm:right-auto sm:left-[34%] lg:left-[35%] z-20 flex flex-col items-center pointer-events-auto transition-all duration-300 scale-[0.72] xs:scale-[0.8] sm:scale-100 origin-top-right sm:origin-bottom"
+              className="absolute top-[26%] sm:top-[20%] lg:top-[22%] translate-y-[100px] sm:left-[34%] lg:left-[35%] z-20 flex flex-col items-center pointer-events-auto transition-all duration-300 scale-100 origin-bottom"
             >
-              <div className={`backdrop-blur-xl border rounded-2xl px-3 sm:px-4 py-1.5 sm:py-2.5 shadow-xl flex items-center gap-2.5 sm:gap-3 ${isDark ? 'bg-[#0c2246]/85 border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.5)]' : 'bg-white/90 border-slate-200/90 shadow-[0_12px_35px_rgba(0,102,255,0.08)]'}`}>
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#1e3d75] flex items-center justify-center shadow-md shrink-0">
-                  <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-[#00d2ff] stroke-[2.5]" />
+              <div className={`backdrop-blur-xl border rounded-2xl px-4 py-2.5 shadow-xl flex items-center gap-3 ${isDark ? 'bg-[#0c2246]/85 border-white/20 shadow-[0_15px_40px_rgba(0,0,0,0.5)]' : 'bg-white/90 border-slate-200/90 shadow-[0_12px_35px_rgba(0,102,255,0.08)]'}`}>
+                <div className="w-9 h-9 rounded-xl bg-[#1e3d75] flex items-center justify-center shadow-md shrink-0">
+                  <Activity className="w-5 h-5 text-[#00d2ff] stroke-[2.5]" />
                 </div>
                 <div>
-                  <div className={`text-xs sm:text-sm font-extrabold leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  <div className={`text-sm font-extrabold leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
                     Mai multă productivitate
                   </div>
-                  <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 whitespace-nowrap">Procese automatizate. Timp economisit.</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5 whitespace-nowrap">Procese automatizate. Timp economisit.</div>
                 </div>
               </div>
               <div className="flex flex-col items-center -mt-0.5">
-                <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full border-2 border-[#0066FF]" style={{ background: isDark ? '#00d2ff' : '#fff' }} />
-                <svg className="w-16 sm:w-20 h-7 sm:h-9 -mt-0.5 opacity-60" viewBox="0 0 80 36" fill="none" style={{ color: accent }}>
+                <div className="w-2.5 h-2.5 rounded-full border-2 border-[#0066FF]" style={{ background: isDark ? '#00d2ff' : '#fff' }} />
+                <svg className="w-20 h-9 -mt-0.5 opacity-60" viewBox="0 0 80 36" fill="none" style={{ color: accent }}>
                   <path d="M 40 0 C 40 18, 65 18, 70 34" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
                 </svg>
               </div>
             </div>
 
-            {/* ── TRACKING WIDGET 2: Eficiență operațională (Anchored to the car side/floor on desktop, floats beside shield on mobile) ── */}
+            {/* ── TRACKING WIDGET 2: Eficiență operațională ── */}
             <div 
-              className="absolute bottom-[5%] sm:bottom-[10%] lg:bottom-[12%] right-3 sm:right-auto sm:left-[42%] lg:left-[45%] z-20 inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full bg-[#0a2044]/90 backdrop-blur-md border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-white pointer-events-auto scale-[0.72] xs:scale-[0.8] sm:scale-100 origin-bottom-right sm:origin-bottom-left"
+              className="absolute bottom-[5%] sm:bottom-[10%] lg:bottom-[12%] sm:left-[42%] lg:left-[45%] z-20 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#0a2044]/90 backdrop-blur-md border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-white pointer-events-auto scale-100 origin-bottom-left"
             >
-              <span className="text-[#00e5ff] font-black text-xs sm:text-sm tracking-tight flex items-center gap-1">
+              <span className="text-[#00e5ff] font-black text-sm tracking-tight flex items-center gap-1">
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 4l-7 7h4v9h6v-9h4z"/></svg>
                 +37%
               </span>
-              <span className="text-[11px] sm:text-[13px] font-medium text-white/95 whitespace-nowrap">Eficiență operațională</span>
+              <span className="text-[13px] font-medium text-white/95 whitespace-nowrap">Eficiență operațională</span>
               <div className="flex items-end gap-[3px] h-3.5 pl-0.5">
                 {[1.5, 2.5, 3, 3.5].map((h, i) => (
                   <span key={i} className="w-1 bg-[#00e5ff] rounded-full" style={{ height: `${h * 4}px` }} />
@@ -166,9 +186,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
 
           </div>
 
-          {/* ── Left text-column scrim ─────────────────────────────────── */}
+          {/* ── Left text-column scrim (Desktop/Tablet) ─────────────────── */}
           <div
-            className="absolute inset-y-0 left-0 w-full sm:w-[80%] md:w-[65%] lg:w-[56%] pointer-events-none transition-colors duration-700 z-[1]"
+            className="hidden sm:block absolute inset-y-0 left-0 w-full sm:w-[80%] md:w-[65%] lg:w-[56%] pointer-events-none transition-colors duration-700 z-[1]"
             style={{
               background: isDark
                 ? 'linear-gradient(to right, #020b1b 0%, #020b1b 45%, rgba(2,11,27,0.75) 75%, transparent 100%)'

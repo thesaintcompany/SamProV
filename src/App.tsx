@@ -39,7 +39,7 @@ export const App: React.FC = () => {
   const [selectedPlanForDemo, setSelectedPlanForDemo] = useState('Plan Pro (Recomandat)');
   const [isGdprModalOpen, setIsGdprModalOpen] = useState(false);
   const [gdprInitialFilter, setGdprInitialFilter] = useState('all');
-  const [simulatorInitialTab, setSimulatorInitialTab] = useState<'whatsapp' | 'rar' | 'hoists'>('whatsapp');
+  const [simulatorInitialTab, setSimulatorInitialTab] = useState<'whatsapp' | 'mechanic' | 'rar' | 'hoists'>('whatsapp');
 
   const handleOpenDemo = (planName?: string) => {
     if (planName) {
@@ -61,7 +61,7 @@ export const App: React.FC = () => {
     setIsGdprModalOpen(false);
   };
 
-  const handleScrollToSimulator = (tab?: 'whatsapp' | 'rar' | 'hoists') => {
+  const handleScrollToSimulator = (tab?: 'whatsapp' | 'mechanic' | 'rar' | 'hoists') => {
     if (tab) {
       setSimulatorInitialTab(tab);
     }

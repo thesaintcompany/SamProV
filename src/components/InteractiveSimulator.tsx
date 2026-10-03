@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Smartphone, 
@@ -21,11 +21,25 @@ import {
   CreditCard,
   RotateCcw,
   Camera,
-  ExternalLink
+  ExternalLink,
+  Wrench,
+  Search,
+  Bell,
+  ChevronRight,
+  Plus,
+  QrCode,
+  MessageSquare,
+  Send,
+  Users,
+  Zap,
+  SlidersHorizontal,
+  Mic,
+  X,
+  Radio
 } from 'lucide-react';
 
 interface InteractiveSimulatorProps {
-  initialTab?: 'whatsapp' | 'rar' | 'hoists';
+  initialTab?: 'whatsapp' | 'mechanic' | 'rar' | 'hoists';
 }
 
 interface VehicleTransmission {
@@ -46,7 +60,13 @@ interface VehicleTransmission {
 }
 
 export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ initialTab = 'whatsapp' }) => {
-  const [activeTab, setActiveTab] = useState<'whatsapp' | 'rar' | 'hoists'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'whatsapp' | 'mechanic' | 'rar' | 'hoists'>(initialTab);
+
+  useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
 
   // --- STATE FOR TAB 1: WHATSAPP DEVIZ SIMULATOR (STREAMLINED 5-STEP JOURNEY) ---
   const [waStep, setWaStep] = useState<1 | 2 | 3 | 4 | 5>(1);
@@ -97,7 +117,294 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
     setIsPaidOnline(false);
   };
 
-  // --- STATE FOR TAB 2: 1-CLICK RAR AUTOPASS TRANSMISSION SIMULATOR ---
+  // --- STATE FOR TAB 2: MECHANIC APP & INTERNAL WORKSHOP COMMUNICATION ---
+  const [mechanicViewMode, setMechanicViewMode] = useState<'both' | 'mechanic' | 'manager' | 'chat'>('both');
+  const [mechanicTabFilter, setMechanicTabFilter] = useState<'in_progress' | 'completed' | 'all'>('in_progress');
+  const [managerTabFilter, setManagerTabFilter] = useState<'all' | 'waiting' | 'in_progress' | 'completed'>('all');
+  const [mechanicSearchQuery, setMechanicSearchQuery] = useState('');
+  const [isScanVinModalOpen, setIsScanVinModalOpen] = useState(false);
+  const [isVinScanning, setIsVinScanning] = useState(false);
+  const [scannedVinData, setScannedVinData] = useState<{ plate: string; vin: string; model: string; km: string } | null>(null);
+  const [isNewNoteModalOpen, setIsNewNoteModalOpen] = useState(false);
+  const [isRecordingAudio, setIsRecordingAudio] = useState(false);
+  const [newNoteForm, setNewNoteForm] = useState({
+    plate: 'TM-30-MSY',
+    model: 'Volkswagen Golf 1.6 TDI',
+    defectCategory: 'Distribuție & Motor',
+    observation: 'La demontare constatat scurgere la presetupa pompei de apă și curea cu microfisuri. Solicităm acord client pentru înlocuire kit distribuție complet.',
+    photoAttached: true
+  });
+  const [selectedWorkshopVehicle, setSelectedWorkshopVehicle] = useState<{
+    id: string;
+    plate: string;
+    model: string;
+    engine: string;
+    km: string;
+    client: string;
+    duration: string;
+    status: string;
+    statusLabel: string;
+    statusTag: string;
+    statusColor: string;
+    timeReception: string;
+    clientsWait: number;
+    vin: string;
+    diagnosis: string;
+    parts: string[];
+    assignedMechanic: string;
+    photosCount: number;
+  } | null>(null);
+
+  const workshopVehiclesList = [
+    {
+      id: 'w-1',
+      plate: 'TM-30-MSY',
+      model: 'Volkswagen Golf',
+      engine: 'Motorizare 1.6 TDI',
+      km: '165.080 km',
+      client: 'Popescu Andrei',
+      duration: '2h',
+      status: 'in_progress',
+      statusLabel: 'În lucru',
+      statusTag: '#11',
+      statusColor: 'blue',
+      timeReception: '09:15',
+      clientsWait: 2,
+      vin: 'WVWZZZAUZJP189042',
+      diagnosis: 'Înlocuire kit distribuție ContiTech + Pompă apă SKF. Constatat garnitură uzată.',
+      parts: ['Kit distribuție', 'Pompă apă', 'Curea accesorii', 'Antigel G12 (3L)'],
+      assignedMechanic: 'Alex B. (Elevator 2)',
+      photosCount: 4
+    },
+    {
+      id: 'w-2',
+      plate: 'TM-26-ESO',
+      model: 'BMW X5',
+      engine: 'Motorizare 3.0d',
+      km: '142.300 km',
+      client: 'Ionescu Mihai',
+      duration: '5h',
+      status: 'to_do',
+      statusLabel: 'De făcut',
+      statusTag: '#10',
+      statusColor: 'amber',
+      timeReception: '10:42',
+      clientsWait: 3,
+      vin: 'WBAKS410800L98214',
+      diagnosis: 'Verificare joc articulație braț inferior stânga + schimb plăcuțe frână ATE Ceramic.',
+      parts: ['Braț inferior suspensie', 'Set plăcuțe ATE', 'Senzor uzură'],
+      assignedMechanic: 'Alex B. (Elevator 1)',
+      photosCount: 2
+    },
+    {
+      id: 'w-3',
+      plate: 'TM-18-KLW',
+      model: 'Audi A4',
+      engine: 'Motorizare 2.0 TDI',
+      km: '98.450 km',
+      client: 'Toma Cristian',
+      duration: '1h',
+      status: 'completed',
+      statusLabel: 'Finalizată',
+      statusTag: '#09',
+      statusColor: 'emerald',
+      timeReception: '12:30',
+      clientsWait: 1,
+      vin: 'WAUZZZF48HA120934',
+      diagnosis: 'Revizie periodică completă ulei Castrol 5W30 + filtre MANN. Reset service și diagnoză OK.',
+      parts: ['Ulei 5W30 5L', 'Filtru ulei', 'Filtru aer', 'Filtru polen', 'Filtru motorină'],
+      assignedMechanic: 'Alex B. (Elevator 3)',
+      photosCount: 3
+    },
+    {
+      id: 'w-4',
+      plate: 'TM-12-STS',
+      model: 'Ford Transit',
+      engine: 'Motorizare 2.2 TDCI',
+      km: '210.000 km',
+      client: 'SC Delta SRL',
+      duration: '6h',
+      status: 'in_progress',
+      statusLabel: 'În lucru',
+      statusTag: '#08',
+      statusColor: 'blue',
+      timeReception: '14:05',
+      clientsWait: 1,
+      vin: 'WF0XXXTTGXHG54321',
+      diagnosis: 'Înlocuire kit complet ambreiaj cu volantă dublă LUK și rulment de presiune hidraulic.',
+      parts: ['Volantă cu masă dublă LUK', 'Disc & placă ambreiaj', 'Rulment presiune'],
+      assignedMechanic: 'Alex B. (Elevator 4)',
+      photosCount: 5
+    }
+  ];
+
+  // Live Internal Chat Demo state
+  const [internalMessages, setInternalMessages] = useState<Array<{
+    id: string;
+    sender: string;
+    role: 'mechanic' | 'manager' | 'warehouse' | 'system';
+    avatarColor: string;
+    time: string;
+    message: string;
+    badge?: string;
+  }>>([
+    {
+      id: 'm1',
+      sender: 'Alex B.',
+      role: 'mechanic',
+      avatarColor: 'bg-blue-600',
+      time: '10:14',
+      message: 'La Golf-ul TM-30-MSY: am demontat cureaua de accesorii, pompa de apă are joc mare și scurgeri vizibile. Vă rog trimiteți deviz adițional către client!',
+      badge: '🔧 Elevator 2'
+    },
+    {
+      id: 'm2',
+      sender: 'Mihai R.',
+      role: 'manager',
+      avatarColor: 'bg-amber-600',
+      time: '10:16',
+      message: 'Am întocmit fișa adițională (+340 Lei kit pompă + antigel G12) și am trimis linkul direct pe WhatsApp către clientul Andrei Popescu.',
+      badge: '📋 Recepție'
+    },
+    {
+      id: 'm3',
+      sender: 'SAMpro Bot',
+      role: 'system',
+      avatarColor: 'bg-emerald-600',
+      time: '10:17',
+      message: '✅ Clientul Andrei Popescu a aprobat suplimentarea devizului de pe smartphone în 38 secunde!',
+      badge: '⚡ Notificare Automată WhatsApp'
+    },
+    {
+      id: 'm4',
+      sender: 'Elena T.',
+      role: 'warehouse',
+      avatarColor: 'bg-purple-600',
+      time: '10:19',
+      message: 'Kitul de pompă de apă OE (SKF VKMC) a fost scos din stoc și este pe căruciorul alocat pentru elevatorul 2.',
+      badge: '📦 Magazie Piese'
+    },
+    {
+      id: 'm5',
+      sender: 'Alex B.',
+      role: 'mechanic',
+      avatarColor: 'bg-blue-600',
+      time: '10:21',
+      message: 'Piese recepționate. Încep montajul. Finalizare estimată: 12:15.',
+      badge: '🔧 Elevator 2'
+    }
+  ]);
+  const [newChatMessage, setNewChatMessage] = useState('');
+
+  const handleSendChatMessage = (preset?: string) => {
+    const textToSend = preset || newChatMessage.trim();
+    if (!textToSend) return;
+    const newMsg = {
+      id: `m-${Date.now()}`,
+      sender: 'Alex B.',
+      role: 'mechanic' as const,
+      avatarColor: 'bg-blue-600',
+      time: 'Acum',
+      message: textToSend,
+      badge: '🔧 Elevator 2 (Tu)'
+    };
+    setInternalMessages(prev => [...prev, newMsg]);
+    setNewChatMessage('');
+    
+    // Auto-reply simulation from Șef Atelier after 1.2s
+    setTimeout(() => {
+      setInternalMessages(prev => [
+        ...prev,
+        {
+          id: `m-${Date.now() + 1}`,
+          sender: 'Mihai R.',
+          role: 'manager',
+          avatarColor: 'bg-amber-600',
+          time: 'Acum',
+          message: 'Am recepționat solicitarea ta! Informația a fost sincronizată în fișa vehiculului și pe ecranul de recepție.',
+          badge: '📋 Șef Atelier'
+        }
+      ]);
+    }, 1100);
+  };
+
+  const handleStartVinScan = () => {
+    setIsScanVinModalOpen(true);
+    setIsVinScanning(true);
+    setScannedVinData(null);
+    setTimeout(() => {
+      setIsVinScanning(false);
+      setScannedVinData({
+        plate: 'TM-30-MSY',
+        vin: 'WVWZZZAUZJP189042',
+        model: 'Volkswagen Golf VII 1.6 TDI (2018)',
+        km: '165.080 km'
+      });
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { y: 0.6 }
+      });
+    }, 1800);
+  };
+
+  const handleSaveNote = () => {
+    setIsNewNoteModalOpen(false);
+    confetti({
+      particleCount: 70,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+    // Add automatic ping to internal messages
+    setInternalMessages(prev => [
+      ...prev,
+      {
+        id: `m-${Date.now()}`,
+        sender: 'Alex B.',
+        role: 'mechanic',
+        avatarColor: 'bg-blue-600',
+        time: 'Acum',
+        message: `📋 Notă nouă de constatare adăugată pentru ${newNoteForm.plate}: ${newNoteForm.observation}`,
+        badge: '🔧 Notă de Constatare'
+      },
+      {
+        id: `m-${Date.now() + 1}`,
+        sender: 'Mihai R.',
+        role: 'manager',
+        avatarColor: 'bg-amber-600',
+        time: 'Acum',
+        message: `Preluat constatarea pentru ${newNoteForm.plate}. Prețurile pieselor au fost verificate și transmise spre aprobare client.`,
+        badge: '📋 Șef Atelier'
+      }
+    ]);
+  };
+
+  // Filtered vehicles for Mechanic Phone
+  const filteredMechanicVehicles = workshopVehiclesList.filter(car => {
+    if (mechanicSearchQuery) {
+      const q = mechanicSearchQuery.toLowerCase();
+      const matches = car.plate.toLowerCase().includes(q) || car.model.toLowerCase().includes(q) || car.client.toLowerCase().includes(q) || car.vin.toLowerCase().includes(q);
+      if (!matches) return false;
+    }
+    if (mechanicTabFilter === 'in_progress') return car.status === 'in_progress' || car.status === 'to_do';
+    if (mechanicTabFilter === 'completed') return car.status === 'completed';
+    return true;
+  });
+
+  // Filtered vehicles for Manager Phone
+  const filteredManagerVehicles = workshopVehiclesList.filter(car => {
+    if (mechanicSearchQuery) {
+      const q = mechanicSearchQuery.toLowerCase();
+      const matches = car.plate.toLowerCase().includes(q) || car.model.toLowerCase().includes(q) || car.client.toLowerCase().includes(q) || car.vin.toLowerCase().includes(q);
+      if (!matches) return false;
+    }
+    if (managerTabFilter === 'waiting') return car.status === 'to_do';
+    if (managerTabFilter === 'in_progress') return car.status === 'in_progress';
+    if (managerTabFilter === 'completed') return car.status === 'completed';
+    return true;
+  });
+
+  // --- STATE FOR TAB 3: 1-CLICK RAR AUTOPASS TRANSMISSION SIMULATOR ---
   const initialVehicles: VehicleTransmission[] = [
     {
       id: 'veh-1',
@@ -285,7 +592,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            Alege un scenariu mai jos și testează cum aprobă clientul devizul pe WhatsApp, cum transmiți datele și devizul cu 1-click către RAR AutoPass și cum organizezi elevatoarele din atelier.
+            Alege un scenariu mai jos și testează cum aprobă clientul devizul pe WhatsApp, aplicația mobilă a mecanicilor și comunicarea internă din atelier, transmiterea cu 1-click a datelor către RAR AutoPass și organizarea elevatoarelor.
           </p>
 
           {/* Navigation Tabs Pill Switcher */}
@@ -303,6 +610,18 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
             </button>
 
             <button
+              onClick={() => setActiveTab('mechanic')}
+              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${
+                activeTab === 'mechanic'
+                  ? 'bg-[#0066FF] text-white shadow-md'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+            >
+              <Wrench className="w-4 h-4" />
+              <span>2. App Mecanici & Atelier (Comunicare Internă)</span>
+            </button>
+
+            <button
               onClick={() => setActiveTab('rar')}
               className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${
                 activeTab === 'rar'
@@ -311,7 +630,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
               }`}
             >
               <Car className="w-4 h-4" />
-              <span>2. Transmitere Date RAR AutoPass (1-Click)</span>
+              <span>3. Transmitere Date RAR AutoPass (1-Click)</span>
             </button>
 
             <button
@@ -323,7 +642,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
               }`}
             >
               <Calendar className="w-4 h-4" />
-              <span>3. Gestiune Elevatoare Atelier</span>
+              <span>4. Gestiune Elevatoare Atelier</span>
             </button>
           </div>
         </div>
@@ -720,7 +1039,1053 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
           </div>
         )}
         
-        {/* TAB 2: INTERACTIVE 1-CLICK RAR AUTOPASS TRANSMISSION SIMULATOR */}
+        {/* TAB 2: MECHANIC APP & INTERNAL WORKSHOP COMMUNICATION (AUTOCEV / SAMpro) */}
+        {activeTab === 'mechanic' && (
+          <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-300">
+            
+            {/* Top Controls Bar: Subtitle & View Mode Switcher */}
+            <div className="p-4 sm:p-6 rounded-3xl bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/10 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 text-xs font-mono font-bold text-[#0066FF] dark:text-[#00D2FF] mb-2">
+                  <Wrench className="w-3.5 h-3.5" />
+                  APLICAȚIE MOBILĂ MECANICI &amp; DISPECERAT
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                  Aplicație Dedicată Mecanici &amp; Comunicare Internă Atelier
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-2xl leading-relaxed">
+                  Interfață tactilă rapidă pentru mecanici la elevator și șeful de atelier. Note de constatare digitale, scanare VIN, alocare automată pe elevatoare și comunicare instantă fără deplasări.
+                </p>
+              </div>
+
+              {/* View Switcher Controls */}
+              <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-slate-100 dark:bg-black/40 border border-slate-200 dark:border-white/10 self-start md:self-auto">
+                <button
+                  type="button"
+                  onClick={() => setMechanicViewMode('both')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    mechanicViewMode === 'both'
+                      ? 'bg-[#0066FF] text-white shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  📱 Ambele Ecrane
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMechanicViewMode('mechanic')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    mechanicViewMode === 'mechanic'
+                      ? 'bg-[#0066FF] text-white shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  🔧 Vedere Mecanic
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMechanicViewMode('manager')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    mechanicViewMode === 'manager'
+                      ? 'bg-[#0066FF] text-white shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  📋 Vedere Șef Atelier
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMechanicViewMode('chat')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    mechanicViewMode === 'chat'
+                      ? 'bg-[#0066FF] text-white shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span>Chat Intern ({internalMessages.length})</span>
+                </button>
+              </div>
+            </div>
+
+            {/* MAIN WORKSHOP SHOWCASE: Left Banner + Phone Screens */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              {/* LEFT VALUE PROPOSITION PILLAR (MATCHING USER SCREENSHOT) */}
+              <div className="lg:col-span-3 space-y-4">
+                <div className="p-6 rounded-3xl bg-gradient-to-b from-[#091b36] via-[#051329] to-[#040e20] border border-blue-500/25 shadow-2xl relative overflow-hidden text-white space-y-6">
+                  {/* Glowing background blob */}
+                  <div className="absolute top-0 right-0 w-44 h-44 bg-[#0066FF]/20 rounded-full blur-3xl pointer-events-none" />
+                  
+                  {/* Brand Header */}
+                  <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-red-600 to-[#0066FF] flex items-center justify-center font-black text-white text-xs shadow-md">
+                        SP
+                      </div>
+                      <span className="font-black text-lg tracking-wider text-white">
+                        AUTOCEV <span className="text-[#00D2FF] text-xs font-semibold">APP</span>
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                      LIVE v3.4
+                    </span>
+                  </div>
+
+                  {/* 4 Core Pillars from user screenshot */}
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3 group">
+                      <div className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-400/30 flex items-center justify-center text-[#00D2FF] shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                        <Zap className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs text-white">Flux de lucru clar și rapid</div>
+                        <div className="text-[11px] text-slate-300 mt-0.5 leading-snug">
+                          Mecanicul știe exact ordinea mașinilor și timpii alocați direct pe telefon/tabletă.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 group">
+                      <div className="w-9 h-9 rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-300 shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                        <ShieldCheck className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs text-white">Informații complete și actualizate</div>
+                        <div className="text-[11px] text-slate-300 mt-0.5 leading-snug">
+                          Istoric mecanic, kilometraj confirmat și fotografii direct de la elevator.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 group">
+                      <div className="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-400/30 flex items-center justify-center text-amber-300 shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                        <Clock className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs text-white">Mai puțină birocrație, mai mult timp</div>
+                        <div className="text-[11px] text-slate-300 mt-0.5 leading-snug">
+                          Zero foi murdare de ulei și fără alergătură la biroul de recepție pentru clarificări.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 group">
+                      <div className="w-9 h-9 rounded-xl bg-purple-500/15 border border-purple-400/30 flex items-center justify-center text-purple-300 shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                        <Users className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs text-white">Design modern, creat pentru echipă</div>
+                        <div className="text-[11px] text-slate-300 mt-0.5 leading-snug">
+                          Butoane tactile mari, mod întunecat și vizibilitate impecabilă în orice lumină.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Motto from screenshot */}
+                  <div className="pt-4 border-t border-white/10 text-center">
+                    <div className="text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-[#00D2FF] to-blue-400">
+                      Service eficient. Clienți mulțumiți.
+                    </div>
+                    <div className="text-[10px] text-slate-400 font-mono mt-1">
+                      Conectat la Cloud SAMpro &amp; RAR AutoPass
+                    </div>
+                  </div>
+
+                  {/* Quick trigger button for internal chat */}
+                  <button
+                    type="button"
+                    onClick={() => setMechanicViewMode('chat')}
+                    className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#0066FF] to-cyan-500 hover:from-blue-600 hover:to-cyan-400 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Deschide Chat Intern Live ({internalMessages.length})</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* CENTER/RIGHT: THE PHONE SCREENS */}
+              <div className={`lg:col-span-9 ${mechanicViewMode === 'chat' ? 'hidden' : 'block'}`}>
+                <div className={`grid gap-6 ${
+                  mechanicViewMode === 'both' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 max-w-md mx-auto'
+                }`}>
+
+                  {/* ─────────────────────────────────────────────────────────────
+                      PHONE 1: VEDERE MECANIC (ALEX B. - MECANIC)
+                     ───────────────────────────────────────────────────────────── */}
+                  {(mechanicViewMode === 'both' || mechanicViewMode === 'mechanic') && (
+                    <div className="rounded-[44px] p-3 sm:p-4 bg-gradient-to-b from-slate-800 via-slate-900 to-black border-4 border-slate-700/80 shadow-2xl relative overflow-hidden text-white flex flex-col justify-between max-w-sm mx-auto w-full">
+                      {/* Dynamic Island & Notch */}
+                      <div className="flex items-center justify-between px-4 pt-1 pb-3 text-[11px] font-mono text-slate-300">
+                        <span>22:03</span>
+                        <div className="w-20 h-4 bg-black rounded-full mx-auto" />
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[9px]">4G</span>
+                          <span className="w-4 h-2.5 border border-slate-400 rounded-sm inline-block p-0.5">
+                            <span className="block h-full w-2/3 bg-white rounded-2xs" />
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Phone App Inner Screen */}
+                      <div className="space-y-3.5 flex-1 overflow-y-auto pr-0.5 max-h-[700px] scrollbar-thin">
+                        
+                        {/* Header: Brand + User Role + Notification */}
+                        <div className="flex items-center justify-between pt-1">
+                          <span className="font-black text-base tracking-wider text-white">
+                            AUTO<span className="text-red-500">CEV</span>
+                          </span>
+
+                          <div className="flex items-center gap-2">
+                            <div className="px-2.5 py-1 rounded-full bg-slate-800/90 border border-white/10 text-xs flex items-center gap-1.5">
+                              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                              <span className="font-bold text-[11px]">Alex B.</span>
+                              <span className="text-[9px] text-slate-400">Mecanic</span>
+                            </div>
+
+                            <div className="relative p-1.5 rounded-full bg-slate-800/80 text-slate-300 hover:text-white">
+                              <Bell className="w-4 h-4" />
+                              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-[9px] font-black flex items-center justify-center text-white">
+                                3
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Top Card: Note de constatare */}
+                        <div className="p-4 rounded-2xl bg-gradient-to-r from-[#0d2853] via-[#092244] to-[#061935] border border-blue-400/20 relative overflow-hidden shadow-md">
+                          <div className="relative z-10 space-y-1">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <div className="p-1.5 rounded-lg bg-blue-500/20 text-[#00D2FF]">
+                                  <FileText className="w-4 h-4" />
+                                </div>
+                                <span className="font-extrabold text-sm text-white">Note de constatare</span>
+                              </div>
+                              <span className="px-2 py-0.5 rounded-md bg-blue-500/30 text-[9px] font-mono font-bold text-[#00D2FF] uppercase">
+                                🔧 Mecanic
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-300 leading-snug pt-1">
+                              Documentează rapid și profesionist starea vehiculului.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Action Buttons: Nouă Notă & Scan VIN */}
+                        <div className="grid grid-cols-12 gap-2">
+                          <button
+                            type="button"
+                            onClick={() => setIsNewNoteModalOpen(true)}
+                            className="col-span-8 py-2.5 px-3 rounded-xl bg-[#0066FF] hover:bg-blue-600 active:scale-95 text-white font-bold text-xs flex items-center justify-between shadow-lg shadow-blue-500/20 transition-all cursor-pointer"
+                          >
+                            <span className="flex items-center gap-1.5">
+                              <Plus className="w-4 h-4" />
+                              <span>Nouă notă de constatare</span>
+                            </span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={handleStartVinScan}
+                            className="col-span-4 py-2.5 px-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 active:scale-95 border border-white/10 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                          >
+                            <QrCode className="w-4 h-4 text-[#00D2FF]" />
+                            <span>Scan VIN</span>
+                          </button>
+                        </div>
+
+                        {/* Filter Tabs Pills (În lucru 3, Finalizate 12, Toate 24) */}
+                        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-900/90 border border-white/10 text-[11px]">
+                          <button
+                            type="button"
+                            onClick={() => setMechanicTabFilter('in_progress')}
+                            className={`flex-1 py-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                              mechanicTabFilter === 'in_progress'
+                                ? 'bg-white text-slate-950 shadow-sm'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                            <span>În lucru</span>
+                            <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-blue-500/20 text-blue-700 dark:text-blue-300 font-mono">
+                              3
+                            </span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setMechanicTabFilter('completed')}
+                            className={`flex-1 py-1.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                              mechanicTabFilter === 'completed'
+                                ? 'bg-white text-slate-950 shadow-sm'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            <span>Finalizate</span>
+                            <span className="text-[10px] text-slate-500 font-mono">12</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setMechanicTabFilter('all')}
+                            className={`flex-1 py-1.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                              mechanicTabFilter === 'all'
+                                ? 'bg-white text-slate-950 shadow-sm'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            <span>Toate</span>
+                            <span className="text-[10px] text-slate-500 font-mono">24</span>
+                          </button>
+                        </div>
+
+                        {/* Search Bar */}
+                        <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900/90 border border-white/10">
+                          <Search className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                          <input
+                            type="text"
+                            value={mechanicSearchQuery}
+                            onChange={(e) => setMechanicSearchQuery(e.target.value)}
+                            placeholder="Caută nr. auto, client, VIN..."
+                            className="w-full bg-transparent text-xs text-white placeholder-slate-400 focus:outline-none"
+                          />
+                          <SlidersHorizontal className="w-3.5 h-3.5 text-slate-400 shrink-0 cursor-pointer" />
+                        </div>
+
+                        {/* Vehicle Cards List */}
+                        <div className="space-y-2.5">
+                          {filteredMechanicVehicles.map((car) => (
+                            <div
+                              key={car.id}
+                              onClick={() => setSelectedWorkshopVehicle(car)}
+                              className="p-3 rounded-2xl bg-white text-slate-900 hover:bg-slate-50 border border-slate-200 shadow-md transition-all cursor-pointer group active:scale-[0.99]"
+                            >
+                              <div className="flex items-start justify-between gap-2">
+                                <div className="space-y-1">
+                                  {/* Plate Badge */}
+                                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-100 border border-slate-300 font-mono font-black text-xs text-slate-900">
+                                    <span className="w-2 h-2 rounded-full bg-blue-600 inline-block" />
+                                    <span>{car.plate}</span>
+                                  </div>
+                                  
+                                  <div className="font-bold text-xs text-slate-900">{car.model}</div>
+                                  <div className="text-[10px] text-slate-500">
+                                    {car.engine} <span className="text-slate-300">•</span> {car.km}
+                                  </div>
+                                  
+                                  <div className="flex items-center gap-3 pt-1 text-[10px] text-slate-600">
+                                    <span className="flex items-center gap-1">
+                                      <User className="w-3 h-3 text-slate-400" />
+                                      {car.client}
+                                    </span>
+                                    <span className="flex items-center gap-1 font-mono text-slate-500">
+                                      <Clock className="w-3 h-3 text-slate-400" />
+                                      {car.duration}
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Right Status Badge & Arrow */}
+                                <div className="flex flex-col items-end justify-between self-stretch">
+                                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1 ${
+                                    car.statusColor === 'blue' ? 'bg-blue-100 text-blue-800' :
+                                    car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
+                                    'bg-emerald-100 text-emerald-800'
+                                  }`}>
+                                    <span className={`w-1.5 h-1.5 rounded-full ${
+                                      car.statusColor === 'blue' ? 'bg-blue-600' :
+                                      car.statusColor === 'amber' ? 'bg-amber-600' :
+                                      'bg-emerald-600'
+                                    }`} />
+                                    <span>{car.statusLabel}</span>
+                                    <span className="font-mono text-[9px] opacity-75">{car.statusTag}</span>
+                                  </span>
+
+                                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                      </div>
+
+                      {/* Bottom Navigation Bar */}
+                      <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-around text-[10px] text-slate-400">
+                        <button type="button" className="flex flex-col items-center gap-1 text-slate-400 hover:text-white cursor-pointer">
+                          <Smartphone className="w-4 h-4" />
+                          <span>Acasă</span>
+                        </button>
+                        <button type="button" className="flex flex-col items-center gap-1 text-[#00D2FF] font-bold cursor-pointer">
+                          <FileText className="w-4 h-4" />
+                          <span>Note</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setIsNewNoteModalOpen(true)}
+                          className="w-10 h-10 rounded-full bg-[#0066FF] hover:bg-blue-500 text-white flex items-center justify-center shadow-lg -translate-y-2 cursor-pointer active:scale-95"
+                        >
+                          <Plus className="w-5 h-5" />
+                        </button>
+                        <button type="button" className="flex flex-col items-center gap-1 text-slate-400 hover:text-white cursor-pointer">
+                          <Car className="w-4 h-4" />
+                          <span>Recepții</span>
+                        </button>
+                        <button type="button" className="flex flex-col items-center gap-1 text-slate-400 hover:text-white cursor-pointer">
+                          <SlidersHorizontal className="w-4 h-4" />
+                          <span>Meniu</span>
+                        </button>
+                      </div>
+
+                    </div>
+                  )}
+
+                  {/* ─────────────────────────────────────────────────────────────
+                      PHONE 2: VEDERE ȘEF ATELIER (ALEX B. - ȘEF ATELIER)
+                     ───────────────────────────────────────────────────────────── */}
+                  {(mechanicViewMode === 'both' || mechanicViewMode === 'manager') && (
+                    <div className="rounded-[44px] p-3 sm:p-4 bg-gradient-to-b from-slate-800 via-slate-900 to-black border-4 border-slate-700/80 shadow-2xl relative overflow-hidden text-white flex flex-col justify-between max-w-sm mx-auto w-full">
+                      {/* Dynamic Island & Notch */}
+                      <div className="flex items-center justify-between px-4 pt-1 pb-3 text-[11px] font-mono text-slate-300">
+                        <span>22:03</span>
+                        <div className="w-20 h-4 bg-black rounded-full mx-auto" />
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[9px]">4G</span>
+                          <span className="w-4 h-2.5 border border-slate-400 rounded-sm inline-block p-0.5">
+                            <span className="block h-full w-2/3 bg-white rounded-2xs" />
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Phone App Inner Screen */}
+                      <div className="space-y-3.5 flex-1 overflow-y-auto pr-0.5 max-h-[700px] scrollbar-thin">
+                        
+                        {/* Header: Brand + User Role + Notification */}
+                        <div className="flex items-center justify-between pt-1">
+                          <span className="font-black text-base tracking-wider text-white">
+                            AUTO<span className="text-red-500">CEV</span>
+                          </span>
+
+                          <div className="flex items-center gap-2">
+                            <div className="px-2.5 py-1 rounded-full bg-slate-800/90 border border-white/10 text-xs flex items-center gap-1.5">
+                              <span className="w-2 h-2 rounded-full bg-amber-400" />
+                              <span className="font-bold text-[11px]">Alex B.</span>
+                              <span className="text-[9px] text-amber-300">Șef atelier</span>
+                            </div>
+
+                            <div className="relative p-1.5 rounded-full bg-slate-800/80 text-slate-300 hover:text-white">
+                              <Bell className="w-4 h-4" />
+                              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-[9px] font-black flex items-center justify-center text-white">
+                                3
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Top Card: Recepție atelier */}
+                        <div className="p-4 rounded-2xl bg-gradient-to-r from-[#072445] via-[#092244] to-[#061935] border border-blue-400/20 relative overflow-hidden shadow-md">
+                          <div className="relative z-10 space-y-1">
+                            <div className="flex items-center gap-2">
+                              <div className="p-1.5 rounded-lg bg-blue-500/20 text-[#00D2FF]">
+                                <Car className="w-4 h-4" />
+                              </div>
+                              <span className="font-extrabold text-sm text-white">Recepție atelier</span>
+                            </div>
+                            <p className="text-[11px] text-slate-300 leading-snug pt-1">
+                              Preia rapid vehiculele și gestionează fluxul din service.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* KPI Stats Chips Row: Azi 6 recepții, În așteptare 2, Finalizate 5 */}
+                        <div className="grid grid-cols-3 gap-2 text-center">
+                          <div className="p-2 rounded-xl bg-slate-900/90 border border-white/10">
+                            <div className="text-[10px] text-slate-400">Azi</div>
+                            <div className="font-black text-sm text-white">6</div>
+                            <div className="text-[9px] text-slate-500">recepții</div>
+                          </div>
+
+                          <div className="p-2 rounded-xl bg-slate-900/90 border border-amber-500/20">
+                            <div className="text-[10px] text-amber-400">În așteptare</div>
+                            <div className="font-black text-sm text-amber-300">2</div>
+                            <div className="text-[9px] text-slate-500">clienți</div>
+                          </div>
+
+                          <div className="p-2 rounded-xl bg-slate-900/90 border border-emerald-500/20">
+                            <div className="text-[10px] text-emerald-400">Finalizate</div>
+                            <div className="font-black text-sm text-emerald-300">5</div>
+                            <div className="text-[9px] text-slate-500">detalii</div>
+                          </div>
+                        </div>
+
+                        {/* Primary Button: + Recepție nouă */}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            confetti({ particleCount: 40, spread: 50, origin: { y: 0.6 } });
+                            setIsNewNoteModalOpen(true);
+                          }}
+                          className="w-full py-2.5 px-3 rounded-xl bg-[#0066FF] hover:bg-blue-600 active:scale-95 text-white font-bold text-xs flex items-center justify-between shadow-lg shadow-blue-500/20 transition-all cursor-pointer"
+                        >
+                          <span className="flex items-center gap-1.5">
+                            <Plus className="w-4 h-4" />
+                            <span>Recepție nouă</span>
+                          </span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+
+                        {/* Filter Tabs Pills (Toate 6, În așteptare 2, În lucru 2, Finalizate 2) */}
+                        <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-900/90 border border-white/10 text-[10px]">
+                          <button
+                            type="button"
+                            onClick={() => setManagerTabFilter('all')}
+                            className={`flex-1 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                              managerTabFilter === 'all'
+                                ? 'bg-white text-slate-950 shadow-sm'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            Toate (6)
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setManagerTabFilter('waiting')}
+                            className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                              managerTabFilter === 'waiting'
+                                ? 'bg-white text-slate-950 shadow-sm'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            În așteptare (2)
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setManagerTabFilter('in_progress')}
+                            className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                              managerTabFilter === 'in_progress'
+                                ? 'bg-white text-slate-950 shadow-sm'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            În lucru (2)
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setManagerTabFilter('completed')}
+                            className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                              managerTabFilter === 'completed'
+                                ? 'bg-white text-slate-950 shadow-sm'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            Finalizate (2)
+                          </button>
+                        </div>
+
+                        {/* Search Bar */}
+                        <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900/90 border border-white/10">
+                          <Search className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                          <input
+                            type="text"
+                            value={mechanicSearchQuery}
+                            onChange={(e) => setMechanicSearchQuery(e.target.value)}
+                            placeholder="Caută nr. auto, client, VIN..."
+                            className="w-full bg-transparent text-xs text-white placeholder-slate-400 focus:outline-none"
+                          />
+                          <SlidersHorizontal className="w-3.5 h-3.5 text-slate-400 shrink-0 cursor-pointer" />
+                        </div>
+
+                        {/* Queue List Cards */}
+                        <div className="space-y-2.5">
+                          {filteredManagerVehicles.map((car) => (
+                            <div
+                              key={car.id}
+                              onClick={() => setSelectedWorkshopVehicle(car)}
+                              className="p-3 rounded-2xl bg-white text-slate-900 hover:bg-slate-50 border border-slate-200 shadow-md transition-all cursor-pointer group active:scale-[0.99]"
+                            >
+                              <div className="flex items-center justify-between gap-2">
+                                <div className="space-y-1">
+                                  <div className="flex items-center gap-2">
+                                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1 ${
+                                      car.statusColor === 'blue' ? 'bg-blue-100 text-blue-800' :
+                                      car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
+                                      'bg-emerald-100 text-emerald-800'
+                                    }`}>
+                                      <span className={`w-1.5 h-1.5 rounded-full ${
+                                        car.statusColor === 'blue' ? 'bg-blue-600' :
+                                        car.statusColor === 'amber' ? 'bg-amber-600' :
+                                        'bg-emerald-600'
+                                      }`} />
+                                      <span>{car.statusLabel}</span>
+                                    </span>
+
+                                    <span className="text-[10px] text-slate-400 font-mono flex items-center gap-1">
+                                      <Clock className="w-3 h-3" />
+                                      {car.timeReception}
+                                    </span>
+
+                                    <span className="text-[10px] text-slate-500 font-mono">
+                                      +{car.clientsWait}
+                                    </span>
+                                  </div>
+
+                                  <div className="font-bold text-xs text-slate-900">
+                                    {car.plate} <span className="text-slate-400 font-normal">| {car.model}</span>
+                                  </div>
+
+                                  <div className="text-[10px] text-slate-500 flex items-center gap-1">
+                                    <User className="w-3 h-3 text-slate-400" />
+                                    <span>{car.client}</span>
+                                  </div>
+                                </div>
+
+                                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                      </div>
+
+                      {/* Bottom Navigation Bar */}
+                      <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-around text-[10px] text-slate-400">
+                        <button type="button" className="flex flex-col items-center gap-1 text-slate-400 hover:text-white cursor-pointer">
+                          <Smartphone className="w-4 h-4" />
+                          <span>Acasă</span>
+                        </button>
+                        <button type="button" className="flex flex-col items-center gap-1 text-slate-400 hover:text-white cursor-pointer">
+                          <FileText className="w-4 h-4" />
+                          <span>Note</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setIsNewNoteModalOpen(true)}
+                          className="w-10 h-10 rounded-full bg-[#0066FF] hover:bg-blue-500 text-white flex items-center justify-center shadow-lg -translate-y-2 cursor-pointer active:scale-95"
+                        >
+                          <Plus className="w-5 h-5" />
+                        </button>
+                        <button type="button" className="flex flex-col items-center gap-1 text-[#00D2FF] font-bold cursor-pointer">
+                          <Car className="w-4 h-4" />
+                          <span>Recepții</span>
+                        </button>
+                        <button type="button" className="flex flex-col items-center gap-1 text-slate-400 hover:text-white cursor-pointer">
+                          <SlidersHorizontal className="w-4 h-4" />
+                          <span>Meniu</span>
+                        </button>
+                      </div>
+
+                    </div>
+                  )}
+
+                </div>
+              </div>
+
+            </div>
+
+            {/* ─────────────────────────────────────────────────────────────────
+                APP PROPRIU DE COMUNICARE INTERNĂ (LIVE INTER-TEAM CHAT CONSOLE)
+               ───────────────────────────────────────────────────────────────── */}
+            <div className={`p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/10 shadow-xl space-y-6 ${
+              mechanicViewMode === 'chat' ? 'max-w-4xl mx-auto' : ''
+            }`}>
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-white/10">
+                <div className="space-y-1">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-400/20 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                    <Radio className="w-3.5 h-3.5 animate-pulse text-emerald-500" />
+                    COMUNICARE INTERNĂ ATELIER ÎN TIMP REAL
+                  </div>
+                  <h4 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
+                    Canal Intern: Mecanic ↔ Șef Atelier ↔ Magazie Piese
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300">
+                    Zero strigăte prin atelier, zero deplasări inutile. Fiecare constatare generează automat notificare către recepție și WhatsApp-ul clientului.
+                  </p>
+                </div>
+
+                {/* Active Connected Users */}
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-500/10 text-[#0066FF] dark:text-[#00D2FF] text-[11px] font-bold font-mono">
+                    🔧 Alex B. (Elevator 2)
+                  </span>
+                  <span className="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[11px] font-bold font-mono">
+                    📋 Mihai R. (Șef Atelier)
+                  </span>
+                  <span className="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[11px] font-bold font-mono">
+                    📦 Elena T. (Magazie)
+                  </span>
+                </div>
+              </div>
+
+              {/* Chat Messages Feed */}
+              <div className="space-y-3 max-h-[360px] overflow-y-auto pr-2 scrollbar-thin">
+                {internalMessages.map((msg) => (
+                  <div
+                    key={msg.id}
+                    className={`flex items-start gap-3 p-3.5 rounded-2xl border transition-all ${
+                      msg.role === 'system'
+                        ? 'bg-emerald-50/80 dark:bg-emerald-950/20 border-emerald-300 dark:border-emerald-500/30'
+                        : msg.role === 'mechanic'
+                        ? 'bg-blue-50/60 dark:bg-blue-950/20 border-blue-200 dark:border-blue-500/20'
+                        : msg.role === 'manager'
+                        ? 'bg-amber-50/60 dark:bg-amber-950/20 border-amber-200 dark:border-amber-500/20'
+                        : 'bg-purple-50/60 dark:bg-purple-950/20 border-purple-200 dark:border-purple-500/20'
+                    }`}
+                  >
+                    <div className={`w-8 h-8 rounded-full ${msg.avatarColor} text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm`}>
+                      {msg.sender.substring(0, 2)}
+                    </div>
+
+                    <div className="space-y-1 flex-1">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-xs text-slate-900 dark:text-white">
+                            {msg.sender}
+                          </span>
+                          {msg.badge && (
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-white/70 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+                              {msg.badge}
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-[10px] font-mono text-slate-400">{msg.time}</span>
+                      </div>
+
+                      <p className="text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
+                        {msg.message}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Quick Ping Presets */}
+              <div className="space-y-2 pt-2">
+                <div className="text-[11px] font-mono text-slate-400">
+                  ⚡ Trimite o simulare rapidă din atelier:
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handleSendChatMessage('La TM-26-ESO (BMW X5): bieletele antiruliu au joc. Vă rog comandați 2 bucăți Lemförder!')}
+                    className="py-1.5 px-3 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white dark:bg-white/5 dark:hover:bg-blue-600 text-slate-700 dark:text-slate-300 font-semibold text-xs transition-all cursor-pointer"
+                  >
+                    📦 „Cere bielete antiruliu BMW X5”
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleSendChatMessage('La TM-12-STS (Transit): am dat cutia jos. Volanta dublă are joc axial depășit. Trimiteți poză la client.')}
+                    className="py-1.5 px-3 rounded-xl bg-slate-100 hover:bg-blue-600 hover:text-white dark:bg-white/5 dark:hover:bg-blue-600 text-slate-700 dark:text-slate-300 font-semibold text-xs transition-all cursor-pointer"
+                  >
+                    📸 „Poză defect volanță la client”
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleSendChatMessage('Lucrarea la Golf TM-30-MSY este finalizată! Mașina iese la probă de drum.')}
+                    className="py-1.5 px-3 rounded-xl bg-slate-100 hover:bg-emerald-600 hover:text-white dark:bg-white/5 dark:hover:bg-emerald-600 text-slate-700 dark:text-slate-300 font-semibold text-xs transition-all cursor-pointer"
+                  >
+                    ✅ „Finalizat &amp; Ieșire probă drum”
+                  </button>
+                </div>
+              </div>
+
+              {/* Custom Input Form */}
+              <div className="flex items-center gap-2 pt-2">
+                <input
+                  type="text"
+                  value={newChatMessage}
+                  onChange={(e) => setNewChatMessage(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                  placeholder="Scrie un mesaj intern ca mecanic (ex: 'Piesa a sosit la elevator, montez acum...')"
+                  className="flex-1 py-3 px-4 rounded-xl bg-slate-50 dark:bg-black/30 border border-slate-300 dark:border-white/10 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-[#0066FF]"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleSendChatMessage()}
+                  className="py-3 px-5 rounded-xl bg-[#0066FF] hover:bg-blue-600 text-white font-bold text-xs flex items-center gap-2 shadow-md active:scale-95 transition-all cursor-pointer"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Trimite</span>
+                </button>
+              </div>
+            </div>
+
+            {/* ─────────────────────────────────────────────────────────────────
+                MODAL 1: SCAN VIN SIMULATOR
+               ───────────────────────────────────────────────────────────────── */}
+            {isScanVinModalOpen && (
+              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+                <div className="w-full max-w-md bg-[#0a1628] border border-blue-500/40 rounded-3xl p-6 text-white shadow-2xl space-y-5 relative overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => setIsScanVinModalOpen(false)}
+                    className="absolute top-4 right-4 p-2 rounded-full bg-white/10 text-slate-400 hover:text-white cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+
+                  <div className="text-center space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 text-[#00D2FF] text-xs font-mono font-bold">
+                      <QrCode className="w-3.5 h-3.5" />
+                      SCANARE VIN OPTICĂ &amp; BARCODE
+                    </div>
+                    <h4 className="text-lg font-black text-white">Camera Scanare VIN SAMpro</h4>
+                    <p className="text-xs text-slate-300">Îndreaptă camera spre talon, stâlpul mașinii sau parbriz.</p>
+                  </div>
+
+                  {/* Simulated Camera Viewfinder */}
+                  <div className="relative aspect-video rounded-2xl bg-black border-2 border-dashed border-blue-400/50 flex flex-col items-center justify-center overflow-hidden p-4">
+                    {/* Viewfinder Target Frame */}
+                    <div className="w-56 h-20 border-2 border-[#00D2FF] rounded-lg relative flex items-center justify-center">
+                      <div className="font-mono text-xs tracking-widest text-slate-400 font-bold">
+                        WVWZZZAUZJP189042
+                      </div>
+                      {/* Animated Laser Beam */}
+                      {isVinScanning && (
+                        <div className="absolute left-0 right-0 h-0.5 bg-red-500 shadow-[0_0_8px_#ff0000] animate-bounce" />
+                      )}
+                    </div>
+
+                    <div className="text-[10px] text-slate-400 font-mono mt-3">
+                      {isVinScanning ? '🔄 Decodare serie șasiu în timp real...' : '✅ Seria a fost identificată!'}
+                    </div>
+                  </div>
+
+                  {/* Decoded Data Preview */}
+                  {scannedVinData && (
+                    <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 space-y-2 animate-in zoom-in-95">
+                      <div className="flex items-center justify-between text-xs font-bold text-emerald-300">
+                        <span>Vehicul Recunoscut Automat:</span>
+                        <span className="font-mono">{scannedVinData.plate}</span>
+                      </div>
+                      <div className="text-xs text-white font-semibold">{scannedVinData.model}</div>
+                      <div className="text-[11px] font-mono text-slate-300">VIN: {scannedVinData.vin} • {scannedVinData.km}</div>
+                    </div>
+                  )}
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsScanVinModalOpen(false)}
+                      className="flex-1 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 cursor-pointer"
+                    >
+                      Închide
+                    </button>
+                    {scannedVinData && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsScanVinModalOpen(false);
+                          setIsNewNoteModalOpen(true);
+                        }}
+                        className="flex-1 py-2.5 rounded-xl bg-[#0066FF] text-white text-xs font-bold hover:bg-blue-600 cursor-pointer"
+                      >
+                        Deschide Notă Constatare
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ─────────────────────────────────────────────────────────────────
+                MODAL 2: NOUĂ NOTĂ DE CONSTATARE MECANIC
+               ───────────────────────────────────────────────────────────────── */}
+            {isNewNoteModalOpen && (
+              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+                <div className="w-full max-w-lg bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/10 rounded-3xl p-6 text-slate-900 dark:text-white shadow-2xl space-y-5 relative">
+                  <button
+                    type="button"
+                    onClick={() => setIsNewNoteModalOpen(false)}
+                    className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-white/10 text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 text-[#0066FF] dark:text-[#00D2FF] text-xs font-mono font-bold">
+                      <Wrench className="w-3.5 h-3.5" />
+                      CONSTATARE LA ELEVATOR (TABLETĂ / TELEFON)
+                    </div>
+                    <h4 className="text-xl font-black">Notă Nouă de Constatare Tehnică</h4>
+                    <p className="text-xs text-slate-600 dark:text-slate-300">
+                      Mecanicul completează sau dictează defectul observat direct de sub automobil.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3.5">
+                    <div>
+                      <label className="block text-xs font-bold mb-1 text-slate-700 dark:text-slate-300">Automobil în lucru</label>
+                      <select
+                        value={newNoteForm.plate}
+                        onChange={(e) => setNewNoteForm(prev => ({ ...prev, plate: e.target.value }))}
+                        className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-black/30 border border-slate-300 dark:border-white/10 text-xs font-bold"
+                      >
+                        <option value="TM-30-MSY">TM-30-MSY (Volkswagen Golf 1.6 TDI)</option>
+                        <option value="TM-26-ESO">TM-26-ESO (BMW X5 3.0d)</option>
+                        <option value="TM-18-KLW">TM-18-KLW (Audi A4 2.0 TDI)</option>
+                        <option value="TM-12-STS">TM-12-STS (Ford Transit 2.2 TDCI)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold mb-1 text-slate-700 dark:text-slate-300">Descriere defecțiune / Solicitare piese</label>
+                      <textarea
+                        rows={3}
+                        value={newNoteForm.observation}
+                        onChange={(e) => setNewNoteForm(prev => ({ ...prev, observation: e.target.value }))}
+                        className="w-full p-3 rounded-xl bg-slate-50 dark:bg-black/30 border border-slate-300 dark:border-white/10 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:border-[#0066FF]"
+                      />
+                    </div>
+
+                    {/* Voice Memo Simulator */}
+                    <div className="p-3 rounded-xl bg-blue-50/80 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                          isRecordingAudio ? 'bg-red-500 text-white animate-pulse' : 'bg-blue-500/20 text-[#0066FF] dark:text-[#00D2FF]'
+                        }`}>
+                          <Mic className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold">Dictare Vocală AI (Hands-Free)</div>
+                          <div className="text-[10px] text-slate-500">Transcre automat în fișă în timp ce lucrezi cu mănuși</div>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setIsRecordingAudio(!isRecordingAudio)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          isRecordingAudio ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'
+                        }`}
+                      >
+                        {isRecordingAudio ? 'Oprește' : 'Dictare'}
+                      </button>
+                    </div>
+
+                    {/* Photo upload mock */}
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Camera className="w-4 h-4 text-emerald-500" />
+                        <span className="text-xs font-semibold">Fotografii doveditoare defect</span>
+                      </div>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                        3 Poze Atașate
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-end gap-2 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsNewNoteModalOpen(false)}
+                      className="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/15 text-xs font-bold cursor-pointer"
+                    >
+                      Anulează
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleSaveNote}
+                      className="px-5 py-2.5 rounded-xl bg-[#0066FF] hover:bg-blue-600 text-white text-xs font-bold shadow-md cursor-pointer flex items-center gap-1.5"
+                    >
+                      <Check className="w-4 h-4" />
+                      <span>Salvează &amp; Trimite la Șef Atelier</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ─────────────────────────────────────────────────────────────────
+                MODAL 3: VEHICLE DETAIL & INSPECTION SHEET
+               ───────────────────────────────────────────────────────────────── */}
+            {selectedWorkshopVehicle && (
+              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+                <div className="w-full max-w-lg bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/10 rounded-3xl p-6 text-slate-900 dark:text-white shadow-2xl space-y-5 relative">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedWorkshopVehicle(null)}
+                    className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-white/10 text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+
+                  <div className="flex items-start justify-between pr-8">
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-white/10 font-mono font-black text-sm text-[#0066FF] dark:text-[#00D2FF]">
+                        {selectedWorkshopVehicle.plate}
+                      </div>
+                      <h4 className="text-xl font-black mt-1">{selectedWorkshopVehicle.model}</h4>
+                      <p className="text-xs text-slate-500 font-mono">VIN: {selectedWorkshopVehicle.vin} • {selectedWorkshopVehicle.km}</p>
+                    </div>
+
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
+                      selectedWorkshopVehicle.statusColor === 'blue' ? 'bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-300' :
+                      selectedWorkshopVehicle.statusColor === 'amber' ? 'bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300' :
+                      'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300'
+                    }`}>
+                      {selectedWorkshopVehicle.statusLabel}
+                    </span>
+                  </div>
+
+                  <div className="space-y-3 text-xs">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/5 space-y-1">
+                      <div className="font-bold text-slate-700 dark:text-slate-300">Constatare Tehnică Mecanic:</div>
+                      <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{selectedWorkshopVehicle.diagnosis}</p>
+                    </div>
+
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/5 space-y-1.5">
+                      <div className="font-bold text-slate-700 dark:text-slate-300">Piese de schimb alocate:</div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {selectedWorkshopVehicle.parts.map((p, idx) => (
+                          <span key={idx} className="px-2 py-0.5 rounded-md bg-blue-50 dark:bg-blue-500/10 text-[#0066FF] dark:text-[#00D2FF] font-semibold text-[11px]">
+                            ✓ {p}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
+                      <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/5">
+                        <span className="text-slate-400">Client:</span> <span className="font-bold">{selectedWorkshopVehicle.client}</span>
+                      </div>
+                      <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/5">
+                        <span className="text-slate-400">Mecanic:</span> <span className="font-bold">{selectedWorkshopVehicle.assignedMechanic}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedWorkshopVehicle(null);
+                        setActiveTab('rar');
+                      }}
+                      className="px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-xs flex items-center gap-1.5 hover:opacity-90 cursor-pointer"
+                    >
+                      <Car className="w-3.5 h-3.5" />
+                      <span>Transmite la RAR AutoPass (Tab 3)</span>
+                    </button>
+                    
+                    <button
+                      type="button"
+                      onClick={() => setSelectedWorkshopVehicle(null)}
+                      className="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-xs font-bold hover:bg-slate-200 cursor-pointer"
+                    >
+                      Închide
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+          </div>
+        )}
+        
+        {/* TAB 3: INTERACTIVE 1-CLICK RAR AUTOPASS TRANSMISSION SIMULATOR */}
         {activeTab === 'rar' && (
           <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in duration-300">
             

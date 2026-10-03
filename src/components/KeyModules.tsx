@@ -25,7 +25,7 @@ import {
 } from 'lucide-react';
 
 interface KeyModulesProps {
-  onSelectSimulatorTab?: (tab: 'whatsapp' | 'rar' | 'hoists') => void;
+  onSelectSimulatorTab?: (tab: 'whatsapp' | 'mechanic' | 'rar' | 'hoists') => void;
 }
 
 export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) => {
@@ -415,10 +415,19 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
             </div>
 
             {onSelectSimulatorTab && (
-              <div className="pt-2 flex justify-end">
+              <div className="pt-2 flex flex-wrap items-center justify-end gap-3">
                 <button
+                  type="button"
+                  onClick={() => onSelectSimulatorTab('mechanic')}
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-blue-50 hover:bg-[#0066FF] text-[#0066FF] hover:text-white dark:bg-blue-500/10 dark:hover:bg-[#0066FF] dark:text-[#00D2FF] dark:hover:text-white font-bold text-xs tracking-wide transition-all border border-blue-200 dark:border-blue-400/20 cursor-pointer"
+                >
+                  <Wrench className="w-4 h-4" />
+                  <span>Simulează App Mecanici &amp; Comunicare Internă</span>
+                </button>
+                <button
+                  type="button"
                   onClick={() => onSelectSimulatorTab('hoists')}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-slate-100 hover:bg-emerald-600 text-slate-900 hover:text-white dark:bg-white/10 dark:hover:bg-emerald-600 dark:text-white font-bold text-xs tracking-wide transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-slate-100 hover:bg-emerald-600 text-slate-900 hover:text-white dark:bg-white/10 dark:hover:bg-emerald-600 dark:text-white font-bold text-xs tracking-wide transition-all cursor-pointer"
                 >
                   <span>Simulează Planificatorul de Elevatoare</span>
                   <ArrowRight className="w-4 h-4" />
