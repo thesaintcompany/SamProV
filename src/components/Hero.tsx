@@ -2,12 +2,7 @@ import React from 'react';
 import { 
   Play, 
   ArrowRight, 
-  ShieldCheck, 
-  Users, 
-  Activity,
-  FileText,
-  TrendingUp,
-  Globe
+  Activity
 } from 'lucide-react';
 
 const heroBgLight = '/assets/hero-bg-light.jpg';
@@ -28,10 +23,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       titlePrefix: 'Gestionare rapidă ',
       titleHighlight: 'a ofertelor',
       desc: 'Creezi și trimiți oferte în câteva clickuri.',
-      icon: FileText,
-      gradient: 'from-[#00A3FF] to-[#0066FF]',
       accentColor: 'text-[#0066FF] dark:text-[#00D2FF]',
-      shadow: 'shadow-[0_8px_20px_rgba(0,102,255,0.3)]',
       href: '#module',
     },
     {
@@ -39,10 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       titlePrefix: 'Istoric complet ',
       titleHighlight: 'al clienților',
       desc: 'Toate interacțiunile, într-un singur loc.',
-      icon: Users,
-      gradient: 'from-[#6366F1] to-[#4338CA]',
       accentColor: 'text-[#6366F1] dark:text-[#818CF8]',
-      shadow: 'shadow-[0_8px_20px_rgba(99,102,241,0.3)]',
       href: '#module',
     },
     {
@@ -50,10 +39,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       titlePrefix: 'Transparență ',
       titleHighlight: '& încredere',
       desc: 'Comunicare clară și proces bine definit.',
-      icon: ShieldCheck,
-      gradient: 'from-[#10B981] to-[#059669]',
       accentColor: 'text-[#059669] dark:text-[#34D399]',
-      shadow: 'shadow-[0_8px_20px_rgba(16,185,129,0.3)]',
       href: '#module',
     },
     {
@@ -61,10 +47,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       titlePrefix: 'Creșterea ratei ',
       titleHighlight: 'de acceptare',
       desc: 'Oferte mai clare, clienți mai mulțumiți.',
-      icon: TrendingUp,
-      gradient: 'from-[#F59E0B] to-[#D97706]',
       accentColor: 'text-[#D97706] dark:text-[#FBBF24]',
-      shadow: 'shadow-[0_8px_20px_rgba(245,158,11,0.3)]',
       href: '#module',
     },
     {
@@ -72,10 +55,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       titlePrefix: 'Eficiență ',
       titleHighlight: 'operațională',
       desc: 'Reduci timpul de lucru și elimini erorile manuale.',
-      icon: Activity,
-      gradient: 'from-[#8B5CF6] to-[#6D28D9]',
       accentColor: 'text-[#7C3AED] dark:text-[#A78BFA]',
-      shadow: 'shadow-[0_8px_20px_rgba(139,92,246,0.3)]',
       href: '#module',
     },
     {
@@ -83,10 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       titlePrefix: 'Acces ',
       titleHighlight: 'de oriunde',
       desc: 'Lucrezi de pe orice dispozitiv, în timp real.',
-      icon: Globe,
-      gradient: 'from-[#06B6D4] to-[#0891B2]',
       accentColor: 'text-[#0891B2] dark:text-[#22D3EE]',
-      shadow: 'shadow-[0_8px_20px_rgba(6,182,212,0.3)]',
       href: '#module',
     },
   ];
@@ -305,10 +282,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
           <div className="absolute -bottom-20 right-10 w-[600px] h-[300px] bg-gradient-to-tl from-cyan-400/10 to-transparent blur-3xl" />
         </div>
 
-        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl 2xl:max-w-[1680px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 sm:gap-4">
             {featureCards.map((card) => {
-              const Icon = card.icon;
               return (
                 <a
                   key={card.index}
@@ -335,13 +311,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
                       {card.index}
                     </span>
                     <div className="w-4 h-0.5 bg-[#0066FF] dark:bg-[#00D2FF] rounded-full mt-1" />
-                  </div>
-
-                  {/* Icon Squircle (App-like rounded-xl icon) */}
-                  <div className="relative z-10 mb-4">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${card.gradient} ${card.shadow} flex items-center justify-center transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2`}>
-                      <Icon className="w-6 h-6 text-white stroke-[2.2]" />
-                    </div>
                   </div>
 
                   {/* Title & Description */}

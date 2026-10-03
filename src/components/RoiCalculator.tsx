@@ -80,7 +80,7 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
                 max={15} 
                 value={hoists} 
                 onChange={(e) => setHoists(Number(e.target.value))}
-                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#00D2FF]"
+                className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#0066FF] dark:accent-[#00D2FF]"
               />
               <div className="flex justify-between text-[10px] font-mono text-slate-500">
                 <span>1 elevator</span>
@@ -92,8 +92,8 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
             {/* Slider 2: Devize / zi */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-sm">
-                <label className="text-slate-300 font-medium">Devize / Oferte emise pe zi:</label>
-                <span className="font-mono font-black text-[#00D2FF] text-lg px-3 py-0.5 rounded-lg bg-blue-500/20">
+                <label className="text-slate-700 dark:text-slate-300 font-medium">Devize / Oferte emise pe zi:</label>
+                <span className="font-mono font-black text-[#0066FF] dark:text-[#00D2FF] text-lg px-3 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-500/20 border border-blue-200 dark:border-transparent">
                   {dailyQuotes} devize/zi
                 </span>
               </div>
@@ -103,7 +103,7 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
                 max={40} 
                 value={dailyQuotes} 
                 onChange={(e) => setDailyQuotes(Number(e.target.value))}
-                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#00D2FF]"
+                className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#0066FF] dark:accent-[#00D2FF]"
               />
               <div className="flex justify-between text-[10px] font-mono text-slate-500">
                 <span>2/zi</span>
@@ -115,8 +115,8 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
             {/* Slider 3: Valoare medie deviz */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-sm">
-                <label className="text-slate-300 font-medium">Valoare medie deviz (Piese + Manoperă):</label>
-                <span className="font-mono font-black text-emerald-400 text-lg px-3 py-0.5 rounded-lg bg-emerald-500/20">
+                <label className="text-slate-700 dark:text-slate-300 font-medium">Valoare medie deviz (Piese + Manoperă):</label>
+                <span className="font-mono font-black text-emerald-600 dark:text-emerald-400 text-lg px-3 py-0.5 rounded-lg bg-emerald-50 dark:bg-emerald-500/20 border border-emerald-200 dark:border-transparent">
                   {avgTicket.toLocaleString('ro-RO')} lei
                 </span>
               </div>
@@ -127,7 +127,7 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
                 step={50}
                 value={avgTicket} 
                 onChange={(e) => setAvgTicket(Number(e.target.value))}
-                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+                className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500 dark:accent-emerald-400"
               />
               <div className="flex justify-between text-[10px] font-mono text-slate-500">
                 <span>400 lei</span>
@@ -136,8 +136,8 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/5 text-xs text-slate-300 space-y-1">
-              <div className="font-semibold text-white">Calcul bazat pe date reale din service-uri:</div>
+            <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 text-xs text-slate-600 dark:text-slate-300 space-y-1">
+              <div className="font-semibold text-slate-900 dark:text-white">Calcul bazat pe date reale din service-uri:</div>
               <div>• 21 minute economisite per deviz prin autocompletare RAR și coduri piese.</div>
               <div>• +20% creștere a acceptanței devizelor prin aprobare direct pe WhatsApp.</div>
             </div>

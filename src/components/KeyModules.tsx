@@ -88,7 +88,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-[#0066FF]/10 via-[#00D2FF]/5 to-transparent rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[130px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-24">
+      <div className="max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-24">
         
         {/* ════════════════════════════════════════════════════════════════════════
             1. SECTION HERO & BUSINESS VALUE PROPOSITION

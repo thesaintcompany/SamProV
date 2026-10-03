@@ -7,7 +7,6 @@ import {
   CheckCircle2, 
   AlertTriangle, 
   ShieldCheck, 
-  Send, 
   Check, 
   Download, 
   Clock, 
@@ -18,7 +17,11 @@ import {
   CheckCheck,
   FileText,
   Lock,
-  ArrowRight
+  ArrowRight,
+  CreditCard,
+  RotateCcw,
+  Camera,
+  ExternalLink
 } from 'lucide-react';
 
 interface InteractiveSimulatorProps {
@@ -45,85 +48,22 @@ interface VehicleTransmission {
 export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ initialTab = 'whatsapp' }) => {
   const [activeTab, setActiveTab] = useState<'whatsapp' | 'rar' | 'hoists'>(initialTab);
 
-  // --- STATE FOR TAB 1: WHATSAPP DEVIZ SIMULATOR ---
-  const [quoteItems, setQuoteItems] = useState([
-    {
-      id: 'item-1',
-      name: 'Kit Distribuție + Pompă Apă (ContiTech)',
-      code: 'CT1139WP6',
-      type: 'piesa',
-      category: 'critical',
-      price: 1180,
-      selected: true,
-      warranty: '24 luni'
-    },
-    {
-      id: 'item-2',
-      name: 'Manoperă Înlocuire Distribuție + Aerisire Circuit',
-      type: 'manopera',
-      category: 'critical',
-      price: 550,
-      selected: true,
-      warranty: '12 luni'
-    },
-    {
-      id: 'item-3',
-      name: 'Set Plăcuțe Frână Față (ATE Original)',
-      code: '13.0460-7280.2',
-      type: 'piesa',
-      category: 'critical',
-      price: 420,
-      selected: true,
-      warranty: '24 luni'
-    },
-    {
-      id: 'item-4',
-      name: 'Manoperă Înlocuire Plăcuțe Față',
-      type: 'manopera',
-      category: 'critical',
-      price: 180,
-      selected: true,
-      warranty: '12 luni'
-    },
-    {
-      id: 'item-5',
-      name: 'Filtru Polen Carbon Activ + Ozonizare Climă',
-      code: 'CUK2939',
-      type: 'piesa',
-      category: 'recommended',
-      price: 260,
-      selected: false,
-      warranty: '12 luni'
-    },
-    {
-      id: 'item-6',
-      name: 'Geometrie Roți Computerizată 3D',
-      type: 'manopera',
-      category: 'recommended',
-      price: 200,
-      selected: false,
-      warranty: '3 luni'
-    }
-  ]);
+  // --- STATE FOR TAB 1: WHATSAPP DEVIZ SIMULATOR (STREAMLINED 5-STEP JOURNEY) ---
+  const [waStep, setWaStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [includeAddon, setIncludeAddon] = useState<boolean>(false);
+  const [isPayingOnline, setIsPayingOnline] = useState<boolean>(false);
+  const [isPaidOnline, setIsPaidOnline] = useState<boolean>(false);
 
-  const [devizApproved, setDevizApproved] = useState(false);
+  const baseDevizPrice = 2330;
+  const addonPrice = 120;
+  const currentDevizTotal = baseDevizPrice + (includeAddon ? addonPrice : 0);
 
-  const toggleItem = (id: string) => {
-    if (devizApproved) return;
-    setQuoteItems(prev => prev.map(item => 
-      item.id === id ? { ...item, selected: !item.selected } : item
-    ));
+  const handleOpenExactOffer = () => {
+    setWaStep(2);
   };
 
-  const totalPrice = quoteItems
-    .filter(i => i.selected)
-    .reduce((sum, i) => sum + i.price, 0);
-
-  const criticalCount = quoteItems.filter(i => i.category === 'critical' && i.selected).length;
-  const recommendedCount = quoteItems.filter(i => i.category === 'recommended' && i.selected).length;
-
-  const handleApproveDeviz = () => {
-    setDevizApproved(true);
+  const handleApproveExactOffer = () => {
+    setWaStep(3);
     confetti({
       particleCount: 80,
       spread: 70,
@@ -131,8 +71,30 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
     });
   };
 
-  const handleResetDeviz = () => {
-    setDevizApproved(false);
+  const handleToggleAddon = (add: boolean) => {
+    setIncludeAddon(add);
+    setWaStep(4);
+  };
+
+  const handleSimulatePayment = () => {
+    setIsPayingOnline(true);
+    setTimeout(() => {
+      setIsPayingOnline(false);
+      setIsPaidOnline(true);
+      setWaStep(5);
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { y: 0.5 }
+      });
+    }, 1100);
+  };
+
+  const handleResetWhatsAppFlow = () => {
+    setWaStep(1);
+    setIncludeAddon(false);
+    setIsPayingOnline(false);
+    setIsPaidOnline(false);
   };
 
   // --- STATE FOR TAB 2: 1-CLICK RAR AUTOPASS TRANSMISSION SIMULATOR ---
@@ -366,243 +328,398 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
           </div>
         </div>
 
-        {/* TAB 1: INTERACTIVE WHATSAPP DEVIZ PORTAL */}
+        {/* TAB 1: STREAMLINED 5-STEP WHATSAPP DEVIZ & RECEPTION FLOW (NO BIG PHONE) */}
         {activeTab === 'whatsapp' && (
-          <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start animate-in fade-in duration-300">
+          <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in duration-300">
             
-            {/* Context Left Panel */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="p-6 rounded-3xl bg-[#07172f]/80 border border-white/10 space-y-4">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold font-mono">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                  SMART PR &amp; WHATSAPP CLOSING
-                </div>
-
-                <h3 className="text-2xl font-bold text-white tracking-tight">
-                  Ce vede clientul tău pe telefon?
-                </h3>
-
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  Fără PDF-uri indescifrabile și fără presiune la telefon. Proprietarul primește un link securizat WhatsApp cu devizul împărțit clar pe <strong>Intervenții de Siguranță</strong> vs <strong>Recomandări Preventive</strong>.
-                </p>
-
-                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 space-y-2 text-xs">
-                  <div className="text-slate-400 font-semibold uppercase font-mono text-[10px]">
-                    Instrucțiuni Interacțiune:
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-200">
-                    <CheckCircle2 className="w-4 h-4 text-[#00D2FF]" />
-                    Bifează / debifează piesele opționale pe telefon.
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-200">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                    Apasă butonul „Aprobă pe WhatsApp” pentru simularea acceptanței.
-                  </div>
-                </div>
-
-                {devizApproved && (
-                  <div className="p-4 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs space-y-2">
-                    <div className="font-bold flex items-center gap-2 text-sm text-white">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                      Deviz Aprobat cu Succes!
-                    </div>
-                    <p>
-                      Comanda de piese a fost transmisă automat către furnizori, iar mecanicul a primit notificarea pe tabletă!
-                    </p>
-                    <button
-                      onClick={handleResetDeviz}
-                      className="text-xs text-white font-bold underline hover:text-emerald-200 pt-1 block"
-                    >
-                      Resetează devizul pentru a retesta
-                    </button>
-                  </div>
-                )}
-              </div>
+            {/* 5-Step Interactive Progress Stepper */}
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-1.5 rounded-2xl bg-slate-100 dark:bg-[#07172f] border border-slate-200 dark:border-white/10">
+              {[
+                { step: 1, label: '1. Link WhatsApp', icon: Smartphone },
+                { step: 2, label: '2. Ofertă & Aprobare', icon: CheckCircle2 },
+                { step: 3, label: '3. Documente & Update', icon: FileText },
+                { step: 4, label: '4. Plată Online', icon: CreditCard },
+                { step: 5, label: '5. Gata de Predare', icon: Car },
+              ].map((item) => {
+                const ItemIcon = item.icon;
+                const isCurrent = waStep === item.step;
+                const isPassed = waStep > item.step;
+                return (
+                  <button
+                    key={item.step}
+                    type="button"
+                    onClick={() => setWaStep(item.step as 1 | 2 | 3 | 4 | 5)}
+                    className={`py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      isCurrent
+                        ? 'bg-[#0066FF] text-white shadow-md'
+                        : isPassed
+                          ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-400/30'
+                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    }`}
+                  >
+                    <ItemIcon className="w-3.5 h-3.5 shrink-0" />
+                    <span className="truncate">{item.label}</span>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Interactive Phone Simulation */}
-            <div className="lg:col-span-7 flex justify-center">
-              <div className="w-full max-w-[390px] rounded-[44px] p-4 bg-[#0a1528] border-2 border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_30px_rgba(0,102,255,0.35)] relative overflow-hidden">
+            {/* Main Authentic WhatsApp Conversation Card */}
+            <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-white/15 shadow-xl bg-white dark:bg-[#07172f]">
+              
+              {/* WhatsApp Business Header Bar */}
+              <div className="bg-[#075E54] dark:bg-[#0d2a23] text-white px-4 sm:px-6 py-3.5 flex items-center justify-between border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-emerald-600 border border-white/30 flex items-center justify-center font-bold text-sm text-white shadow-sm shrink-0">
+                    SA
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5 font-bold text-sm sm:text-base leading-tight">
+                      <span>Service Auto Expert</span>
+                      <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-emerald-400 text-[#075E54] text-[9px] font-black">
+                        ✓
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-emerald-200/90 font-sans mt-0.5">
+                      Cont Oficial WhatsApp Business • Automatizat prin SAMpro
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden sm:flex items-center gap-2">
+                  <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold text-emerald-200">
+                    Audi A6 • CJ 88 SAM
+                  </span>
+                </div>
+              </div>
+
+              {/* Chat Thread Container */}
+              <div className="p-4 sm:p-6 space-y-5 bg-[#f0f2f5] dark:bg-[#051121] min-h-[440px]">
                 
-                {/* Phone Speaker & Camera Pill */}
-                <div className="w-28 h-4 bg-black rounded-full mx-auto mb-3 flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-900 border border-white/10"></div>
-                </div>
+                {/* ── STEP 1 BUBBLE: Mesaj WhatsApp cu link ofertă ── */}
+                <div className="flex items-start gap-2.5 max-w-2xl">
+                  <div className="p-4 sm:p-5 rounded-2xl rounded-tl-xs bg-white dark:bg-[#0c1f38] border border-slate-200 dark:border-white/10 shadow-sm text-slate-800 dark:text-slate-100 text-xs sm:text-sm space-y-3">
+                    <p className="leading-relaxed">
+                      Bună ziua, dl. <strong>Andrei Popescu</strong>! 👋 <br />
+                      Constatarea tehnică pentru <strong>Audi A6 (CJ 88 SAM)</strong> a fost finalizată. Am pregătit devizul detaliat cu piesele necesare și manopera normată conform catalogului.
+                    </p>
 
-                {/* Inner Web Page Screen */}
-                <div className="bg-[#0f1d33] rounded-[32px] p-4 text-white text-xs space-y-3.5 border border-white/10">
-                  
-                  {/* Service Branding Header */}
-                  <div className="flex items-center justify-between pb-2.5 border-b border-white/10">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0066FF] to-[#00D2FF] flex items-center justify-center font-bold text-xs text-white">
-                        SP
+                    {/* Rich Link Preview Card */}
+                    <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 space-y-2">
+                      <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <span>🔗 sampro.ro/deviz/SP-8429</span>
+                        <span className="text-[#0066FF] dark:text-[#00D2FF] font-bold">142.850 km</span>
                       </div>
-                      <div>
-                        <div className="font-bold text-white text-xs">Service Auto Expert</div>
-                        <div className="text-[10px] text-slate-400 font-mono">Deviz #SP-8429 • Audi A6</div>
+                      <div className="font-bold text-slate-900 dark:text-white text-sm">
+                        Deviz Digital #SP-8429 • Service Auto Expert
+                      </div>
+                      <div className="text-xs text-slate-600 dark:text-slate-300">
+                        Kit Distribuție + Pompă Apă • Plăcuțe Frână Față (ATE)
+                      </div>
+                      <div className="flex items-center justify-between pt-1">
+                        <span className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400">Total estimat:</span>
+                        <span className="font-mono font-black text-sm text-[#0066FF] dark:text-[#00D2FF]">2.330 RON</span>
                       </div>
                     </div>
-                    <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-[#00D2FF] font-mono font-bold text-[10px]">
-                      CJ 88 SAM
-                    </span>
-                  </div>
 
-                  {/* Vehicle Greeting Banner */}
-                  <div className="p-3 rounded-2xl bg-gradient-to-r from-blue-900/40 to-slate-900/60 border border-white/10">
-                    <div className="text-[11px] text-blue-200">Bună ziua, <strong>Andrei Popescu</strong>!</div>
-                    <div className="text-[10px] text-slate-300 mt-0.5">
-                      Constatarea tehnică a fost finalizată. Te rugăm să verifici intervențiile recomandate pentru Audi A6 2.0 TDI (142.850 km).
-                    </div>
-                  </div>
-
-                  {/* Inspection Photo Carousel Thumbnail */}
-                  <div className="flex items-center gap-2 overflow-x-auto pb-1">
-                    <div className="shrink-0 w-24 h-16 rounded-xl bg-slate-800 border border-white/10 overflow-hidden relative group">
-                      <img 
-                        src="/assets/service-workshop.png" 
-                        alt="Constatare placute" 
-                        className="w-full h-full object-cover"
-                      />
-                      <span className="absolute bottom-1 left-1 px-1 rounded bg-black/70 text-[8px] font-mono text-white">
-                        Frâne 80% uzură
-                      </span>
-                    </div>
-                    <div className="shrink-0 w-24 h-16 rounded-xl bg-slate-800 border border-white/10 overflow-hidden relative">
-                      <img 
-                        src="/assets/telemetry-speed.png" 
-                        alt="Constatare curea" 
-                        className="w-full h-full object-cover"
-                      />
-                      <span className="absolute bottom-1 left-1 px-1 rounded bg-black/70 text-[8px] font-mono text-white">
-                        Fisură curea
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Critical Repairs Section */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-[11px] font-bold text-amber-400 uppercase tracking-wide">
-                      <span className="flex items-center gap-1">
-                        <AlertTriangle className="w-3.5 h-3.5" />
-                        1. Intervenții Critice de Siguranță
-                      </span>
-                      <span className="font-mono text-[10px] text-slate-400 font-normal">
-                        ({criticalCount} selectate)
-                      </span>
-                    </div>
-
-                    <div className="space-y-1.5">
-                      {quoteItems.filter(i => i.category === 'critical').map(item => (
-                        <div
-                          key={item.id}
-                          onClick={() => toggleItem(item.id)}
-                          className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
-                            item.selected 
-                              ? 'bg-blue-600/20 border-blue-400/50 text-white' 
-                              : 'bg-white/[0.02] border-white/5 text-slate-400'
-                          }`}
-                        >
-                          <div className="flex items-start gap-2 max-w-[75%]">
-                            <div className={`w-4 h-4 rounded mt-0.5 flex items-center justify-center border ${
-                              item.selected ? 'bg-[#0066FF] border-[#0066FF] text-white' : 'border-slate-500'
-                            }`}>
-                              {item.selected && <Check className="w-3 h-3" />}
-                            </div>
-                            <div>
-                              <div className="font-semibold text-xs leading-tight text-white">{item.name}</div>
-                              <div className="text-[10px] text-slate-400 mt-0.5">
-                                Garanție {item.warranty} {item.code && `• Cod: ${item.code}`}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="font-bold font-mono text-xs text-white">
-                            {item.price} lei
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Recommended Preventive Section */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-[11px] font-bold text-[#00D2FF] uppercase tracking-wide">
-                      <span className="flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        2. Recomandări Preventive (Opțional)
-                      </span>
-                      <span className="font-mono text-[10px] text-slate-400 font-normal">
-                        ({recommendedCount} selectate)
-                      </span>
-                    </div>
-
-                    <div className="space-y-1.5">
-                      {quoteItems.filter(i => i.category === 'recommended').map(item => (
-                        <div
-                          key={item.id}
-                          onClick={() => toggleItem(item.id)}
-                          className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
-                            item.selected 
-                              ? 'bg-cyan-600/20 border-cyan-400/50 text-white' 
-                              : 'bg-white/[0.02] border-white/5 text-slate-400'
-                          }`}
-                        >
-                          <div className="flex items-start gap-2 max-w-[75%]">
-                            <div className={`w-4 h-4 rounded mt-0.5 flex items-center justify-center border ${
-                              item.selected ? 'bg-[#00D2FF] border-[#00D2FF] text-[#020b1b]' : 'border-slate-500'
-                            }`}>
-                              {item.selected && <Check className="w-3 h-3 stroke-[3]" />}
-                            </div>
-                            <div>
-                              <div className="font-semibold text-xs leading-tight text-white">{item.name}</div>
-                              <div className="text-[10px] text-slate-400 mt-0.5">
-                                Garanție {item.warranty}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="font-bold font-mono text-xs text-white">
-                            {item.price} lei
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Live Total & 1-Tap Approval Button */}
-                  <div className="pt-2 border-t border-white/10 space-y-2.5">
-                    <div className="flex items-baseline justify-between px-1">
-                      <span className="text-slate-400 font-mono text-xs">Total Estimativ cu TVA:</span>
-                      <span className="text-lg font-black text-white font-mono">
-                        {totalPrice} RON
-                      </span>
-                    </div>
-
-                    {devizApproved ? (
-                      <div className="w-full py-3 rounded-2xl bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2">
-                        <Check className="w-4 h-4" />
-                        <span>Aprobat de Andrei Popescu • Trimis în Atelier</span>
-                      </div>
-                    ) : (
+                    {waStep === 1 ? (
                       <button
-                        onClick={handleApproveDeviz}
-                        className="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-xs shadow-lg shadow-emerald-500/30 transition-all flex items-center justify-center gap-2 active:scale-95"
+                        type="button"
+                        onClick={handleOpenExactOffer}
+                        className="w-full py-2.5 px-4 rounded-xl bg-[#0066FF] hover:bg-[#0052cc] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 cursor-pointer"
                       >
-                        <Send className="w-4 h-4" />
-                        <span>Aprobă Devizul pe WhatsApp (1-Tap)</span>
+                        <ExternalLink className="w-4 h-4" />
+                        <span>Deschide Oferta Exactă (Pasul 2)</span>
                       </button>
+                    ) : (
+                      <div className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
+                        <Check className="w-3.5 h-3.5" />
+                        Oferta a fost deschisă și vizualizată de client.
+                      </div>
                     )}
-                  </div>
 
+                    <div className="text-[10px] text-slate-400 text-right font-mono">10:45 ✓✓</div>
+                  </div>
                 </div>
+
+                {/* ── STEP 2 BUBBLE: Oferta exactă transparentă & Buton de Accept ── */}
+                {waStep >= 2 && (
+                  <div className="flex items-start gap-2.5 max-w-2xl animate-in fade-in duration-300">
+                    <div className="w-full p-4 sm:p-5 rounded-2xl rounded-tl-xs bg-white dark:bg-[#0c1f38] border border-blue-200 dark:border-blue-500/30 shadow-md text-slate-800 dark:text-slate-100 text-xs sm:text-sm space-y-3">
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-white/10">
+                        <div className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                          <FileText className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF]" />
+                          <span>Oferta Exactă Detaliată (Transparentă)</span>
+                        </div>
+                        <span className="px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-500/20 text-[#0066FF] dark:text-[#00D2FF] text-[10px] font-mono font-bold">
+                          #SP-8429
+                        </span>
+                      </div>
+
+                      {/* Items table */}
+                      <div className="space-y-2">
+                        <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
+                          <div>
+                            <div className="font-semibold text-slate-900 dark:text-white text-xs">Kit Distribuție + Pompă Apă (ContiTech)</div>
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400">Piesă originală • Garanție 24 luni</div>
+                          </div>
+                          <span className="font-mono font-bold text-slate-900 dark:text-white text-xs">1.180 lei</span>
+                        </div>
+
+                        <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
+                          <div>
+                            <div className="font-semibold text-slate-900 dark:text-white text-xs">Set Plăcuțe Frână Față (ATE Original)</div>
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400">Sistem frânare • Garanție 24 luni</div>
+                          </div>
+                          <span className="font-mono font-bold text-slate-900 dark:text-white text-xs">420 lei</span>
+                        </div>
+
+                        <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
+                          <div>
+                            <div className="font-semibold text-slate-900 dark:text-white text-xs">Manoperă Înlocuire Distribuție + Aerisire</div>
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400">3.2 ore normate oficiale</div>
+                          </div>
+                          <span className="font-mono font-bold text-slate-900 dark:text-white text-xs">550 lei</span>
+                        </div>
+
+                        <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
+                          <div>
+                            <div className="font-semibold text-slate-900 dark:text-white text-xs">Manoperă Înlocuire Plăcuțe Față</div>
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400">1.0 oră normată oficială</div>
+                          </div>
+                          <span className="font-mono font-bold text-slate-900 dark:text-white text-xs">180 lei</span>
+                        </div>
+                      </div>
+
+                      {/* Total */}
+                      <div className="p-3 rounded-xl bg-blue-50/80 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 flex items-center justify-between">
+                        <div>
+                          <span className="text-xs font-bold text-slate-700 dark:text-slate-300">Total Ofertă cu TVA inclus:</span>
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400">Preț garantat, fără costuri ascunse</div>
+                        </div>
+                        <span className="text-base sm:text-lg font-black font-mono text-[#0066FF] dark:text-[#00D2FF]">
+                          2.330 RON
+                        </span>
+                      </div>
+
+                      {waStep === 2 ? (
+                        <button
+                          type="button"
+                          onClick={handleApproveExactOffer}
+                          className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition-all active:scale-95 cursor-pointer"
+                        >
+                          <Check className="w-4 h-4 stroke-[3]" />
+                          <span>Aprobă Oferta pe WhatsApp (1-Click)</span>
+                        </button>
+                      ) : (
+                        <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-700 dark:text-emerald-300 text-xs font-bold flex items-center gap-2">
+                          <Check className="w-4 h-4 stroke-[3]" />
+                          <span>Oferta a fost acceptată cu 1 click de Andrei Popescu • Trimis în atelier</span>
+                        </div>
+                      )}
+
+                      <div className="text-[10px] text-slate-400 text-right font-mono">10:47 ✓✓</div>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── STEP 3 BUBBLE: Documente primite & Update deviz live ── */}
+                {waStep >= 3 && (
+                  <div className="flex items-start gap-2.5 max-w-2xl animate-in fade-in duration-300">
+                    <div className="w-full p-4 sm:p-5 rounded-2xl rounded-tl-xs bg-white dark:bg-[#0c1f38] border border-slate-200 dark:border-white/10 shadow-sm text-slate-800 dark:text-slate-100 text-xs sm:text-sm space-y-3.5">
+                      <p className="leading-relaxed">
+                        ✅ <strong>Oferta a fost confirmată!</strong> Piesele au fost comandate automat, iar mașina a intrat pe Elevatorul 1 (mecanic Ionuț Dumitrescu).
+                      </p>
+
+                      {/* Downloadable Documents */}
+                      <div className="space-y-1.5">
+                        <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 font-mono">
+                          Documente &amp; Poze Atașate:
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <FileText className="w-4 h-4 text-red-500" />
+                              <div>
+                                <div className="font-semibold text-xs">Fișă Constatare.pdf</div>
+                                <div className="text-[9px] text-slate-400">1.4 MB • Semnat digital</div>
+                              </div>
+                            </div>
+                            <span className="text-[10px] font-bold text-[#0066FF] dark:text-[#00D2FF]">Descarcă</span>
+                          </div>
+
+                          <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <Camera className="w-4 h-4 text-emerald-500" />
+                              <div>
+                                <div className="font-semibold text-xs">4 Poze Atelier.zip</div>
+                                <div className="text-[9px] text-slate-400">Curea uzată + Plăcuțe</div>
+                              </div>
+                            </div>
+                            <span className="text-[10px] font-bold text-[#0066FF] dark:text-[#00D2FF]">Vezi poze</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Live Update Box */}
+                      <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-400/30 space-y-2">
+                        <div className="flex items-center gap-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">
+                          <AlertTriangle className="w-3.5 h-3.5" />
+                          <span>Update din atelier (Deviz adițional):</span>
+                        </div>
+                        <p className="text-xs text-amber-900/90 dark:text-amber-200/90 leading-relaxed">
+                          La demontare, mecanicul a constatat filtrul de habitaclu colmatat cu praf. Recomandăm înlocuirea cu un filtru nou cu carbon activ (+120 lei).
+                        </p>
+
+                        {waStep === 3 ? (
+                          <div className="flex flex-wrap items-center gap-2 pt-1">
+                            <button
+                              type="button"
+                              onClick={() => handleToggleAddon(true)}
+                              className="py-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1 shadow-sm active:scale-95 cursor-pointer"
+                            >
+                              <Check className="w-3.5 h-3.5" />
+                              <span>+ Aprobă Update (+120 lei)</span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleToggleAddon(false)}
+                              className="py-1.5 px-3 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/15 text-slate-700 dark:text-white font-semibold text-xs cursor-pointer"
+                            >
+                              Menține devizul inițial
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300">
+                            {includeAddon
+                              ? '✓ Filtru habitaclu aprobat (+120 lei) • Deviz actualizat: 2.450 lei'
+                              : '✓ Menținut devizul inițial de 2.330 lei'}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="text-[10px] text-slate-400 text-right font-mono">11:15 ✓✓</div>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── STEP 4 BUBBLE: Deviz final & Plată online ── */}
+                {waStep >= 4 && (
+                  <div className="flex items-start gap-2.5 max-w-2xl animate-in fade-in duration-300">
+                    <div className="w-full p-4 sm:p-5 rounded-2xl rounded-tl-xs bg-white dark:bg-[#0c1f38] border border-slate-200 dark:border-white/10 shadow-sm text-slate-800 dark:text-slate-100 text-xs sm:text-sm space-y-3.5">
+                      <p className="leading-relaxed">
+                        🔧 <strong>Lucrările au fost finalizate cu succes!</strong> Testul de frânare și diagnoza pe stand au ieșit impecabil. Devizul final consolidat este gata.
+                      </p>
+
+                      <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 space-y-2">
+                        <div className="flex items-center justify-between text-xs font-mono">
+                          <span className="text-slate-500 dark:text-slate-400">Factură Fiscală:</span>
+                          <span className="font-bold text-slate-900 dark:text-white">#FAC-2026-8429 (SPV ANAF ✓)</span>
+                        </div>
+                        <div className="flex items-center justify-between text-xs font-mono">
+                          <span className="text-slate-500 dark:text-slate-400">Total Deviz Final:</span>
+                          <span className="font-black text-base text-slate-900 dark:text-white">
+                            {currentDevizTotal.toLocaleString('ro-RO')} RON
+                          </span>
+                        </div>
+                      </div>
+
+                      {!isPaidOnline ? (
+                        <div className="space-y-2">
+                          <button
+                            type="button"
+                            disabled={isPayingOnline}
+                            onClick={handleSimulatePayment}
+                            className="w-full py-3 px-4 rounded-xl bg-[#0066FF] hover:bg-[#0052cc] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 transition-all active:scale-95 cursor-pointer"
+                          >
+                            {isPayingOnline ? (
+                              <>
+                                <RefreshCw className="w-4 h-4 animate-spin" />
+                                <span>Se procesează plata securizată...</span>
+                              </>
+                            ) : (
+                              <>
+                                <CreditCard className="w-4 h-4" />
+                                <span>Plătește Online cu Cardul ({currentDevizTotal} lei)</span>
+                              </>
+                            )}
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setWaStep(5)}
+                            className="w-full py-2 text-center text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white underline cursor-pointer"
+                          >
+                            Sau voi achita direct la recepție cu card/numerar
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="p-3 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-700 dark:text-emerald-300 text-xs font-bold flex items-center gap-2">
+                          <Check className="w-4 h-4 stroke-[3]" />
+                          <span>Plată online de {currentDevizTotal} lei confirmată! Chitanța și factura au fost trimise pe email.</span>
+                        </div>
+                      )}
+
+                      <div className="text-[10px] text-slate-400 text-right font-mono">12:30 ✓✓</div>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── STEP 5 BUBBLE: Mesaj final: Mașina este gata de predare! ── */}
+                {waStep >= 5 && (
+                  <div className="flex items-start gap-2.5 max-w-2xl animate-in fade-in duration-300">
+                    <div className="w-full p-5 sm:p-6 rounded-2xl rounded-tl-xs bg-gradient-to-br from-emerald-50 via-teal-50/50 to-white dark:from-[#06241e] dark:via-[#092b23] dark:to-[#07172f] border-2 border-emerald-400/50 shadow-xl text-slate-800 dark:text-slate-100 text-xs sm:text-sm space-y-3.5">
+                      <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-sm sm:text-base">
+                        <Car className="w-5 h-5" />
+                        <span>🚗✨ Mașina este gata de predare!</span>
+                      </div>
+
+                      <p className="leading-relaxed text-slate-700 dark:text-slate-200">
+                        Dl. <strong>Andrei Popescu</strong>, automobilul dvs. <strong>Audi A6 (CJ 88 SAM)</strong> a fost spălat exterior și vă așteaptă în parcarea service-ului!
+                      </p>
+
+                      <div className="p-3.5 rounded-xl bg-white/80 dark:bg-white/[0.04] border border-emerald-200/80 dark:border-emerald-400/20 space-y-1.5">
+                        <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                          <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                          <span>Pachetul complet de predare este pregătit la recepție:</span>
+                        </div>
+                        <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1 pl-5 list-disc">
+                          <li>Cheile mașinii igienizate</li>
+                          <li>Certificat de garanție 24 luni pentru piesele ContiTech &amp; ATE</li>
+                          <li>Devizul ștampilat și chitanța fiscală</li>
+                          <li>Sincronizare automată în registrul oficial RAR AutoPass</li>
+                        </ul>
+                      </div>
+
+                      <div className="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 text-[11px] font-mono flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span>Memento automat: Următoarea revizie și ITP programate peste 10.000 km.</span>
+                      </div>
+
+                      {/* Reset flow button */}
+                      <div className="pt-2 flex justify-end">
+                        <button
+                          type="button"
+                          onClick={handleResetWhatsAppFlow}
+                          className="py-2 px-4 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-xs flex items-center gap-1.5 hover:opacity-90 transition-all cursor-pointer"
+                        >
+                          <RotateCcw className="w-3.5 h-3.5" />
+                          <span>Resetează și testează fluxul din nou</span>
+                        </button>
+                      </div>
+
+                      <div className="text-[10px] text-slate-400 text-right font-mono">13:10 ✓✓</div>
+                    </div>
+                  </div>
+                )}
 
               </div>
+
             </div>
 
           </div>
         )}
-
+        
         {/* TAB 2: INTERACTIVE 1-CLICK RAR AUTOPASS TRANSMISSION SIMULATOR */}
         {activeTab === 'rar' && (
           <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in duration-300">

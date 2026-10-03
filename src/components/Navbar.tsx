@@ -303,7 +303,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-4 lg:gap-6">
+        <div className="w-full max-w-[1800px] 2xl:max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-full flex items-center justify-between gap-4 lg:gap-8 flex-nowrap">
           
           {/* ── Brand Logo ───────────────────────────────────────────────── */}
           <div className="flex items-center space-x-3 shrink-0">
@@ -317,15 +317,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                 alt="SAMpro - Service Auto Management Pro" 
                 className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
-              <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200/60 dark:border-blue-400/20 text-[#0066FF] dark:text-[#00D2FF] font-rounded text-[10px] font-bold">
+              <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200/60 dark:border-blue-400/20 text-[#0066FF] dark:text-[#00D2FF] font-rounded text-[10px] font-bold shrink-0">
                 v3.4
               </span>
             </a>
           </div>
 
           {/* ── Desktop Navigation matching user's requested IMFS structure ── */}
-          <nav aria-label="Navigație principală" className="hidden xl:block h-full">
-            <ul className="flex h-full items-center gap-1 text-[0.9375rem]">
+          <nav aria-label="Navigație principală" className="hidden xl:flex items-center shrink-0">
+            <ul className="flex items-center gap-1 xl:gap-1.5 2xl:gap-2.5 flex-nowrap whitespace-nowrap text-[0.9375rem]">
               
               {/* 1. Explorează */}
               <li 
@@ -448,7 +448,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* ── Action CTAs & Controls ───────────────────────────────────── */}
-          <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+          <div className="ml-auto flex items-center gap-1.5 sm:gap-2 shrink-0 flex-nowrap">
             
             {/* Theme Toggle (Dark / Light) */}
             {toggleTheme && (
@@ -458,7 +458,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-pressed={theme === 'dark'}
                 aria-label={theme === 'dark' ? 'Temă luminoasă' : 'Temă întunecată'}
                 title={theme === 'dark' ? 'Comută pe modul luminos' : 'Comută pe modul întunecat'}
-                className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer ${
+                className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer shrink-0 ${
                   isLight 
                     ? 'text-slate-800 hover:text-black hover:bg-slate-900/[0.06]' 
                     : 'text-[#c9d2e0] hover:text-white hover:bg-[rgb(238_242_248/0.08)]'
@@ -476,7 +476,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={onOpenDemo}
-              className={`hidden h-10 items-center gap-1.5 rounded-[6px] px-3 text-[0.9375rem] font-semibold transition-colors 2xl:inline-flex cursor-pointer ${
+              className={`hidden h-10 items-center gap-1.5 rounded-[6px] px-3 text-[0.9375rem] font-semibold transition-colors 2xl:inline-flex cursor-pointer shrink-0 whitespace-nowrap ${
                 isLight 
                   ? 'text-slate-900 hover:text-[#0066FF] hover:bg-blue-50/80' 
                   : 'text-[#eef2f8] hover:text-white hover:bg-[rgb(238_242_248/0.07)]'
@@ -490,13 +490,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={onOpenDemo}
-              className="hidden h-10 items-center rounded-[6px] bg-[#0066FF] px-4 text-[0.9375rem] font-semibold text-white shadow-[0_4px_15px_rgba(0,102,255,0.35)] transition-all hover:bg-[#0052cc] hover:shadow-[0_6px_20px_rgba(0,102,255,0.45)] hover:scale-[1.02] active:scale-95 sm:inline-flex cursor-pointer"
+              className="hidden h-10 items-center rounded-[6px] bg-[#0066FF] px-4 text-[0.9375rem] font-semibold text-white shadow-[0_4px_15px_rgba(0,102,255,0.35)] transition-all hover:bg-[#0052cc] hover:shadow-[0_6px_20px_rgba(0,102,255,0.45)] hover:scale-[1.02] active:scale-95 sm:inline-flex cursor-pointer shrink-0 whitespace-nowrap"
             >
               Începe gratuit
             </button>
 
             {/* Mobile Menu Hamburger Button */}
-            <div className="xl:hidden">
+            <div className="xl:hidden shrink-0">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
@@ -521,7 +521,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         ═══════════════════════════════════════════════════════════════════ */}
         {activeMenu && (
           <div 
-            className={`w-full border-b transition-all duration-200 animate-in fade-in slide-in-from-top-2 shadow-2xl relative z-40 ${
+            className={`absolute top-full left-0 right-0 z-50 w-full border-b transition-all duration-200 animate-in fade-in slide-in-from-top-2 shadow-2xl ${
               isLight
                 ? 'bg-white/98 backdrop-blur-2xl border-slate-200/90 shadow-[0_25px_50px_rgba(0,0,0,0.12)]'
                 : 'bg-[#070b14]/98 backdrop-blur-2xl border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.7)]'
@@ -531,7 +531,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+            <div className="w-full max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10">
 
               {/* ── PANEL 1: Explorează ──────────────────────────────────── */}
               {activeMenu === 'explore' && (

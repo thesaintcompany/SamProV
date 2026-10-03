@@ -69,7 +69,7 @@ git push -u origin main
 ## 🛠️ Ce Conține Aplicația Web?
 
 1. **Hero Cinematic & Telemetrie F1:**
-   - Prezentare de impact cu mașina de Formula 1 și dispozitiv mobil interactiv cu telemetrie live.
+   - Prezentare de impact cu mașina de Raccing și dispozitiv mobil interactiv cu telemetrie live.
    - Indicatori cheie: 350+ service-uri partenere, -74% timp per deviz, 0 erori cod piese.
 
 2. **Cinci Module Cheie ERP/CRM (Arhitectură Bento):**
@@ -86,7 +86,7 @@ git push -u origin main
 
 4. **Diagramă Performanță Vânzători (Stil Apple Keynote):**
    - Pipeline comparativ în 4 etape (Intake, Pricing, WhatsApp Closing, Fulfillment).
-   - Curbă dinamică SVG de accelerare a veniturilor consilierilor SAMpro.
+   - Curbă dinamică SVG de accelerare a veniturilor Consilierilor de Service.
 
 5. **Calculator ROI & Ore Economisite:**
    - Slidere interactive pentru număr de elevatoare, devize/zi și bilet mediu.

@@ -48,7 +48,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
         'Protecție coduri piese & verificare compatibilitate VIN',
         'Modul Smart PR: notificări de status și remindere ITP',
         'Raportare avansată timpi de lucru & eficiență mecanic',
-        'Migrare gratuită din vechiul program de gestiune'
+        'Migrarea poate fi asistată de echipa SAMpro'
       ],
       ctaText: 'Alege Plan Pro (Recomandat)'
     },
@@ -231,14 +231,14 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
               <Shield className="w-6 h-6" />
             </div>
             <div>
-              <div className="font-bold text-slate-900 dark:text-white text-base">Migrare Gratuită Asigurată de Echipa SAMpro</div>
+              <div className="font-bold text-slate-900 dark:text-white text-base">Migrarea poate fi asistată de echipa SAMpro</div>
               <div className="text-xs text-slate-600 dark:text-slate-300">
                 Îți importăm baza de date cu clienți, vehicule și istoric fără nicio întrerupere a fluxului de service.
               </div>
             </div>
           </div>
           <button
-            onClick={() => onOpenDemo('Migrare Gratuită')}
+            onClick={() => onOpenDemo('Migrare Asistată')}
             className="px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/15 text-slate-800 dark:text-white text-xs font-bold whitespace-nowrap border border-slate-200 dark:border-white/15 transition-all cursor-pointer"
           >
             Află detalii migrare

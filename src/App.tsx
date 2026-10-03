@@ -73,75 +73,75 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#020b1b] text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-[#0066FF] selection:text-white antialiased transition-colors duration-300">
-      
+
       {/* Sticky Navigation Bar */}
-      <Navbar 
-        onOpenDemo={() => handleOpenDemo()} 
-        onOpenLegal={handleOpenLegal} 
+      <Navbar
+        onOpenDemo={() => handleOpenDemo()}
+        onOpenLegal={handleOpenLegal}
         theme={theme}
         toggleTheme={toggleTheme}
       />
 
       {/* Main Page Flow */}
       <main className="flex-1 w-full">
-        {/* Hero Showcase with Formula 1 Speed & Apple Keynote Aura */}
-        <Hero 
-          onOpenDemo={() => handleOpenDemo('Plan Pro')} 
-          onScrollToSimulator={() => handleScrollToSimulator('whatsapp')} 
+        {/* Hero Showcase with Raccing Speed & Apple Keynote Aura */}
+        <Hero
+          onOpenDemo={() => handleOpenDemo('Plan Pro')}
+          onScrollToSimulator={() => handleScrollToSimulator('whatsapp')}
           theme={theme}
         />
 
         {/* 5 Core ERP/CRM Modules (Bento Architecture) */}
-        <KeyModules 
-          onSelectSimulatorTab={(tab) => handleScrollToSimulator(tab)} 
+        <KeyModules
+          onSelectSimulatorTab={(tab) => handleScrollToSimulator(tab)}
         />
 
         {/* Live Interactive Workshop Simulator (WhatsApp, RAR, Hoists) */}
-        <InteractiveSimulator 
-          initialTab={simulatorInitialTab} 
+        <InteractiveSimulator
+          initialTab={simulatorInitialTab}
         />
 
         {/* Romanian Official RAR Autopass Compliance Deep Dive */}
-        <RarAutopassSection 
-          onScrollToSimulator={() => handleScrollToSimulator('rar')} 
-          onOpenDemo={() => handleOpenDemo('Integrare RAR Autopass')} 
+        <RarAutopassSection
+          onScrollToSimulator={() => handleScrollToSimulator('rar')}
+          onOpenDemo={() => handleOpenDemo('Integrare RAR Autopass')}
         />
 
         {/* Sales Advisors Keynote Performance Diagram & SVG Curve */}
         <PerformanceDiagram />
 
         {/* Interactive Workshop ROI & Saved Hours Calculator */}
-        <RoiCalculator 
-          onOpenDemo={() => handleOpenDemo('Calcul Rentabilitate')} 
+        <RoiCalculator
+          onOpenDemo={() => handleOpenDemo('Calcul Rentabilitate')}
         />
 
         {/* Social Proof & Romanian Workshop Testimonials */}
         <Testimonials />
 
         {/* Transparent Subscription Plans (Start, Pro, Enterprise) */}
-        <Pricing 
-          onOpenDemo={(plan) => handleOpenDemo(plan)} 
+        <Pricing
+          onOpenDemo={(plan) => handleOpenDemo(plan)}
         />
       </main>
 
       {/* Corporate BUU.RO Footer with Legal and Support details */}
-      <Footer 
-        onOpenDemo={() => handleOpenDemo()} 
-        onOpenLegal={handleOpenLegal} 
+      <Footer
+        onOpenDemo={() => handleOpenDemo()}
+        onOpenLegal={handleOpenLegal}
       />
 
       {/* Interactive Demo Request Lead Modal */}
-      <DemoModal 
-        isOpen={isDemoModalOpen} 
-        onClose={handleCloseDemo} 
-        selectedPlan={selectedPlanForDemo} 
+      <DemoModal
+        isOpen={isDemoModalOpen}
+        onClose={handleCloseDemo}
+        selectedPlan={selectedPlanForDemo}
       />
 
       {/* Official Legal & GDPR Privacy Modal (8 Complete Sections) */}
-      <GdprModal 
-        isOpen={isGdprModalOpen} 
-        onClose={handleCloseLegal} 
-        initialFilter={gdprInitialFilter} 
+      <GdprModal
+        isOpen={isGdprModalOpen}
+        onClose={handleCloseLegal}
+        initialFilter={gdprInitialFilter}
       />
 
     </div>

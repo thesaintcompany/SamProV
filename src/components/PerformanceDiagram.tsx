@@ -45,13 +45,13 @@ export const PerformanceDiagram: React.FC = () => {
 
   return (
     <section id="performanta" className="py-24 sm:py-32 bg-slate-50 dark:bg-[#020b1b] relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-300">
-      
+
       {/* Halo Lights */}
       <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-blue-500/5 dark:bg-[#0066FF]/15 rounded-full blur-[140px] pointer-events-none"></div>
       <div className="absolute bottom-10 right-10 w-[600px] h-[450px] bg-cyan-500/5 dark:bg-[#00D2FF]/10 rounded-full blur-[130px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
-        
+
         {/* Apple Style Editorial Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 text-xs font-rounded font-bold tracking-wider text-[#0066FF] dark:text-[#00D2FF]">
@@ -60,9 +60,9 @@ export const PerformanceDiagram: React.FC = () => {
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
-            Viteza de Formula 1 Adusă în <br />
+            Viteza de Raccing Adusă în <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-cyan-500 dark:from-[#00D2FF] dark:via-[#0066FF] dark:to-blue-400">
-              Performanța Consilierilor SAMpro
+              Performanța Consilierilor de Service
             </span>
           </h2>
 
@@ -159,17 +159,15 @@ export const PerformanceDiagram: React.FC = () => {
                 <div
                   key={stage.num}
                   onClick={() => setActiveStage(idx)}
-                  className={`rounded-3xl p-5 transition-all duration-300 cursor-pointer flex flex-col justify-between border ${
-                    isActive 
-                      ? 'bg-gradient-to-b from-[#092347] to-[#05162f] border-[#00D2FF]/50 shadow-[0_10px_30px_rgba(0,102,255,0.3)]' 
-                      : 'bg-[#06152b]/80 hover:bg-[#091f3d] border-white/10'
-                  }`}
+                  className={`rounded-3xl p-5 transition-all duration-300 cursor-pointer flex flex-col justify-between border ${isActive
+                    ? 'bg-gradient-to-b from-[#092347] to-[#05162f] border-[#00D2FF]/50 shadow-[0_10px_30px_rgba(0,102,255,0.3)]'
+                    : 'bg-[#06152b]/80 hover:bg-[#091f3d] border-white/10'
+                    }`}
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs font-mono ${
-                        isActive ? 'bg-[#0066FF] text-white shadow-md' : 'bg-white/10 text-slate-400'
-                      }`}>
+                      <span className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs font-mono ${isActive ? 'bg-[#0066FF] text-white shadow-md' : 'bg-white/10 text-slate-400'
+                        }`}>
                         {stage.num}
                       </span>
                       <span className="text-[10px] font-mono text-slate-400 font-semibold tracking-wider">
@@ -280,28 +278,28 @@ export const PerformanceDiagram: React.FC = () => {
               <text x="760" y="225" fill="#64748b" fontSize="10" fontFamily="monospace">Luna 6</text>
 
               {/* Baseline Traditional Flat Curve */}
-              <path 
-                d="M 70 170 Q 210 165 350 155 T 490 148 T 630 142 T 760 138" 
-                stroke="#64748b" 
-                strokeWidth="2.5" 
-                strokeLinecap="round" 
-                fill="none" 
-                strokeDasharray="6 4" 
+              <path
+                d="M 70 170 Q 210 165 350 155 T 490 148 T 630 142 T 760 138"
+                stroke="#64748b"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+                strokeDasharray="6 4"
               />
 
               {/* SAMpro Area Fill */}
-              <path 
-                d="M 70 170 Q 210 135 350 90 T 490 60 T 630 40 T 760 25 L 760 210 L 70 210 Z" 
-                fill="url(#samproGraphGradient)" 
+              <path
+                d="M 70 170 Q 210 135 350 90 T 490 60 T 630 40 T 760 25 L 760 210 L 70 210 Z"
+                fill="url(#samproGraphGradient)"
               />
 
               {/* SAMpro Dynamic Curve */}
-              <path 
-                d="M 70 170 Q 210 135 350 90 T 490 60 T 630 40 T 760 25" 
-                stroke="url(#lineGlowG)" 
-                strokeWidth="4" 
-                strokeLinecap="round" 
-                fill="none" 
+              <path
+                d="M 70 170 Q 210 135 350 90 T 490 60 T 630 40 T 760 25"
+                stroke="url(#lineGlowG)"
+                strokeWidth="4"
+                strokeLinecap="round"
+                fill="none"
               />
 
               {/* Nodes */}
