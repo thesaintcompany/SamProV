@@ -92,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, theme = 'light', tog
                 alt="SAMpro - Service Auto Management Pro" 
                 className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
-              <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200/60 dark:border-blue-400/20 text-[#0066FF] dark:text-[#00D2FF] font-mono text-[10px] font-semibold">
+              <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200/60 dark:border-blue-400/20 text-[#0066FF] dark:text-[#00D2FF] font-rounded text-[10px] font-bold">
                 v3.4
               </span>
             </a>

@@ -46,10 +46,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal }) => {
               <strong>SAMpro (Service Auto Management Pro)</strong> este ecosistemul cloud enterprise dedicat atelierelor mecanice, vopsitoriilor, centrelor ITP și marilor rețele de service auto din România. Viteză de Formula 1, comunicare transparentă pe WhatsApp și conformitate oficială RAR Autopass.
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-400 font-mono">
-              <span className="flex items-center gap-1.5 text-emerald-400">
+            <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-400 font-rounded">
+              <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
                 <ShieldCheck className="w-4 h-4" />
-                GDPR &amp; ISO 27001 Compliant
+                Conformitate cu RAR
               </span>
               <span>•</span>
               <span className="text-[#00D2FF]">Servere Cloud UE (București)</span>

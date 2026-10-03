@@ -26,7 +26,7 @@ export const RarAutopassSection: React.FC<RarAutopassSectionProps> = ({ onScroll
           {/* Left Column: Context & Vision */}
           <div className="lg:col-span-6 space-y-6">
             
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-200 dark:border-emerald-400/30 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-200 dark:border-emerald-400/30 text-xs font-rounded font-bold tracking-wider text-emerald-600 dark:text-emerald-400">
               <ShieldCheck className="w-4 h-4" />
               CONFORMITATE RAR AUTOPASS. DIN PRIMUL CLIC.
             </div>

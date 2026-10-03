@@ -100,10 +100,10 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
             <span>SAMPRO CA BOOST PENTRU BUSINESS</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-            SAMPRO — Acceleratorul și <br className="hidden sm:inline" />
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+            SAMPRO <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00A3FF] to-[#00D2FF]">
-              Scutul Afacerii Tale
+              Acceleratorul și Scutul Afacerii Tale
             </span>
           </h2>
 
@@ -149,8 +149,11 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                   <div className="text-xs font-bold uppercase tracking-wider text-[#0066FF] dark:text-[#00D2FF] mb-1">
                     PILONUL 01 // VITEZĂ OPERAȚIONALĂ
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                    ACCELERARE — Faci mai mult, în mai puțin timp
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-snug">
+                    ACCELERARE <br />
+                    <span className="text-lg sm:text-2xl font-bold text-slate-600 dark:text-slate-300">
+                      Faci mai mult, în mai puțin timp
+                    </span>
                   </h3>
                 </div>
               </div>
@@ -309,8 +312,11 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                   <div className="text-xs font-bold uppercase tracking-wider text-emerald-500 mb-1">
                     PILONUL 02 // EFICIENȚĂ &amp; CONTROL
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                    OPTIMIZARE — Mai puțin haos, mai multă eficiență
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-snug">
+                    OPTIMIZARE <br />
+                    <span className="text-lg sm:text-2xl font-bold text-slate-600 dark:text-slate-300">
+                      Mai puțin haos, mai multă eficiență
+                    </span>
                   </h3>
                 </div>
               </div>
@@ -436,8 +442,11 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                   <div className="text-xs font-bold uppercase tracking-wider text-indigo-500 mb-1">
                     PILONUL 03 // SCUTUL AFACERII TALE
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                    SIGURANȚĂ — Afacerea devine previzibilă și protejată
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-snug">
+                    SIGURANȚĂ <br />
+                    <span className="text-lg sm:text-2xl font-bold text-slate-600 dark:text-slate-300">
+                      Afacerea devine previzibilă și protejată
+                    </span>
                   </h3>
                 </div>
               </div>
@@ -521,11 +530,14 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
         <div className="p-8 sm:p-12 rounded-3xl bg-slate-900 dark:bg-[#071d3d] border-2 border-[#0066FF]/30 dark:border-[#00D2FF]/40 text-white shadow-2xl space-y-8 relative overflow-hidden">
           
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-mono font-bold tracking-wider text-[#00D2FF] uppercase">
+            <span className="text-xs font-rounded font-bold tracking-wider text-[#00D2FF] uppercase">
               TRANSFORMAREA CONCRETĂ A WORKSHOP-ULUI
             </span>
-            <h3 className="text-2xl sm:text-4xl font-black tracking-tight">
-              Rezultatul Final — Ce Simte Patronul
+            <h3 className="text-2xl sm:text-4xl font-black tracking-tight leading-snug">
+              Rezultatul Final <br />
+              <span className="text-xl sm:text-3xl font-bold text-slate-300">
+                Ce Simte Patronul
+              </span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
               Diferența dintre o afacere măcinată de haosul zilnic și un service auto condus pe pilot automat:
@@ -534,7 +546,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
 
           {/* Side by side comparison rows */}
           <div className="space-y-3">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-2 border-b border-white/10 text-xs font-mono uppercase tracking-wider text-slate-400">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-2 border-b border-white/10 text-xs font-rounded font-bold uppercase tracking-wider text-slate-400">
               <div className="flex items-center gap-2 text-rose-400 font-bold">
                 <X className="w-4 h-4" />
                 <span>Fără SAMPRO (Haos &amp; Riscuri)</span>
@@ -552,7 +564,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               >
                 {/* Without SAMpro */}
                 <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                  <span className="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs">
+                  <span className="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0 mt-0.5 font-rounded text-xs font-bold">
                     ✕
                   </span>
                   <span className="leading-snug">{row.problem}</span>
@@ -577,7 +589,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
         <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-blue-900/40 via-[#07172f] to-[#040f21] border border-[#0066FF]/40 dark:border-[#00D2FF]/30 shadow-2xl relative overflow-hidden text-center space-y-6">
           
           <div className="max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#00D2FF]">
+            <span className="text-xs font-rounded font-bold uppercase tracking-widest text-[#00D2FF]">
               CONCLUZIA PENTRU MANAGEMENTUL SERVICE-ULUI TĂU
             </span>
 

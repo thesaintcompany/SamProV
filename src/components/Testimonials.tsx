@@ -38,7 +38,7 @@ export const Testimonials: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 text-xs font-mono font-bold text-[#0066FF] dark:text-[#00D2FF] mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 text-xs font-rounded font-bold tracking-wider text-[#0066FF] dark:text-[#00D2FF] mb-4">
             <Quote className="w-3.5 h-3.5" />
             ÎNCREDERE DOVEDITĂ ÎN ATELIERELE AUTO
           </div>

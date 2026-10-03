@@ -2,12 +2,12 @@ import React from 'react';
 import { 
   Play, 
   ArrowRight, 
-  Calendar, 
-  Tag, 
   ShieldCheck, 
-  Car, 
   Users, 
-  Activity
+  Activity,
+  FileText,
+  TrendingUp,
+  Globe
 } from 'lucide-react';
 
 const heroBgLight = '/assets/hero-bg-light.jpg';
@@ -22,12 +22,73 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, theme = 'dark' }) => {
   const isDark = theme === 'dark';
 
-  const bottomCards = [
-    { index: '01', code: 'SCHED', title: 'Calendar',              desc: 'Programează și urmărește intervențiile.',   icon: Calendar,    href: '#module'       },
-    { index: '02', code: 'OFFER', title: 'Oferte',                desc: 'Generează devize rapide personalizate.',   icon: Tag,         href: '#module'       },
-    { index: '03', code: 'PARTS', title: 'Protecție Cod Piese',   desc: 'Verifică și protejează codurile pieselor.',icon: ShieldCheck, href: '#module'       },
-    { index: '04', code: 'RAR',   title: 'Integrare RAR Autopass',desc: 'Accesează istoricul și validează ITP.',    icon: Car,         href: '#rar-autopass' },
-    { index: '05', code: 'CRM',   title: 'Integrare Clienți CRM', desc: 'Gestionează relația cu clienții, simplu.',icon: Users,       href: '#module'       },
+  const featureCards = [
+    {
+      index: '01',
+      titlePrefix: 'Gestionare rapidă ',
+      titleHighlight: 'a ofertelor',
+      desc: 'Creezi și trimiți oferte în câteva clickuri.',
+      icon: FileText,
+      gradient: 'from-[#00A3FF] to-[#0066FF]',
+      accentColor: 'text-[#0066FF] dark:text-[#00D2FF]',
+      shadow: 'shadow-[0_8px_20px_rgba(0,102,255,0.3)]',
+      href: '#module',
+    },
+    {
+      index: '02',
+      titlePrefix: 'Istoric complet ',
+      titleHighlight: 'al clienților',
+      desc: 'Toate interacțiunile, într-un singur loc.',
+      icon: Users,
+      gradient: 'from-[#6366F1] to-[#4338CA]',
+      accentColor: 'text-[#6366F1] dark:text-[#818CF8]',
+      shadow: 'shadow-[0_8px_20px_rgba(99,102,241,0.3)]',
+      href: '#module',
+    },
+    {
+      index: '03',
+      titlePrefix: 'Transparență ',
+      titleHighlight: '& încredere',
+      desc: 'Comunicare clară și proces bine definit.',
+      icon: ShieldCheck,
+      gradient: 'from-[#10B981] to-[#059669]',
+      accentColor: 'text-[#059669] dark:text-[#34D399]',
+      shadow: 'shadow-[0_8px_20px_rgba(16,185,129,0.3)]',
+      href: '#module',
+    },
+    {
+      index: '04',
+      titlePrefix: 'Creșterea ratei ',
+      titleHighlight: 'de acceptare',
+      desc: 'Oferte mai clare, clienți mai mulțumiți.',
+      icon: TrendingUp,
+      gradient: 'from-[#F59E0B] to-[#D97706]',
+      accentColor: 'text-[#D97706] dark:text-[#FBBF24]',
+      shadow: 'shadow-[0_8px_20px_rgba(245,158,11,0.3)]',
+      href: '#module',
+    },
+    {
+      index: '05',
+      titlePrefix: 'Eficiență ',
+      titleHighlight: 'operațională',
+      desc: 'Reduci timpul de lucru și elimini erorile manuale.',
+      icon: Activity,
+      gradient: 'from-[#8B5CF6] to-[#6D28D9]',
+      accentColor: 'text-[#7C3AED] dark:text-[#A78BFA]',
+      shadow: 'shadow-[0_8px_20px_rgba(139,92,246,0.3)]',
+      href: '#module',
+    },
+    {
+      index: '06',
+      titlePrefix: 'Acces ',
+      titleHighlight: 'de oriunde',
+      desc: 'Lucrezi de pe orice dispozitiv, în timp real.',
+      icon: Globe,
+      gradient: 'from-[#06B6D4] to-[#0891B2]',
+      accentColor: 'text-[#0891B2] dark:text-[#22D3EE]',
+      shadow: 'shadow-[0_8px_20px_rgba(6,182,212,0.3)]',
+      href: '#module',
+    },
   ];
 
   /* ─── colours ─────────────────────────────────────────────────────────── */
@@ -47,11 +108,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
         {/* ── Background & Car Stage ───────────────────────────────────── */}
         <div className="absolute inset-0 pointer-events-none select-none">
 
-          {/* 1. Car Image Stage — on mobile shows only the front shield ("scutul"), on tablet/desktop/ultrawide fully visible anchored bottom-right */}
+          {/* 1. Car Image Stage — on mobile positioned 150px left and 200px higher as requested, on tablet/desktop/ultrawide fully visible anchored bottom-right */}
           <div 
-            className="absolute inset-y-0 right-0 overflow-hidden flex items-end justify-end pointer-events-none select-none z-[1]
+            className="absolute inset-y-0 right-0 flex items-end justify-end pointer-events-none select-none z-[1]
               w-[165%] sm:w-[90%] md:w-[78%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
-              translate-x-[48%] sm:translate-x-0
+              translate-x-[calc(48%-150px)] sm:translate-x-0
+              -translate-y-[200px] sm:translate-y-0
               transition-transform duration-500"
           >
             {/* Car Images (Light & Dark) — stacked in exact same coordinate space, anchored bottom-right */}
@@ -81,7 +143,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
           <div 
             className="absolute inset-y-0 right-0 pointer-events-none z-[2]
               w-[165%] sm:w-[90%] md:w-[78%] lg:w-[62%] xl:w-[56%] 2xl:w-[50%]
-              translate-x-[48%] sm:translate-x-0
+              translate-x-[calc(48%-150px)] sm:translate-x-0
+              -translate-y-[200px] sm:translate-y-0
               transition-transform duration-500"
           >
             
@@ -178,7 +241,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
             {/* Left Column */}
             <div className="lg:col-span-6 max-w-xl lg:max-w-none flex flex-col items-start space-y-4 pt-2">
 
-              <div className={`inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold tracking-widest uppercase ${isDark ? 'text-[#00D2FF]' : 'text-[#0066FF]'}`}>
+              <div className={`inline-flex items-center gap-2.5 font-rounded text-[11px] font-bold tracking-wider uppercase ${isDark ? 'text-[#00D2FF]' : 'text-[#0066FF]'}`}>
                 <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${isDark ? 'bg-[#00D2FF]' : 'bg-[#0066FF]'}`} />
                 MANAGEMENT INTELIGENT — 2026
               </div>
@@ -231,50 +294,80 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          2.  SWISS PRECISION FEATURE DOCK
+          2.  PREMIUM FLOATING BENEFIT CARDS (Matches uploaded UI/UX sample)
       ═══════════════════════════════════════════════════════════════════ */}
-      <div className={`w-full border-t transition-colors duration-500 ${isDark ? 'bg-[#030c1d] border-white/10' : 'bg-white border-slate-200'}`}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x lg:divide-x divide-slate-200 dark:divide-white/10">
-            {bottomCards.map((card) => {
+      <div className={`w-full py-12 sm:py-16 border-t relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#020b1b] border-white/10' : 'bg-gradient-to-b from-[#f8fafc] via-[#edf5ff] to-white border-slate-200/80'}`}>
+        
+        {/* Subtle Background Futuristic Light Streaks (matches example image background) */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-75">
+          <div className="absolute -top-32 right-1/4 w-[700px] h-[350px] bg-gradient-to-bl from-blue-400/15 via-cyan-400/5 to-transparent rotate-12 blur-3xl" />
+          <div className="absolute top-1/3 left-10 w-[500px] h-[300px] bg-gradient-to-tr from-blue-500/10 to-transparent blur-3xl" />
+          <div className="absolute -bottom-20 right-10 w-[600px] h-[300px] bg-gradient-to-tl from-cyan-400/10 to-transparent blur-3xl" />
+        </div>
+
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
+            {featureCards.map((card) => {
               const Icon = card.icon;
               return (
                 <a
-                  key={card.title}
+                  key={card.index}
                   href={card.href}
-                  className={`group flex flex-col justify-between p-6 sm:p-7 relative overflow-hidden transition-colors duration-200 cursor-pointer ${isDark ? 'hover:bg-white/[0.03]' : 'hover:bg-slate-50'}`}
+                  className={`group flex flex-col justify-between p-6 sm:p-7 rounded-[26px] relative overflow-hidden transition-all duration-300 cursor-pointer
+                    ${isDark 
+                      ? 'bg-[#06142a]/90 backdrop-blur-xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.45)] hover:border-[#00D2FF]/40 hover:bg-[#091b38] hover:-translate-y-2 hover:shadow-[0_22px_45px_rgba(0,210,255,0.18)]' 
+                      : 'bg-white/95 backdrop-blur-xl border border-blue-100/90 shadow-[0_15px_35px_rgba(0,102,255,0.06)] hover:border-blue-300 hover:shadow-[0_22px_45px_rgba(0,102,255,0.14)] hover:-translate-y-2'
+                    }`}
                 >
-                  {/* Index + icon */}
-                  <div className="flex items-start justify-between mb-5">
-                    <span className={`font-mono text-[10px] font-bold tracking-widest ${isDark ? 'text-white/20' : 'text-slate-300'}`}>
+                  {/* Top-Right Futuristic Corner Streaks (matches uploaded screenshot) */}
+                  <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none overflow-hidden">
+                    <div className={`absolute -top-6 -right-6 w-24 h-24 rotate-45 transform pointer-events-none transition-opacity duration-300 ${isDark ? 'bg-gradient-to-bl from-[#00D2FF]/15 via-blue-500/5 to-transparent' : 'bg-gradient-to-bl from-blue-400/25 via-cyan-400/10 to-transparent'}`} />
+                    <div className={`absolute top-2 right-2 w-1.5 h-14 rotate-45 transform origin-top pointer-events-none ${isDark ? 'bg-gradient-to-b from-[#00D2FF]/30 to-transparent' : 'bg-gradient-to-b from-blue-400/35 to-transparent'}`} />
+                    <div className={`absolute top-1 right-6 w-1 h-12 rotate-45 transform origin-top pointer-events-none ${isDark ? 'bg-gradient-to-b from-blue-400/20 to-transparent' : 'bg-gradient-to-b from-cyan-400/30 to-transparent'}`} />
+                  </div>
+
+                  {/* Bottom-Left Soft Glow */}
+                  <div className={`absolute -bottom-8 -left-8 w-20 h-20 rounded-full blur-xl pointer-events-none ${isDark ? 'bg-[#00D2FF]/5' : 'bg-blue-400/10'}`} />
+
+                  {/* Top: Index + Underline Bar */}
+                  <div className="relative z-10 mb-5">
+                    <span className="font-rounded font-bold text-sm sm:text-base text-[#0066FF] dark:text-[#00D2FF]">
                       {card.index}
                     </span>
-                    <div className={`w-9 h-9 flex items-center justify-center border transition-colors duration-200 ${isDark ? 'border-white/10 bg-white/[0.03] group-hover:border-[#00D2FF]/40 group-hover:bg-[#00D2FF]/5' : 'border-slate-200 bg-slate-50 group-hover:border-[#0066FF]/40 group-hover:bg-[#0066FF]/5'}`}>
-                      <Icon className={`w-4 h-4 transition-colors ${isDark ? 'text-white/40 group-hover:text-[#00D2FF]' : 'text-slate-400 group-hover:text-[#0066FF]'}`} />
+                    <div className="w-5 h-0.5 bg-[#0066FF] dark:bg-[#00D2FF] rounded-full mt-1.5" />
+                  </div>
+
+                  {/* Icon Squircle (App-like rounded-2xl icon) */}
+                  <div className="relative z-10 mb-5">
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.gradient} ${card.shadow} flex items-center justify-center transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2`}>
+                      <Icon className="w-7 h-7 text-white stroke-[2.2]" />
                     </div>
                   </div>
 
-                  <div>
-                    <span className={`font-mono text-[10px] font-semibold tracking-widest uppercase mb-1.5 block ${isDark ? 'text-white/25' : 'text-slate-300'}`}>
-                      {card.code}
-                    </span>
-                    <h3 className={`font-black text-sm uppercase tracking-tight leading-snug mb-1.5 transition-colors ${isDark ? 'text-white group-hover:text-[#00D2FF]' : 'text-slate-900 group-hover:text-[#0066FF]'}`}>
-                      {card.title}
+                  {/* Title & Description */}
+                  <div className="relative z-10 flex-1 flex flex-col justify-start mb-6">
+                    <h3 className="font-rounded font-black text-lg text-slate-900 dark:text-white leading-snug tracking-tight mb-2">
+                      {card.titlePrefix}
+                      <span className={card.accentColor}>{card.titleHighlight}</span>
                     </h3>
-                    <p className={`text-[11px] leading-relaxed ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                    <p className="text-xs sm:text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
                       {card.desc}
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between mt-5 pt-4 border-t border-current/10">
-                    <span className={`font-mono text-[10px] uppercase tracking-widest transition-colors ${isDark ? 'text-white/20 group-hover:text-[#00D2FF]/60' : 'text-slate-300 group-hover:text-[#0066FF]/60'}`}>
-                      ACCESEAZĂ
-                    </span>
-                    <ArrowRight className={`w-3.5 h-3.5 transition-all group-hover:translate-x-0.5 ${isDark ? 'text-white/20 group-hover:text-[#00D2FF]' : 'text-slate-300 group-hover:text-[#0066FF]'}`} />
+                  {/* Bottom: Accent Line & Circular Arrow Button */}
+                  <div className="relative z-10 flex items-center justify-between pt-2">
+                    <div className="w-7 h-0.5 bg-[#0066FF] dark:bg-[#00D2FF] rounded-full" />
+                    
+                    <div className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 shadow-xs
+                      ${isDark
+                        ? 'border-white/10 bg-white/5 text-[#00D2FF] group-hover:bg-[#00D2FF] group-hover:text-slate-950 group-hover:border-[#00D2FF] group-hover:scale-110'
+                        : 'border-blue-100 bg-blue-50/80 text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white group-hover:border-[#0066FF] group-hover:scale-110'
+                      }`}
+                    >
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </div>
                   </div>
-
-                  {/* Hover accent underline */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isDark ? 'bg-[#00D2FF]' : 'bg-[#0066FF]'}`} />
                 </a>
               );
             })}
