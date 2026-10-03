@@ -244,7 +244,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
                 MANAGEMENT INTELIGENT — 2026
               </div>
 
-              <h1 className={`text-[34px] xs:text-4xl sm:text-5xl lg:text-[62px] font-black tracking-tight leading-[1.08] sm:leading-[1.05] ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              <h1 className={`text-[38px] xs:text-5xl sm:text-5xl lg:text-[62px] font-rounded font-black tracking-tight leading-[1.05] ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 Tot ce ai nevoie,<br />
                 <span style={{ color: accent }}>într-un singur</span><br />
                 loc.
