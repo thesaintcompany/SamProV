@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Zap,
   CheckCircle2,
+  XCircle,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -25,12 +26,13 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
       annualPrice: 552, // 20% off
       popular: false,
       features: [
-        'Până la 2 elevatoare / posturi de lucru',
-        'Devize și oferte rapide nelimitate',
-        'Calendar programări pe mecanic',
-        'Generare deviz în format PDF cu siglă service',
-        'Securitate Cloud & backup zilnic automat',
-        'Suport tehnic dedicat prin email sau tiket.'
+        { text: 'Până la 2 elevatoare / posturi de lucru', included: true },
+        { text: 'Devize și oferte rapide nelimitate', included: true },
+        { text: 'Calendar programări pe mecanic', included: true },
+        { text: 'Generare deviz în format PDF conform RAR', included: true },
+        { text: 'Securitate Cloud & backup zilnic automat', included: true },
+        { text: 'Suport tehnic dedicat prin email sau tiket.', included: true },
+        { text: 'Fără Protecție coduri piese (disponibil în Pro)', included: false }
       ],
       ctaText: 'Alege Plan Start'
     },
@@ -43,15 +45,16 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
       annualPrice: 1031, // 20% off
       popular: true,
       features: [
-        'Tot din Planul Start inclus',
-        'Până la 8 elevatoare & mecanici simultan',
-        'Conectare RAR Autopass inclusă',
-        'Aprobare interactivă 1-tap   pentru clienți',
-        'Recepție pentru Automobile',
-        'Modul Smart PR: notificări de status și remindere ITP',
-        'Raportare avansată asupra bazinului auto procesat',
-        'App Note de Constatare si Receptie',
-        'Modul Inventar Service'
+        { text: 'Tot din Planul Start inclus', included: true },
+        { text: 'Până la 8 elevatoare & mecanici simultan', included: true },
+        { text: 'Protecție avansată coduri piese inclusă', included: true },
+        { text: 'Conectare RAR Autopass inclusă', included: true },
+        { text: 'Aprobare interactivă 1-tap pentru clienți', included: true },
+        { text: 'Recepție pentru Automobile', included: true },
+        { text: 'Modul Smart PR: notificări de status și remindere ITP', included: true },
+        { text: 'Raportare avansată asupra bazinului auto procesat', included: true },
+        { text: 'App Note de Constatare si Receptie', included: true },
+        { text: 'Modul Inventar Service', included: true }
       ],
       ctaText: 'Alege Plan Pro (Recomandat)'
     },
@@ -65,13 +68,14 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
       isCustom: true,
       popular: false,
       features: [
-        'Elevatoare și posturi de lucru nelimitate',
-        'Management Recenzii Google profesionla',
-        'Integrare API ERP & Contabilitate (Saga, SmartBill etc.)',
-        'Server Cloud dedicat cu izolare totală a datelor',
-        'SLA garantat de intervenție sub 30 de minute',
-        'Manager de cont dedicat & training la sediul atelierului',
-        'Dezvoltare de funcționalități personalizate la cerere'
+        { text: 'Elevatoare și posturi de lucru nelimitate', included: true },
+        { text: 'Protecție coduri piese & reguli personalizate', included: true },
+        { text: 'Management Recenzii Google profesionla', included: true },
+        { text: 'Integrare API ERP & Contabilitate (Saga, SmartBill etc.)', included: true },
+        { text: 'Server Cloud dedicat cu izolare totală a datelor', included: true },
+        { text: 'SLA garantat de intervenție sub 30 de minute', included: true },
+        { text: 'Manager de cont dedicat & training la sediul atelierului', included: true },
+        { text: 'Dezvoltare de funcționalități personalizate la cerere', included: true }
       ],
       ctaText: 'Contactează Vânzările'
     }
@@ -237,10 +241,26 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
                       Ce include:
                     </div>
                     {plan.features.map((feat, fIdx) => (
-                      <div key={fIdx} className={`flex items-start gap-2.5 text-xs ${plan.popular ? 'text-slate-200' : 'text-slate-700 dark:text-slate-200'}`}>
-                        <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${plan.popular ? 'text-[#00D2FF]' : 'text-[#0066FF] dark:text-emerald-400'
-                          }`} />
-                        <span>{feat}</span>
+                      <div
+                        key={fIdx}
+                        className={`flex items-start gap-2.5 text-xs ${
+                          feat.included
+                            ? plan.popular
+                              ? 'text-slate-200'
+                              : 'text-slate-700 dark:text-slate-200'
+                            : 'text-slate-400 dark:text-slate-500 line-through opacity-85'
+                        }`}
+                      >
+                        {feat.included ? (
+                          <CheckCircle2
+                            className={`w-4 h-4 shrink-0 mt-0.5 ${
+                              plan.popular ? 'text-[#00D2FF]' : 'text-[#0066FF] dark:text-emerald-400'
+                            }`}
+                          />
+                        ) : (
+                          <XCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-500/80 dark:text-rose-400/80" />
+                        )}
+                        <span>{feat.text}</span>
                       </div>
                     ))}
                   </div>
