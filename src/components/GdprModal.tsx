@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { 
-  X, 
-  ShieldCheck, 
-  Lock, 
-  FileText, 
-  ChevronDown, 
-  ChevronUp, 
-  Server, 
-  Car, 
-  CreditCard, 
+import {
+  X,
+  ShieldCheck,
+  Lock,
+  FileText,
+  ChevronDown,
+  ChevronUp,
+  Server,
+  Car,
+  CreditCard,
   Cookie,
   Gavel
 } from 'lucide-react';
@@ -101,7 +101,7 @@ c) Să asigure dreptul de ștergere, anonimizare și portabilitate totală a baz
       icon: Car,
       title: 'Conexiune RAR Autopass & Protecția Codurilor de Piese',
       badge: 'RAR AUTOPASS & PIESE',
-      summary: 'Interogare etică conform protocoalelor oficiale RAR și protejarea algoritmilor comerciali ai atelierului.',
+      summary: 'Interogare etică conform protocoalelor    RAR și protejarea algoritmilor comerciali ai atelierului.',
       content: `Interogarea bazei de date a Registrului Auto Român (RAR Autopass) prin SAMpro se efectuează conform normativelor legale naționale în vigoare, în baza consimțământului clientului la deschiderea ordinului de reparație. Informațiile despre kilometraj și valabilitate ITP sunt certificate și servesc la emiterea Pașaportului de Siguranță al mașinii.
 
 Modulul de protecție a codurilor de piese criptează codurile interne de aprovizionare pe devizele transmise clientului, prevenind comenzile de piese contrafăcute sau comparările neconforme, asigurând păstrarea garanției legale a reparației oferite de service.`
@@ -144,17 +144,17 @@ Link-uri utile: Autoritatea Națională pentru Protecția Consumatorilor (ANPC -
     }
   ];
 
-  const filteredSections = activeFilter === 'all' 
-    ? sections 
+  const filteredSections = activeFilter === 'all'
+    ? sections
     : sections.filter(s => s.id === activeFilter);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div 
+      <div
         className="w-full max-w-4xl max-h-[90vh] rounded-3xl bg-[#07172f] border border-white/20 shadow-2xl text-white flex flex-col overflow-hidden relative"
         onClick={(e) => e.stopPropagation()}
       >
-        
+
         {/* Modal Header */}
         <div className="p-6 sm:p-8 pb-4 border-b border-white/10 flex items-start justify-between gap-4 shrink-0 bg-[#091f3e]/80">
           <div>
@@ -183,11 +183,10 @@ Link-uri utile: Autoritatea Națională pentru Protecția Consumatorilor (ANPC -
         <div className="px-6 py-3 border-b border-white/10 bg-[#06152b] flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
           <button
             onClick={() => setActiveFilter('all')}
-            className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap transition-all ${
-              activeFilter === 'all' 
-                ? 'bg-[#0066FF] text-white shadow-sm' 
+            className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap transition-all ${activeFilter === 'all'
+                ? 'bg-[#0066FF] text-white shadow-sm'
                 : 'bg-white/5 text-slate-400 hover:text-white'
-            }`}
+              }`}
           >
             Toate (8 secțiuni)
           </button>
@@ -198,11 +197,10 @@ Link-uri utile: Autoritatea Națională pentru Protecția Consumatorilor (ANPC -
                 setActiveFilter(s.id);
                 setOpenSections(prev => ({ ...prev, [s.id]: true }));
               }}
-              className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap transition-all ${
-                activeFilter === s.id 
-                  ? 'bg-[#00D2FF] text-[#020b1b] shadow-sm' 
+              className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap transition-all ${activeFilter === s.id
+                  ? 'bg-[#00D2FF] text-[#020b1b] shadow-sm'
                   : 'bg-white/5 text-slate-400 hover:text-white'
-              }`}
+                }`}
             >
               {s.num}. {s.badge}
             </button>

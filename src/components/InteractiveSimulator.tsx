@@ -780,7 +780,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                         <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
                           <div>
                             <div className="font-semibold text-slate-900 dark:text-white text-xs">Manoperă Înlocuire Distribuție + Aerisire</div>
-                            <div className="text-[10px] text-slate-500 dark:text-slate-400">3.2 ore normate oficiale</div>
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400">3.2 ore normate   </div>
                           </div>
                           <span className="font-mono font-bold text-slate-900 dark:text-white text-xs">550 lei</span>
                         </div>

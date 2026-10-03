@@ -234,7 +234,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       href: '#module'
     },
     {
-      title: 'Integrări Oficiale (RAR & ANAF)',
+      title: 'Integrări    (RAR & ANAF)',
       desc: 'Conexiune directă SPV ANAF pentru e-Factura și interogare   RAR.',
       href: '#rar-autopass'
     },
