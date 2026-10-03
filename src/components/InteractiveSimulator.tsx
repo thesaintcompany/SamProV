@@ -587,7 +587,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
             Experimentează SAMpro.<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-cyan-500 dark:from-[#00D2FF] dark:via-[#0066FF] dark:to-blue-400">
-              Interacționează cu Interfața Reală.
+              Interacționează cu Interfața  .
             </span>
           </h2>
 
@@ -600,8 +600,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
             <button
               onClick={() => setActiveTab('whatsapp')}
               className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'whatsapp'
-                  ? 'bg-[#0066FF] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
+                ? 'bg-[#0066FF] text-white shadow-md'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
                 }`}
             >
               <Smartphone className="w-4 h-4 shrink-0" />
@@ -611,8 +611,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
             <button
               onClick={() => setActiveTab('rar')}
               className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'rar'
-                  ? 'bg-[#0066FF] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
+                ? 'bg-[#0066FF] text-white shadow-md'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
                 }`}
             >
               <Car className="w-4 h-4 shrink-0" />
@@ -622,8 +622,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
             <button
               onClick={() => setActiveTab('hoists')}
               className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'hoists'
-                  ? 'bg-[#0066FF] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
+                ? 'bg-[#0066FF] text-white shadow-md'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
                 }`}
             >
               <Calendar className="w-4 h-4 shrink-0" />
@@ -654,10 +654,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                     type="button"
                     onClick={() => setWaStep(item.step as 1 | 2 | 3 | 4 | 5)}
                     className={`py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${isCurrent
-                        ? 'bg-[#0066FF] text-white shadow-md'
-                        : isPassed
-                          ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-400/30'
-                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      ? 'bg-[#0066FF] text-white shadow-md'
+                      : isPassed
+                        ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-400/30'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                       }`}
                   >
                     <ItemIcon className="w-3.5 h-3.5 shrink-0" />
@@ -1048,8 +1048,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                   type="button"
                   onClick={() => setMechanicViewMode('both')}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${mechanicViewMode === 'both'
-                      ? 'bg-[#0066FF] text-white shadow-sm'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-[#0066FF] text-white shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
                 >
                   📱 Ambele Ecrane
@@ -1058,8 +1058,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                   type="button"
                   onClick={() => setMechanicViewMode('mechanic')}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${mechanicViewMode === 'mechanic'
-                      ? 'bg-[#0066FF] text-white shadow-sm'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-[#0066FF] text-white shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
                 >
                   🔧 Vedere Mecanic
@@ -1068,8 +1068,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                   type="button"
                   onClick={() => setMechanicViewMode('manager')}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${mechanicViewMode === 'manager'
-                      ? 'bg-[#0066FF] text-white shadow-sm'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-[#0066FF] text-white shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
                 >
                   📋 Vedere Șef Atelier
@@ -1078,8 +1078,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                   type="button"
                   onClick={() => setMechanicViewMode('chat')}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${mechanicViewMode === 'chat'
-                      ? 'bg-[#0066FF] text-white shadow-sm'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-[#0066FF] text-white shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
@@ -1282,8 +1282,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                             type="button"
                             onClick={() => setMechanicTabFilter('in_progress')}
                             className={`flex-1 py-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${mechanicTabFilter === 'in_progress'
-                                ? 'bg-white text-slate-950 shadow-sm'
-                                : 'text-slate-400 hover:text-white'
+                              ? 'bg-white text-slate-950 shadow-sm'
+                              : 'text-slate-400 hover:text-white'
                               }`}
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
@@ -1297,8 +1297,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                             type="button"
                             onClick={() => setMechanicTabFilter('completed')}
                             className={`flex-1 py-1.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer ${mechanicTabFilter === 'completed'
-                                ? 'bg-white text-slate-950 shadow-sm'
-                                : 'text-slate-400 hover:text-white'
+                              ? 'bg-white text-slate-950 shadow-sm'
+                              : 'text-slate-400 hover:text-white'
                               }`}
                           >
                             <span>Finalizate</span>
@@ -1309,8 +1309,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                             type="button"
                             onClick={() => setMechanicTabFilter('all')}
                             className={`flex-1 py-1.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer ${mechanicTabFilter === 'all'
-                                ? 'bg-white text-slate-950 shadow-sm'
-                                : 'text-slate-400 hover:text-white'
+                              ? 'bg-white text-slate-950 shadow-sm'
+                              : 'text-slate-400 hover:text-white'
                               }`}
                           >
                             <span>Toate</span>
@@ -1367,12 +1367,12 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                                 {/* Right Status Badge & Arrow */}
                                 <div className="flex flex-col items-end justify-between self-stretch">
                                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1 ${car.statusColor === 'blue' ? 'bg-blue-100 text-blue-800' :
-                                      car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
-                                        'bg-emerald-100 text-emerald-800'
+                                    car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
+                                      'bg-emerald-100 text-emerald-800'
                                     }`}>
                                     <span className={`w-1.5 h-1.5 rounded-full ${car.statusColor === 'blue' ? 'bg-blue-600' :
-                                        car.statusColor === 'amber' ? 'bg-amber-600' :
-                                          'bg-emerald-600'
+                                      car.statusColor === 'amber' ? 'bg-amber-600' :
+                                        'bg-emerald-600'
                                       }`} />
                                     <span>{car.statusLabel}</span>
                                     <span className="font-mono text-[9px] opacity-75">{car.statusTag}</span>
@@ -1517,8 +1517,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                             type="button"
                             onClick={() => setManagerTabFilter('all')}
                             className={`flex-1 py-1 rounded-lg font-bold transition-all cursor-pointer ${managerTabFilter === 'all'
-                                ? 'bg-white text-slate-950 shadow-sm'
-                                : 'text-slate-400 hover:text-white'
+                              ? 'bg-white text-slate-950 shadow-sm'
+                              : 'text-slate-400 hover:text-white'
                               }`}
                           >
                             Toate (6)
@@ -1527,8 +1527,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                             type="button"
                             onClick={() => setManagerTabFilter('waiting')}
                             className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${managerTabFilter === 'waiting'
-                                ? 'bg-white text-slate-950 shadow-sm'
-                                : 'text-slate-400 hover:text-white'
+                              ? 'bg-white text-slate-950 shadow-sm'
+                              : 'text-slate-400 hover:text-white'
                               }`}
                           >
                             În așteptare (2)
@@ -1537,8 +1537,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                             type="button"
                             onClick={() => setManagerTabFilter('in_progress')}
                             className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${managerTabFilter === 'in_progress'
-                                ? 'bg-white text-slate-950 shadow-sm'
-                                : 'text-slate-400 hover:text-white'
+                              ? 'bg-white text-slate-950 shadow-sm'
+                              : 'text-slate-400 hover:text-white'
                               }`}
                           >
                             În lucru (2)
@@ -1547,8 +1547,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                             type="button"
                             onClick={() => setManagerTabFilter('completed')}
                             className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${managerTabFilter === 'completed'
-                                ? 'bg-white text-slate-950 shadow-sm'
-                                : 'text-slate-400 hover:text-white'
+                              ? 'bg-white text-slate-950 shadow-sm'
+                              : 'text-slate-400 hover:text-white'
                               }`}
                           >
                             Finalizate (2)
@@ -1580,12 +1580,12 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                                 <div className="space-y-1">
                                   <div className="flex items-center gap-2">
                                     <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1 ${car.statusColor === 'blue' ? 'bg-blue-100 text-blue-800' :
-                                        car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
-                                          'bg-emerald-100 text-emerald-800'
+                                      car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
+                                        'bg-emerald-100 text-emerald-800'
                                       }`}>
                                       <span className={`w-1.5 h-1.5 rounded-full ${car.statusColor === 'blue' ? 'bg-blue-600' :
-                                          car.statusColor === 'amber' ? 'bg-amber-600' :
-                                            'bg-emerald-600'
+                                        car.statusColor === 'amber' ? 'bg-amber-600' :
+                                          'bg-emerald-600'
                                         }`} />
                                       <span>{car.statusLabel}</span>
                                     </span>
@@ -1693,12 +1693,12 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                   <div
                     key={msg.id}
                     className={`flex items-start gap-3 p-3.5 rounded-2xl border transition-all ${msg.role === 'system'
-                        ? 'bg-emerald-50/80 dark:bg-emerald-950/20 border-emerald-300 dark:border-emerald-500/30'
-                        : msg.role === 'mechanic'
-                          ? 'bg-blue-50/60 dark:bg-blue-950/20 border-blue-200 dark:border-blue-500/20'
-                          : msg.role === 'manager'
-                            ? 'bg-amber-50/60 dark:bg-amber-950/20 border-amber-200 dark:border-amber-500/20'
-                            : 'bg-purple-50/60 dark:bg-purple-950/20 border-purple-200 dark:border-purple-500/20'
+                      ? 'bg-emerald-50/80 dark:bg-emerald-950/20 border-emerald-300 dark:border-emerald-500/30'
+                      : msg.role === 'mechanic'
+                        ? 'bg-blue-50/60 dark:bg-blue-950/20 border-blue-200 dark:border-blue-500/20'
+                        : msg.role === 'manager'
+                          ? 'bg-amber-50/60 dark:bg-amber-950/20 border-amber-200 dark:border-amber-500/20'
+                          : 'bg-purple-50/60 dark:bg-purple-950/20 border-purple-200 dark:border-purple-500/20'
                       }`}
                   >
                     <div className={`w-8 h-8 rounded-full ${msg.avatarColor} text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm`}>
@@ -1986,8 +1986,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                     </div>
 
                     <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${selectedWorkshopVehicle.statusColor === 'blue' ? 'bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-300' :
-                        selectedWorkshopVehicle.statusColor === 'amber' ? 'bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300' :
-                          'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300'
+                      selectedWorkshopVehicle.statusColor === 'amber' ? 'bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300' :
+                        'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300'
                       }`}>
                       {selectedWorkshopVehicle.statusLabel}
                     </span>
@@ -2099,8 +2099,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                       key={veh.id}
                       onClick={() => setSelectedVehicleId(veh.id)}
                       className={`p-5 rounded-2xl border transition-all duration-200 cursor-pointer relative flex flex-col justify-between ${isSelected
-                          ? 'bg-blue-50/70 dark:bg-[#0c2246] border-[#0066FF] dark:border-[#00D2FF] shadow-lg shadow-blue-500/10 dark:shadow-[0_10px_30px_rgba(0,102,255,0.25)] ring-2 ring-[#0066FF] dark:ring-[#00D2FF]'
-                          : 'bg-white dark:bg-[#07172f]/80 border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 hover:bg-slate-50 dark:hover:bg-white/[0.03]'
+                        ? 'bg-blue-50/70 dark:bg-[#0c2246] border-[#0066FF] dark:border-[#00D2FF] shadow-lg shadow-blue-500/10 dark:shadow-[0_10px_30px_rgba(0,102,255,0.25)] ring-2 ring-[#0066FF] dark:ring-[#00D2FF]'
+                        : 'bg-white dark:bg-[#07172f]/80 border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 hover:bg-slate-50 dark:hover:bg-white/[0.03]'
                         }`}
                     >
                       {/* Top Plate & Status Badge */}
@@ -2456,8 +2456,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                         {hoist.name}
                       </span>
                       <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase font-mono ${hoist.status === 'in_progress' ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-400/30' :
-                          hoist.status === 'completed' ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/30' :
-                            'bg-slate-500/20 text-slate-700 dark:text-slate-400 border border-slate-500/30'
+                        hoist.status === 'completed' ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/30' :
+                          'bg-slate-500/20 text-slate-700 dark:text-slate-400 border border-slate-500/30'
                         }`}>
                         {hoist.status === 'in_progress' ? 'În Lucru' : hoist.status === 'completed' ? 'Finalizat' : 'Liber / Rezervat'}
                       </span>
