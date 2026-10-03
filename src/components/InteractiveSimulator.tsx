@@ -592,53 +592,42 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            Alege un scenariu mai jos și testează cum aprobă clientul devizul pe WhatsApp, aplicația mobilă a mecanicilor și comunicarea internă din atelier, transmiterea cu 1-click a datelor către RAR AutoPass și organizarea elevatoarelor.
+            Alege un scenariu mai jos și testează cum aprobă clientul devizul pe WhatsApp, transmiterea cu 1-click a datelor către RAR AutoPass și organizarea elevatoarelor în atelier.
           </p>
 
-          {/* Navigation Tabs Pill Switcher */}
-          <div className="mt-8 inline-flex p-1.5 rounded-2xl bg-slate-200/70 dark:bg-[#07172f] border border-slate-300/80 dark:border-white/15 max-w-full overflow-x-auto">
+          {/* Navigation Tabs - Responsive Grid without horizontal scroll */}
+          <div className="mt-8 w-full max-w-4xl mx-auto p-1.5 rounded-2xl bg-slate-200/70 dark:bg-[#07172f] border border-slate-300/80 dark:border-white/15 grid grid-cols-1 md:grid-cols-3 gap-2">
             <button
               onClick={() => setActiveTab('whatsapp')}
-              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${activeTab === 'whatsapp'
+              className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'whatsapp'
                   ? 'bg-[#0066FF] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
                 }`}
             >
-              <Smartphone className="w-4 h-4" />
-              <span>1. Deviz WhatsApp (Client)</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('mechanic')}
-              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${activeTab === 'mechanic'
-                  ? 'bg-[#0066FF] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-            >
-              <Wrench className="w-4 h-4" />
-              <span>2. App Mecanici & Atelier (Comunicare Internă)</span>
+              <Smartphone className="w-4 h-4 shrink-0" />
+              <span className="leading-snug">1. Deviz WhatsApp (Client)</span>
             </button>
 
             <button
               onClick={() => setActiveTab('rar')}
-              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${activeTab === 'rar'
+              className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'rar'
                   ? 'bg-[#0066FF] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
                 }`}
             >
-              <Car className="w-4 h-4" />
-              <span>3. Transmitere Date RAR AutoPass (1-Click)</span>
+              <Car className="w-4 h-4 shrink-0" />
+              <span className="leading-snug">2. Transmitere Date RAR AutoPass (1-Click)</span>
             </button>
 
             <button
               onClick={() => setActiveTab('hoists')}
-              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${activeTab === 'hoists'
+              className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'hoists'
                   ? 'bg-[#0066FF] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
                 }`}
             >
-              <Calendar className="w-4 h-4" />
-              <span>4. Gestiune Elevatoare Atelier</span>
+              <Calendar className="w-4 h-4 shrink-0" />
+              <span className="leading-snug">3. Gestiune Elevatoare Atelier</span>
             </button>
           </div>
         </div>
@@ -2428,26 +2417,26 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
         {/* TAB 3: HOIST SCHEDULER */}
         {activeTab === 'hoists' && (
-          <div className="max-w-5xl mx-auto space-y-6 animate-in fade-in duration-300">
+          <div className="max-w-5xl mx-auto space-y-6 animate-in fade-in duration-300 w-full">
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/10 gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10 gap-3">
               <div>
-                <h3 className="text-xl font-bold text-white tracking-tight">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                   Panou Live Atelier &amp; Elevatoare (Service Auto Expert)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-600 dark:text-slate-400">
                   Apasă pe un elevator pentru a avansa stadiul lucrării sau a elibera postul
                 </p>
               </div>
 
               <div className="flex items-center gap-3 text-xs font-mono">
-                <span className="flex items-center gap-1.5 text-blue-400">
+                <span className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
                   <span className="w-2 h-2 rounded-full bg-blue-500"></span> În Lucru
                 </span>
-                <span className="flex items-center gap-1.5 text-emerald-400">
+                <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Finalizat
                 </span>
-                <span className="flex items-center gap-1.5 text-slate-400">
+                <span className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
                   <span className="w-2 h-2 rounded-full bg-slate-500"></span> Liber
                 </span>
               </div>
@@ -2458,40 +2447,40 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                 <div
                   key={hoist.id}
                   onClick={() => advanceHoistStatus(hoist.id)}
-                  className="p-5 rounded-2xl bg-[#07172f]/80 hover:bg-[#0c244b] border border-white/10 hover:border-[#00D2FF]/40 transition-all cursor-pointer flex flex-col justify-between group shadow-sm"
+                  className="p-5 rounded-2xl bg-white dark:bg-[#07172f]/80 hover:bg-slate-50 dark:hover:bg-[#0c244b] border border-slate-200 dark:border-white/10 hover:border-[#0066FF]/40 dark:hover:border-[#00D2FF]/40 transition-all cursor-pointer flex flex-col justify-between group shadow-sm"
                 >
                   <div className="space-y-3">
 
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold text-[#00D2FF]">
+                      <span className="font-mono text-xs font-bold text-[#0066FF] dark:text-[#00D2FF]">
                         {hoist.name}
                       </span>
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase font-mono ${hoist.status === 'in_progress' ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' :
-                          hoist.status === 'completed' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' :
-                            'bg-slate-500/20 text-slate-400 border border-slate-500/30'
+                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase font-mono ${hoist.status === 'in_progress' ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-400/30' :
+                          hoist.status === 'completed' ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/30' :
+                            'bg-slate-500/20 text-slate-700 dark:text-slate-400 border border-slate-500/30'
                         }`}>
                         {hoist.status === 'in_progress' ? 'În Lucru' : hoist.status === 'completed' ? 'Finalizat' : 'Liber / Rezervat'}
                       </span>
                     </div>
 
                     <div>
-                      <div className="font-bold text-white text-base">
+                      <div className="font-bold text-slate-900 dark:text-white text-base">
                         {hoist.car}
                       </div>
-                      <div className="text-xs text-slate-300 mt-0.5">
+                      <div className="text-xs text-slate-600 dark:text-slate-300 mt-0.5">
                         {hoist.operation}
                       </div>
                     </div>
 
                     {/* Progress Bar */}
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[11px] font-mono text-slate-400">
+                      <div className="flex justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
                         <span>Progres Lucrare</span>
                         <span>{hoist.progress}%</span>
                       </div>
-                      <div className="w-full bg-black/40 h-2 rounded-full overflow-hidden">
+                      <div className="w-full bg-slate-200 dark:bg-black/40 h-2 rounded-full overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all duration-500 ${hoist.status === 'completed' ? 'bg-emerald-400' : 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF]'
+                          className={`h-full rounded-full transition-all duration-500 ${hoist.status === 'completed' ? 'bg-emerald-500' : 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF]'
                             }`}
                           style={{ width: `${hoist.progress}%` }}
                         ></div>
@@ -2500,12 +2489,12 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+                  <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
                     <span className="flex items-center gap-1.5">
-                      <User className="w-3.5 h-3.5 text-[#00D2FF]" />
+                      <User className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF]" />
                       {hoist.mechanic}
                     </span>
-                    <span className="font-mono font-bold text-white">
+                    <span className="font-mono font-bold text-slate-900 dark:text-white">
                       {hoist.timeEst}
                     </span>
                   </div>
@@ -2514,7 +2503,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
             </div>
 
             <div className="text-center pt-2">
-              <span className="text-xs text-slate-400">
+              <span className="text-xs text-slate-500 dark:text-slate-400">
                 💡 Sincronizare automată în timp real cu panoul de recepție și WhatsApp-ul clientului.
               </span>
             </div>
