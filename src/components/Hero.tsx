@@ -305,67 +305,67 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
           <div className="absolute -bottom-20 right-10 w-[600px] h-[300px] bg-gradient-to-tl from-cyan-400/10 to-transparent blur-3xl" />
         </div>
 
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
+        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 sm:gap-4">
             {featureCards.map((card) => {
               const Icon = card.icon;
               return (
                 <a
                   key={card.index}
                   href={card.href}
-                  className={`group flex flex-col justify-between p-6 sm:p-7 rounded-[26px] relative overflow-hidden transition-all duration-300 cursor-pointer
+                  className={`group flex flex-col justify-between p-5 sm:p-5.5 rounded-[22px] relative overflow-hidden transition-all duration-300 cursor-pointer
                     ${isDark 
                       ? 'bg-[#06142a]/90 backdrop-blur-xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.45)] hover:border-[#00D2FF]/40 hover:bg-[#091b38] hover:-translate-y-2 hover:shadow-[0_22px_45px_rgba(0,210,255,0.18)]' 
                       : 'bg-white/95 backdrop-blur-xl border border-blue-100/90 shadow-[0_15px_35px_rgba(0,102,255,0.06)] hover:border-blue-300 hover:shadow-[0_22px_45px_rgba(0,102,255,0.14)] hover:-translate-y-2'
                     }`}
                 >
                   {/* Top-Right Futuristic Corner Streaks (matches uploaded screenshot) */}
-                  <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none overflow-hidden">
-                    <div className={`absolute -top-6 -right-6 w-24 h-24 rotate-45 transform pointer-events-none transition-opacity duration-300 ${isDark ? 'bg-gradient-to-bl from-[#00D2FF]/15 via-blue-500/5 to-transparent' : 'bg-gradient-to-bl from-blue-400/25 via-cyan-400/10 to-transparent'}`} />
-                    <div className={`absolute top-2 right-2 w-1.5 h-14 rotate-45 transform origin-top pointer-events-none ${isDark ? 'bg-gradient-to-b from-[#00D2FF]/30 to-transparent' : 'bg-gradient-to-b from-blue-400/35 to-transparent'}`} />
-                    <div className={`absolute top-1 right-6 w-1 h-12 rotate-45 transform origin-top pointer-events-none ${isDark ? 'bg-gradient-to-b from-blue-400/20 to-transparent' : 'bg-gradient-to-b from-cyan-400/30 to-transparent'}`} />
+                  <div className="absolute top-0 right-0 w-20 h-20 pointer-events-none overflow-hidden">
+                    <div className={`absolute -top-6 -right-6 w-20 h-20 rotate-45 transform pointer-events-none transition-opacity duration-300 ${isDark ? 'bg-gradient-to-bl from-[#00D2FF]/15 via-blue-500/5 to-transparent' : 'bg-gradient-to-bl from-blue-400/25 via-cyan-400/10 to-transparent'}`} />
+                    <div className={`absolute top-2 right-2 w-1 h-12 rotate-45 transform origin-top pointer-events-none ${isDark ? 'bg-gradient-to-b from-[#00D2FF]/30 to-transparent' : 'bg-gradient-to-b from-blue-400/35 to-transparent'}`} />
+                    <div className={`absolute top-1 right-5 w-0.5 h-10 rotate-45 transform origin-top pointer-events-none ${isDark ? 'bg-gradient-to-b from-blue-400/20 to-transparent' : 'bg-gradient-to-b from-cyan-400/30 to-transparent'}`} />
                   </div>
 
                   {/* Bottom-Left Soft Glow */}
                   <div className={`absolute -bottom-8 -left-8 w-20 h-20 rounded-full blur-xl pointer-events-none ${isDark ? 'bg-[#00D2FF]/5' : 'bg-blue-400/10'}`} />
 
                   {/* Top: Index + Underline Bar */}
-                  <div className="relative z-10 mb-5">
-                    <span className="font-rounded font-bold text-sm sm:text-base text-[#0066FF] dark:text-[#00D2FF]">
+                  <div className="relative z-10 mb-4">
+                    <span className="font-rounded font-bold text-xs sm:text-sm text-[#0066FF] dark:text-[#00D2FF]">
                       {card.index}
                     </span>
-                    <div className="w-5 h-0.5 bg-[#0066FF] dark:bg-[#00D2FF] rounded-full mt-1.5" />
+                    <div className="w-4 h-0.5 bg-[#0066FF] dark:bg-[#00D2FF] rounded-full mt-1" />
                   </div>
 
-                  {/* Icon Squircle (App-like rounded-2xl icon) */}
-                  <div className="relative z-10 mb-5">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.gradient} ${card.shadow} flex items-center justify-center transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2`}>
-                      <Icon className="w-7 h-7 text-white stroke-[2.2]" />
+                  {/* Icon Squircle (App-like rounded-xl icon) */}
+                  <div className="relative z-10 mb-4">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${card.gradient} ${card.shadow} flex items-center justify-center transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2`}>
+                      <Icon className="w-6 h-6 text-white stroke-[2.2]" />
                     </div>
                   </div>
 
                   {/* Title & Description */}
-                  <div className="relative z-10 flex-1 flex flex-col justify-start mb-6">
-                    <h3 className="font-rounded font-black text-lg text-slate-900 dark:text-white leading-snug tracking-tight mb-2">
+                  <div className="relative z-10 flex-1 flex flex-col justify-start mb-5">
+                    <h3 className="font-rounded font-black text-[15px] sm:text-base text-slate-900 dark:text-white leading-snug tracking-tight mb-1.5">
                       {card.titlePrefix}
                       <span className={card.accentColor}>{card.titleHighlight}</span>
                     </h3>
-                    <p className="text-xs sm:text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                    <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
                       {card.desc}
                     </p>
                   </div>
 
                   {/* Bottom: Accent Line & Circular Arrow Button */}
-                  <div className="relative z-10 flex items-center justify-between pt-2">
-                    <div className="w-7 h-0.5 bg-[#0066FF] dark:bg-[#00D2FF] rounded-full" />
+                  <div className="relative z-10 flex items-center justify-between pt-1">
+                    <div className="w-6 h-0.5 bg-[#0066FF] dark:bg-[#00D2FF] rounded-full" />
                     
-                    <div className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 shadow-xs
+                    <div className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shadow-xs
                       ${isDark
                         ? 'border-white/10 bg-white/5 text-[#00D2FF] group-hover:bg-[#00D2FF] group-hover:text-slate-950 group-hover:border-[#00D2FF] group-hover:scale-110'
                         : 'border-blue-100 bg-blue-50/80 text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white group-hover:border-[#0066FF] group-hover:scale-110'
                       }`}
                     >
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </div>
                   </div>
                 </a>
