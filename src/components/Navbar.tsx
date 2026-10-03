@@ -472,22 +472,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             )}
 
-            {/* Autentificare / Login */}
-            <a
-              href="#login"
-              onClick={(e) => {
-                e.preventDefault();
-                alert('Portalul securizat de autentificare SAMpro Cloud este activ. Contactați administratorul pentru acreditare sau solicitați acces demonstrativ.');
-              }}
-              className={`hidden h-10 items-center rounded-[6px] px-3 text-[0.9375rem] font-semibold transition-colors xl:inline-flex ${
-                isLight 
-                  ? 'text-slate-900 hover:text-black hover:bg-slate-900/[0.05]' 
-                  : 'text-[#dfe5ee] hover:text-white hover:bg-[rgb(238_242_248/0.07)]'
-              }`}
-            >
-              Autentificare
-            </a>
-
             {/* Demo Live CTA */}
             <button
               type="button"
@@ -1082,22 +1066,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Drawer Body */}
             <div className="px-5 pb-10 pt-4 flex-1">
               
-              {/* Primary Actions Top */}
+              {/* Primary Action Top */}
               <div className="flex flex-col gap-3">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    alert('Portalul securizat de autentificare SAMpro Cloud este activ. Contactați administratorul pentru acreditare sau solicitați acces demonstrativ.');
-                  }}
-                  className={`inline-flex h-12 items-center justify-center rounded-[6px] border font-bold text-sm transition-colors ${
-                    isLight 
-                      ? 'border-slate-300 hover:bg-slate-100 text-slate-900' 
-                      : 'border-white/15 hover:bg-white/5 text-white'
-                  }`}
-                >
-                  Autentificare
-                </button>
                 <button
                   type="button"
                   onClick={() => {
