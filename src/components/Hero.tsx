@@ -233,7 +233,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
         </div>
 
         {/* ── Hero Content ─────────────────────────────────────────────── */}
-        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-3 sm:pt-0 sm:my-auto">
+        <div className="max-w-7xl w-full mx-auto px-7 sm:px-6 lg:px-8 relative z-10 pt-3 sm:pt-0 sm:my-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
             {/* Left Column */}
