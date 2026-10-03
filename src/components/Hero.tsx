@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Play, 
   ArrowRight, 
-  Activity
+  Activity,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 const heroBgLight = '/assets/hero-bg-light.jpg';
@@ -17,6 +19,20 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, theme = 'dark' }) => {
   const isDark = theme === 'dark';
+  const [activeHeroCard, setActiveHeroCard] = useState(0);
+  const heroCardsRef = useRef<HTMLDivElement>(null);
+
+  const scrollToHeroCard = (idx: number) => {
+    const clampedIdx = Math.max(0, Math.min(idx, 5));
+    setActiveHeroCard(clampedIdx);
+    if (heroCardsRef.current) {
+      const cardWidth = heroCardsRef.current.offsetWidth * 0.82;
+      heroCardsRef.current.scrollTo({
+        left: clampedIdx * (cardWidth + 14),
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const featureCards = [
     {
@@ -303,13 +319,24 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
         </div>
 
         <div className="max-w-7xl 2xl:max-w-[1680px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 sm:gap-4">
+          <div 
+            ref={heroCardsRef}
+            onScroll={(e) => {
+              const el = e.currentTarget;
+              const cardWidth = el.offsetWidth * 0.82;
+              const idx = Math.round(el.scrollLeft / cardWidth);
+              if (idx !== activeHeroCard && idx >= 0 && idx < featureCards.length) {
+                setActiveHeroCard(idx);
+              }
+            }}
+            className="flex sm:grid overflow-x-auto sm:overflow-visible snap-x snap-mandatory scrollbar-none gap-3.5 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+          >
             {featureCards.map((card) => {
               return (
                 <a
                   key={card.index}
                   href={card.href}
-                  className={`group flex flex-col justify-between p-5 sm:p-5.5 rounded-[22px] relative overflow-hidden transition-all duration-300 cursor-pointer
+                  className={`w-[82vw] xs:w-[75vw] sm:w-auto shrink-0 sm:shrink snap-center group flex flex-col justify-between p-5 sm:p-5.5 rounded-[22px] relative overflow-hidden transition-all duration-300 cursor-pointer
                     ${isDark 
                       ? 'bg-[#06142a]/90 backdrop-blur-xl border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.45)] hover:border-[#00D2FF]/40 hover:bg-[#091b38] hover:-translate-y-2 hover:shadow-[0_22px_45px_rgba(0,210,255,0.18)]' 
                       : 'bg-white/95 backdrop-blur-xl border border-blue-100/90 shadow-[0_15px_35px_rgba(0,102,255,0.06)] hover:border-blue-300 hover:shadow-[0_22px_45px_rgba(0,102,255,0.14)] hover:-translate-y-2'
@@ -360,6 +387,45 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
                 </a>
               );
             })}
+          </div>
+
+          {/* Mobile Carousel Controls & Indicators (< sm) */}
+          <div className="sm:hidden flex items-center justify-between pt-4 px-1">
+            <button
+              type="button"
+              onClick={() => scrollToHeroCard(activeHeroCard - 1)}
+              disabled={activeHeroCard === 0}
+              className="p-1.5 rounded-full bg-slate-200/60 dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-30 transition-all cursor-pointer"
+              aria-label="Card anterior"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            <div className="flex items-center gap-1.5">
+              {featureCards.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => scrollToHeroCard(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeHeroCard === idx
+                      ? 'w-6 bg-[#0066FF] dark:bg-[#00D2FF]'
+                      : 'w-2 bg-slate-300 dark:bg-white/20 hover:bg-slate-400'
+                  }`}
+                  aria-label={`Sari la cardul ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => scrollToHeroCard(activeHeroCard + 1)}
+              disabled={activeHeroCard === featureCards.length - 1}
+              className="p-1.5 rounded-full bg-slate-200/60 dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-30 transition-all cursor-pointer"
+              aria-label="Card următor"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>

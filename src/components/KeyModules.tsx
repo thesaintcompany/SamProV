@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Zap, 
   Target, 
@@ -21,7 +21,9 @@ import {
   Scale, 
   Quote,
   Sparkles,
-  Layers
+  Layers,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 interface KeyModulesProps {
@@ -30,6 +32,37 @@ interface KeyModulesProps {
 
 export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) => {
   const [activeStep, setActiveStep] = useState<number>(4); // Default highlighted step on WhatsApp deviz
+
+  // Mobile carousel states for Optimizare & Siguranta
+  const [activeOptimizareIndex, setActiveOptimizareIndex] = useState(0);
+  const optimizareRef = useRef<HTMLDivElement>(null);
+
+  const scrollToOptimizareCard = (idx: number) => {
+    const clampedIdx = Math.max(0, Math.min(idx, 2));
+    setActiveOptimizareIndex(clampedIdx);
+    if (optimizareRef.current) {
+      const cardWidth = optimizareRef.current.offsetWidth * 0.86;
+      optimizareRef.current.scrollTo({
+        left: clampedIdx * (cardWidth + 16),
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const [activeSigurantaIndex, setActiveSigurantaIndex] = useState(0);
+  const sigurantaRef = useRef<HTMLDivElement>(null);
+
+  const scrollToSigurantaCard = (idx: number) => {
+    const clampedIdx = Math.max(0, Math.min(idx, 2));
+    setActiveSigurantaIndex(clampedIdx);
+    if (sigurantaRef.current) {
+      const cardWidth = sigurantaRef.current.offsetWidth * 0.86;
+      sigurantaRef.current.scrollTo({
+        left: clampedIdx * (cardWidth + 16),
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const flowSteps = [
     { id: 1, label: 'Client sună', sub: 'Înregistrare apel', icon: PhoneCall },
@@ -326,10 +359,21 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div 
+              ref={optimizareRef}
+              onScroll={(e) => {
+                const el = e.currentTarget;
+                const cardWidth = el.offsetWidth * 0.86;
+                const idx = Math.round(el.scrollLeft / cardWidth);
+                if (idx !== activeOptimizareIndex && idx >= 0 && idx < 3) {
+                  setActiveOptimizareIndex(idx);
+                }
+              }}
+              className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none gap-4 md:gap-6 pb-2 -mx-2 px-2 md:mx-0 md:px-0 md:grid-cols-3"
+            >
               
               {/* Feature Box 1: Resurse */}
-              <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-4 flex flex-col justify-between">
+              <div className="w-[86vw] xs:w-[80vw] md:w-auto shrink-0 md:shrink snap-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center font-bold">
                     <Calendar className="w-5 h-5" />
@@ -357,7 +401,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               </div>
 
               {/* Feature Box 2: Decizii pe date */}
-              <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-4 flex flex-col justify-between">
+              <div className="w-[86vw] xs:w-[80vw] md:w-auto shrink-0 md:shrink snap-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="w-10 h-10 rounded-xl bg-blue-500/15 text-[#0066FF] dark:text-[#00D2FF] flex items-center justify-center font-bold">
                     <BarChart3 className="w-5 h-5" />
@@ -385,7 +429,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               </div>
 
               {/* Feature Box 3: Costurile scad */}
-              <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-4 flex flex-col justify-between">
+              <div className="w-[86vw] xs:w-[80vw] md:w-auto shrink-0 md:shrink snap-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center font-bold">
                     <Coins className="w-5 h-5" />
@@ -412,6 +456,45 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                 </div>
               </div>
 
+            </div>
+
+            {/* Mobile Carousel Indicators for Optimizare (< md) */}
+            <div className="md:hidden flex items-center justify-between pt-2 px-1">
+              <button
+                type="button"
+                onClick={() => scrollToOptimizareCard(activeOptimizareIndex - 1)}
+                disabled={activeOptimizareIndex === 0}
+                className="p-1.5 rounded-full bg-slate-200/60 dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-30 transition-all cursor-pointer"
+                aria-label="Card anterior"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              <div className="flex items-center gap-1.5">
+                {[0, 1, 2].map((idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => scrollToOptimizareCard(idx)}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeOptimizareIndex === idx
+                        ? 'w-6 bg-emerald-500'
+                        : 'w-2 bg-slate-300 dark:bg-white/20'
+                    }`}
+                    aria-label={`Sari la cardul ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => scrollToOptimizareCard(activeOptimizareIndex + 1)}
+                disabled={activeOptimizareIndex === 2}
+                className="p-1.5 rounded-full bg-slate-200/60 dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-30 transition-all cursor-pointer"
+                aria-label="Card următor"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
 
             {onSelectSimulatorTab && (
@@ -465,56 +548,112 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div 
+              ref={sigurantaRef}
+              onScroll={(e) => {
+                const el = e.currentTarget;
+                const cardWidth = el.offsetWidth * 0.86;
+                const idx = Math.round(el.scrollLeft / cardWidth);
+                if (idx !== activeSigurantaIndex && idx >= 0 && idx < 3) {
+                  setActiveSigurantaIndex(idx);
+                }
+              }}
+              className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none gap-4 md:gap-6 pb-2 -mx-2 px-2 md:mx-0 md:px-0 md:grid-cols-3"
+            >
               
               {/* Pillar 3 Item 1 */}
-              <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-500 flex items-center justify-center font-bold">
-                  <Lock className="w-5 h-5" />
+              <div className="w-[86vw] xs:w-[80vw] md:w-auto shrink-0 md:shrink snap-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-3 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-500 flex items-center justify-center font-bold">
+                    <Lock className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                    Date Centralizate &amp; Backup
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Dacă pleacă un angajat, istoricul clienților și devizele rămân în SAMPRO. Nu pe un caiet sau pe un telefon personal.
+                  </p>
                 </div>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-                  Date Centralizate &amp; Backup
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Dacă pleacă un angajat, istoricul clienților și devizele rămân în SAMPRO. Nu pe un caiet sau pe un telefon personal.
-                </p>
                 <div className="text-[11px] text-indigo-600 dark:text-indigo-400 font-medium pt-2 border-t border-slate-200 dark:border-white/5">
                   • Trasabilitate totală pe fiecare semnătură
                 </div>
               </div>
 
               {/* Pillar 3 Item 2 */}
-              <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/15 text-[#0066FF] dark:text-[#00D2FF] flex items-center justify-center font-bold">
-                  <Scale className="w-5 h-5" />
+              <div className="w-[86vw] xs:w-[80vw] md:w-auto shrink-0 md:shrink snap-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-3 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/15 text-[#0066FF] dark:text-[#00D2FF] flex items-center justify-center font-bold">
+                    <Scale className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                    Protecție Legală &amp; Financiară
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Devize semnate electronic și procese-verbale de predare foto. Nu mai apar discuții de tip „nu am fost de acord cu reparația”.
+                  </p>
                 </div>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-                  Protecție Legală &amp; Financiară
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Devize semnate electronic și procese-verbale de predare foto. Nu mai apar discuții de tip „nu am fost de acord cu reparația”.
-                </p>
                 <div className="text-[11px] text-[#0066FF] dark:text-[#00D2FF] font-medium pt-2 border-t border-slate-200 dark:border-white/5">
                   • Conformitate fiscală &amp; Legea HG 152/2023
                 </div>
               </div>
 
               {/* Pillar 3 Item 3 */}
-              <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center font-bold">
-                  <Building2 className="w-5 h-5" />
+              <div className="w-[86vw] xs:w-[80vw] md:w-auto shrink-0 md:shrink snap-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 space-y-3 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center font-bold">
+                    <Building2 className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                    Continuitatea Afacerii &amp; Scalare
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Poți delega fără teamă și poți deschide un al doilea atelier fără haos. Echipa lucrează după procese clare, nu după „cum știe Ion”.
+                  </p>
                 </div>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-                  Continuitatea Afacerii &amp; Scalare
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Poți delega fără teamă și poți deschide un al doilea atelier fără haos. Echipa lucrează după procese clare, nu după „cum știe Ion”.
-                </p>
                 <div className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium pt-2 border-t border-slate-200 dark:border-white/5">
                   • Construit pentru service-uri care se extind
                 </div>
               </div>
 
+            </div>
+
+            {/* Mobile Carousel Indicators for Siguranță (< md) */}
+            <div className="md:hidden flex items-center justify-between pt-2 px-1">
+              <button
+                type="button"
+                onClick={() => scrollToSigurantaCard(activeSigurantaIndex - 1)}
+                disabled={activeSigurantaIndex === 0}
+                className="p-1.5 rounded-full bg-slate-200/60 dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-30 transition-all cursor-pointer"
+                aria-label="Card anterior"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              <div className="flex items-center gap-1.5">
+                {[0, 1, 2].map((idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => scrollToSigurantaCard(idx)}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeSigurantaIndex === idx
+                        ? 'w-6 bg-indigo-500'
+                        : 'w-2 bg-slate-300 dark:bg-white/20'
+                    }`}
+                    aria-label={`Sari la cardul ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => scrollToSigurantaCard(activeSigurantaIndex + 1)}
+                disabled={activeSigurantaIndex === 2}
+                className="p-1.5 rounded-full bg-slate-200/60 dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-30 transition-all cursor-pointer"
+                aria-label="Card următor"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
 
             {onSelectSimulatorTab && (

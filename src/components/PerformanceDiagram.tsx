@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
-import { Zap } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const PerformanceDiagram: React.FC = () => {
   const [activeStage, setActiveStage] = useState<number>(2); // Default on WhatsApp closing
+  const pipelineRef = useRef<HTMLDivElement>(null);
+
+  const scrollToPipelineStage = (idx: number) => {
+    const clampedIdx = Math.max(0, Math.min(idx, 3));
+    setActiveStage(clampedIdx);
+    if (pipelineRef.current) {
+      const cardWidth = pipelineRef.current.offsetWidth * 0.86;
+      pipelineRef.current.scrollTo({
+        left: clampedIdx * (cardWidth + 16),
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const stages = [
     {
@@ -152,14 +165,25 @@ export const PerformanceDiagram: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div 
+            ref={pipelineRef}
+            onScroll={(e) => {
+              const el = e.currentTarget;
+              const cardWidth = el.offsetWidth * 0.86;
+              const idx = Math.round(el.scrollLeft / cardWidth);
+              if (idx !== activeStage && idx >= 0 && idx < stages.length) {
+                setActiveStage(idx);
+              }
+            }}
+            className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none gap-4 pb-2 -mx-2 px-2 md:mx-0 md:px-0 md:grid-cols-2 lg:grid-cols-4"
+          >
             {stages.map((stage, idx) => {
               const isActive = activeStage === idx;
               return (
                 <div
                   key={stage.num}
-                  onClick={() => setActiveStage(idx)}
-                  className={`rounded-3xl p-5 transition-all duration-300 cursor-pointer flex flex-col justify-between border ${isActive
+                  onClick={() => scrollToPipelineStage(idx)}
+                  className={`w-[86vw] xs:w-[80vw] md:w-auto shrink-0 md:shrink snap-center rounded-3xl p-5 transition-all duration-300 cursor-pointer flex flex-col justify-between border ${isActive
                     ? 'bg-gradient-to-b from-[#092347] to-[#05162f] border-[#00D2FF]/50 shadow-[0_10px_30px_rgba(0,102,255,0.3)]'
                     : 'bg-[#06152b]/80 hover:bg-[#091f3d] border-white/10'
                     }`}
@@ -215,6 +239,45 @@ export const PerformanceDiagram: React.FC = () => {
                 </div>
               );
             })}
+          </div>
+
+          {/* Mobile Carousel Indicators for Pipeline 4 Etape (< md) */}
+          <div className="md:hidden flex items-center justify-between pt-2 px-1">
+            <button
+              type="button"
+              onClick={() => scrollToPipelineStage(activeStage - 1)}
+              disabled={activeStage === 0}
+              className="p-1.5 rounded-full bg-white/10 text-white disabled:opacity-30 transition-all cursor-pointer"
+              aria-label="Etapa anterioară"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            <div className="flex items-center gap-1.5">
+              {stages.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => scrollToPipelineStage(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeStage === idx
+                      ? 'w-6 bg-[#00D2FF]'
+                      : 'w-2 bg-white/20'
+                  }`}
+                  aria-label={`Sari la etapa ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => scrollToPipelineStage(activeStage + 1)}
+              disabled={activeStage === stages.length - 1}
+              className="p-1.5 rounded-full bg-white/10 text-white disabled:opacity-30 transition-all cursor-pointer"
+              aria-label="Etapa următoare"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
