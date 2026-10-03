@@ -45,11 +45,12 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
       features: [
         'Tot din Planul Start inclus',
         'Până la 8 elevatoare & mecanici simultan',
-        'Conectare   RAR Autopass inclusă',
+        'Conectare RAR Autopass inclusă',
         'Aprobare interactivă 1-tap   pentru clienți',
-        'Protecție coduri piese & verificare compatibilitate VIN',
+        'Recepție pentru Automobile',
         'Modul Smart PR: notificări de status și remindere ITP',
-        'Raportare avansată timpi de lucru & eficiență mecanic',
+        'Raportare avansată asupra bazinului auto procesat',
+        'App Note de Constatare si Receptie',
         'Migrarea poate fi asistată de echipa SAMpro'
       ],
       ctaText: 'Alege Plan Pro (Recomandat)'
@@ -65,7 +66,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
       popular: false,
       features: [
         'Elevatoare și posturi de lucru nelimitate',
-        'Multi-locație (gestiune centralizată puncte de lucru)',
+        'Management Recenzii Google profesionla',
         'Integrare API ERP & Contabilitate (Saga, SmartBill etc.)',
         'Server Cloud dedicat cu izolare totală a datelor',
         'SLA garantat de intervenție sub 30 de minute',
