@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Shield,
   ArrowRight,
   Zap,
-  CheckCircle2
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 interface PricingProps {
@@ -74,6 +76,34 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
     }
   ];
 
+  const [activePlanIdx, setActivePlanIdx] = useState(1);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollToPlan = (idx: number) => {
+    const clamped = Math.max(0, Math.min(idx, plans.length - 1));
+    setActivePlanIdx(clamped);
+    if (carouselRef.current) {
+      const children = Array.from(carouselRef.current.children) as HTMLElement[];
+      const targetChild = children[clamped];
+      if (targetChild) {
+        const left = targetChild.offsetLeft - (carouselRef.current.offsetWidth - targetChild.offsetWidth) / 2;
+        carouselRef.current.scrollTo({
+          left: Math.max(0, left),
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (carouselRef.current && window.innerWidth < 1024) {
+        scrollToPlan(1);
+      }
+    }, 150);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section id="preturi" className="py-24 sm:py-32 bg-slate-50 dark:bg-[#020b1b] relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-300">
 
@@ -124,22 +154,37 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
           </div>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+        {/* Pricing Cards Grid (Desktop) / Carousel (Mobile & Tablet) */}
+        <div 
+          ref={carouselRef}
+          onScroll={(e) => {
+            const el = e.currentTarget;
+            const scrollLeft = el.scrollLeft;
+            const children = Array.from(el.children) as HTMLElement[];
+            if (children.length > 0) {
+              const offsets = children.map((c) => Math.abs(c.offsetLeft - scrollLeft - (el.offsetWidth - c.offsetWidth) / 2));
+              const closest = offsets.indexOf(Math.min(...offsets));
+              if (closest !== activePlanIdx && closest >= 0 && closest < plans.length) {
+                setActivePlanIdx(closest);
+              }
+            }
+          }}
+          className="flex lg:grid overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none gap-5 sm:gap-6 lg:gap-8 items-stretch max-w-6xl mx-auto pt-6 pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-auto lg:px-0 lg:grid-cols-3"
+        >
           {plans.map((plan) => {
             const price = isAnnual ? plan.annualPrice : plan.monthlyPrice;
 
             return (
               <div
                 key={plan.id}
-                className={`rounded-3xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${plan.popular
-                    ? 'bg-gradient-to-b from-[#09254d] via-[#082245] to-[#05162d] text-white border-2 border-[#0066FF] dark:border-[#00D2FF] shadow-[0_20px_50px_rgba(0,102,255,0.35)] scale-105 z-10'
+                className={`w-[85vw] xs:w-[80vw] sm:w-[56vw] md:w-[46vw] lg:w-auto shrink-0 lg:shrink snap-center rounded-3xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${plan.popular
+                    ? 'bg-gradient-to-b from-[#09254d] via-[#082245] to-[#05162d] text-white border-2 border-[#0066FF] dark:border-[#00D2FF] shadow-[0_20px_50px_rgba(0,102,255,0.35)] lg:scale-105 z-10'
                     : 'bg-white dark:bg-[#06152b]/90 hover:bg-slate-50 dark:hover:bg-[#091f3d] border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-none'
                   }`}
               >
                 {/* Popular Ribbon Tag */}
                 {plan.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#0066FF] to-[#00D2FF] text-white font-mono text-[11px] font-black uppercase tracking-wider shadow-md">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#0066FF] to-[#00D2FF] text-white font-mono text-[11px] font-black uppercase tracking-wider shadow-md whitespace-nowrap">
                     Cel Mai Recomandat
                   </div>
                 )}
@@ -216,6 +261,45 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
               </div>
             );
           })}
+        </div>
+
+        {/* Mobile & Tablet Carousel Navigation (< lg) */}
+        <div className="lg:hidden flex items-center justify-between max-w-xs mx-auto mt-6 px-2">
+          <button
+            type="button"
+            onClick={() => scrollToPlan(activePlanIdx - 1)}
+            disabled={activePlanIdx === 0}
+            className="p-2.5 rounded-full bg-slate-200/80 dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-25 transition-all cursor-pointer hover:bg-slate-300 dark:hover:bg-white/20 active:scale-95"
+            aria-label="Pachetul anterior"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {plans.map((plan, idx) => (
+              <button
+                key={plan.id}
+                type="button"
+                onClick={() => scrollToPlan(idx)}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  activePlanIdx === idx
+                    ? 'w-7 h-2.5 bg-[#0066FF] dark:bg-[#00D2FF]'
+                    : 'w-2.5 h-2.5 bg-slate-300 dark:bg-white/25 hover:bg-slate-400 dark:hover:bg-white/40'
+                }`}
+                aria-label={`Vezi ${plan.name}`}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => scrollToPlan(activePlanIdx + 1)}
+            disabled={activePlanIdx === plans.length - 1}
+            className="p-2.5 rounded-full bg-slate-200/80 dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-25 transition-all cursor-pointer hover:bg-slate-300 dark:hover:bg-white/20 active:scale-95"
+            aria-label="Pachetul următor"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Guarantee Banner */}
