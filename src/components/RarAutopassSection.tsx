@@ -1,9 +1,7 @@
 import React from 'react';
 import { 
   ShieldCheck, 
-  FileCheck2, 
   ArrowRight, 
-  CheckCircle2, 
   Award,
   Send,
   MousePointerClick

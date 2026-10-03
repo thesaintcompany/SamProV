@@ -2,7 +2,6 @@ import React from 'react';
 import { 
   Globe, 
   Mail, 
-  Phone, 
   ShieldCheck, 
   Clock, 
   ExternalLink,
@@ -181,13 +180,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal }) => {
                 <a href="mailto:contact@buu.ro" className="hover:text-white">
                   contact@buu.ro • suport@sampro.ro
                 </a>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="font-mono font-bold text-white">
-                  +40 310 050 050
-                </span>
               </div>
 
               <div className="flex items-center gap-2 text-slate-400 text-[11px]">
