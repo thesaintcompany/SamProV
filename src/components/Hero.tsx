@@ -138,7 +138,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
       {/* ═══════════════════════════════════════════════════════════════════
           1.  CINEMATIC HERO STAGE
       ═══════════════════════════════════════════════════════════════════ */}
-      <div className="relative w-full min-h-[680px] sm:min-h-[760px] lg:min-h-[min(92vh,880px)] 2xl:min-h-[min(88vh,980px)] pt-28 sm:pt-36 pb-16 sm:pb-20 flex flex-col justify-between overflow-hidden">
+      <div className="relative w-full min-h-[700px] sm:min-h-[760px] lg:min-h-[min(92vh,880px)] 2xl:min-h-[min(88vh,980px)] pt-24 sm:pt-36 pb-12 sm:pb-20 flex flex-col justify-start sm:justify-between overflow-hidden">
 
         {/* ── Background Stage: full-bleed, anchored bottom-right ─────────── */}
         <div className="absolute inset-0 pointer-events-none select-none">
@@ -156,13 +156,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
           />
 
           {/* 3. Readability scrims — per breakpoint */}
-          {/* Mobile: text top, car lower-middle */}
-          <div
-            className="sm:hidden absolute inset-0 z-[2]"
-            style={{
-              background: `linear-gradient(to bottom, rgba(${bgRgb},0.92) 0%, rgba(${bgRgb},0.78) 36%, rgba(${bgRgb},0.15) 60%, rgba(${bgRgb},0.75) 88%, ${bg} 100%)`,
-            }}
-          />
+          {/* Mobile: No white filter overlay so mobile artwork stays crisp and vibrant */}
+          
           {/* Tablet: text top, car bottom */}
           <div
             className="hidden sm:block lg:hidden absolute inset-0 z-[2]"
@@ -177,17 +172,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
               background: `linear-gradient(90deg, ${bg} 0%, ${bg} calc(50% - 120px), rgba(${bgRgb},0.82) calc(50% + 40px), rgba(${bgRgb},0.35) calc(50% + 260px), transparent calc(50% + 560px))`,
             }}
           />
-          {/* Top scrim: keeps the transparent navbar legible over the artwork */}
+          {/* Top scrim: keeps the transparent navbar legible over the artwork on desktop/tablet */}
           <div
-            className="absolute inset-x-0 top-0 h-36 z-[2]"
+            className="hidden sm:block absolute inset-x-0 top-0 h-36 z-[2]"
             style={{ background: `linear-gradient(to bottom, rgba(${bgRgb},0.85), transparent)` }}
           />
-          {/* Bottom fade into the cards section */}
+          {/* Bottom fade into the cards section (desktop/tablet full fade, subtle on mobile) */}
           <div
-            className="absolute inset-x-0 bottom-0 h-40 z-[2]"
+            className="hidden sm:block absolute inset-x-0 bottom-0 h-40 z-[2]"
             style={{ background: `linear-gradient(to top, ${bg}, transparent)` }}
           />
-          {/* Subtle vignette for a cinematic finish */}
+          <div
+            className="sm:hidden absolute inset-x-0 bottom-0 h-14 z-[2]"
+            style={{ background: `linear-gradient(to top, ${bg}, transparent)` }}
+          />
+          {/* Subtle vignette for a cinematic finish on desktop */}
           <div
             className="hidden lg:block absolute inset-0 z-[2]"
             style={{ background: `radial-gradient(ellipse 120% 90% at 70% 60%, transparent 55%, rgba(${bgRgb},0.55) 100%)` }}
@@ -234,18 +233,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
         </div>
 
         {/* ── Hero Content ─────────────────────────────────────────────── */}
-        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
+        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-3 sm:pt-0 sm:my-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
             {/* Left Column */}
-            <div className="lg:col-span-6 max-w-xl lg:max-w-none flex flex-col items-start space-y-4 pt-2">
+            <div className="lg:col-span-6 max-w-xl lg:max-w-none flex flex-col items-start space-y-3.5 sm:space-y-4 pt-1 sm:pt-2">
 
               <div className={`inline-flex items-center gap-2.5 font-rounded text-[11px] font-bold tracking-wider uppercase ${isDark ? 'text-[#00D2FF]' : 'text-[#0066FF]'}`}>
                 <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${isDark ? 'bg-[#00D2FF]' : 'bg-[#0066FF]'}`} />
                 MANAGEMENT INTELIGENT — 2026
               </div>
 
-              <h1 className={`text-4xl sm:text-5xl lg:text-[62px] font-black tracking-tight leading-[1.05] ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              <h1 className={`text-[34px] xs:text-4xl sm:text-5xl lg:text-[62px] font-black tracking-tight leading-[1.08] sm:leading-[1.05] ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 Tot ce ai nevoie,<br />
                 <span style={{ color: accent }}>într-un singur</span><br />
                 loc.
@@ -260,7 +259,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
                 De la recepție și devize în 45 de secunde, la sincronizare directă RAR și comenzi piese.
               </p>
 
-              <div className="flex flex-wrap items-center gap-5 pt-3 w-full sm:w-auto">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-5 pt-2 sm:pt-3 w-full sm:w-auto">
                 <button
                   onClick={onOpenDemo}
                   className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-[#0066FF] hover:bg-[#0052cc] text-white font-bold text-sm sm:text-base rounded-full shadow-[0_10px_25px_rgba(0,102,255,0.35)] hover:shadow-[0_14px_30px_rgba(0,102,255,0.45)] transition-all duration-300 hover:scale-[1.02] active:scale-95 group cursor-pointer"
@@ -287,7 +286,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
             </div>
 
             {/* Right Column: spacer for layout grid */}
-            <div className="lg:col-span-6 min-h-[160px] sm:min-h-[320px] pointer-events-none" />
+            <div className="lg:col-span-6 min-h-[220px] xs:min-h-[260px] sm:min-h-[320px] pointer-events-none" />
           </div>
         </div>
       </div>
