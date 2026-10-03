@@ -11,7 +11,7 @@ export const Testimonials: React.FC = () => {
       hoists: '6 Elevatoare',
       stars: 5,
       avatar: '/assets/avatar-cristian-popescu.jpg',
-      text: 'Trimiterea devizului pe WhatsApp cu fotografii atașate a schimbat radical relația cu clienții. Înainte pierdeam ore întregi sunând după aprobări; acum, în 5 minute avem devizul confirmat de pe telefonul clientului. Rata noastră de acceptare a crescut cu peste 30%!'
+      text: 'Trimiterea devizului   cu fotografii atașate a schimbat radical relația cu clienții. Înainte pierdeam ore întregi sunând după aprobări; acum, în 5 minute avem devizul confirmat de pe telefonul clientului. Rata noastră de acceptare a crescut cu peste 30%!'
     },
     {
       name: 'Ing. Radu Dumitru',
@@ -38,7 +38,7 @@ export const Testimonials: React.FC = () => {
   return (
     <section className="py-20 sm:py-28 bg-white dark:bg-[#030d22] relative overflow-hidden text-slate-900 dark:text-white border-t border-slate-200 dark:border-white/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 text-xs font-rounded font-bold tracking-wider text-[#0066FF] dark:text-[#00D2FF] mb-4">
@@ -63,7 +63,7 @@ export const Testimonials: React.FC = () => {
               className="p-6 sm:p-7 rounded-3xl bg-slate-50 dark:bg-[#06152b]/90 border border-slate-200 dark:border-white/10 flex flex-col justify-between space-y-6 hover:border-[#0066FF]/30 dark:hover:border-[#00D2FF]/30 transition-all shadow-xs dark:shadow-lg"
             >
               <div className="space-y-4">
-                
+
                 {/* Stars */}
                 <div className="flex items-center gap-1 text-amber-400">
                   {[...Array(r.stars)].map((_, i) => (

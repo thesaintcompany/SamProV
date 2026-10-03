@@ -123,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const solutionsProcess: MenuItem[] = [
     {
       title: 'Recepție & Devize',
-      desc: 'Programări rapide, deviz instant în 45s și aprobare pe WhatsApp.',
+      desc: 'Programări rapide, deviz instant în 45s și aprobare  .',
       href: '#module'
     },
     {
@@ -384,8 +384,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   href="#preturi"
                   onClick={closeMenu}
                   className={`inline-flex h-10 items-center rounded-[6px] px-3 text-[0.9375rem] transition-colors ${isLight
-                      ? 'text-slate-900 hover:text-black hover:bg-slate-900/[0.05] font-semibold'
-                      : 'text-[#dfe5ee] hover:text-white hover:bg-[rgb(238_242_248/0.07)] font-medium'
+                    ? 'text-slate-900 hover:text-black hover:bg-slate-900/[0.05] font-semibold'
+                    : 'text-[#dfe5ee] hover:text-white hover:bg-[rgb(238_242_248/0.07)] font-medium'
                     }`}
                 >
                   Prețuri
@@ -458,8 +458,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-label={theme === 'dark' ? 'Temă luminoasă' : 'Temă întunecată'}
                 title={theme === 'dark' ? 'Comută pe modul luminos' : 'Comută pe modul întunecat'}
                 className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer shrink-0 ${isLight
-                    ? 'text-slate-800 hover:text-black hover:bg-slate-900/[0.06]'
-                    : 'text-[#c9d2e0] hover:text-white hover:bg-[rgb(238_242_248/0.08)]'
+                  ? 'text-slate-800 hover:text-black hover:bg-slate-900/[0.06]'
+                  : 'text-[#c9d2e0] hover:text-white hover:bg-[rgb(238_242_248/0.08)]'
                   }`}
               >
                 {theme === 'dark' ? (
@@ -475,8 +475,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               type="button"
               onClick={onOpenDemo}
               className={`hidden h-10 items-center gap-1.5 rounded-[6px] px-3 text-[0.9375rem] font-semibold transition-colors 2xl:inline-flex cursor-pointer shrink-0 whitespace-nowrap ${isLight
-                  ? 'text-slate-900 hover:text-[#0066FF] hover:bg-blue-50/80'
-                  : 'text-[#eef2f8] hover:text-white hover:bg-[rgb(238_242_248/0.07)]'
+                ? 'text-slate-900 hover:text-[#0066FF] hover:bg-blue-50/80'
+                : 'text-[#eef2f8] hover:text-white hover:bg-[rgb(238_242_248/0.07)]'
                 }`}
             >
               <span>Demo Live</span>
@@ -500,8 +500,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-expanded={mobileMenuOpen}
                 aria-label="Deschide meniul"
                 className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer ${isLight
-                    ? 'text-slate-900 hover:bg-slate-900/[0.08]'
-                    : 'text-[#eef2f8] hover:bg-[rgb(238_242_248/0.08)]'
+                  ? 'text-slate-900 hover:bg-slate-900/[0.08]'
+                  : 'text-[#eef2f8] hover:bg-[rgb(238_242_248/0.08)]'
                   }`}
               >
                 <Menu className="size-5" />
@@ -518,8 +518,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         {activeMenu && (
           <div
             className={`absolute top-full left-0 right-0 z-50 w-full border-b transition-all duration-200 animate-in fade-in slide-in-from-top-2 shadow-2xl ${isLight
-                ? 'bg-white/98 backdrop-blur-2xl border-slate-200/90 shadow-[0_25px_50px_rgba(0,0,0,0.12)]'
-                : 'bg-[#070b14]/98 backdrop-blur-2xl border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.7)]'
+              ? 'bg-white/98 backdrop-blur-2xl border-slate-200/90 shadow-[0_25px_50px_rgba(0,0,0,0.12)]'
+              : 'bg-[#070b14]/98 backdrop-blur-2xl border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.7)]'
               }`}
             onMouseEnter={() => {
               if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -582,8 +582,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
                     <div className={`rounded-[12px] p-6 border ${isLight
-                        ? 'bg-slate-50/90 border-slate-200/90'
-                        : 'bg-[rgb(238_242_248/0.04)] border-white/10'
+                      ? 'bg-slate-50/90 border-slate-200/90'
+                      : 'bg-[rgb(238_242_248/0.04)] border-white/10'
                       }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Demo Live
@@ -669,8 +669,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
                     <div className={`rounded-[12px] p-6 border ${isLight
-                        ? 'bg-slate-50/90 border-slate-200/90'
-                        : 'bg-[rgb(238_242_248/0.04)] border-white/10'
+                      ? 'bg-slate-50/90 border-slate-200/90'
+                      : 'bg-[rgb(238_242_248/0.04)] border-white/10'
                       }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Tur ghidat
@@ -708,8 +708,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 href={item.href}
                                 onClick={closeMenu}
                                 className={`group flex h-full flex-col gap-3 rounded-[10px] border p-4 transition-colors ${isLight
-                                    ? 'border-slate-200/90 hover:border-slate-300 hover:bg-slate-50/90'
-                                    : 'border-[rgb(238_242_248/0.08)] hover:border-[rgb(238_242_248/0.18)] hover:bg-[rgb(238_242_248/0.05)]'
+                                  ? 'border-slate-200/90 hover:border-slate-300 hover:bg-slate-50/90'
+                                  : 'border-[rgb(238_242_248/0.08)] hover:border-[rgb(238_242_248/0.18)] hover:bg-[rgb(238_242_248/0.05)]'
                                   }`}
                               >
                                 <div className={`size-8 rounded-lg flex items-center justify-center border ${item.color}`}>
@@ -734,8 +734,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
                     <div className={`rounded-[12px] p-6 border ${isLight
-                        ? 'bg-slate-50/90 border-slate-200/90'
-                        : 'bg-[rgb(238_242_248/0.04)] border-white/10'
+                      ? 'bg-slate-50/90 border-slate-200/90'
+                      : 'bg-[rgb(238_242_248/0.04)] border-white/10'
                       }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Toate modulele
@@ -810,8 +810,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
                     <div className={`rounded-[12px] p-6 border ${isLight
-                        ? 'bg-slate-50/90 border-slate-200/90'
-                        : 'bg-[rgb(238_242_248/0.04)] border-white/10'
+                      ? 'bg-slate-50/90 border-slate-200/90'
+                      : 'bg-[rgb(238_242_248/0.04)] border-white/10'
                       }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Migrare date
@@ -889,8 +889,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
                     <div className={`rounded-[12px] p-6 border ${isLight
-                        ? 'bg-slate-50/90 border-slate-200/90'
-                        : 'bg-[rgb(238_242_248/0.04)] border-white/10'
+                      ? 'bg-slate-50/90 border-slate-200/90'
+                      : 'bg-[rgb(238_242_248/0.04)] border-white/10'
                       }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Integrări sigure
@@ -965,8 +965,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
                     <div className={`rounded-[12px] p-6 border ${isLight
-                        ? 'bg-slate-50/90 border-slate-200/90'
-                        : 'bg-[rgb(238_242_248/0.04)] border-white/10'
+                      ? 'bg-slate-50/90 border-slate-200/90'
+                      : 'bg-[rgb(238_242_248/0.04)] border-white/10'
                       }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Contact direct
@@ -1327,8 +1327,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                     type="button"
                     onClick={toggleTheme}
                     className={`w-full py-3 rounded-lg border font-bold text-sm flex items-center justify-center gap-2 transition-colors ${isLight
-                        ? 'border-slate-300 text-slate-800 hover:bg-slate-100'
-                        : 'border-white/15 text-slate-200 hover:bg-white/5'
+                      ? 'border-slate-300 text-slate-800 hover:bg-slate-100'
+                      : 'border-white/15 text-slate-200 hover:bg-white/5'
                       }`}
                   >
                     {theme === 'dark' ? <Sun className="size-4 text-amber-400" /> : <Moon className="size-4 text-slate-800" />}

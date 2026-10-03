@@ -74,7 +74,7 @@ git push -u origin main
 
 2. **Cinci Module Cheie ERP/CRM (Arhitectură Bento):**
    - **Calendar & Planificator Elevatoare**: Gestiune mecanic, posturi de lucru, timpi de staționare.
-   - **Devize Inteligente & Aprobare 1-Tap pe WhatsApp**: Trimitere ofertă cu foto/video atașate din atelier, aprobare instantă de către proprietar.
+   - **Devize Inteligente & Aprobare 1-Tap  **: Trimitere ofertă cu foto/video atașate din atelier, aprobare instantă de către proprietar.
    - **Hub Oficial RAR & Autopass**: Validare automată a seriei de șasiu (VIN), kilometraj certificat și emitere Pașaport Tehnic.
    - **Protecție Cod Piese & Cataloage OEM**: Eliminare retururi și protecția adaosului comercial.
    - **Smart PR & CRM Empatic**: Notificări automate pe parcursul reparației, remindere sezoniere (ITP, revizii, anvelope).

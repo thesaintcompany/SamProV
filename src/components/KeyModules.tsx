@@ -70,7 +70,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
     { id: 3, label: 'Recepție digitală', sub: 'Scanare VIN / RAR', icon: ClipboardCheck },
     { id: 4, label: 'Diagnostic', sub: 'Constatare pe tabletă', icon: Wrench },
     { id: 5, label: 'Deviz automat', sub: 'Normare & piese OEM', icon: FileSpreadsheet },
-    { id: 6, label: 'Aprobare 1-Tap', sub: 'Direct pe WhatsApp', icon: Send },
+    { id: 6, label: 'Aprobare 1-Tap', sub: 'Direct  ', icon: Send },
     { id: 7, label: 'Reparație', sub: 'Cronometru manoperă', icon: Clock },
     { id: 8, label: 'Factură & Follow-up', sub: 'e-Factura & recenzii', icon: CreditCard }
   ];
@@ -318,7 +318,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                     onClick={() => onSelectSimulatorTab('whatsapp')}
                     className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#0066FF] to-[#00D2FF] hover:opacity-95 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all"
                   >
-                    <span>Simulează Aprobarea pe WhatsApp</span>
+                    <span>Simulează Aprobarea  </span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 )}

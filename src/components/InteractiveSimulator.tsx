@@ -263,7 +263,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
       role: 'manager',
       avatarColor: 'bg-amber-600',
       time: '10:16',
-      message: 'Am întocmit fișa adițională (+340 Lei kit pompă + antigel G12) și am trimis linkul direct pe WhatsApp către clientul Andrei Popescu.',
+      message: 'Am întocmit fișa adițională (+340 Lei kit pompă + antigel G12) și am trimis linkul direct   către clientul Andrei Popescu.',
       badge: '📋 Recepție'
     },
     {
@@ -592,7 +592,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            Alege un scenariu mai jos și testează cum aprobă clientul devizul pe WhatsApp, transmiterea cu 1-click a datelor către RAR AutoPass și organizarea elevatoarelor în atelier.
+            Alege un scenariu mai jos și testează cum aprobă clientul devizul  , transmiterea cu 1-click a datelor către RAR AutoPass și organizarea elevatoarelor în atelier.
           </p>
 
           {/* Navigation Tabs - Responsive Grid without horizontal scroll */}
@@ -812,7 +812,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                           className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition-all active:scale-95 cursor-pointer"
                         >
                           <Check className="w-4 h-4 stroke-[3]" />
-                          <span>Aprobă Oferta pe WhatsApp (1-Click)</span>
+                          <span>Aprobă Oferta   (1-Click)</span>
                         </button>
                       ) : (
                         <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-700 dark:text-emerald-300 text-xs font-bold flex items-center gap-2">

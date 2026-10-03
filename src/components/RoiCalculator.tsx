@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { 
-  Calculator, 
-  TrendingUp, 
-  Clock, 
+import {
+  Calculator,
+  TrendingUp,
+  Clock,
   ArrowRight
 } from 'lucide-react';
 
@@ -33,13 +33,13 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
 
   return (
     <section id="calculator-roi" className="py-24 sm:py-32 bg-white dark:bg-[#041024] relative overflow-hidden text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
-      
+
       {/* Background Glows */}
       <div className="absolute top-1/2 right-10 w-96 h-96 bg-blue-500/5 dark:bg-[#00D2FF]/10 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-500/5 dark:bg-[#0066FF]/15 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 text-xs font-rounded font-bold tracking-wider text-[#0066FF] dark:text-[#00D2FF] mb-4">
@@ -57,10 +57,10 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
-          
+
           {/* Controls Left Column */}
           <div className="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-slate-50 dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 space-y-6 shadow-xs dark:shadow-xl">
-            
+
             <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10">
               <span className="font-bold text-slate-900 dark:text-white text-base">Date Atelier Auto</span>
               <span className="text-xs font-mono text-[#0066FF] dark:text-[#00D2FF] font-semibold">Parametri Ajustabili</span>
@@ -74,11 +74,11 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
                   {hoists} {hoists === 1 ? 'post' : 'elevatoare'}
                 </span>
               </div>
-              <input 
-                type="range" 
-                min={1} 
-                max={15} 
-                value={hoists} 
+              <input
+                type="range"
+                min={1}
+                max={15}
+                value={hoists}
                 onChange={(e) => setHoists(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#0066FF] dark:accent-[#00D2FF]"
               />
@@ -97,11 +97,11 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
                   {dailyQuotes} devize/zi
                 </span>
               </div>
-              <input 
-                type="range" 
-                min={2} 
-                max={40} 
-                value={dailyQuotes} 
+              <input
+                type="range"
+                min={2}
+                max={40}
+                value={dailyQuotes}
                 onChange={(e) => setDailyQuotes(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#0066FF] dark:accent-[#00D2FF]"
               />
@@ -120,12 +120,12 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
                   {avgTicket.toLocaleString('ro-RO')} lei
                 </span>
               </div>
-              <input 
-                type="range" 
-                min={400} 
-                max={4500} 
+              <input
+                type="range"
+                min={400}
+                max={4500}
                 step={50}
-                value={avgTicket} 
+                value={avgTicket}
                 onChange={(e) => setAvgTicket(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500 dark:accent-emerald-400"
               />
@@ -139,14 +139,14 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
             <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 text-xs text-slate-600 dark:text-slate-300 space-y-1">
               <div className="font-semibold text-slate-900 dark:text-white">Calcul bazat pe date reale din service-uri:</div>
               <div>• 21 minute economisite per deviz prin autocompletare RAR și coduri piese.</div>
-              <div>• +20% creștere a acceptanței devizelor prin aprobare direct pe WhatsApp.</div>
+              <div>• +20% creștere a acceptanței devizelor prin aprobare direct  .</div>
             </div>
 
           </div>
 
           {/* Results Right Column */}
           <div className="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#071d3d] via-[#082a58] to-[#051833] border-2 border-[#00D2FF]/40 space-y-6 shadow-2xl relative overflow-hidden">
-            
+
             <div className="absolute top-0 right-0 px-4 py-1.5 rounded-bl-2xl bg-gradient-to-l from-emerald-500 to-teal-500 text-white font-mono font-bold text-xs uppercase tracking-wider">
               {roiMultiplier}x ROI Estimat
             </div>
@@ -162,7 +162,7 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
 
             {/* Results Grid */}
             <div className="grid grid-cols-2 gap-4">
-              
+
               <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/10">
                 <div className="flex items-center gap-1.5 text-xs text-slate-300 font-mono">
                   <Clock className="w-4 h-4 text-[#00D2FF]" />
@@ -185,7 +185,7 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
                   +{additionalQuotesApproved}
                 </div>
                 <div className="text-[11px] text-slate-400 mt-1">
-                  aprobate din cele trimise pe WhatsApp
+                  aprobate din cele trimise
                 </div>
               </div>
 

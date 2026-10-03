@@ -46,7 +46,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
         'Tot din Planul Start inclus',
         'Până la 8 elevatoare & mecanici simultan',
         'Conectare   RAR Autopass inclusă',
-        'Aprobare interactivă 1-tap pe WhatsApp pentru clienți',
+        'Aprobare interactivă 1-tap   pentru clienți',
         'Protecție coduri piese & verificare compatibilitate VIN',
         'Modul Smart PR: notificări de status și remindere ITP',
         'Raportare avansată timpi de lucru & eficiență mecanic',
@@ -132,8 +132,8 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
             <button
               onClick={() => setIsAnnual(false)}
               className={`px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${!isAnnual
-                  ? 'bg-[#0066FF] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                ? 'bg-[#0066FF] text-white shadow-md'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
             >
               Facturare Lunară
@@ -142,8 +142,8 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
             <button
               onClick={() => setIsAnnual(true)}
               className={`px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${isAnnual
-                  ? 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] text-white shadow-md'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                ? 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] text-white shadow-md'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
             >
               <span>Facturare Anuală</span>
@@ -155,7 +155,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
         </div>
 
         {/* Pricing Cards Grid (Desktop) / Carousel (Mobile & Tablet) */}
-        <div 
+        <div
           ref={carouselRef}
           onScroll={(e) => {
             const el = e.currentTarget;
@@ -178,8 +178,8 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
               <div
                 key={plan.id}
                 className={`w-[85vw] xs:w-[80vw] sm:w-[56vw] md:w-[46vw] lg:w-auto shrink-0 lg:shrink snap-center rounded-3xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${plan.popular
-                    ? 'bg-gradient-to-b from-[#09254d] via-[#082245] to-[#05162d] text-white border-2 border-[#0066FF] dark:border-[#00D2FF] shadow-[0_20px_50px_rgba(0,102,255,0.35)] lg:scale-105 z-10'
-                    : 'bg-white dark:bg-[#06152b]/90 hover:bg-slate-50 dark:hover:bg-[#091f3d] border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-none'
+                  ? 'bg-gradient-to-b from-[#09254d] via-[#082245] to-[#05162d] text-white border-2 border-[#0066FF] dark:border-[#00D2FF] shadow-[0_20px_50px_rgba(0,102,255,0.35)] lg:scale-105 z-10'
+                  : 'bg-white dark:bg-[#06152b]/90 hover:bg-slate-50 dark:hover:bg-[#091f3d] border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-none'
                   }`}
               >
                 {/* Popular Ribbon Tag */}
@@ -250,8 +250,8 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
                 <button
                   onClick={() => onOpenDemo(plan.name)}
                   className={`w-full py-3.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 flex items-center justify-center gap-2 active:scale-95 cursor-pointer ${plan.popular
-                      ? 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] hover:from-[#0072ff] hover:to-[#00d8ff] text-white shadow-lg shadow-blue-500/40 hover:scale-[1.02]'
-                      : 'bg-slate-100 hover:bg-[#0066FF] hover:text-white dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white border border-slate-200/80 dark:border-white/15'
+                    ? 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] hover:from-[#0072ff] hover:to-[#00d8ff] text-white shadow-lg shadow-blue-500/40 hover:scale-[1.02]'
+                    : 'bg-slate-100 hover:bg-[#0066FF] hover:text-white dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white border border-slate-200/80 dark:border-white/15'
                     }`}
                 >
                   <span>{plan.ctaText}</span>
@@ -281,11 +281,10 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
                 key={plan.id}
                 type="button"
                 onClick={() => scrollToPlan(idx)}
-                className={`transition-all duration-300 rounded-full cursor-pointer ${
-                  activePlanIdx === idx
+                className={`transition-all duration-300 rounded-full cursor-pointer ${activePlanIdx === idx
                     ? 'w-7 h-2.5 bg-[#0066FF] dark:bg-[#00D2FF]'
                     : 'w-2.5 h-2.5 bg-slate-300 dark:bg-white/25 hover:bg-slate-400 dark:hover:bg-white/40'
-                }`}
+                  }`}
                 aria-label={`Vezi ${plan.name}`}
               />
             ))}

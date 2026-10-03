@@ -117,7 +117,7 @@ export const PerformanceDiagram: React.FC = () => {
 
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                 Prin scanarea rapidă a numărului de înmatriculare, preluarea   a istoricului RAR Autopass
-                și aprobarea imediată pe WhatsApp direct de către client.
+                și aprobarea imediată   direct de către client.
               </p>
 
               {/* Trio Metrics */}
@@ -260,8 +260,8 @@ export const PerformanceDiagram: React.FC = () => {
                   type="button"
                   onClick={() => scrollToPipelineStage(idx)}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeStage === idx
-                      ? 'w-6 bg-[#00D2FF]'
-                      : 'w-2 bg-white/20'
+                    ? 'w-6 bg-[#00D2FF]'
+                    : 'w-2 bg-white/20'
                     }`}
                   aria-label={`Sari la etapa ${idx + 1}`}
                 />
