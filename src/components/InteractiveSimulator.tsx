@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { 
-  Smartphone, 
-  Car, 
-  Calendar, 
-  CheckCircle2, 
-  AlertTriangle, 
-  ShieldCheck, 
-  Check, 
-  Download, 
-  Clock, 
+import {
+  Smartphone,
+  Car,
+  Calendar,
+  CheckCircle2,
+  AlertTriangle,
+  ShieldCheck,
+  Check,
+  Download,
+  Clock,
   User,
   Sparkles,
   RefreshCw,
@@ -310,7 +310,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
     };
     setInternalMessages(prev => [...prev, newMsg]);
     setNewChatMessage('');
-    
+
     // Auto-reply simulation from Șef Atelier after 1.2s
     setTimeout(() => {
       setInternalMessages(prev => [
@@ -486,8 +486,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
       const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
       const protocolNumber = `RAR-PASS-2026-${Math.floor(100000 + Math.random() * 900000)}`;
 
-      setVehicles(prev => prev.map(v => v.id === vehicleId ? { 
-        ...v, 
+      setVehicles(prev => prev.map(v => v.id === vehicleId ? {
+        ...v,
         rarStatus: 'transmitted',
         protocolId: protocolNumber,
         transmissionTimestamp: timeStr
@@ -503,8 +503,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
   };
 
   const handleResetTransmission = (vehicleId: string) => {
-    setVehicles(prev => prev.map(v => v.id === vehicleId ? { 
-      ...v, 
+    setVehicles(prev => prev.map(v => v.id === vehicleId ? {
+      ...v,
       rarStatus: 'pending',
       protocolId: undefined,
       transmissionTimestamp: undefined
@@ -570,13 +570,13 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
   return (
     <section id="simulator" className="py-24 sm:py-32 bg-slate-100/70 dark:bg-[#020b1b] relative overflow-hidden text-slate-900 dark:text-white border-y border-slate-200 dark:border-white/10 transition-colors duration-300">
-      
+
       {/* Background accents */}
       <div className="absolute -top-40 right-1/4 w-[600px] h-[600px] bg-blue-500/5 dark:bg-[#0066FF]/15 rounded-full blur-[140px] pointer-events-none"></div>
       <div className="absolute bottom-0 left-10 w-[500px] h-[500px] bg-cyan-500/5 dark:bg-[#00D2FF]/10 rounded-full blur-[130px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 text-xs font-mono font-bold text-[#0066FF] dark:text-[#00D2FF] mb-4">
@@ -599,11 +599,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
           <div className="mt-8 inline-flex p-1.5 rounded-2xl bg-slate-200/70 dark:bg-[#07172f] border border-slate-300/80 dark:border-white/15 max-w-full overflow-x-auto">
             <button
               onClick={() => setActiveTab('whatsapp')}
-              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${
-                activeTab === 'whatsapp'
+              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${activeTab === 'whatsapp'
                   ? 'bg-[#0066FF] text-white shadow-md'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
+                }`}
             >
               <Smartphone className="w-4 h-4" />
               <span>1. Deviz WhatsApp (Client)</span>
@@ -611,11 +610,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
             <button
               onClick={() => setActiveTab('mechanic')}
-              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${
-                activeTab === 'mechanic'
+              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${activeTab === 'mechanic'
                   ? 'bg-[#0066FF] text-white shadow-md'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
+                }`}
             >
               <Wrench className="w-4 h-4" />
               <span>2. App Mecanici & Atelier (Comunicare Internă)</span>
@@ -623,11 +621,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
             <button
               onClick={() => setActiveTab('rar')}
-              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${
-                activeTab === 'rar'
+              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${activeTab === 'rar'
                   ? 'bg-[#0066FF] text-white shadow-md'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
+                }`}
             >
               <Car className="w-4 h-4" />
               <span>3. Transmitere Date RAR AutoPass (1-Click)</span>
@@ -635,11 +632,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
             <button
               onClick={() => setActiveTab('hoists')}
-              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${
-                activeTab === 'hoists'
+              className={`px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer ${activeTab === 'hoists'
                   ? 'bg-[#0066FF] text-white shadow-md'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
+                }`}
             >
               <Calendar className="w-4 h-4" />
               <span>4. Gestiune Elevatoare Atelier</span>
@@ -650,7 +646,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
         {/* TAB 1: STREAMLINED 5-STEP WHATSAPP DEVIZ & RECEPTION FLOW (NO BIG PHONE) */}
         {activeTab === 'whatsapp' && (
           <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in duration-300">
-            
+
             {/* 5-Step Interactive Progress Stepper */}
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-1.5 rounded-2xl bg-slate-100 dark:bg-[#07172f] border border-slate-200 dark:border-white/10">
               {[
@@ -668,13 +664,12 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                     key={item.step}
                     type="button"
                     onClick={() => setWaStep(item.step as 1 | 2 | 3 | 4 | 5)}
-                    className={`py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                      isCurrent
+                    className={`py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${isCurrent
                         ? 'bg-[#0066FF] text-white shadow-md'
                         : isPassed
                           ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-400/30'
                           : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                    }`}
+                      }`}
                   >
                     <ItemIcon className="w-3.5 h-3.5 shrink-0" />
                     <span className="truncate">{item.label}</span>
@@ -685,7 +680,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
             {/* Main Authentic WhatsApp Conversation Card */}
             <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-white/15 shadow-xl bg-white dark:bg-[#07172f]">
-              
+
               {/* WhatsApp Business Header Bar */}
               <div className="bg-[#075E54] dark:bg-[#0d2a23] text-white px-4 sm:px-6 py-3.5 flex items-center justify-between border-b border-white/10">
                 <div className="flex items-center gap-3">
@@ -714,7 +709,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
               {/* Chat Thread Container */}
               <div className="p-4 sm:p-6 space-y-5 bg-[#f0f2f5] dark:bg-[#051121] min-h-[440px]">
-                
+
                 {/* ── STEP 1 BUBBLE: Mesaj WhatsApp cu link ofertă ── */}
                 <div className="flex items-start gap-2.5 max-w-2xl">
                   <div className="p-4 sm:p-5 rounded-2xl rounded-tl-xs bg-white dark:bg-[#0c1f38] border border-slate-200 dark:border-white/10 shadow-sm text-slate-800 dark:text-slate-100 text-xs sm:text-sm space-y-3">
@@ -804,7 +799,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                         <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
                           <div>
                             <div className="font-semibold text-slate-900 dark:text-white text-xs">Manoperă Înlocuire Plăcuțe Față</div>
-                            <div className="text-[10px] text-slate-500 dark:text-slate-400">1.0 oră normată oficială</div>
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400">1.0 oră normată  </div>
                           </div>
                           <span className="font-mono font-bold text-slate-900 dark:text-white text-xs">180 lei</span>
                         </div>
@@ -1038,11 +1033,11 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
           </div>
         )}
-        
+
         {/* TAB 2: MECHANIC APP & INTERNAL WORKSHOP COMMUNICATION (AUTOCEV / SAMpro) */}
         {activeTab === 'mechanic' && (
           <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-300">
-            
+
             {/* Top Controls Bar: Subtitle & View Mode Switcher */}
             <div className="p-4 sm:p-6 rounded-3xl bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/10 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
@@ -1063,44 +1058,40 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                 <button
                   type="button"
                   onClick={() => setMechanicViewMode('both')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    mechanicViewMode === 'both'
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${mechanicViewMode === 'both'
                       ? 'bg-[#0066FF] text-white shadow-sm'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                  }`}
+                    }`}
                 >
                   📱 Ambele Ecrane
                 </button>
                 <button
                   type="button"
                   onClick={() => setMechanicViewMode('mechanic')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    mechanicViewMode === 'mechanic'
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${mechanicViewMode === 'mechanic'
                       ? 'bg-[#0066FF] text-white shadow-sm'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                  }`}
+                    }`}
                 >
                   🔧 Vedere Mecanic
                 </button>
                 <button
                   type="button"
                   onClick={() => setMechanicViewMode('manager')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    mechanicViewMode === 'manager'
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${mechanicViewMode === 'manager'
                       ? 'bg-[#0066FF] text-white shadow-sm'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                  }`}
+                    }`}
                 >
                   📋 Vedere Șef Atelier
                 </button>
                 <button
                   type="button"
                   onClick={() => setMechanicViewMode('chat')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                    mechanicViewMode === 'chat'
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${mechanicViewMode === 'chat'
                       ? 'bg-[#0066FF] text-white shadow-sm'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                  }`}
+                    }`}
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   <span>Chat Intern ({internalMessages.length})</span>
@@ -1110,13 +1101,13 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
             {/* MAIN WORKSHOP SHOWCASE: Left Banner + Phone Screens */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              
+
               {/* LEFT VALUE PROPOSITION PILLAR (MATCHING USER SCREENSHOT) */}
               <div className="lg:col-span-3 space-y-4">
                 <div className="p-6 rounded-3xl bg-gradient-to-b from-[#091b36] via-[#051329] to-[#040e20] border border-blue-500/25 shadow-2xl relative overflow-hidden text-white space-y-6">
                   {/* Glowing background blob */}
                   <div className="absolute top-0 right-0 w-44 h-44 bg-[#0066FF]/20 rounded-full blur-3xl pointer-events-none" />
-                  
+
                   {/* Brand Header */}
                   <div className="flex items-center justify-between pb-3 border-b border-white/10">
                     <div className="flex items-center gap-2">
@@ -1207,9 +1198,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
               {/* CENTER/RIGHT: THE PHONE SCREENS */}
               <div className={`lg:col-span-9 ${mechanicViewMode === 'chat' ? 'hidden' : 'block'}`}>
-                <div className={`grid gap-6 ${
-                  mechanicViewMode === 'both' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 max-w-md mx-auto'
-                }`}>
+                <div className={`grid gap-6 ${mechanicViewMode === 'both' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 max-w-md mx-auto'
+                  }`}>
 
                   {/* ─────────────────────────────────────────────────────────────
                       PHONE 1: VEDERE MECANIC (ALEX B. - MECANIC)
@@ -1230,7 +1220,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
                       {/* Phone App Inner Screen */}
                       <div className="space-y-3.5 flex-1 overflow-y-auto pr-0.5 max-h-[700px] scrollbar-thin">
-                        
+
                         {/* Header: Brand + User Role + Notification */}
                         <div className="flex items-center justify-between pt-1">
                           <span className="font-black text-base tracking-wider text-white">
@@ -1302,11 +1292,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                           <button
                             type="button"
                             onClick={() => setMechanicTabFilter('in_progress')}
-                            className={`flex-1 py-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                              mechanicTabFilter === 'in_progress'
+                            className={`flex-1 py-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${mechanicTabFilter === 'in_progress'
                                 ? 'bg-white text-slate-950 shadow-sm'
                                 : 'text-slate-400 hover:text-white'
-                            }`}
+                              }`}
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                             <span>În lucru</span>
@@ -1318,11 +1307,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                           <button
                             type="button"
                             onClick={() => setMechanicTabFilter('completed')}
-                            className={`flex-1 py-1.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer ${
-                              mechanicTabFilter === 'completed'
+                            className={`flex-1 py-1.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer ${mechanicTabFilter === 'completed'
                                 ? 'bg-white text-slate-950 shadow-sm'
                                 : 'text-slate-400 hover:text-white'
-                            }`}
+                              }`}
                           >
                             <span>Finalizate</span>
                             <span className="text-[10px] text-slate-500 font-mono">12</span>
@@ -1331,11 +1319,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                           <button
                             type="button"
                             onClick={() => setMechanicTabFilter('all')}
-                            className={`flex-1 py-1.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer ${
-                              mechanicTabFilter === 'all'
+                            className={`flex-1 py-1.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer ${mechanicTabFilter === 'all'
                                 ? 'bg-white text-slate-950 shadow-sm'
                                 : 'text-slate-400 hover:text-white'
-                            }`}
+                              }`}
                           >
                             <span>Toate</span>
                             <span className="text-[10px] text-slate-500 font-mono">24</span>
@@ -1370,12 +1357,12 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                                     <span className="w-2 h-2 rounded-full bg-blue-600 inline-block" />
                                     <span>{car.plate}</span>
                                   </div>
-                                  
+
                                   <div className="font-bold text-xs text-slate-900">{car.model}</div>
                                   <div className="text-[10px] text-slate-500">
                                     {car.engine} <span className="text-slate-300">•</span> {car.km}
                                   </div>
-                                  
+
                                   <div className="flex items-center gap-3 pt-1 text-[10px] text-slate-600">
                                     <span className="flex items-center gap-1">
                                       <User className="w-3 h-3 text-slate-400" />
@@ -1390,16 +1377,14 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
                                 {/* Right Status Badge & Arrow */}
                                 <div className="flex flex-col items-end justify-between self-stretch">
-                                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1 ${
-                                    car.statusColor === 'blue' ? 'bg-blue-100 text-blue-800' :
-                                    car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
-                                    'bg-emerald-100 text-emerald-800'
-                                  }`}>
-                                    <span className={`w-1.5 h-1.5 rounded-full ${
-                                      car.statusColor === 'blue' ? 'bg-blue-600' :
-                                      car.statusColor === 'amber' ? 'bg-amber-600' :
-                                      'bg-emerald-600'
-                                    }`} />
+                                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1 ${car.statusColor === 'blue' ? 'bg-blue-100 text-blue-800' :
+                                      car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
+                                        'bg-emerald-100 text-emerald-800'
+                                    }`}>
+                                    <span className={`w-1.5 h-1.5 rounded-full ${car.statusColor === 'blue' ? 'bg-blue-600' :
+                                        car.statusColor === 'amber' ? 'bg-amber-600' :
+                                          'bg-emerald-600'
+                                      }`} />
                                     <span>{car.statusLabel}</span>
                                     <span className="font-mono text-[9px] opacity-75">{car.statusTag}</span>
                                   </span>
@@ -1462,7 +1447,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
                       {/* Phone App Inner Screen */}
                       <div className="space-y-3.5 flex-1 overflow-y-auto pr-0.5 max-h-[700px] scrollbar-thin">
-                        
+
                         {/* Header: Brand + User Role + Notification */}
                         <div className="flex items-center justify-between pt-1">
                           <span className="font-black text-base tracking-wider text-white">
@@ -1542,44 +1527,40 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                           <button
                             type="button"
                             onClick={() => setManagerTabFilter('all')}
-                            className={`flex-1 py-1 rounded-lg font-bold transition-all cursor-pointer ${
-                              managerTabFilter === 'all'
+                            className={`flex-1 py-1 rounded-lg font-bold transition-all cursor-pointer ${managerTabFilter === 'all'
                                 ? 'bg-white text-slate-950 shadow-sm'
                                 : 'text-slate-400 hover:text-white'
-                            }`}
+                              }`}
                           >
                             Toate (6)
                           </button>
                           <button
                             type="button"
                             onClick={() => setManagerTabFilter('waiting')}
-                            className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
-                              managerTabFilter === 'waiting'
+                            className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${managerTabFilter === 'waiting'
                                 ? 'bg-white text-slate-950 shadow-sm'
                                 : 'text-slate-400 hover:text-white'
-                            }`}
+                              }`}
                           >
                             În așteptare (2)
                           </button>
                           <button
                             type="button"
                             onClick={() => setManagerTabFilter('in_progress')}
-                            className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
-                              managerTabFilter === 'in_progress'
+                            className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${managerTabFilter === 'in_progress'
                                 ? 'bg-white text-slate-950 shadow-sm'
                                 : 'text-slate-400 hover:text-white'
-                            }`}
+                              }`}
                           >
                             În lucru (2)
                           </button>
                           <button
                             type="button"
                             onClick={() => setManagerTabFilter('completed')}
-                            className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
-                              managerTabFilter === 'completed'
+                            className={`flex-1 py-1 rounded-lg font-semibold transition-all cursor-pointer ${managerTabFilter === 'completed'
                                 ? 'bg-white text-slate-950 shadow-sm'
                                 : 'text-slate-400 hover:text-white'
-                            }`}
+                              }`}
                           >
                             Finalizate (2)
                           </button>
@@ -1609,16 +1590,14 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                               <div className="flex items-center justify-between gap-2">
                                 <div className="space-y-1">
                                   <div className="flex items-center gap-2">
-                                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1 ${
-                                      car.statusColor === 'blue' ? 'bg-blue-100 text-blue-800' :
-                                      car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
-                                      'bg-emerald-100 text-emerald-800'
-                                    }`}>
-                                      <span className={`w-1.5 h-1.5 rounded-full ${
-                                        car.statusColor === 'blue' ? 'bg-blue-600' :
-                                        car.statusColor === 'amber' ? 'bg-amber-600' :
-                                        'bg-emerald-600'
-                                      }`} />
+                                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1 ${car.statusColor === 'blue' ? 'bg-blue-100 text-blue-800' :
+                                        car.statusColor === 'amber' ? 'bg-amber-100 text-amber-800' :
+                                          'bg-emerald-100 text-emerald-800'
+                                      }`}>
+                                      <span className={`w-1.5 h-1.5 rounded-full ${car.statusColor === 'blue' ? 'bg-blue-600' :
+                                          car.statusColor === 'amber' ? 'bg-amber-600' :
+                                            'bg-emerald-600'
+                                        }`} />
                                       <span>{car.statusLabel}</span>
                                     </span>
 
@@ -1688,9 +1667,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
             {/* ─────────────────────────────────────────────────────────────────
                 APP PROPRIU DE COMUNICARE INTERNĂ (LIVE INTER-TEAM CHAT CONSOLE)
                ───────────────────────────────────────────────────────────────── */}
-            <div className={`p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/10 shadow-xl space-y-6 ${
-              mechanicViewMode === 'chat' ? 'max-w-4xl mx-auto' : ''
-            }`}>
+            <div className={`p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/10 shadow-xl space-y-6 ${mechanicViewMode === 'chat' ? 'max-w-4xl mx-auto' : ''
+              }`}>
               {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-white/10">
                 <div className="space-y-1">
@@ -1725,15 +1703,14 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                 {internalMessages.map((msg) => (
                   <div
                     key={msg.id}
-                    className={`flex items-start gap-3 p-3.5 rounded-2xl border transition-all ${
-                      msg.role === 'system'
+                    className={`flex items-start gap-3 p-3.5 rounded-2xl border transition-all ${msg.role === 'system'
                         ? 'bg-emerald-50/80 dark:bg-emerald-950/20 border-emerald-300 dark:border-emerald-500/30'
                         : msg.role === 'mechanic'
-                        ? 'bg-blue-50/60 dark:bg-blue-950/20 border-blue-200 dark:border-blue-500/20'
-                        : msg.role === 'manager'
-                        ? 'bg-amber-50/60 dark:bg-amber-950/20 border-amber-200 dark:border-amber-500/20'
-                        : 'bg-purple-50/60 dark:bg-purple-950/20 border-purple-200 dark:border-purple-500/20'
-                    }`}
+                          ? 'bg-blue-50/60 dark:bg-blue-950/20 border-blue-200 dark:border-blue-500/20'
+                          : msg.role === 'manager'
+                            ? 'bg-amber-50/60 dark:bg-amber-950/20 border-amber-200 dark:border-amber-500/20'
+                            : 'bg-purple-50/60 dark:bg-purple-950/20 border-purple-200 dark:border-purple-500/20'
+                      }`}
                   >
                     <div className={`w-8 h-8 rounded-full ${msg.avatarColor} text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm`}>
                       {msg.sender.substring(0, 2)}
@@ -1944,9 +1921,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                     {/* Voice Memo Simulator */}
                     <div className="p-3 rounded-xl bg-blue-50/80 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-400/20 flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          isRecordingAudio ? 'bg-red-500 text-white animate-pulse' : 'bg-blue-500/20 text-[#0066FF] dark:text-[#00D2FF]'
-                        }`}>
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isRecordingAudio ? 'bg-red-500 text-white animate-pulse' : 'bg-blue-500/20 text-[#0066FF] dark:text-[#00D2FF]'
+                          }`}>
                           <Mic className="w-4 h-4" />
                         </div>
                         <div>
@@ -1957,9 +1933,8 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                       <button
                         type="button"
                         onClick={() => setIsRecordingAudio(!isRecordingAudio)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                          isRecordingAudio ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'
-                        }`}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${isRecordingAudio ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'
+                          }`}
                       >
                         {isRecordingAudio ? 'Oprește' : 'Dictare'}
                       </button>
@@ -2021,11 +1996,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                       <p className="text-xs text-slate-500 font-mono">VIN: {selectedWorkshopVehicle.vin} • {selectedWorkshopVehicle.km}</p>
                     </div>
 
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
-                      selectedWorkshopVehicle.statusColor === 'blue' ? 'bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-300' :
-                      selectedWorkshopVehicle.statusColor === 'amber' ? 'bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300' :
-                      'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300'
-                    }`}>
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${selectedWorkshopVehicle.statusColor === 'blue' ? 'bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-300' :
+                        selectedWorkshopVehicle.statusColor === 'amber' ? 'bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300' :
+                          'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300'
+                      }`}>
                       {selectedWorkshopVehicle.statusLabel}
                     </span>
                   </div>
@@ -2069,7 +2043,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                       <Car className="w-3.5 h-3.5" />
                       <span>Transmite la RAR AutoPass (Tab 3)</span>
                     </button>
-                    
+
                     <button
                       type="button"
                       onClick={() => setSelectedWorkshopVehicle(null)}
@@ -2084,11 +2058,11 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
           </div>
         )}
-        
+
         {/* TAB 3: INTERACTIVE 1-CLICK RAR AUTOPASS TRANSMISSION SIMULATOR */}
         {activeTab === 'rar' && (
           <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in duration-300">
-            
+
             {/* Header info banner */}
             <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/10 shadow-lg dark:shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
@@ -2135,11 +2109,10 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                     <div
                       key={veh.id}
                       onClick={() => setSelectedVehicleId(veh.id)}
-                      className={`p-5 rounded-2xl border transition-all duration-200 cursor-pointer relative flex flex-col justify-between ${
-                        isSelected 
-                          ? 'bg-blue-50/70 dark:bg-[#0c2246] border-[#0066FF] dark:border-[#00D2FF] shadow-lg shadow-blue-500/10 dark:shadow-[0_10px_30px_rgba(0,102,255,0.25)] ring-2 ring-[#0066FF] dark:ring-[#00D2FF]' 
+                      className={`p-5 rounded-2xl border transition-all duration-200 cursor-pointer relative flex flex-col justify-between ${isSelected
+                          ? 'bg-blue-50/70 dark:bg-[#0c2246] border-[#0066FF] dark:border-[#00D2FF] shadow-lg shadow-blue-500/10 dark:shadow-[0_10px_30px_rgba(0,102,255,0.25)] ring-2 ring-[#0066FF] dark:ring-[#00D2FF]'
                           : 'bg-white dark:bg-[#07172f]/80 border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 hover:bg-slate-50 dark:hover:bg-white/[0.03]'
-                      }`}
+                        }`}
                     >
                       {/* Top Plate & Status Badge */}
                       <div className="flex items-center justify-between gap-2 mb-3">
@@ -2226,7 +2199,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
             {/* 2. Detailed Transmission Dossier & Live Terminal */}
             <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#07172f]/95 border border-slate-200 dark:border-white/15 shadow-xl space-y-6">
-              
+
               {/* Dossier Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-200 dark:border-white/10 gap-4">
                 <div className="space-y-1">
@@ -2265,7 +2238,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
               {/* Main 2-column Grid: Left = Legal Payload to be sent, Right = 1-Click Action & Response */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                
+
                 {/* Left Column: Data points sent to RAR AutoPass */}
                 <div className="lg:col-span-7 space-y-4">
                   <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-2">
@@ -2318,13 +2291,13 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
                 {/* Right Column: 1-Click Action & Live Status Terminal */}
                 <div className="lg:col-span-5 space-y-4">
-                  
+
                   {/* State 1: PENDING TRANSMISSION */}
                   {currentVehicle.rarStatus === 'pending' && (
                     <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 dark:bg-[#0a1b38] border border-slate-200 dark:border-white/10 space-y-4">
                       <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wide">
                         <Clock className="w-4 h-4" />
-                        Gata de raportare oficială
+                        Gata de raportare
                       </div>
 
                       <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -2356,30 +2329,27 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
 
                       {/* Progress Steps */}
                       <div className="space-y-2.5 text-xs font-mono">
-                        <div className={`p-2.5 rounded-lg flex items-center gap-2 transition-colors ${
-                          transmittingStep >= 1 ? 'bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold' : 'text-slate-400'
-                        }`}>
+                        <div className={`p-2.5 rounded-lg flex items-center gap-2 transition-colors ${transmittingStep >= 1 ? 'bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold' : 'text-slate-400'
+                          }`}>
                           {transmittingStep > 1 ? <Check className="w-3.5 h-3.5 text-emerald-500 stroke-[3]" /> : <span className="w-3.5 h-3.5 rounded-full border-2 border-blue-500 animate-spin"></span>}
                           <span>1. Criptare deviz &amp; km: {currentVehicle.km.toLocaleString()} km</span>
                         </div>
 
-                        <div className={`p-2.5 rounded-lg flex items-center gap-2 transition-colors ${
-                          transmittingStep >= 2 ? 'bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold' : 'text-slate-400'
-                        }`}>
+                        <div className={`p-2.5 rounded-lg flex items-center gap-2 transition-colors ${transmittingStep >= 2 ? 'bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold' : 'text-slate-400'
+                          }`}>
                           {transmittingStep > 2 ? <Check className="w-3.5 h-3.5 text-emerald-500 stroke-[3]" /> : transmittingStep === 2 ? <span className="w-3.5 h-3.5 rounded-full border-2 border-blue-500 animate-spin"></span> : <span className="w-3.5 h-3.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>}
                           <span>2. Conectare nod securizat API RAR AutoPass</span>
                         </div>
 
-                        <div className={`p-2.5 rounded-lg flex items-center gap-2 transition-colors ${
-                          transmittingStep >= 3 ? 'bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold' : 'text-slate-400'
-                        }`}>
+                        <div className={`p-2.5 rounded-lg flex items-center gap-2 transition-colors ${transmittingStep >= 3 ? 'bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold' : 'text-slate-400'
+                          }`}>
                           {transmittingStep === 3 ? <span className="w-3.5 h-3.5 rounded-full border-2 border-blue-500 animate-spin"></span> : <span className="w-3.5 h-3.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>}
-                          <span>3. Înregistrare oficială în Pașaportul Tehnic</span>
+                          <span>3. Înregistrare   în Pașaportul Tehnic</span>
                         </div>
                       </div>
 
                       <div className="w-full bg-slate-200 dark:bg-white/10 rounded-full h-1.5 overflow-hidden">
-                        <div 
+                        <div
                           className="bg-gradient-to-r from-[#0066FF] to-cyan-400 h-full transition-all duration-500"
                           style={{ width: `${(transmittingStep / 3) * 100}%` }}
                         ></div>
@@ -2459,7 +2429,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
         {/* TAB 3: HOIST SCHEDULER */}
         {activeTab === 'hoists' && (
           <div className="max-w-5xl mx-auto space-y-6 animate-in fade-in duration-300">
-            
+
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/10 gap-3">
               <div>
                 <h3 className="text-xl font-bold text-white tracking-tight">
@@ -2491,16 +2461,15 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                   className="p-5 rounded-2xl bg-[#07172f]/80 hover:bg-[#0c244b] border border-white/10 hover:border-[#00D2FF]/40 transition-all cursor-pointer flex flex-col justify-between group shadow-sm"
                 >
                   <div className="space-y-3">
-                    
+
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-xs font-bold text-[#00D2FF]">
                         {hoist.name}
                       </span>
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase font-mono ${
-                        hoist.status === 'in_progress' ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' :
-                        hoist.status === 'completed' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' :
-                        'bg-slate-500/20 text-slate-400 border border-slate-500/30'
-                      }`}>
+                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase font-mono ${hoist.status === 'in_progress' ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' :
+                          hoist.status === 'completed' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' :
+                            'bg-slate-500/20 text-slate-400 border border-slate-500/30'
+                        }`}>
                         {hoist.status === 'in_progress' ? 'În Lucru' : hoist.status === 'completed' ? 'Finalizat' : 'Liber / Rezervat'}
                       </span>
                     </div>
@@ -2521,10 +2490,9 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                         <span>{hoist.progress}%</span>
                       </div>
                       <div className="w-full bg-black/40 h-2 rounded-full overflow-hidden">
-                        <div 
-                          className={`h-full rounded-full transition-all duration-500 ${
-                            hoist.status === 'completed' ? 'bg-emerald-400' : 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF]'
-                          }`}
+                        <div
+                          className={`h-full rounded-full transition-all duration-500 ${hoist.status === 'completed' ? 'bg-emerald-400' : 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF]'
+                            }`}
                           style={{ width: `${hoist.progress}%` }}
                         ></div>
                       </div>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Menu, 
-  X, 
-  ChevronDown, 
-  Sun, 
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Sun,
   Moon,
   ArrowRight,
   ArrowUpRight,
@@ -37,11 +37,11 @@ interface NavbarProps {
   toggleTheme?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ 
-  onOpenDemo, 
+export const Navbar: React.FC<NavbarProps> = ({
+  onOpenDemo,
   onOpenLegal,
-  theme = 'light', 
-  toggleTheme 
+  theme = 'light',
+  toggleTheme
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -174,7 +174,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     {
       title: 'Conexiune RAR & Autopass',
-      desc: 'Interogare automată VIN oficială și generare Pașaport Tehnic.',
+      desc: 'Interogare automată VIN   și generare Pașaport Tehnic.',
       icon: Car,
       color: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
       href: '#rar-autopass'
@@ -235,7 +235,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     {
       title: 'Integrări Oficiale (RAR & ANAF)',
-      desc: 'Conexiune directă SPV ANAF pentru e-Factura și interogare oficială RAR.',
+      desc: 'Conexiune directă SPV ANAF pentru e-Factura și interogare   RAR.',
       href: '#rar-autopass'
     },
     {
@@ -304,17 +304,17 @@ export const Navbar: React.FC<NavbarProps> = ({
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}>
         <div className="w-full max-w-[1800px] 2xl:max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-full flex items-center justify-between gap-4 lg:gap-8 flex-nowrap">
-          
+
           {/* ── Brand Logo ───────────────────────────────────────────────── */}
           <div className="flex items-center space-x-3 shrink-0">
-            <a 
-              href="#" 
+            <a
+              href="#"
               aria-label="SAMpro — pagina principală"
               className="flex items-center gap-2.5 group shrink-0 rounded-[4px]"
             >
-              <img 
-                src={theme === 'dark' ? '/assets/logo-white-full.png' : '/assets/logo-light.png'} 
-                alt="SAMpro - Service Auto Management Pro" 
+              <img
+                src={theme === 'dark' ? '/assets/logo-white-full.png' : '/assets/logo-light.png'}
+                alt="SAMpro - Service Auto Management Pro"
                 className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
               <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200/60 dark:border-blue-400/20 text-[#0066FF] dark:text-[#00D2FF] font-rounded text-[10px] font-bold shrink-0">
@@ -326,9 +326,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* ── Desktop Navigation matching user's requested IMFS structure ── */}
           <nav aria-label="Navigație principală" className="hidden xl:flex items-center shrink-0">
             <ul className="flex items-center gap-1 xl:gap-1.5 2xl:gap-2.5 flex-nowrap whitespace-nowrap text-[0.9375rem]">
-              
+
               {/* 1. Explorează */}
-              <li 
+              <li
                 className="relative flex h-full items-center"
                 onMouseEnter={() => handleMouseEnter('explore')}
                 onMouseLeave={handleMouseLeave}
@@ -345,7 +345,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </li>
 
               {/* 2. Soluții */}
-              <li 
+              <li
                 className="relative flex h-full items-center"
                 onMouseEnter={() => handleMouseEnter('solutii')}
                 onMouseLeave={handleMouseLeave}
@@ -362,7 +362,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </li>
 
               {/* 3. Produse */}
-              <li 
+              <li
                 className="relative flex h-full items-center"
                 onMouseEnter={() => handleMouseEnter('produse')}
                 onMouseLeave={handleMouseLeave}
@@ -383,18 +383,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <a
                   href="#preturi"
                   onClick={closeMenu}
-                  className={`inline-flex h-10 items-center rounded-[6px] px-3 text-[0.9375rem] transition-colors ${
-                    isLight 
-                      ? 'text-slate-900 hover:text-black hover:bg-slate-900/[0.05] font-semibold' 
+                  className={`inline-flex h-10 items-center rounded-[6px] px-3 text-[0.9375rem] transition-colors ${isLight
+                      ? 'text-slate-900 hover:text-black hover:bg-slate-900/[0.05] font-semibold'
                       : 'text-[#dfe5ee] hover:text-white hover:bg-[rgb(238_242_248/0.07)] font-medium'
-                  }`}
+                    }`}
                 >
                   Prețuri
                 </a>
               </li>
 
               {/* 5. Resurse */}
-              <li 
+              <li
                 className="relative flex h-full items-center"
                 onMouseEnter={() => handleMouseEnter('resurse')}
                 onMouseLeave={handleMouseLeave}
@@ -411,7 +410,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </li>
 
               {/* 6. Parteneri */}
-              <li 
+              <li
                 className="relative flex h-full items-center"
                 onMouseEnter={() => handleMouseEnter('parteneri')}
                 onMouseLeave={handleMouseLeave}
@@ -428,7 +427,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </li>
 
               {/* 7. Suport */}
-              <li 
+              <li
                 className="relative flex h-full items-center"
                 onMouseEnter={() => handleMouseEnter('suport')}
                 onMouseLeave={handleMouseLeave}
@@ -449,7 +448,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* ── Action CTAs & Controls ───────────────────────────────────── */}
           <div className="ml-auto flex items-center gap-1.5 sm:gap-2 shrink-0 flex-nowrap">
-            
+
             {/* Theme Toggle (Dark / Light) */}
             {toggleTheme && (
               <button
@@ -458,11 +457,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-pressed={theme === 'dark'}
                 aria-label={theme === 'dark' ? 'Temă luminoasă' : 'Temă întunecată'}
                 title={theme === 'dark' ? 'Comută pe modul luminos' : 'Comută pe modul întunecat'}
-                className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer shrink-0 ${
-                  isLight 
-                    ? 'text-slate-800 hover:text-black hover:bg-slate-900/[0.06]' 
+                className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer shrink-0 ${isLight
+                    ? 'text-slate-800 hover:text-black hover:bg-slate-900/[0.06]'
                     : 'text-[#c9d2e0] hover:text-white hover:bg-[rgb(238_242_248/0.08)]'
-                }`}
+                  }`}
               >
                 {theme === 'dark' ? (
                   <Sun className="size-[18px] text-amber-400 hover:rotate-45 transition-transform" />
@@ -476,11 +474,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={onOpenDemo}
-              className={`hidden h-10 items-center gap-1.5 rounded-[6px] px-3 text-[0.9375rem] font-semibold transition-colors 2xl:inline-flex cursor-pointer shrink-0 whitespace-nowrap ${
-                isLight 
-                  ? 'text-slate-900 hover:text-[#0066FF] hover:bg-blue-50/80' 
+              className={`hidden h-10 items-center gap-1.5 rounded-[6px] px-3 text-[0.9375rem] font-semibold transition-colors 2xl:inline-flex cursor-pointer shrink-0 whitespace-nowrap ${isLight
+                  ? 'text-slate-900 hover:text-[#0066FF] hover:bg-blue-50/80'
                   : 'text-[#eef2f8] hover:text-white hover:bg-[rgb(238_242_248/0.07)]'
-              }`}
+                }`}
             >
               <span>Demo Live</span>
               <ArrowUpRight className="size-4" />
@@ -502,11 +499,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => setMobileMenuOpen(true)}
                 aria-expanded={mobileMenuOpen}
                 aria-label="Deschide meniul"
-                className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer ${
-                  isLight 
-                    ? 'text-slate-900 hover:bg-slate-900/[0.08]' 
+                className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer ${isLight
+                    ? 'text-slate-900 hover:bg-slate-900/[0.08]'
                     : 'text-[#eef2f8] hover:bg-[rgb(238_242_248/0.08)]'
-                }`}
+                  }`}
               >
                 <Menu className="size-5" />
               </button>
@@ -520,12 +516,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             DESKTOP MEGA-MENU PANELS (Floating over hero)
         ═══════════════════════════════════════════════════════════════════ */}
         {activeMenu && (
-          <div 
-            className={`absolute top-full left-0 right-0 z-50 w-full border-b transition-all duration-200 animate-in fade-in slide-in-from-top-2 shadow-2xl ${
-              isLight
+          <div
+            className={`absolute top-full left-0 right-0 z-50 w-full border-b transition-all duration-200 animate-in fade-in slide-in-from-top-2 shadow-2xl ${isLight
                 ? 'bg-white/98 backdrop-blur-2xl border-slate-200/90 shadow-[0_25px_50px_rgba(0,0,0,0.12)]'
                 : 'bg-[#070b14]/98 backdrop-blur-2xl border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.7)]'
-            }`}
+              }`}
             onMouseEnter={() => {
               if (timeoutRef.current) clearTimeout(timeoutRef.current);
             }}
@@ -552,9 +547,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                     closeMenu();
                                     item.action?.();
                                   }}
-                                  className={`w-full text-left group block rounded-[8px] p-3 transition-colors ${
-                                    isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                  }`}
+                                  className={`w-full text-left group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                    }`}
                                 >
                                   <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                     {item.title}
@@ -567,9 +561,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 <a
                                   href={item.href}
                                   onClick={closeMenu}
-                                  className={`group block rounded-[8px] p-3 transition-colors ${
-                                    isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                  }`}
+                                  className={`group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                    }`}
                                 >
                                   <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                     {item.title}
@@ -588,11 +581,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
-                    <div className={`rounded-[12px] p-6 border ${
-                      isLight 
-                        ? 'bg-slate-50/90 border-slate-200/90' 
+                    <div className={`rounded-[12px] p-6 border ${isLight
+                        ? 'bg-slate-50/90 border-slate-200/90'
                         : 'bg-[rgb(238_242_248/0.04)] border-white/10'
-                    }`}>
+                      }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Demo Live
                       </p>
@@ -620,7 +612,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="flex flex-wrap items-start justify-between gap-10">
                   <div className="w-full lg:w-[44rem]">
                     <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
-                      
+
                       <div>
                         <p className={`text-xs font-bold uppercase tracking-wider mb-3 ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                           Pe proces
@@ -631,9 +623,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                               <a
                                 href={item.href}
                                 onClick={closeMenu}
-                                className={`group block rounded-[8px] p-3 transition-colors ${
-                                  isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                }`}
+                                className={`group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                  }`}
                               >
                                 <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                   {item.title}
@@ -657,9 +648,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                               <a
                                 href={item.href}
                                 onClick={closeMenu}
-                                className={`group block rounded-[8px] p-3 transition-colors ${
-                                  isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                }`}
+                                className={`group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                  }`}
                               >
                                 <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                   {item.title}
@@ -678,11 +668,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
-                    <div className={`rounded-[12px] p-6 border ${
-                      isLight 
-                        ? 'bg-slate-50/90 border-slate-200/90' 
+                    <div className={`rounded-[12px] p-6 border ${isLight
+                        ? 'bg-slate-50/90 border-slate-200/90'
                         : 'bg-[rgb(238_242_248/0.04)] border-white/10'
-                    }`}>
+                      }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Tur ghidat
                       </p>
@@ -718,11 +707,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                               <a
                                 href={item.href}
                                 onClick={closeMenu}
-                                className={`group flex h-full flex-col gap-3 rounded-[10px] border p-4 transition-colors ${
-                                  isLight 
-                                    ? 'border-slate-200/90 hover:border-slate-300 hover:bg-slate-50/90' 
+                                className={`group flex h-full flex-col gap-3 rounded-[10px] border p-4 transition-colors ${isLight
+                                    ? 'border-slate-200/90 hover:border-slate-300 hover:bg-slate-50/90'
                                     : 'border-[rgb(238_242_248/0.08)] hover:border-[rgb(238_242_248/0.18)] hover:bg-[rgb(238_242_248/0.05)]'
-                                }`}
+                                  }`}
                               >
                                 <div className={`size-8 rounded-lg flex items-center justify-center border ${item.color}`}>
                                   <Icon className="size-4 stroke-[2]" />
@@ -745,11 +733,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
-                    <div className={`rounded-[12px] p-6 border ${
-                      isLight 
-                        ? 'bg-slate-50/90 border-slate-200/90' 
+                    <div className={`rounded-[12px] p-6 border ${isLight
+                        ? 'bg-slate-50/90 border-slate-200/90'
                         : 'bg-[rgb(238_242_248/0.04)] border-white/10'
-                    }`}>
+                      }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Toate modulele
                       </p>
@@ -788,9 +775,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                     closeMenu();
                                     item.action?.();
                                   }}
-                                  className={`w-full text-left group block rounded-[8px] p-3 transition-colors ${
-                                    isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                  }`}
+                                  className={`w-full text-left group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                    }`}
                                 >
                                   <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                     {item.title}
@@ -803,9 +789,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 <a
                                   href={item.href}
                                   onClick={closeMenu}
-                                  className={`group block rounded-[8px] p-3 transition-colors ${
-                                    isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                  }`}
+                                  className={`group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                    }`}
                                 >
                                   <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                     {item.title}
@@ -824,11 +809,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
-                    <div className={`rounded-[12px] p-6 border ${
-                      isLight 
-                        ? 'bg-slate-50/90 border-slate-200/90' 
+                    <div className={`rounded-[12px] p-6 border ${isLight
+                        ? 'bg-slate-50/90 border-slate-200/90'
                         : 'bg-[rgb(238_242_248/0.04)] border-white/10'
-                    }`}>
+                      }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Migrare date
                       </p>
@@ -870,9 +854,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                     closeMenu();
                                     item.action?.();
                                   }}
-                                  className={`w-full text-left group block rounded-[8px] p-3 transition-colors ${
-                                    isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                  }`}
+                                  className={`w-full text-left group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                    }`}
                                 >
                                   <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                     {item.title}
@@ -885,9 +868,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 <a
                                   href={item.href}
                                   onClick={closeMenu}
-                                  className={`group block rounded-[8px] p-3 transition-colors ${
-                                    isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                  }`}
+                                  className={`group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                    }`}
                                 >
                                   <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                     {item.title}
@@ -906,16 +888,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
-                    <div className={`rounded-[12px] p-6 border ${
-                      isLight 
-                        ? 'bg-slate-50/90 border-slate-200/90' 
+                    <div className={`rounded-[12px] p-6 border ${isLight
+                        ? 'bg-slate-50/90 border-slate-200/90'
                         : 'bg-[rgb(238_242_248/0.04)] border-white/10'
-                    }`}>
+                      }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Integrări sigure
                       </p>
                       <p className={`mt-2 text-[0.9375rem] leading-relaxed ${isLight ? 'text-slate-700' : 'text-[#c9d2e0]'}`}>
-                        Conexiuni native cu furnizorii de piese auto, SPV ANAF și baza de date oficială RAR.
+                        Conexiuni native cu furnizorii de piese auto, SPV ANAF și baza de date   RAR.
                       </p>
                       <a
                         href="#rar-autopass"
@@ -949,9 +930,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                     closeMenu();
                                     item.action?.();
                                   }}
-                                  className={`w-full text-left group block rounded-[8px] p-3 transition-colors ${
-                                    isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                  }`}
+                                  className={`w-full text-left group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                    }`}
                                 >
                                   <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                     {item.title}
@@ -964,9 +944,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 <a
                                   href={item.href}
                                   onClick={closeMenu}
-                                  className={`group block rounded-[8px] p-3 transition-colors ${
-                                    isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
-                                  }`}
+                                  className={`group block rounded-[8px] p-3 transition-colors ${isLight ? 'hover:bg-slate-100/80' : 'hover:bg-[rgb(238_242_248/0.05)]'
+                                    }`}
                                 >
                                   <span className={`block font-semibold transition-colors ${isLight ? 'text-slate-900 group-hover:text-[#0066FF]' : 'text-white group-hover:text-[#6e9bff]'}`}>
                                     {item.title}
@@ -985,11 +964,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                   {/* Promo Card */}
                   <div className="w-full sm:w-80">
-                    <div className={`rounded-[12px] p-6 border ${
-                      isLight 
-                        ? 'bg-slate-50/90 border-slate-200/90' 
+                    <div className={`rounded-[12px] p-6 border ${isLight
+                        ? 'bg-slate-50/90 border-slate-200/90'
                         : 'bg-[rgb(238_242_248/0.04)] border-white/10'
-                    }`}>
+                      }`}>
                       <p className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-[#a6b1c4]'}`}>
                         Contact direct
                       </p>
@@ -1020,10 +998,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* ── Background Scrim behind Mega Menu ────────────────────────────── */}
       {activeMenu && (
-        <div 
-          aria-hidden="true" 
+        <div
+          aria-hidden="true"
           className="fixed inset-0 top-[60px] sm:top-[70px] z-30 bg-black/40 dark:bg-black/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
-          onClick={closeMenu} 
+          onClick={closeMenu}
         />
       )}
 
@@ -1032,32 +1010,29 @@ export const Navbar: React.FC<NavbarProps> = ({
       ═══════════════════════════════════════════════════════════════════ */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 xl:hidden">
-          
+
           {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
 
           {/* Drawer container */}
-          <div className={`fixed inset-y-0 right-0 w-full max-w-md shadow-2xl flex flex-col z-50 overflow-y-auto animate-in slide-in-from-right duration-250 ${
-            isLight ? 'bg-white text-slate-900' : 'bg-[#070b14] text-white'
-          }`}>
-            
-            {/* Drawer Header */}
-            <div className={`flex h-16 items-center justify-between border-b px-5 ${
-              isLight ? 'border-slate-200' : 'border-white/10'
+          <div className={`fixed inset-y-0 right-0 w-full max-w-md shadow-2xl flex flex-col z-50 overflow-y-auto animate-in slide-in-from-right duration-250 ${isLight ? 'bg-white text-slate-900' : 'bg-[#070b14] text-white'
             }`}>
+
+            {/* Drawer Header */}
+            <div className={`flex h-16 items-center justify-between border-b px-5 ${isLight ? 'border-slate-200' : 'border-white/10'
+              }`}>
               <span className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
                 Meniu SAMpro
               </span>
-              <button 
-                type="button" 
-                aria-label="Închide meniul" 
+              <button
+                type="button"
+                aria-label="Închide meniul"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer ${
-                  isLight ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-300'
-                }`}
+                className={`inline-flex size-10 items-center justify-center rounded-[6px] transition-colors cursor-pointer ${isLight ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-300'
+                  }`}
               >
                 <X className="size-5" />
               </button>
@@ -1065,7 +1040,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Drawer Body */}
             <div className="px-5 pb-10 pt-4 flex-1">
-              
+
               {/* Primary Action Top */}
               <div className="flex flex-col gap-3">
                 <button
@@ -1081,10 +1056,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
 
               {/* Accordion List with <details> matching user requested structure */}
-              <ul className={`mt-6 divide-y border-y ${
-                isLight ? 'divide-slate-200 border-slate-200' : 'divide-white/10 border-white/10'
-              }`}>
-                
+              <ul className={`mt-6 divide-y border-y ${isLight ? 'divide-slate-200 border-slate-200' : 'divide-white/10 border-white/10'
+                }`}>
+
                 {/* 1. Explorează */}
                 <li>
                   <details className="group">
@@ -1352,11 +1326,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <button
                     type="button"
                     onClick={toggleTheme}
-                    className={`w-full py-3 rounded-lg border font-bold text-sm flex items-center justify-center gap-2 transition-colors ${
-                      isLight 
-                        ? 'border-slate-300 text-slate-800 hover:bg-slate-100' 
+                    className={`w-full py-3 rounded-lg border font-bold text-sm flex items-center justify-center gap-2 transition-colors ${isLight
+                        ? 'border-slate-300 text-slate-800 hover:bg-slate-100'
                         : 'border-white/15 text-slate-200 hover:bg-white/5'
-                    }`}
+                      }`}
                   >
                     {theme === 'dark' ? <Sun className="size-4 text-amber-400" /> : <Moon className="size-4 text-slate-800" />}
                     <span>{theme === 'dark' ? 'Comută pe Mod Luminos (Day)' : 'Comută pe Mod Întunecat (Dark)'}</span>

@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal }) => {
             </div>
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-md">
-              <strong>SAMpro (Service Auto Management Pro)</strong> este ecosistemul cloud enterprise dedicat atelierelor mecanice, vopsitoriilor, centrelor ITP și marilor rețele de service auto din România. Viteză de Raccing, comunicare transparentă pe WhatsApp și conformitate oficială RAR Autopass.
+              <strong>SAMpro (Service Auto Management Pro)</strong> este ecosistemul cloud enterprise dedicat atelierelor mecanice, vopsitoriilor, centrelor ITP și marilor rețele de service auto din România. Viteză de Raccing, comunicare transparentă pe WhatsApp și conformitate   RAR Autopass.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-400 font-rounded">
@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal }) => {
               <li>
                 <a href="#performanta" className="hover:text-[#00D2FF] transition-colors flex items-center gap-1">
                   <ChevronRight className="w-3 h-3 text-[#0066FF]" />
-                  Performanță F1
+                  Performanță SAM
                 </a>
               </li>
               <li>

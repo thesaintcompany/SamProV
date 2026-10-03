@@ -116,7 +116,7 @@ export const PerformanceDiagram: React.FC = () => {
               </h3>
 
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Prin scanarea rapidă a numărului de înmatriculare, preluarea oficială a istoricului RAR Autopass
+                Prin scanarea rapidă a numărului de înmatriculare, preluarea   a istoricului RAR Autopass
                 și aprobarea imediată pe WhatsApp direct de către client.
               </p>
 
@@ -165,7 +165,7 @@ export const PerformanceDiagram: React.FC = () => {
             </span>
           </div>
 
-          <div 
+          <div
             ref={pipelineRef}
             onScroll={(e) => {
               const el = e.currentTarget;
@@ -259,11 +259,10 @@ export const PerformanceDiagram: React.FC = () => {
                   key={idx}
                   type="button"
                   onClick={() => scrollToPipelineStage(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeStage === idx
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeStage === idx
                       ? 'w-6 bg-[#00D2FF]'
                       : 'w-2 bg-white/20'
-                  }`}
+                    }`}
                   aria-label={`Sari la etapa ${idx + 1}`}
                 />
               ))}
