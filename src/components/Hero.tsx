@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Play, 
   ArrowRight, 
@@ -53,14 +53,37 @@ const HeroPicture: React.FC<{ variant: HeroVariant; visible: boolean; priority?:
 
 interface HeroProps {
   onOpenDemo: () => void;
-  onScrollToSimulator: () => void;
+  onScrollToSimulator?: () => void;
   theme?: 'light' | 'dark';
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, theme = 'dark' }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _onScrollToSimulator, theme = 'dark' }) => {
   const isDark = theme === 'dark';
   const [activeHeroCard, setActiveHeroCard] = useState(0);
   const heroCardsRef = useRef<HTMLDivElement>(null);
+
+  // Background video triggered on demand by "Vezi demonstrația" button
+  const [showVideo, setShowVideo] = useState(false);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlayDemonstration = () => {
+    setShowVideo((prev) => !prev);
+  };
+
+  const handleVideoEnded = () => {
+    setShowVideo(false);
+  };
+
+  useEffect(() => {
+    if (heroVideoRef.current) {
+      if (showVideo) {
+        heroVideoRef.current.currentTime = 0;
+        heroVideoRef.current.play().catch(() => {});
+      } else {
+        heroVideoRef.current.pause();
+      }
+    }
+  }, [showVideo]);
 
   const scrollToHeroCard = (idx: number) => {
     const clampedIdx = Math.max(0, Math.min(idx, 5));
@@ -145,8 +168,23 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
 
           {/* 1. Responsive artwork (mobile / tablet / desktop / ultrawide) */}
           <div className="absolute inset-0 z-0 overflow-hidden">
-            <HeroPicture variant={HERO_IMAGES.light} visible={!isDark} priority={!isDark} />
-            <HeroPicture variant={HERO_IMAGES.dark} visible={isDark} priority={isDark} />
+            <HeroPicture variant={HERO_IMAGES.light} visible={!isDark && !showVideo} priority={!isDark} />
+            <HeroPicture variant={HERO_IMAGES.dark} visible={isDark && !showVideo} priority={isDark} />
+
+            {/* Background Video (muted, zero controls, returns to background image on video end) */}
+            <video
+              ref={heroVideoRef}
+              muted
+              playsInline
+              preload="auto"
+              onEnded={handleVideoEnded}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                showVideo ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              }`}
+            >
+              <source src="/videos/sampro-clip.mp4" type="video/mp4" />
+              <source src="/videos/sampro-clip.webm" type="video/webm" />
+            </video>
           </div>
 
           {/* 2. Accent glow behind the car (depth) */}
@@ -269,17 +307,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator, the
                 </button>
 
                 <button
-                  onClick={onScrollToSimulator}
+                  id="hero-demo-video-btn"
+                  onClick={handlePlayDemonstration}
                   className="inline-flex items-center gap-3 py-2 px-3 rounded-full hover:bg-white/10 transition-colors group text-left cursor-pointer"
+                  title={showVideo ? "Oprește demonstrația și revino la imagine" : "Rulează demonstrația video în fundal"}
                 >
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center shadow-md border group-hover:scale-110 transition-transform ${isDark ? 'bg-[#182e56]/90 border-white/20' : 'bg-white border-slate-200'}`}>
-                    <Play className={`w-4 h-4 ml-0.5 fill-current ${isDark ? 'text-white' : 'text-[#0066FF]'}`} />
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center shadow-md border group-hover:scale-110 transition-transform ${showVideo ? 'bg-[#0066FF] border-[#00D2FF]' : (isDark ? 'bg-[#182e56]/90 border-white/20' : 'bg-white border-slate-200')}`}>
+                    <Play className={`w-4 h-4 ml-0.5 fill-current ${showVideo ? 'text-white' : (isDark ? 'text-white' : 'text-[#0066FF]')}`} />
                   </div>
                   <div>
                     <div className={`text-xs sm:text-sm font-bold leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                      Vezi demonstrația
+                      {showVideo ? 'Oprește demonstrația' : 'Vezi demonstrația'}
                     </div>
-                    <div className="text-[11px] text-slate-400 font-mono">2:18</div>
+                    <div className="text-[11px] text-slate-400 font-mono">
+                      {showVideo ? 'Rulează în fundal' : '2:18'}
+                    </div>
                   </div>
                 </button>
               </div>

@@ -23,7 +23,10 @@ import {
   Sparkles,
   Layers,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Video,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 
 interface KeyModulesProps {
@@ -32,6 +35,19 @@ interface KeyModulesProps {
 
 export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) => {
   const [activeStep, setActiveStep] = useState<number>(4); // Default highlighted step on WhatsApp deviz
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleVideoSound = () => {
+    if (videoRef.current) {
+      const nextMuted = !videoRef.current.muted;
+      videoRef.current.muted = nextMuted;
+      setIsVideoMuted(nextMuted);
+      if (!nextMuted) {
+        videoRef.current.play().catch(() => {});
+      }
+    }
+  };
 
   // Mobile carousel states for Optimizare & Siguranta
   const [activeOptimizareIndex, setActiveOptimizareIndex] = useState(0);
@@ -664,6 +680,93 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
               </div>
             )}
 
+          </div>
+
+        </div>
+
+        {/* ════════════════════════════════════════════════════════════════════════
+            2.5 PREZENTARE VIDEO SAMPRO (1080P SEAMLESS BACKGROUND LOOP)
+        ════════════════════════════════════════════════════════════════════════ */}
+        <div className="p-6 sm:p-10 rounded-3xl bg-slate-900/90 dark:bg-[#07172f]/90 border border-slate-800 dark:border-white/10 shadow-2xl space-y-6 relative overflow-hidden backdrop-blur-xl">
+
+          {/* Background subtle glow */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0066FF]/20 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#00D2FF]/15 rounded-full blur-[100px] pointer-events-none" />
+
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-3 relative z-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-bold tracking-wider text-[#00D2FF] uppercase shadow-sm">
+              <Video className="w-4 h-4 text-[#00D2FF]" />
+              <span>PREZENTARE VIDEO WORKSHOP</span>
+            </div>
+
+            <h3 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
+              Vezi SAMpro În Acțiune <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00A3FF] to-[#00D2FF]">
+                Transformarea Digitală A Service-ului Tău
+              </span>
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              Urmărește demonstrația video de mai jos pentru a vedea cum funcționează sistemul integrat SAMpro în condiții reale de atelier.
+            </p>
+          </div>
+
+          {/* Seamless Chromeless 1080p Video Container */}
+          <div className="relative z-10 max-w-5xl mx-auto">
+            <div 
+              className="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-950 border-2 border-blue-500/30 shadow-[0_0_50px_rgba(0,102,255,0.25)] group cursor-pointer"
+              onClick={toggleVideoSound}
+              title="Apasă pentru activare / dezactivare sunet"
+            >
+              {/* Native 1080p Video (No YouTube UI, No External Elements, Pure Background Loop) */}
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted={isVideoMuted}
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-700 group-hover:scale-[1.01]"
+              >
+                <source src="/videos/sampro-clip.mp4" type="video/mp4" />
+                <source src="/videos/sampro-clip.webm" type="video/webm" />
+                {/* Fallback iframe in case browser disables local HTML5 video */}
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/_eNYj4cP1GY?autoplay=1&mute=1&loop=1&playlist=_eNYj4cP1GY&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&fs=0&playsinline=1&vq=hd1080"
+                  title="Prezentare SAMpro ERP Service Auto"
+                  className="w-full h-full border-0 pointer-events-none"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                />
+              </video>
+
+              {/* Floating audio control pill */}
+              <div className="absolute bottom-4 right-4 z-20">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleVideoSound();
+                  }}
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/85 hover:bg-slate-900 text-white border border-white/20 backdrop-blur-md shadow-lg text-xs font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  {isVideoMuted ? (
+                    <>
+                      <VolumeX className="w-4 h-4 text-slate-400" />
+                      <span>Sunet oprit (apasă pentru audio)</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="w-4 h-4 text-emerald-400 animate-pulse" />
+                      <span className="text-emerald-300">Sunet activat</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Subtle ambient gradient overlay to seamlessly blend corners */}
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950/40 via-transparent to-slate-950/20" />
+            </div>
           </div>
 
         </div>
