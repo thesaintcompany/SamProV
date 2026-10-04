@@ -76,13 +76,29 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
   };
 
   useEffect(() => {
-    if (heroVideoRef.current) {
-      if (showVideo) {
-        heroVideoRef.current.currentTime = 0;
-        heroVideoRef.current.play().catch(() => {});
+    const video = heroVideoRef.current;
+    if (!video) return;
+
+    if (showVideo) {
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+      const startTime = isMobile ? 3 : 0;
+
+      const setTimeAndPlay = () => {
+        try {
+          video.currentTime = startTime;
+        } catch {
+          // ignore seek error if video not ready
+        }
+        video.play().catch(() => {});
+      };
+
+      if (video.readyState >= 1) {
+        setTimeAndPlay();
       } else {
-        heroVideoRef.current.pause();
+        video.addEventListener('loadedmetadata', setTimeAndPlay, { once: true });
       }
+    } else {
+      video.pause();
     }
   }, [showVideo]);
 

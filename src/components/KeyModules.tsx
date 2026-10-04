@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Zap,
   Target,
@@ -48,6 +48,28 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
       }
     }
   };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    if (isMobile) {
+      const setTime = () => {
+        try {
+          if (video.currentTime < 3) {
+            video.currentTime = 3;
+          }
+        } catch {
+          // ignore
+        }
+      };
+      if (video.readyState >= 1) {
+        setTime();
+      } else {
+        video.addEventListener('loadedmetadata', setTime, { once: true });
+      }
+    }
+  }, []);
 
   // Mobile carousel states for Optimizare & Siguranta
   const [activeOptimizareIndex, setActiveOptimizareIndex] = useState(0);
@@ -740,26 +762,22 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                 />
               </video>
 
-              {/* Floating audio control pill */}
-              <div className="absolute bottom-4 right-4 z-20">
+              {/* Floating audio control icon */}
+              <div className="absolute bottom-3.5 right-3.5 sm:bottom-4 sm:right-4 z-20">
                 <button
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleVideoSound();
                   }}
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/85 hover:bg-slate-900 text-white border border-white/20 backdrop-blur-md shadow-lg text-xs font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-slate-900/85 hover:bg-slate-900 text-white border border-white/20 backdrop-blur-md shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer"
+                  title={isVideoMuted ? "Activează sunetul" : "Dezactivează sunetul"}
+                  aria-label={isVideoMuted ? "Activează sunetul" : "Dezactivează sunetul"}
                 >
                   {isVideoMuted ? (
-                    <>
-                      <VolumeX className="w-4 h-4 text-slate-400" />
-                      <span>Sunet oprit (apasă pentru audio)</span>
-                    </>
+                    <VolumeX className="w-4 h-4 text-slate-300" />
                   ) : (
-                    <>
-                      <Volume2 className="w-4 h-4 text-emerald-400 animate-pulse" />
-                      <span className="text-emerald-300">Sunet activat</span>
-                    </>
+                    <Volume2 className="w-4 h-4 text-[#00D2FF]" />
                   )}
                 </button>
               </div>
