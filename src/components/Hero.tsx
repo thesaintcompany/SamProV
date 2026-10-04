@@ -4,7 +4,8 @@ import {
   ArrowRight, 
   Activity,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  X
 } from 'lucide-react';
 
 /* ─── RESPONSIVE HERO ARTWORK ──────────────────────────────────────────────
@@ -171,14 +172,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
             <HeroPicture variant={HERO_IMAGES.light} visible={!isDark && !showVideo} priority={!isDark} />
             <HeroPicture variant={HERO_IMAGES.dark} visible={isDark && !showVideo} priority={isDark} />
 
-            {/* Background Video (muted, zero controls, returns to background image on video end) */}
+            {/* Background Video (muted, zero controls, returns to background image on video end, 13% zoom-in) */}
             <video
               ref={heroVideoRef}
               muted
               playsInline
               preload="auto"
               onEnded={handleVideoEnded}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+              style={{
+                transform: showVideo ? 'scale(1.13)' : 'scale(1)',
+                transformOrigin: 'center center'
+              }}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out ${
                 showVideo ? 'opacity-100' : 'opacity-0 pointer-events-none'
               }`}
             >
@@ -198,14 +203,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
           
           {/* Tablet: text top, car bottom */}
           <div
-            className="hidden sm:block lg:hidden absolute inset-0 z-[2]"
+            className={`hidden sm:block lg:hidden absolute inset-0 z-[2] transition-opacity duration-1000 ease-in-out ${
+              showVideo ? 'opacity-0' : 'opacity-100'
+            }`}
             style={{
               background: `linear-gradient(to bottom, ${bg} 0%, rgba(${bgRgb},0.9) 30%, rgba(${bgRgb},0.35) 55%, transparent 72%)`,
             }}
           />
           {/* Desktop & ultrawide: anchored to the centered text column, so the car stays fully visible on the right */}
           <div
-            className="hidden lg:block absolute inset-0 z-[2]"
+            className={`hidden lg:block absolute inset-0 z-[2] transition-opacity duration-1000 ease-in-out ${
+              showVideo ? 'opacity-0' : 'opacity-100'
+            }`}
             style={{
               background: `linear-gradient(90deg, ${bg} 0%, ${bg} calc(50% - 120px), rgba(${bgRgb},0.82) calc(50% + 40px), rgba(${bgRgb},0.35) calc(50% + 260px), transparent calc(50% + 560px))`,
             }}
@@ -231,7 +240,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
           />
 
           {/* 4. Tracking widgets (desktop+) — positioned over the car area */}
-          <div className="hidden lg:block absolute inset-y-0 right-0 w-1/2 2xl:w-[46%] z-[3]">
+          <div className={`hidden lg:block absolute inset-y-0 right-0 w-1/2 2xl:w-[46%] z-[3] transition-all duration-700 ease-in-out ${
+            showVideo ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
+          }`}>
             {/* ── TRACKING WIDGET 1: Mai multă productivitate ── */}
             <div className="absolute top-[30%] left-[22%] z-20 flex flex-col items-center pointer-events-auto hero-float">
               <div className={`backdrop-blur-xl border rounded-2xl px-4 py-2.5 shadow-xl flex items-center gap-3 ${isDark ? 'bg-[#0c2246]/80 border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.5)]' : 'bg-white/90 border-slate-200/90 shadow-[0_12px_35px_rgba(0,102,255,0.10)]'}`}>
@@ -271,7 +282,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
         </div>
 
         {/* ── Hero Content ─────────────────────────────────────────────── */}
-        <div className="max-w-7xl w-full mx-auto px-7 sm:px-6 lg:px-8 relative z-10 pt-3 sm:pt-0 sm:my-auto">
+        <div className={`max-w-7xl w-full mx-auto px-7 sm:px-6 lg:px-8 relative z-10 pt-3 sm:pt-0 sm:my-auto transition-all duration-700 ease-in-out ${
+          showVideo ? 'opacity-0 -translate-x-10 pointer-events-none' : 'opacity-100 translate-x-0'
+        }`}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
             {/* Left Column */}
@@ -330,6 +343,28 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
             {/* Right Column: spacer for layout grid */}
             <div className="lg:col-span-6 min-h-[220px] xs:min-h-[260px] sm:min-h-[320px] pointer-events-none" />
           </div>
+        </div>
+
+        {/* Minimalist Floating Stop Button when video is active */}
+        <div
+          className={`absolute bottom-6 left-6 sm:bottom-10 sm:left-10 z-40 transition-all duration-500 ease-in-out ${
+            showVideo
+              ? 'opacity-100 translate-y-0 pointer-events-auto'
+              : 'opacity-0 translate-y-4 pointer-events-none'
+          }`}
+        >
+          <button
+            onClick={handlePlayDemonstration}
+            className="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-slate-900/90 hover:bg-slate-900 text-white border border-white/20 backdrop-blur-xl shadow-[0_12px_35px_rgba(0,0,0,0.6)] text-xs sm:text-sm font-bold tracking-wide transition-all hover:scale-105 active:scale-95 cursor-pointer group"
+            aria-label="Oprește demonstrația"
+          >
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500" />
+            </span>
+            <span>Oprește</span>
+            <X className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+          </button>
         </div>
       </div>
 
