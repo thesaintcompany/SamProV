@@ -277,8 +277,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal }) => {
             © 2026 SAMpro by BUU.RO. Toate drepturile rezervate. Dezvoltat cu mândrie pentru service-urile auto din România.
           </div>
           <div className="flex items-center gap-4 text-[11px]">
-            <span>Coolify Ready (Port 3043)</span>
-            <span>•</span>
             <span>Cloud SLA 99.98%</span>
           </div>
         </div>
