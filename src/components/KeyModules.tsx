@@ -105,7 +105,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
   const flowSteps = [
     { id: 1, label: 'Client sună', sub: 'Înregistrare apel', icon: PhoneCall },
     { id: 2, label: 'Programare', sub: 'Dispatch mecanic', icon: Calendar },
-    { id: 3, label: 'Recepție digitală', sub: 'Scanare VIN / RAR', icon: ClipboardCheck },
+    { id: 3, label: 'Recepție digitală', sub: 'Identificare mașină', icon: ClipboardCheck },
     { id: 4, label: 'Diagnostic', sub: 'Constatare pe tabletă', icon: Wrench },
     { id: 5, label: 'Deviz automat', sub: 'Normare & piese OEM', icon: FileSpreadsheet },
     { id: 6, label: 'Aprobare 1-Tap', sub: 'Direct  ', icon: Send },

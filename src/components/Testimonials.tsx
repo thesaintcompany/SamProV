@@ -21,7 +21,7 @@ export const Testimonials: React.FC = () => {
       hoists: '10 Elevatoare & ITP',
       stars: 5,
       avatar: '/assets/avatar-radu-dumitru.jpg',
-      text: 'Integrarea directă cu RAR Autopass este genială. Nu mai stăm să tastăm manual serii de șasiu sau să verificăm datele de ITP din alte site-uri. La recepție introducem numărul și avem istoricul complet în 3 secunde. Protecția codurilor de piese ne-a salvat mii de euro.'
+      text: 'Identificarea mașinii la recepție este incredibil de ușoară. Introducem numărul sau seria și avem datele pe ecran în câteva secunde, fără să mai tastăm manual. Iar la finalul lucrării, transmiterea către RAR Autopass se face cu un singur clic. Protecția codurilor de piese ne-a salvat mii de euro.'
     },
     {
       name: 'Mihai Vasilescu',

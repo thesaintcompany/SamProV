@@ -24,7 +24,7 @@ export const PerformanceDiagram: React.FC = () => {
       title: 'Identificare & VIN',
       desc: 'Scanare număr înmatriculare și preluare automată date tehnice vehicul.',
       classic: { time: '~8 min', text: 'Tastare manuală talon, căutare serii de șasiu în programe deconectate.' },
-      sampro: { time: '30 sec', text: 'Autocompletare RAR Autopass + istoric instantaneu pe ecran.' },
+      sampro: { time: '30 sec', text: 'Identificare ușoară a mașinii + date tehnice și istoric direct pe ecran.' },
       metric: '+94% viteză'
     },
     {
@@ -116,8 +116,8 @@ export const PerformanceDiagram: React.FC = () => {
               </h3>
 
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Prin scanarea rapidă a numărului de înmatriculare, preluarea   a istoricului RAR Autopass
-                și aprobarea imediată   direct de către client.
+                Prin scanarea rapidă a numărului de înmatriculare, identificarea ușoară a mașinii
+                și aprobarea imediată direct de către client.
               </p>
 
               {/* Trio Metrics */}
