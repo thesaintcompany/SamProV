@@ -21,7 +21,7 @@ export const Testimonials: React.FC = () => {
       hoists: '10 Elevatoare & ITP',
       stars: 5,
       avatar: '/assets/avatar-radu-dumitru.jpg',
-      text: 'Identificarea mașinii la recepție este incredibil de ușoară. Introducem numărul sau seria și avem datele pe ecran în câteva secunde, fără să mai tastăm manual. Iar la finalul lucrării, transmiterea către RAR Autopass se face cu un singur clic. Protecția codurilor de piese ne-a salvat mii de euro.'
+      text: 'Identificarea mașinii la recepție se face în câteva secunde, fără să mai stăm să tastăm manual serii de șasiu sau date tehnice. Iar la finalul lucrării, raportarea către RAR Autopass se face cu un singur clic. Protecția codurilor de piese ne-a salvat mii de euro.'
     },
     {
       name: 'Mihai Vasilescu',

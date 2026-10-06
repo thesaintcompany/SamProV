@@ -174,7 +174,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     {
       title: 'Conexiune RAR & Autopass',
-      desc: 'Identificare facilă mașină și raportare oficială RAR cu 1-click.',
+      desc: 'Interogare automată VIN   și generare Pașaport Tehnic.',
       icon: Car,
       color: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
       href: '#rar-autopass'

@@ -20,65 +20,73 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
     {
       id: 'start',
       name: 'Plan Start',
-      badge: 'ATELIER MIC',
-      target: 'Service-uri cu 1-2 mecanici sau posturi de lucru',
+      badge: 'ATELIERE MICI',
+      target: 'Ateliere mici, 1–2 posturi de lucru',
+      tagline: 'Scapi de hârtii și Excel.',
       monthlyPrice: 690,
       annualPrice: 552, // 20% off
+      dailyApprox: '≈ 18 lei pe zi',
       popular: false,
+      sectionTitle: 'Ce primești:',
       features: [
         { text: 'Până la 2 elevatoare / posturi de lucru', included: true },
-        { text: 'Devize și oferte rapide 40/zi', included: true },
-        { text: 'Calendarul Ofertelor si Devizelor', included: true },
-        { text: 'Generare deviz în format PDF conform RAR', included: true },
-        { text: 'Securitate Cloud & backup zilnic automat', included: true },
-        { text: 'Suport tehnic dedicat prin email sau tiket.', included: true },
-        { text: 'Protecție coduri piese (disponibil în Pro)', included: false },
-        { text: 'Vizualizare Flota (disponibil în Pro)', included: false }
+        { text: 'Devize și oferte gata în 40 de secunde', included: true },
+        { text: 'Deviz PDF conform RAR, gata de printat', included: true },
+        { text: 'Calendar programări, niciun client uitat', included: true },
+        { text: 'Backup zilnic automat, nu pierzi datele', included: true },
+        { text: 'Suport prin email sau tichet', included: true },
+        { text: 'Protecție coduri piese doar în Pro', included: false },
+        { text: 'Vizualizare flotă doar în Pro', included: false }
       ],
-      ctaText: 'Alege Plan Start'
+      ctaText: 'Alege Plan Start',
+      footerNote: 'Migrare de date disponibilă contra cost'
     },
     {
       id: 'pro',
       name: 'Plan Pro',
-      badge: 'CEL MAI POPULAR',
-      target: 'Ateliere complete, service-uri multimarcă & ITP',
+      badge: 'CEL MAI RECOMANDAT',
+      target: 'Ateliere complete, service-uri multimarcă și ITP',
+      tagline: 'Mai puține erori, clienți care revin, control total.',
       monthlyPrice: 1289,
       annualPrice: 1031, // 20% off
+      dailyApprox: '≈ 34 lei pe zi',
       popular: true,
+      sectionTitle: 'Tot ce include Start, plus:',
       features: [
-        { text: 'Tot din Planul Start inclus', included: true },
-        { text: 'Până la 8 elevatoare & mecanici simultan', included: true },
-        { text: 'Protecție avansată coduri piese inclusă', included: true },
-        { text: 'Conectare RAR Autopass inclusă', included: true },
-        { text: 'Aprobare interactivă 1-tap pentru clienți', included: true },
-        { text: 'Recepție pentru Automobile', included: true },
-        { text: 'Modul Smart PR: notificări de status și remindere ITP', included: true },
-        { text: 'Raportare avansată asupra bazinului auto procesat', included: true },
-        { text: 'App Note de Constatare si Receptie', included: true },
-        { text: 'Modul Inventar Service', included: true }
+        { text: 'Până la 8 elevatoare și mecanici simultan', sub: '', included: true },
+        { text: 'Protecție coduri piese', sub: 'Nu mai pierzi bani din furturi sau comisioane', included: true },
+        { text: 'Clientul aprobă devizul de pe telefon', sub: 'Un singur tap, fără telefoane și așteptare', included: true },
+        { text: 'Notificări automate și reamintire ITP', sub: 'Clienții revin singuri', included: true },
+        { text: 'Recepție auto digitală cu notă de constatare', sub: 'Conectare RAR Autopass inclusă', included: true },
+        { text: 'Rapoarte avansate', sub: 'Vezi ce mașini și servicii aduc profit', included: true }
       ],
-      ctaText: 'Alege Plan Pro (Recomandat)'
+      ctaText: 'Alege Plan Pro',
+      footerNote: 'Fără taxă de instalare'
     },
     {
       id: 'enterprise',
       name: 'Plan Enterprise',
-      badge: 'REȚEA & FLOTE',
-      target: 'Mari rețele de service, dealer-ship-uri și flote',
+      badge: 'REȚELE & FLOTE',
+      target: 'Rețele de service, dealeri și flote',
+      tagline: 'Soluție făcută pe măsura rețelei tale.',
       monthlyPrice: 0,
       annualPrice: 0,
       isCustom: true,
       popular: false,
+      sectionTitle: 'Tot ce include Pro, plus:',
       features: [
-        { text: 'Elevatoare și posturi de lucru nelimitate', included: true },
-        { text: 'Protecție coduri piese & reguli personalizate', included: true },
-        { text: 'Management Recenzii Google profesionla', included: true },
-        { text: 'Integrare API ERP & Contabilitate (Saga, SmartBill etc.)', included: true },
-        { text: 'Server Cloud dedicat cu izolare totală a datelor', included: true },
-        { text: 'SLA garantat de intervenție sub 30 de minute', included: true },
-        { text: 'Manager de cont dedicat & training la sediul atelierului', included: true },
-        { text: 'Dezvoltare de funcționalități personalizate la cerere', included: true }
+        { text: 'Elevatoare și posturi nelimitate', included: true },
+        { text: 'Modul Geometrie auto', tagBadge: 'În curând', sub: 'Inclus în Enterprise', included: true },
+        { text: 'SLA: intervenție în sub 30 de minute', sub: 'Atelierul tău nu stă', included: true },
+        { text: 'Manager de cont dedicat și training la sediu', included: true },
+        { text: 'Server cloud dedicat, date complet izolate', included: true },
+        { text: 'Integrare ERP și contabilitate (Saga, SmartBill)', included: true },
+        { text: 'Reguli personalizate pentru coduri piese', included: true },
+        { text: 'Management profesionist al recenziilor Google', included: true },
+        { text: 'Module specifice personalizate', sub: 'Dezvoltate pentru procesele atelierelor tale: producție, flux de lucru, rapoarte proprii', included: true }
       ],
-      ctaText: 'Contactează Vânzările'
+      ctaText: 'Contactează Vânzările',
+      footerNote: 'Răspundem în aceeași zi'
     }
   ];
 
@@ -208,8 +216,11 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
                     </span>
                   </div>
 
-                  <p className={`text-xs mb-6 ${plan.popular ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}`}>
+                  <p className={`text-xs font-semibold ${plan.popular ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}`}>
                     {plan.target}
+                  </p>
+                  <p className={`text-xs mt-1 mb-6 font-medium italic ${plan.popular ? 'text-[#00D2FF]' : 'text-blue-600 dark:text-blue-400'}`}>
+                    {plan.tagline}
                   </p>
 
                   {/* Price */}
@@ -217,29 +228,44 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
                     {plan.isCustom ? (
                       <div>
                         <div className={`text-3xl font-black ${plan.popular ? 'text-white' : 'text-slate-900 dark:text-white'}`}>Ofertă Dedicată</div>
-                        <div className={`text-xs mt-1 ${plan.popular ? 'text-slate-400' : 'text-slate-500'}`}>în funcție de numărul de locații</div>
+                        <div className={`text-xs mt-1 ${plan.popular ? 'text-slate-400' : 'text-slate-500'}`}>În funcție de numărul de locații</div>
                       </div>
                     ) : (
                       <div>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className={`text-4xl sm:text-5xl font-black font-mono ${plan.popular ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
+                        <div className="flex items-baseline gap-2">
+                          <span className={`text-4xl sm:text-5xl font-black font-mono tracking-tight ${plan.popular ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
                             {price}
                           </span>
-                          <span className={`text-sm font-semibold ${plan.popular ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
-                            lei / lună
-                          </span>
+                          <div className="flex flex-col">
+                            <span className={`text-xs font-semibold ${plan.popular ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
+                              lei / lună
+                            </span>
+                            {isAnnual && (
+                              <span className="text-[11px] line-through text-slate-400 dark:text-slate-500">
+                                {plan.monthlyPrice} lei
+                              </span>
+                            )}
+                          </div>
                         </div>
-                        <div className={`text-[11px] mt-1 font-mono ${plan.popular ? 'text-[#00D2FF]' : 'text-emerald-600 dark:text-[#00D2FF]'}`}>
-                          {isAnnual ? 'Facturat anual • Angajament 24 de luni (economisești 20%)' : 'Facturare lunară • Fără angajament pe termen lung'}
+
+                        <div className="flex items-center justify-between gap-2 mt-2">
+                          <span className={`text-[11px] font-mono font-medium ${plan.popular ? 'text-[#00D2FF]' : 'text-emerald-600 dark:text-[#00D2FF]'}`}>
+                            {isAnnual ? 'Facturat anual, economisești 20%' : 'Facturare lunară • Fără angajament'}
+                          </span>
+                          {plan.dailyApprox && (
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/10 text-slate-300 border border-white/10 whitespace-nowrap">
+                              {plan.dailyApprox}
+                            </span>
+                          )}
                         </div>
                       </div>
                     )}
                   </div>
 
                   {/* Features List */}
-                  <div className="space-y-3 mb-8">
+                  <div className="space-y-3.5 mb-8">
                     <div className={`text-[11px] font-mono font-bold uppercase tracking-wider ${plan.popular ? 'text-slate-400' : 'text-slate-400 dark:text-slate-500'}`}>
-                      Ce include:
+                      {plan.sectionTitle}
                     </div>
                     {plan.features.map((feat, fIdx) => (
                       <div
@@ -259,24 +285,46 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo }) => {
                         ) : (
                           <XCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-500/80 dark:text-rose-400/80" />
                         )}
-                        <span>{feat.text}</span>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="font-semibold">{feat.text}</span>
+                            {'tagBadge' in feat && feat.tagBadge && (
+                              <span className="px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[9px] font-bold uppercase tracking-wide">
+                                {feat.tagBadge}
+                              </span>
+                            )}
+                          </div>
+                          {'sub' in feat && feat.sub && (
+                            <p className={`text-[11px] mt-0.5 ${plan.popular ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
+                              {feat.sub}
+                            </p>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>
 
                 </div>
 
-                {/* CTA Button */}
-                <button
-                  onClick={() => onOpenDemo(plan.name)}
-                  className={`w-full py-3.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 flex items-center justify-center gap-2 active:scale-95 cursor-pointer ${plan.popular
-                    ? 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] hover:from-[#0072ff] hover:to-[#00d8ff] text-white shadow-lg shadow-blue-500/40 hover:scale-[1.02]'
-                    : 'bg-slate-100 hover:bg-[#0066FF] hover:text-white dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white border border-slate-200/80 dark:border-white/15'
-                    }`}
-                >
-                  <span>{plan.ctaText}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                {/* CTA Button & Footer Note */}
+                <div className="space-y-2.5">
+                  <button
+                    onClick={() => onOpenDemo(plan.name)}
+                    className={`w-full py-3.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 flex items-center justify-center gap-2 active:scale-95 cursor-pointer ${plan.popular
+                      ? 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] hover:from-[#0072ff] hover:to-[#00d8ff] text-white shadow-lg shadow-blue-500/40 hover:scale-[1.02]'
+                      : 'bg-slate-100 hover:bg-[#0066FF] hover:text-white dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white border border-slate-200/80 dark:border-white/15'
+                      }`}
+                  >
+                    <span>{plan.ctaText}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+
+                  {plan.footerNote && (
+                    <div className="text-center text-[11px] text-slate-400 dark:text-slate-500 font-medium">
+                      {plan.footerNote}
+                    </div>
+                  )}
+                </div>
 
               </div>
             );

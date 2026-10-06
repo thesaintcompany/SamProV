@@ -138,8 +138,8 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({ onOpenDemo }) => {
 
             <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 text-xs text-slate-600 dark:text-slate-300 space-y-1">
               <div className="font-semibold text-slate-900 dark:text-white">Calcul bazat pe date reale din service-uri:</div>
-              <div>• 21 minute economisite per deviz prin autocompletare RAR și coduri piese.</div>
-              <div>• +20% creștere a acceptanței devizelor prin aprobare direct  .</div>
+              <div>• 21 minute economisite per deviz prin identificarea rapidă a mașinii și selecția inteligentă a pieselor.</div>
+              <div>• +20% creștere a acceptanței devizelor prin aprobare direct pe mobil.</div>
             </div>
 
           </div>

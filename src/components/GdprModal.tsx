@@ -59,7 +59,7 @@ Accesul la serviciu se acordă pe bază de abonament lunar sau anual, fără a f
       summary: 'Gestiune granulară a permisiunilor: consilier, mecanic, magazioner, contabil și administrator general.',
       content: `Service-ul auto beneficiază de structură multi-user cu roluri și permisiuni strict delimitate:
 1. Administrator / Manager Service: acces complet la rapoarte financiare, marje, setări tarifare și configurare elevatoare.
-2. Consilier Service / Recepție: emitere devize, comunicare WhatsApp clienți, programări calendar și verificare RAR Autopass.
+2. Consilier Service / Recepție: identificare mașină, emitere devize, comunicare WhatsApp clienți, programări calendar și raportare finală lucrări.
 3. Tehnician / Mecanic: vizualizare sarcini alocate pe elevator, fișă de constatare digitală și atașare dovezi foto/video.
 4. Magazioner / Achiziții: verificare compatibilitate coduri piese și recepție marfă de la distribuitori.
 
