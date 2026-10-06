@@ -284,94 +284,162 @@ export const PerformanceDiagram: React.FC = () => {
         <div className="rounded-3xl bg-[#06152b]/90 border border-white/10 p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h3 className="text-xl font-bold text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 Curba de Accelerare a Vânzărilor (RON / Consilier / Lună)
               </h3>
-              <p className="text-xs sm:text-sm text-slate-400">
-                Comparație pe 6 luni între un flux tradițional fragmentat și un service echipat cu SAMpro
+              <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                Cum accelerează SAMpro performanța unui consilier în primele 6 luni
               </p>
             </div>
 
-            <div className="flex items-center gap-5 text-xs font-mono">
+            <div className="flex items-center gap-6 text-xs font-medium">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-[#00D2FF]"></span>
-                <span className="text-white font-bold">Consilier SAMpro</span>
+                <span className="w-5 h-0.5 bg-[#00D2FF] relative flex items-center justify-center">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#00D2FF] absolute shadow-[0_0_8px_#00D2FF]"></span>
+                </span>
+                <span className="text-white font-semibold">Consilier asistat de SAMpro</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-slate-600"></span>
-                <span className="text-slate-400">Consilier Tradițional</span>
+                <span className="w-5 h-0.5 border-t border-dashed border-slate-400 relative flex items-center justify-center">
+                  <span className="w-2 h-2 rounded-full bg-slate-400 absolute"></span>
+                </span>
+                <span className="text-slate-400">Consilier tradițional</span>
               </div>
             </div>
           </div>
 
-          {/* Native SVG Graph */}
-          <div className="w-full overflow-hidden bg-black/50 rounded-2xl p-4 sm:p-6 border border-white/5">
-            <svg viewBox="0 0 800 240" className="w-full h-auto overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Native High-Fidelity SVG Graph */}
+          <div className="w-full overflow-x-auto bg-black/40 rounded-2xl p-4 sm:p-6 border border-white/5">
+            <svg viewBox="0 0 920 380" className="w-full min-w-[700px] h-auto overflow-visible select-none" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="samproGraphGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#0066FF" stopOpacity="0.45" />
+                  <stop offset="0%" stopColor="#0066FF" stopOpacity="0.5" />
+                  <stop offset="60%" stopColor="#00D2FF" stopOpacity="0.18" />
                   <stop offset="100%" stopColor="#0066FF" stopOpacity="0.0" />
                 </linearGradient>
                 <linearGradient id="lineGlowG" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#2997ff" />
-                  <stop offset="50%" stopColor="#0066FF" />
+                  <stop offset="0%" stopColor="#2563eb" />
+                  <stop offset="35%" stopColor="#0080ff" />
                   <stop offset="100%" stopColor="#00D2FF" />
                 </linearGradient>
+                <filter id="badgeShadow" x="-10%" y="-10%" width="130%" height="130%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#10b981" floodOpacity="0.3" />
+                </filter>
+                <filter id="pointGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#00D2FF" floodOpacity="0.8" />
+                </filter>
               </defs>
 
-              {/* Horizontal Grid lines */}
-              <line x1="50" y1="30" x2="780" y2="30" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
-              <line x1="50" y1="80" x2="780" y2="80" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
-              <line x1="50" y1="130" x2="780" y2="130" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
-              <line x1="50" y1="180" x2="780" y2="180" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
+              {/* Grid Lines */}
+              <line x1="85" y1="50" x2="840" y2="50" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+              <line x1="85" y1="105" x2="840" y2="105" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+              <line x1="85" y1="160" x2="840" y2="160" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+              <line x1="85" y1="215" x2="840" y2="215" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+              <line x1="85" y1="270" x2="840" y2="270" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
+              
+              {/* X Axis Base Line */}
+              <line x1="85" y1="325" x2="840" y2="325" stroke="rgba(255,255,255,0.15)" strokeWidth="1.2" />
 
-              {/* Y-axis values */}
-              <text x="40" y="34" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="end">180k</text>
-              <text x="40" y="84" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="end">120k</text>
-              <text x="40" y="134" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="end">70k</text>
-              <text x="40" y="184" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="end">30k</text>
+              {/* Y-axis Labels */}
+              <text x="75" y="54" fill="#94a3b8" fontSize="12" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="end">220k lei</text>
+              <text x="75" y="109" fill="#94a3b8" fontSize="12" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="end">200k lei</text>
+              <text x="75" y="164" fill="#94a3b8" fontSize="12" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="end">160k lei</text>
+              <text x="75" y="219" fill="#94a3b8" fontSize="12" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="end">120k lei</text>
+              <text x="75" y="274" fill="#94a3b8" fontSize="12" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="end">80k lei</text>
+              <text x="75" y="329" fill="#94a3b8" fontSize="12" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="end">40k lei</text>
+              <text x="75" y="342" fill="#64748b" fontSize="11" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="end">0</text>
 
-              {/* X-axis months */}
-              <text x="70" y="225" fill="#64748b" fontSize="10" fontFamily="monospace">Luna 1</text>
-              <text x="210" y="225" fill="#64748b" fontSize="10" fontFamily="monospace">Luna 2</text>
-              <text x="350" y="225" fill="#64748b" fontSize="10" fontFamily="monospace">Luna 3</text>
-              <text x="490" y="225" fill="#64748b" fontSize="10" fontFamily="monospace">Luna 4</text>
-              <text x="630" y="225" fill="#64748b" fontSize="10" fontFamily="monospace">Luna 5</text>
-              <text x="760" y="225" fill="#64748b" fontSize="10" fontFamily="monospace">Luna 6</text>
+              {/* X-axis Labels */}
+              <text x="135" y="352" fill="#94a3b8" fontSize="12" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">Luna 1</text>
+              <text x="260" y="352" fill="#94a3b8" fontSize="12" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">Luna 2</text>
+              <text x="385" y="352" fill="#94a3b8" fontSize="12" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">Luna 3</text>
+              <text x="510" y="352" fill="#94a3b8" fontSize="12" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">Luna 4</text>
+              <text x="635" y="352" fill="#94a3b8" fontSize="12" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">Luna 5</text>
+              <text x="760" y="352" fill="#94a3b8" fontSize="12" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">Luna 6</text>
 
-              {/* Baseline Traditional Flat Curve */}
+              {/* Bracket / reference line at Month 6 for difference */}
+              <path d="M 770 94 Q 782 94 782 104 L 782 183 Q 782 193 792 193 Q 782 193 782 203 L 782 283 Q 782 293 770 293" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeDasharray="3 3" />
+
+              {/* Traditional Line & Dots */}
               <path
-                d="M 70 170 Q 210 165 350 155 T 490 148 T 630 142 T 760 138"
+                d="M 135 327 L 260 320 L 385 313 L 510 307 L 635 300 L 760 293"
                 stroke="#64748b"
                 strokeWidth="2.5"
-                strokeLinecap="round"
+                strokeDasharray="5 5"
                 fill="none"
-                strokeDasharray="6 4"
               />
 
               {/* SAMpro Area Fill */}
               <path
-                d="M 70 170 Q 210 135 350 90 T 490 60 T 630 40 T 760 25 L 760 210 L 70 210 Z"
+                d="M 135 327 C 195 327 220 305 260 294 C 310 280 345 245 385 235 C 430 224 470 205 510 198 C 555 190 595 170 635 162 C 685 152 720 115 760 92 L 760 325 L 135 325 Z"
                 fill="url(#samproGraphGradient)"
               />
 
-              {/* SAMpro Dynamic Curve */}
+              {/* SAMpro Curved Path */}
               <path
-                d="M 70 170 Q 210 135 350 90 T 490 60 T 630 40 T 760 25"
+                d="M 135 327 C 195 327 220 305 260 294 C 310 280 345 245 385 235 C 430 224 470 205 510 198 C 555 190 595 170 635 162 C 685 152 720 115 760 92"
                 stroke="url(#lineGlowG)"
                 strokeWidth="4"
                 strokeLinecap="round"
                 fill="none"
               />
 
-              {/* Nodes */}
-              <circle cx="70" cy="170" r="4" fill="#00D2FF" />
-              <circle cx="350" cy="90" r="5" fill="#00D2FF" stroke="#ffffff" strokeWidth="2" />
-              <circle cx="760" cy="25" r="6" fill="#00D2FF" stroke="#ffffff" strokeWidth="2.5" />
+              {/* Traditional Dots & Text Labels (below dots) */}
+              {/* Luna 1: 38.000 lei */}
+              <circle cx="135" cy="327" r="4.5" fill="#64748b" stroke="#0a192f" strokeWidth="2" />
+              <text x="135" y="344" fill="#94a3b8" fontSize="11" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="middle">38.000 lei</text>
 
-              {/* Callout Annotation for Final Month */}
-              <rect x="660" y="8" width="105" height="28" rx="6" fill="#0066FF" fillOpacity="0.9" />
-              <text x="712" y="26" fill="#ffffff" fontSize="11" fontWeight="bold" fontFamily="monospace" textAnchor="middle">+145.000 lei</text>
+              {/* Luna 2: 43.000 lei */}
+              <circle cx="260" cy="320" r="4.5" fill="#64748b" stroke="#0a192f" strokeWidth="2" />
+              <text x="260" y="338" fill="#94a3b8" fontSize="11" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="middle">43.000 lei</text>
+
+              {/* Luna 3: 48.000 lei */}
+              <circle cx="385" cy="313" r="4.5" fill="#64748b" stroke="#0a192f" strokeWidth="2" />
+              <text x="385" y="331" fill="#94a3b8" fontSize="11" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="middle">48.000 lei</text>
+
+              {/* Luna 4: 53.000 lei */}
+              <circle cx="510" cy="307" r="4.5" fill="#64748b" stroke="#0a192f" strokeWidth="2" />
+              <text x="510" y="325" fill="#94a3b8" fontSize="11" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="middle">53.000 lei</text>
+
+              {/* Luna 5: 58.000 lei */}
+              <circle cx="635" cy="300" r="4.5" fill="#64748b" stroke="#0a192f" strokeWidth="2" />
+              <text x="635" y="318" fill="#94a3b8" fontSize="11" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="middle">58.000 lei</text>
+
+              {/* Luna 6: 63.000 lei */}
+              <circle cx="760" cy="293" r="4.5" fill="#64748b" stroke="#0a192f" strokeWidth="2" />
+              <text x="760" y="312" fill="#94a3b8" fontSize="11" fontWeight="500" fontFamily="system-ui, sans-serif" textAnchor="middle">63.000 lei</text>
+
+              {/* SAMpro Dots & Text Labels (above dots) */}
+              {/* Luna 1: 38.000 lei */}
+              <circle cx="135" cy="327" r="5" fill="#00D2FF" stroke="#ffffff" strokeWidth="2" filter="url(#pointGlow)" />
+              <text x="135" y="312" fill="#ffffff" fontSize="11.5" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">38.000 lei</text>
+
+              {/* Luna 2: 62.000 lei */}
+              <circle cx="260" cy="294" r="5" fill="#00D2FF" stroke="#ffffff" strokeWidth="2" filter="url(#pointGlow)" />
+              <text x="260" y="278" fill="#ffffff" fontSize="11.5" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">62.000 lei</text>
+
+              {/* Luna 3: 105.000 lei */}
+              <circle cx="385" cy="235" r="5" fill="#00D2FF" stroke="#ffffff" strokeWidth="2" filter="url(#pointGlow)" />
+              <text x="385" y="220" fill="#ffffff" fontSize="11.5" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">105.000 lei</text>
+
+              {/* Luna 4: 132.000 lei */}
+              <circle cx="510" cy="198" r="5" fill="#00D2FF" stroke="#ffffff" strokeWidth="2" filter="url(#pointGlow)" />
+              <text x="510" y="183" fill="#ffffff" fontSize="11.5" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">132.000 lei</text>
+
+              {/* Luna 5: 158.000 lei */}
+              <circle cx="635" cy="162" r="5" fill="#00D2FF" stroke="#ffffff" strokeWidth="2" filter="url(#pointGlow)" />
+              <text x="635" y="147" fill="#ffffff" fontSize="11.5" fontWeight="600" fontFamily="system-ui, sans-serif" textAnchor="middle">158.000 lei</text>
+
+              {/* Luna 6: 208.000 lei */}
+              <circle cx="760" cy="92" r="6" fill="#00D2FF" stroke="#ffffff" strokeWidth="2.5" filter="url(#pointGlow)" />
+              <text x="760" y="73" fill="#ffffff" fontSize="12.5" fontWeight="bold" fontFamily="system-ui, sans-serif" textAnchor="middle">208.000 lei</text>
+
+              {/* Delta Callout Badge: +145.000 lei / lună */}
+              <g transform="translate(710, 172)" filter="url(#badgeShadow)">
+                <rect x="0" y="0" width="186" height="38" rx="8" fill="#10b981" />
+                <path d="M 16 23 L 26 13 M 26 13 L 20 13 M 26 13 L 26 19" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <text x="34" y="24" fill="#ffffff" fontSize="13" fontWeight="bold" fontFamily="system-ui, sans-serif">+145.000 lei / lună</text>
+              </g>
             </svg>
           </div>
         </div>
