@@ -11,9 +11,10 @@ import {
 interface FooterProps {
   onOpenDemo: () => void;
   onOpenLegal: (filter?: string) => void;
+  onOpenCookieSettings?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal, onOpenCookieSettings }) => {
   return (
     <footer className="w-full bg-[#010814] text-white pt-16 pb-12 border-t border-white/10 relative overflow-hidden">
 
@@ -220,6 +221,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal }) => {
                   Politica de Cookie-uri
                 </button>
               </li>
+              {onOpenCookieSettings && (
+                <li>
+                  <button
+                    onClick={onOpenCookieSettings}
+                    className="hover:text-[#00D2FF] transition-colors text-left flex items-center gap-1.5"
+                  >
+                    <span>Preferințe Cookie-uri</span>
+                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-[#00D2FF]">
+                      GDPR
+                    </span>
+                  </button>
+                </li>
+              )}
               <li>
                 <a
                   href="https://anpc.ro"

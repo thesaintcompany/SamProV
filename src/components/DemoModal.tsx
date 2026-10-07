@@ -16,9 +16,15 @@ interface DemoModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedPlan?: string;
+  onOpenLegal?: (section?: string) => void;
 }
 
-export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedPlan = 'Plan Pro (Recomandat)' }) => {
+export const DemoModal: React.FC<DemoModalProps> = ({
+  isOpen,
+  onClose,
+  selectedPlan = 'Plan Pro (Recomandat)',
+  onOpenLegal
+}) => {
   const [serviceName, setServiceName] = useState('');
   const [contactName, setContactName] = useState('');
   const [phone, setPhone] = useState('');
@@ -217,7 +223,18 @@ export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose, selectedP
                   className="mt-0.5 rounded text-[#0066FF] focus:ring-0 bg-white dark:bg-slate-900 border-slate-300 dark:border-white/20"
                 />
                 <label htmlFor="modalGdpr" className="text-slate-600 dark:text-slate-400 text-[11px] leading-tight cursor-pointer">
-                  Sunt de acord cu prelucrarea datelor pentru contactarea în vederea prezentării SAMpro conform <span className="text-[#0066FF] dark:text-[#00D2FF] underline">Politicii GDPR</span>. Datele nu sunt înstrăinate terților.
+                  Sunt de acord cu prelucrarea datelor pentru contactarea în vederea prezentării SAMpro conform{' '}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onOpenLegal) onOpenLegal('sec3');
+                    }}
+                    className="text-[#0066FF] dark:text-[#00D2FF] underline hover:opacity-80 inline"
+                  >
+                    Politicii GDPR (Art. 28)
+                  </button>
+                  . Datele nu sunt înstrăinate terților.
                 </label>
               </div>
 

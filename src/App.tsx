@@ -11,6 +11,7 @@ import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
 import { DemoModal } from './components/DemoModal';
 import { GdprModal } from './components/GdprModal';
+import { CookieBanner } from './components/CookieBanner';
 
 export const App: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -38,6 +39,7 @@ export const App: React.FC = () => {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [selectedPlanForDemo, setSelectedPlanForDemo] = useState('Plan Pro (Recomandat)');
   const [isGdprModalOpen, setIsGdprModalOpen] = useState(false);
+  const [isCookieSettingsForcedOpen, setIsCookieSettingsForcedOpen] = useState(false);
   const [gdprInitialFilter, setGdprInitialFilter] = useState('all');
   const [simulatorInitialTab, setSimulatorInitialTab] = useState<'whatsapp' | 'mechanic' | 'rar' | 'hoists'>('whatsapp');
 
@@ -128,6 +130,7 @@ export const App: React.FC = () => {
       <Footer
         onOpenDemo={() => handleOpenDemo()}
         onOpenLegal={handleOpenLegal}
+        onOpenCookieSettings={() => setIsCookieSettingsForcedOpen(true)}
       />
 
       {/* Interactive Demo Request Lead Modal */}
@@ -135,6 +138,7 @@ export const App: React.FC = () => {
         isOpen={isDemoModalOpen}
         onClose={handleCloseDemo}
         selectedPlan={selectedPlanForDemo}
+        onOpenLegal={handleOpenLegal}
       />
 
       {/* Official Legal & GDPR Privacy Modal (8 Complete Sections) */}
@@ -142,6 +146,13 @@ export const App: React.FC = () => {
         isOpen={isGdprModalOpen}
         onClose={handleCloseLegal}
         initialFilter={gdprInitialFilter}
+      />
+
+      {/* Cookie & GDPR Consent Banner and Preferences Controller */}
+      <CookieBanner
+        onOpenLegal={handleOpenLegal}
+        forceOpen={isCookieSettingsForcedOpen}
+        onCloseForceOpen={() => setIsCookieSettingsForcedOpen(false)}
       />
 
     </div>
