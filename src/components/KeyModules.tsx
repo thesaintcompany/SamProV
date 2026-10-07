@@ -108,7 +108,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
     { id: 3, label: 'Recepție digitală', sub: 'Identificare mașină & VIN', icon: ClipboardCheck },
     { id: 4, label: 'Diagnostic', sub: 'Constatare pe tabletă', icon: Wrench },
     { id: 5, label: 'Deviz automat', sub: 'Normare & piese OEM', icon: FileSpreadsheet },
-    { id: 6, label: 'Aprobare 1-Tap', sub: 'Direct  ', icon: Send },
+    { id: 6, label: 'Aprobare 1-Tap', sub: 'Direct pe WhatsApp', icon: Send },
     { id: 7, label: 'Reparație', sub: 'Cronometru manoperă', icon: Clock },
     { id: 8, label: 'Factură & Follow-up', sub: 'e-Factura & recenzii', icon: CreditCard }
   ];
@@ -174,7 +174,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
             SAMPRO <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00A3FF] to-[#00D2FF]">
-              Accelereaza afacere ta cu un sistem optimizat..
+              Accelerează afacerea ta cu un sistem optimizat.
             </span>
           </h2>
 
@@ -356,7 +356,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                     onClick={() => onSelectSimulatorTab('whatsapp')}
                     className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#0066FF] to-[#00D2FF] hover:opacity-95 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all"
                   >
-                    <span>Simulează Aprobarea  </span>
+                    <span>Simulează Aprobarea pe WhatsApp</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 )}

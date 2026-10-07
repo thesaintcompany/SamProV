@@ -123,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const solutionsProcess: MenuItem[] = [
     {
       title: 'Recepție & Devize',
-      desc: 'Programări rapide, deviz instant în 45s și aprobare  .',
+      desc: 'Programări rapide, deviz instant în 45s și aprobare pe WhatsApp.',
       href: '#module'
     },
     {
@@ -174,7 +174,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     {
       title: 'Conexiune RAR & Autopass',
-      desc: 'Interogare automată VIN   și generare Pașaport Tehnic.',
+      desc: 'Interogare automată VIN și generare Pașaport Tehnic.',
       icon: Car,
       color: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
       href: '#rar-autopass'
@@ -234,8 +234,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       href: '#module'
     },
     {
-      title: 'Integrări    (RAR & ANAF)',
-      desc: 'Conexiune directă SPV ANAF pentru e-Factura și interogare   RAR.',
+      title: 'Integrări Oficiale (RAR & ANAF)',
+      desc: 'Conexiune directă SPV ANAF pentru e-Factura și interogare RAR.',
       href: '#rar-autopass'
     },
     {
@@ -896,7 +896,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         Integrări sigure
                       </p>
                       <p className={`mt-2 text-[0.9375rem] leading-relaxed ${isLight ? 'text-slate-700' : 'text-[#c9d2e0]'}`}>
-                        Conexiuni native cu furnizorii de piese auto, SPV ANAF și baza de date   RAR.
+                        Conexiuni native cu furnizorii de piese auto, SPV ANAF și baza de date RAR.
                       </p>
                       <a
                         href="#rar-autopass"

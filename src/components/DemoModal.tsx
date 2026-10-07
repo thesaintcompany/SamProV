@@ -233,8 +233,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
                     className="text-[#0066FF] dark:text-[#00D2FF] underline hover:opacity-80 inline"
                   >
                     Politicii GDPR (Art. 28)
-                  </button>
-                  . Datele nu sunt înstrăinate terților.
+                  </button>. Datele nu sunt înstrăinate terților.
                 </label>
               </div>
 

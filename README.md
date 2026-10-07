@@ -69,7 +69,7 @@ git push -u origin main
 ## 🛠️ Ce Conține Aplicația Web?
 
 1. **Hero Cinematic & Telemetrie F1:**
-   - Prezentare de impact cu mașina de Raccing și dispozitiv mobil interactiv cu telemetrie live.
+   - Prezentare de impact cu mașina de Racing și dispozitiv mobil interactiv cu telemetrie live.
    - Indicatori cheie: 350+ service-uri partenere, -74% timp per deviz, 0 erori cod piese.
 
 2. **Cinci Module Cheie ERP/CRM (Arhitectură Bento):**

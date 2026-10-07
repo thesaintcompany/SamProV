@@ -39,12 +39,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal, onOpenC
                   by BUU.RO
                 </span>
               </div>
-              {/* Raccing Precision Parallelogram */}
+              {/* Racing Precision Parallelogram */}
               <div className="w-10 h-3 bg-[#0066FF] -skew-x-12 rounded-sm shadow-[0_0_12px_rgba(0,102,255,0.7)] ml-2"></div>
             </div>
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-md">
-              <strong>SAMpro (Service Auto Management Pro)</strong> este ecosistemul cloud enterprise dedicat atelierelor mecanice, vopsitoriilor, centrelor ITP și marilor rețele de service auto din România. Viteză de Raccing, comunicare transparentă   și conformitate   RAR Autopass.
+              <strong>SAMpro (Service Auto Management Pro)</strong> este ecosistemul cloud enterprise dedicat atelierelor mecanice, vopsitoriilor, centrelor ITP și marilor rețele de service auto din România. Viteză de Racing, comunicare transparentă și conformitate RAR Autopass.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-400 font-rounded">

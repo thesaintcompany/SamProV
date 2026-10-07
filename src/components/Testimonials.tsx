@@ -11,7 +11,7 @@ export const Testimonials: React.FC = () => {
       hoists: '6 Elevatoare',
       stars: 5,
       avatar: '/assets/avatar-cristian-popescu.jpg',
-      text: 'Trimiterea devizului   cu fotografii atașate a schimbat radical relația cu clienții. Înainte pierdeam ore întregi sunând după aprobări; acum, în 5 minute avem devizul confirmat de pe telefonul clientului. Rata noastră de acceptare a crescut cu peste 30%!'
+      text: 'Trimiterea devizului pe WhatsApp cu fotografii atașate a schimbat radical relația cu clienții. Înainte pierdeam ore întregi sunând după aprobări; acum, în 5 minute avem devizul confirmat de pe telefonul clientului. Rata noastră de acceptare a crescut cu peste 30%!'
     },
     {
       name: 'Ing. Radu Dumitru',

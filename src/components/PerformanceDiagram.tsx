@@ -39,7 +39,7 @@ export const PerformanceDiagram: React.FC = () => {
     {
       num: '03',
       tag: 'CLOSING',
-      title: '  Aprobare Client',
+      title: 'Aprobare Client',
       desc: 'Deviz interactiv trimis direct pe telefonul proprietarului cu foto/video atașate.',
       classic: { time: '~4 ore', text: 'Sunat clienți, mesaje vocale, ezitări repetate și refuzuri din lipsă de încredere.' },
       sampro: { time: '8 min', text: 'Acceptare printr-un singur tap securizat de pe mobil cu transparență totală.' },
@@ -73,7 +73,7 @@ export const PerformanceDiagram: React.FC = () => {
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
-            Viteza de Raccing Adusă în <br />
+            Viteza de Racing Adusă în <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-cyan-500 dark:from-[#00D2FF] dark:via-[#0066FF] dark:to-blue-400">
               Performanța Consilierilor de Service
             </span>

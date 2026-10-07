@@ -101,7 +101,7 @@ c) Să asigure dreptul de ștergere, anonimizare și portabilitate totală a baz
       icon: Car,
       title: 'Conexiune RAR Autopass & Protecția Codurilor de Piese',
       badge: 'RAR AUTOPASS & PIESE',
-      summary: 'Interogare etică conform protocoalelor    RAR și protejarea algoritmilor comerciali ai atelierului.',
+      summary: 'Interogare etică conform protocoalelor RAR și protejarea algoritmilor comerciali ai atelierului.',
       content: `Interogarea bazei de date a Registrului Auto Român (RAR Autopass) prin SAMpro se efectuează conform normativelor legale naționale în vigoare, în baza consimțământului clientului la deschiderea ordinului de reparație. Informațiile despre kilometraj și valabilitate ITP sunt certificate și servesc la emiterea Pașaportului de Siguranță al mașinii.
 
 Modulul de protecție a codurilor de piese criptează codurile interne de aprovizionare pe devizele transmise clientului, prevenind comenzile de piese contrafăcute sau comparările neconforme, asigurând păstrarea garanției legale a reparației oferite de service.`

@@ -86,7 +86,7 @@ export const App: React.FC = () => {
 
       {/* Main Page Flow */}
       <main className="flex-1 w-full">
-        {/* Hero Showcase with Raccing Speed & Apple Keynote Aura */}
+        {/* Hero Showcase with Racing Speed & Apple Keynote Aura */}
         <Hero
           onOpenDemo={() => handleOpenDemo('Plan Pro')}
           onScrollToSimulator={() => handleScrollToSimulator('whatsapp')}

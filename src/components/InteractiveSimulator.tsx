@@ -302,7 +302,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
       role: 'manager',
       avatarColor: 'bg-amber-600',
       time: '10:16',
-      message: 'Am întocmit fișa adițională (+340 Lei kit pompă + antigel G12) și am trimis linkul direct   către clientul Andrei Popescu.',
+      message: 'Am întocmit fișa adițională (+340 Lei kit pompă + antigel G12) și am trimis linkul direct pe WhatsApp către clientul Andrei Popescu.',
       badge: '📋 Recepție'
     },
     {
@@ -626,12 +626,12 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
             Experimentează SAMpro.<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-cyan-500 dark:from-[#00D2FF] dark:via-[#0066FF] dark:to-blue-400">
-              Interacționează cu Interfața  .
+              Interacționează cu Interfața.
             </span>
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            Alege un scenariu mai jos și testează cum aprobă clientul devizul  , transmiterea cu 1-click a datelor către RAR AutoPass și organizarea elevatoarelor în atelier.
+            Alege un scenariu mai jos și testează cum aprobă clientul devizul pe WhatsApp, transmiterea cu 1-click a datelor către RAR AutoPass și organizarea elevatoarelor în atelier.
           </p>
 
           {/* Navigation Tabs - Carousel on Mobile (< md), Grid on Tablet & Desktop (md+) */}
@@ -858,7 +858,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                         <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
                           <div>
                             <div className="font-semibold text-slate-900 dark:text-white text-xs">Manoperă Înlocuire Distribuție + Aerisire</div>
-                            <div className="text-[10px] text-slate-500 dark:text-slate-400">3.2 ore normate   </div>
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400">3.2 ore normate</div>
                           </div>
                           <span className="font-mono font-bold text-slate-900 dark:text-white text-xs">550 lei</span>
                         </div>
@@ -866,7 +866,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                         <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/5 flex items-center justify-between">
                           <div>
                             <div className="font-semibold text-slate-900 dark:text-white text-xs">Manoperă Înlocuire Plăcuțe Față</div>
-                            <div className="text-[10px] text-slate-500 dark:text-slate-400">1.0 oră normată  </div>
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400">1.0 oră normată</div>
                           </div>
                           <span className="font-mono font-bold text-slate-900 dark:text-white text-xs">180 lei</span>
                         </div>
@@ -890,7 +890,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                           className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition-all active:scale-95 cursor-pointer"
                         >
                           <Check className="w-4 h-4 stroke-[3]" />
-                          <span>Aprobă Oferta   (1-Click)</span>
+                          <span>Aprobă Oferta (1-Click)</span>
                         </button>
                       ) : (
                         <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-700 dark:text-emerald-300 text-xs font-bold flex items-center gap-2">
@@ -2411,7 +2411,7 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
                         <div className={`p-2.5 rounded-lg flex items-center gap-2 transition-colors ${transmittingStep >= 3 ? 'bg-white dark:bg-white/10 text-slate-900 dark:text-white font-bold' : 'text-slate-400'
                           }`}>
                           {transmittingStep === 3 ? <span className="w-3.5 h-3.5 rounded-full border-2 border-blue-500 animate-spin"></span> : <span className="w-3.5 h-3.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>}
-                          <span>3. Înregistrare   în Pașaportul Tehnic</span>
+                          <span>3. Înregistrare în Pașaportul Tehnic</span>
                         </div>
                       </div>
 
