@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { 
-  X, 
-  Send, 
-  CheckCircle2, 
-  Building2, 
-  User, 
-  Phone, 
-  Wrench, 
-  MapPin, 
+import {
+  X,
+  Send,
+  CheckCircle2,
+  Building2,
+  User,
+  Phone,
+  Wrench,
+  MapPin,
   Rocket
 } from 'lucide-react';
 
@@ -46,7 +46,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
     setSubmitting(true);
 
     try {
-      const response = await fetch('/api/send-email', {
+      const response = await fetch('/assets/send_email.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
     } catch (error) {
       setSubmitting(false);
       console.error('Eroare la trimiterea formularului:', error);
-      alert('Eroare de conexiune. Verifică dacă serverul API este pornit.');
+      alert('Eroare de conexiune. Încearcă din nou.');
     }
   };
 

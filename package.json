@@ -8,18 +8,13 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --port 3043 --host",
     "start": "vite preview --port 3043 --host",
-    "lint": "oxlint",
-    "server": "node server.js",
-    "dev:all": "concurrently \"npm run dev\" \"npm run server\""
+    "lint": "oxlint"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.0",
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
     "lucide-react": "^1.16.0",
-    "nodemailer": "^10.0.16",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwind-merge": "^3.7.0",
@@ -31,7 +26,6 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
-    "concurrently": "^10.0.6",
     "oxlint": "^1.81.0",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
