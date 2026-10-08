@@ -238,11 +238,11 @@ export const DemoModal: React.FC<DemoModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
-      <div 
+      <div
         className="w-full max-w-lg rounded-3xl bg-white dark:bg-[#07172f] border border-slate-200 dark:border-white/20 shadow-2xl p-6 sm:p-8 text-slate-900 dark:text-white relative overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        
+
         {/* Glow corner accent */}
         <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 dark:bg-[#0066FF]/20 rounded-full blur-2xl pointer-events-none"></div>
 
@@ -270,7 +270,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
             </p>
 
             <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 text-xs text-slate-600 dark:text-slate-300 font-mono">
-              Un specialist tehnic te va contacta în maximum <strong>15 minute</strong> pentru activarea instanței demo de 14 zile și configurarea elevatoarelor.
+              Un specialist tehnic te va contacta pentru activarea instanței demo de 14 zile și configurarea companiei.
             </div>
 
             <button
@@ -282,7 +282,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
           </div>
         ) : (
           <div className="space-y-6">
-            
+
             {/* Header */}
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/20 text-[#0066FF] dark:text-[#00D2FF] font-mono text-xs font-bold mb-2">
@@ -301,7 +301,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4 text-xs">
-              
+
               {/* Service Name */}
               <div className="space-y-1">
                 <label className="text-slate-700 dark:text-slate-300 font-semibold flex items-center gap-1.5">
