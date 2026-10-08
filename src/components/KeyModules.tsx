@@ -158,12 +158,12 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
   const flowSteps = [
     { id: 1, label: 'Client sună', sub: 'Înregistrare apel', icon: PhoneCall },
     { id: 2, label: 'Programare', sub: 'Dispatch mecanic', icon: Calendar },
-    { id: 3, label: 'Recepție digitală', sub: 'Identificare mașină & VIN', icon: ClipboardCheck },
-    { id: 4, label: 'Diagnostic', sub: 'Constatare pe tabletă', icon: Wrench },
-    { id: 5, label: 'Deviz automat', sub: 'Normare & piese OEM', icon: FileSpreadsheet },
-    { id: 6, label: 'Aprobare 1-Tap', sub: 'Direct pe WhatsApp', icon: Send },
-    { id: 7, label: 'Reparație', sub: 'Cronometru manoperă', icon: Clock },
-    { id: 8, label: 'Factură & Follow-up', sub: 'e-Factura & recenzii', icon: CreditCard }
+    { id: 3, label: 'Recepție VIN', sub: 'Scanare tabletă', icon: ClipboardCheck },
+    { id: 4, label: 'Diagnostic', sub: 'Constatare tehnician', icon: Wrench },
+    { id: 5, label: 'Deviz automat', sub: 'Normare & piese', icon: FileSpreadsheet },
+    { id: 6, label: 'Aprobare 1-Tap', sub: 'Direct WhatsApp', icon: Send },
+    { id: 7, label: 'Reparație', sub: 'Cronometru live', icon: Clock },
+    { id: 8, label: 'Facturare & RAR', sub: 'e-Factura & Raport', icon: CreditCard }
   ];
 
   const comparisonRows = [
@@ -392,20 +392,23 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                 </div>
               </div>
 
-              {/* Visual Flow Timeline Box */}
-              <div className="lg:col-span-5 p-6 rounded-3xl bg-slate-900 dark:bg-[#040f21] border border-slate-800 dark:border-white/10 text-white space-y-5 shadow-2xl">
+              {/* Visual Flow Timeline Box — Mobile Optimized UI/UX */}
+              <div className="lg:col-span-5 p-4 sm:p-6 rounded-3xl bg-slate-900 dark:bg-[#040f21] border border-slate-800 dark:border-white/10 text-white space-y-3.5 sm:space-y-4 shadow-2xl">
 
-                <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#00D2FF] flex items-center gap-2">
-                    <Layers className="w-4 h-4" />
-                    Fluxul Continuu SAMpro
+                {/* Header — clean single line on mobile */}
+                <div className="flex items-center justify-between pb-3 border-b border-white/10 gap-2">
+                  <span className="text-xs font-black uppercase tracking-wider text-[#00D2FF] flex items-center gap-1.5 whitespace-nowrap">
+                    <Layers className="w-4 h-4 shrink-0" />
+                    <span className="sm:hidden">Flux Continuu</span>
+                    <span className="hidden sm:inline">Fluxul Continuu SAMpro</span>
                   </span>
-                  <span className="text-[11px] text-emerald-400 font-semibold bg-emerald-500/20 px-2.5 py-0.5 rounded-full">
+                  <span className="text-[10px] sm:text-[11px] text-emerald-400 font-bold bg-emerald-500/20 px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0">
                     Zero Timpi Morți
                   </span>
                 </div>
 
-                <div className="space-y-2.5">
+                {/* 8 Compact Flow Steps — 1 line per step, zero line breaks */}
+                <div className="space-y-1.5 sm:space-y-2">
                   {flowSteps.map((step) => {
                     const StepIcon = step.icon;
                     const isSelected = activeStep === step.id;
@@ -413,44 +416,47 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
                       <div
                         key={step.id}
                         onClick={() => setActiveStep(step.id)}
-                        className={`p-2.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-between ${isSelected
+                        className={`py-2 px-2.5 sm:py-2.5 sm:px-3 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-between gap-2 select-none ${isSelected
                           ? 'bg-[#0066FF] border-[#00D2FF] shadow-lg shadow-blue-500/30'
                           : 'bg-white/[0.04] border-white/5 hover:bg-white/[0.08] hover:border-white/20'
                           }`}
                       >
-                        <div className="flex items-center gap-3">
-                          <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${isSelected ? 'bg-white text-[#0066FF]' : 'bg-white/10 text-white'
-                            }`}>
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-black shrink-0 ${isSelected ? 'bg-white text-[#0066FF]' : 'bg-white/10 text-white'}`}>
                             {step.id}
                           </div>
-                          <div>
-                            <div className="text-xs font-bold leading-tight">{step.label}</div>
-                            <div className="text-[10px] text-slate-300">{step.sub}</div>
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <span className="text-xs font-extrabold whitespace-nowrap">{step.label}</span>
+                            <span className="text-[11px] text-slate-300/80 whitespace-nowrap truncate">
+                              • {step.sub}
+                            </span>
                           </div>
                         </div>
-                        <StepIcon className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-slate-400'}`} />
+                        <StepIcon className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-white' : 'text-slate-400'}`} />
                       </div>
                     );
                   })}
                 </div>
 
-                {/* Comparison summary */}
-                <div className="p-3 rounded-2xl bg-white/[0.04] border border-white/10 text-xs space-y-1">
-                  <div className="text-red-400 font-semibold flex items-center gap-1.5">
-                    <X className="w-3.5 h-3.5" /> Fără SAMPRO: hârtii, telefoane pierdute, reintroducere de date.
+                {/* Comparison summary — clean concise single-line bullets */}
+                <div className="p-2.5 sm:p-3 rounded-2xl bg-white/[0.04] border border-white/10 text-[11px] sm:text-xs space-y-1.5">
+                  <div className="text-rose-400 font-semibold flex items-center gap-2 whitespace-nowrap truncate">
+                    <X className="w-3.5 h-3.5 shrink-0" />
+                    <span><strong className="font-bold">Fără SAMpro:</strong> hârtii &amp; apeluri pierdute</span>
                   </div>
-                  <div className="text-emerald-400 font-semibold flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5" /> Cu SAMPRO: totul curge prin același sistem, fără pierderi.
+                  <div className="text-emerald-400 font-semibold flex items-center gap-2 whitespace-nowrap truncate">
+                    <Check className="w-3.5 h-3.5 shrink-0" />
+                    <span><strong className="font-bold">Cu SAMpro:</strong> 100% digital, zero pierderi</span>
                   </div>
                 </div>
 
                 {onSelectSimulatorTab && (
                   <button
                     onClick={() => onSelectSimulatorTab('whatsapp')}
-                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#0066FF] to-[#00D2FF] hover:opacity-95 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all"
+                    className="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-gradient-to-r from-[#0066FF] to-[#00D2FF] hover:opacity-95 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer active:scale-98"
                   >
                     <span>Simulează Aprobarea pe WhatsApp</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 )}
 
