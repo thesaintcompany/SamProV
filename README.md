@@ -61,6 +61,11 @@ Formularul trimite următoarele variabile către EmailJS:
 - `city` - Oraș/Județ
 - `hoists` - Număr elevatoare
 - `selectedPlan` - Pachet selectat
+- `from_name` - Numele expeditorului (se mapăstrează către contactName)
+- `from_email` - Email-ul expeditorului (se mapăstrează către phone)
+- `reply_to` - Adresa de răspuns (se mapăstrează către phone)
+- `subject` - Subiectul emailului
+- `message` - Conținutul formatat al tuturor datelor din formular
 
 ---
 

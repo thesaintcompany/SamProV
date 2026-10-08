@@ -21,16 +21,16 @@ type HeroVariant = { mobile: string; tablet: string; desktop: string; ultrawide:
 
 const HERO_IMAGES: Record<'light' | 'dark', HeroVariant> = {
   dark: {
-    mobile:    '/assets/hero-bg-dark.jpg',
-    tablet:    '/assets/hero-bg-dark.jpg',
-    desktop:   '/assets/hero-bg-dark.jpg',
-    ultrawide: '/assets/hero-bg-dark.jpg',
+    mobile:    '/assets/hero/hero-dark-mobile.webp',
+    tablet:    '/assets/hero/hero-dark-tablet.webp',
+    desktop:   '/assets/hero/hero-dark-desktop.webp',
+    ultrawide: '/assets/hero/hero-dark-ultrawide.webp',
   },
   light: {
-    mobile:    '/assets/hero-bg-light.jpg',
-    tablet:    '/assets/hero-bg-light.jpg',
-    desktop:   '/assets/hero-bg-light.jpg',
-    ultrawide: '/assets/hero-bg-light.jpg',
+    mobile:    '/assets/hero/hero-light-mobile.webp',
+    tablet:    '/assets/hero/hero-light-tablet.webp',
+    desktop:   '/assets/hero/hero-light-desktop.webp',
+    ultrawide: '/assets/hero/hero-light-ultrawide.webp',
   },
 };
 
