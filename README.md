@@ -49,29 +49,35 @@ Pentru a testa local, ai nevoie de un server PHP (ex: XAMPP, WAMP sau PHP integr
 
 ---
 
-## 🌐 Deployment pe Server cu Hestia CP
+## 🌐 Deployment pe Server
 
-### Opțiunea 1: Deployment cu Docker
+### Deployment pe Coolify (Recomandat)
 
-1. **Build Docker Image pe server:**
+Dockerfile este configurat cu:
+- **Nginx** pentru servirea fișierelor statice
+- **PHP 8.1 + PHP-FPM** pentru procesarea fișierelor PHP
+- **Postfix** pentru trimiterea emailurilor
+- **Supervisor** pentru gestionarea tuturor serviciilor
+
+**Pași în Coolify:**
+1. Conectează contul GitHub la Coolify sau folosește public repository
+2. Adaugă aplicație nouă și selectează repository-ul SamProV
+3. Selectează **Dockerfile** ca build pack
+4. Setează portul expus la **3043**
+5. Configurează domeniul (ex: `sampro.ro` sau `app.sampro.ro`)
+6. Apasă **Deploy**
+
+### Deployment Manual cu Docker
+
 ```bash
-cd /path/to/SamProV
+# Build
 docker build -t sampro-web .
-```
 
-2. **Rulează containerul:**
-```bash
+# Run
 docker run -d -p 3043:3043 --name sampro sampro-web
 ```
 
-3. **Configurează Hestia CP:**
-   - Adaugă un nou template web cu portul 3043
-   - Configurează proxy pass în Nginx către portul 3043
-   - Activează SSL cu Let's Encrypt
-
-**NOTĂ:** Pentru trimiterea emailurilor în Docker, trebuie să asiguri că PHP mail() funcționează sau să modifici Dockerfile pentru a include PHP.
-
-### Opțiunea 2: Deployment Direct pe Hestia CP (Recomandat pentru email)
+### Deployment pe Hestia CP (Direct)
 
 1. **Clonează repository pe server:**
 ```bash
@@ -93,16 +99,9 @@ npm run build
 
 4. **Verificare permisiuni:**
 ```bash
-# Asigură-te că folderul assets are permisiuni corecte
 chmod 755 public/assets
 chmod 644 public/assets/send_email.php
 ```
-
-5. **Testare:**
-   - Accesează formularul de contact
-   - Completează datele și trimite
-   - Verifică emailul la `contact@buu.ro`
-   - Verifică log-urile: `public/assets/sampro_contacte.log`
 
 ---
 
