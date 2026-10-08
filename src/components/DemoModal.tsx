@@ -36,7 +36,7 @@ export const DemoModal: React.FC<DemoModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!gdprChecked) {
       alert('Te rugăm să bifezi acordul de prelucrare a datelor GDPR.');
@@ -44,15 +44,42 @@ export const DemoModal: React.FC<DemoModalProps> = ({
     }
 
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-      confetti({
-        particleCount: 100,
-        spread: 80,
-        origin: { y: 0.5 }
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          serviceName,
+          contactName,
+          phone,
+          city,
+          hoists,
+          selectedPlan
+        }),
       });
-    }, 800);
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitting(false);
+        setSubmitted(true);
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.5 }
+        });
+      } else {
+        setSubmitting(false);
+        alert('Eroare la trimiterea emailului: ' + (data.message || 'Încearcă din nou'));
+      }
+    } catch (error) {
+      setSubmitting(false);
+      console.error('Eroare la trimiterea formularului:', error);
+      alert('Eroare de conexiune. Verifică dacă serverul API este pornit.');
+    }
   };
 
   const handleReset = () => {

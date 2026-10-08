@@ -21,17 +21,123 @@
 npm install
 ```
 
-### 2. Pornire Server de Dezvoltare (Port 3043)
+### 2. Pornire Server de Dezvoltare (Frontend + Backend)
 ```bash
-npm run dev
+npm run dev:all
 ```
-Aplicația va fi accesibilă la: `http://localhost:3043/`
+Aceasta va porni simultan:
+- Frontend React pe portul 3043 (`http://localhost:3043/`)
+- Backend API pe portul 3001 (pentru trimiterea emailurilor)
+
+**SAU** poți porni serviciile separat:
+```bash
+# Terminal 1 - Frontend
+npm run dev
+
+# Terminal 2 - Backend API
+npm run server
+```
 
 ### 3. Build & Preview Producție
 ```bash
 npm run build
 npm run preview
 ```
+
+---
+
+## 🌐 Deployment pe Server cu Hestia CP
+
+### Opțiunea 1: Deployment cu Docker (Recomandat)
+
+1. **Build Docker Image pe server:**
+```bash
+cd /path/to/SamProV
+docker build -t sampro-web .
+```
+
+2. **Rulează containerul:**
+```bash
+docker run -d -p 3043:3043 --name sampro sampro-web
+```
+
+3. **Configurează Hestia CP:**
+   - Adaugă un nou template web cu portul 3043
+   - Configurează proxy pass în Nginx către portul 3043
+   - Activează SSL cu Let's Encrypt
+
+### Opțiunea 2: Deployment Direct (fără Docker)
+
+1. **Clonează repository pe server:**
+```bash
+cd /var/www/
+git clone <repository-url> sampro
+cd sampro
+```
+
+2. **Instalare dependențe și build:**
+```bash
+npm install
+npm run build
+```
+
+3. **Instalare și configurare Postfix (pentru sendmail):**
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install postfix
+
+# În timpul instalării selectează "Internet Site"
+# Configurează myhostname și mydestination
+```
+
+4. **Configurează proces manager (PM2):**
+```bash
+# Instalare PM2
+sudo npm install -g pm2
+
+# Pornește serverul API
+pm2 start server.js --name sampro-api
+
+# Pornește frontend cu serve (sau folosește nginx)
+npm install -g serve
+pm2 start "serve dist -l 3043" --name sampro-web
+
+# Salvează configurația PM2
+pm2 save
+pm2 startup
+```
+
+5. **Configurează Nginx în Hestia CP:**
+   - Adaugă un nou web domain
+   - Configurează custom nginx config pentru a servi fișierele statice și a proxy cererile API
+   - Exemplu de configurație Nginx:
+```nginx
+location / {
+    proxy_pass http://localhost:3043;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+}
+
+location /api/ {
+    proxy_pass http://localhost:3001;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+```
+
+### Verificare Trimitere Email
+
+După deployment, testează trimiterea emailurilor:
+1. Accesează formularul de contact
+2. Completează datele și trimite
+3. Verifică logurile serverului: `pm2 logs sampro-api`
+4. Verifică coada de email: `mailq` (pentru Postfix)
 
 ---
 
@@ -66,7 +172,40 @@ git push -u origin main
 
 ---
 
-## 🛠️ Ce Conține Aplicația Web?
+## � Configurare Trimitere Email
+
+Formularul de contact trimite emailuri prin backend API folosind sendmail (instalat pe server). 
+
+### Configurare Sendmail (Default)
+Serverul folosește sendmail din sistem (`/usr/sbin/sendmail`). Asigură-te că sendmail este instalat și configurat pe serverul de producție.
+
+### Opțional: Configurare SMTP
+Dacă preferi SMTP în loc de sendmail, modifică `server.js`:
+
+```javascript
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT || 587,
+  secure: false,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
+  }
+});
+```
+
+Apoi creează fișierul `.env` pe baza `.env.example` și completează datele SMTP.
+
+### Destinatari Email
+Emailurile sunt trimise către:
+- `contact@buu.ro`
+- `suport@sampro.ro`
+
+Poți modifica aceste adrese în `server.js` la linia 32.
+
+---
+
+## �🛠️ Ce Conține Aplicația Web?
 
 1. **Hero Cinematic & Telemetrie F1:**
    - Prezentare de impact cu mașina de Racing și dispozitiv mobil interactiv cu telemetrie live.

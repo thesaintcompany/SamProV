@@ -13,17 +13,39 @@ COPY . .
 # Build production bundle
 RUN npm run build
 
-# Stage 2: Production Nginx Server
-FROM nginx:alpine
+# Stage 2: Production Server with both Nginx and Node.js backend
+FROM node:22-alpine
 
-# Replace default configuration with custom port 3043 config
+# Install Nginx and Postfix (for sendmail)
+RUN apk add --no-cache nginx postfix && \
+    postfix postconf inet_protocols=ipv4 && \
+    postfix postconf myhostname=sampro.local && \
+    postfix postconf mydestination= && \
+    postfix postconf smtpd_recipient_restrictions=permit_mynetworks,reject
+
+WORKDIR /app
+
+# Copy backend files
+COPY package*.json server.js ./
+RUN npm ci --production
+
+# Copy compiled frontend files from builder stage
+COPY --from=builder /app/dist ./dist
+
+# Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy compiled files from builder stage
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Create startup script
+RUN echo '#!/bin/sh\n\
+# Start Postfix\n\
+postfix start\n\
+# Start Nginx\n\
+nginx -g "daemon off;" &\n\
+# Start Node API\n\
+node server.js\n' > /app/start.sh && chmod +x /app/start.sh
 
 # Expose port 3043 as requested for Coolify
 EXPOSE 3043
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start both services
+CMD ["/app/start.sh"]

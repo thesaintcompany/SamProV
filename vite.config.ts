@@ -12,12 +12,26 @@ export default defineConfig({
     port: 3043,
     host: '0.0.0.0',
     strictPort: true,
-    allowedHosts: true
+    allowedHosts: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
   preview: {
     port: 3043,
     host: '0.0.0.0',
     strictPort: true,
-    allowedHosts: true
+    allowedHosts: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   }
 })
