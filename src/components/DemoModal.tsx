@@ -53,7 +53,17 @@ export const DemoModal: React.FC<DemoModalProps> = ({
         phone,
         city,
         hoists,
-        selectedPlan
+        selectedPlan,
+        from_name: contactName,
+        from_email: phone,
+        reply_to: phone,
+        subject: `Cerere Demo SAMpro - ${serviceName || 'Nespecificat'}`,
+        message: `🏢 Service: ${serviceName || '–'}
+👤 Contact: ${contactName || '–'}
+📱 Telefon: ${phone || '–'}
+📍 Oraș/Județ: ${city || '–'}
+🔧 Elevatoare/Mecanic: ${hoists || '–'}
+📦 Pachet: ${selectedPlan || '–'}`
       };
 
       await emailjs.send(
