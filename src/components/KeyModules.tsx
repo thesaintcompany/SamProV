@@ -102,6 +102,59 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
     }
   };
 
+  // Active pillar quick badge (interactive in-line animated deck on mobile & desktop)
+  const [activePillarBadge, setActivePillarBadge] = useState<number>(0);
+
+  const pillarBadges = [
+    {
+      id: 'pilon-accelerare',
+      emoji: '⚡',
+      icon: Zap,
+      title: 'Accelerează fluxul',
+      shortTitle: 'Accelerează',
+      lateral: 'Recepție & devize în 45s',
+      color: 'text-[#0066FF] dark:text-[#00D2FF]',
+      borderActive: 'border-[#0066FF]/60 dark:border-[#00D2FF]/60',
+      bgActive: 'bg-white dark:bg-[#0c2246]',
+      bgInactive: 'hover:bg-white/60 dark:hover:bg-white/5',
+      glow: 'shadow-[0_8px_20px_rgba(0,102,255,0.22)]',
+    },
+    {
+      id: 'pilon-optimizare',
+      emoji: '🎯',
+      icon: Target,
+      title: 'Optimizează resursele',
+      shortTitle: 'Optimizează',
+      lateral: 'Elevatoare & marje maxime',
+      color: 'text-emerald-600 dark:text-emerald-400',
+      borderActive: 'border-emerald-500/60 dark:border-emerald-400/60',
+      bgActive: 'bg-white dark:bg-[#06261c]',
+      bgInactive: 'hover:bg-white/60 dark:hover:bg-white/5',
+      glow: 'shadow-[0_8px_20px_rgba(16,185,129,0.22)]',
+    },
+    {
+      id: 'pilon-protectie',
+      emoji: '🛡️',
+      icon: ShieldCheck,
+      title: 'Protejează afacerea',
+      shortTitle: 'Protejează',
+      lateral: 'RAR Autopass & date sigure',
+      color: 'text-indigo-600 dark:text-indigo-400',
+      borderActive: 'border-indigo-500/60 dark:border-indigo-400/60',
+      bgActive: 'bg-white dark:bg-[#1a1438]',
+      bgInactive: 'hover:bg-white/60 dark:hover:bg-white/5',
+      glow: 'shadow-[0_8px_20px_rgba(99,102,241,0.22)]',
+    },
+  ];
+
+  const scrollToPillar = (id: string, index: number) => {
+    setActivePillarBadge(index);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const flowSteps = [
     { id: 1, label: 'Client sună', sub: 'Înregistrare apel', icon: PhoneCall },
     { id: 2, label: 'Programare', sub: 'Dispatch mecanic', icon: Calendar },
@@ -183,20 +236,60 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
             <span className="font-semibold text-slate-900 dark:text-white"> Și o face fără întreruperi, fără reintroducere de date, fără haos.</span>
           </p>
 
-          {/* Quick value badges */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <div className="px-4 py-2 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-xs">
-              <Zap className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF]" />
-              <span>⚡ Accelerează fluxul</span>
+          {/* Quick value badges — Mobile interactive in-line animated deck */}
+          <div className="w-full max-w-2xl mx-auto pt-2">
+            <div className="flex items-center justify-between gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-slate-200/70 dark:bg-white/[0.04] border border-slate-300/70 dark:border-white/10 backdrop-blur-md">
+              {pillarBadges.map((badge, idx) => {
+                const isActive = activePillarBadge === idx;
+                return (
+                  <button
+                    key={badge.id}
+                    type="button"
+                    onClick={() => scrollToPillar(badge.id, idx)}
+                    onMouseEnter={() => setActivePillarBadge(idx)}
+                    className={`relative rounded-xl transition-all duration-300 ease-out flex items-center cursor-pointer select-none border ${
+                      isActive
+                        ? `flex-1 min-w-0 py-2 px-3 sm:px-4 ${badge.bgActive} ${badge.borderActive} ${badge.glow}`
+                        : `flex-none py-2 px-2.5 sm:px-3 bg-transparent border-transparent ${badge.bgInactive} text-slate-500 dark:text-slate-400`
+                    }`}
+                    title={`${badge.title} — ${badge.lateral}`}
+                    aria-label={badge.title}
+                  >
+                    <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 w-full">
+                      {/* Emoji Icon */}
+                      <span className="text-base sm:text-lg shrink-0 leading-none" role="img" aria-hidden="true">
+                        {badge.emoji}
+                      </span>
+                      
+                      {/* Inactive state on tablets/desktop: show short title */}
+                      {!isActive && (
+                        <span className="hidden md:inline text-xs font-semibold whitespace-nowrap">
+                          {badge.shortTitle}
+                        </span>
+                      )}
+
+                      {/* Active state: Title + in lateral written text */}
+                      {isActive && (
+                        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 overflow-hidden animate-in fade-in slide-in-from-left-2 duration-300">
+                          <span className={`text-xs sm:text-sm font-extrabold whitespace-nowrap truncate ${badge.color}`}>
+                            {badge.title}
+                          </span>
+                          <span className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-300 font-medium whitespace-nowrap truncate">
+                            <span className="opacity-40 mr-1 sm:mr-1.5">•</span>
+                            {badge.lateral}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
             </div>
-            <div className="px-4 py-2 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-xs">
-              <Target className="w-4 h-4 text-emerald-500" />
-              <span>🎯 Optimizează resursele</span>
-            </div>
-            <div className="px-4 py-2 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-xs">
-              <ShieldCheck className="w-4 h-4 text-indigo-500" />
-              <span>🛡️ Protejează afacerea</span>
-            </div>
+            
+            {/* Mobile hint */}
+            <p className="sm:hidden text-center text-[10px] text-slate-400 dark:text-slate-500 mt-1.5 font-medium">
+              Apasă pe oricare pentru detalii &amp; salt direct
+            </p>
           </div>
 
         </div>
@@ -209,7 +302,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
           {/* ─────────────────────────────────────────────────────────────────
               PILONUL 1: ACCELERARE
           ───────────────────────────────────────────────────────────────── */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 shadow-xl space-y-8 relative overflow-hidden group hover:border-[#0066FF]/60 dark:hover:border-[#00D2FF]/50 transition-all duration-300">
+          <div id="pilon-accelerare" className="scroll-mt-24 p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 shadow-xl space-y-8 relative overflow-hidden group hover:border-[#0066FF]/60 dark:hover:border-[#00D2FF]/50 transition-all duration-300">
 
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
               <div className="flex items-start sm:items-center gap-4">
@@ -370,7 +463,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
           {/* ─────────────────────────────────────────────────────────────────
               PILONUL 2: OPTIMIZARE
           ───────────────────────────────────────────────────────────────── */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 shadow-xl space-y-8 relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-300">
+          <div id="pilon-optimizare" className="scroll-mt-24 p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 shadow-xl space-y-8 relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-300">
 
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
               <div className="flex items-start sm:items-center gap-4">
@@ -558,7 +651,7 @@ export const KeyModules: React.FC<KeyModulesProps> = ({ onSelectSimulatorTab }) 
           {/* ─────────────────────────────────────────────────────────────────
               PILONUL 3: SIGURANȚĂ
           ───────────────────────────────────────────────────────────────── */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 shadow-xl space-y-8 relative overflow-hidden group hover:border-indigo-500/50 transition-all duration-300">
+          <div id="pilon-protectie" className="scroll-mt-24 p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#07172f]/90 border border-slate-200 dark:border-white/10 shadow-xl space-y-8 relative overflow-hidden group hover:border-indigo-500/50 transition-all duration-300">
 
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
               <div className="flex items-start sm:items-center gap-4">
