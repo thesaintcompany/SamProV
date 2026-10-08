@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
+import emailjs from '@emailjs/browser';
 import {
   X,
   Send,
@@ -46,39 +47,33 @@ export const DemoModal: React.FC<DemoModalProps> = ({
     setSubmitting(true);
 
     try {
-      const response = await fetch('/assets/send_email.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          serviceName,
-          contactName,
-          phone,
-          city,
-          hoists,
-          selectedPlan
-        }),
+      const templateParams = {
+        serviceName,
+        contactName,
+        phone,
+        city,
+        hoists,
+        selectedPlan
+      };
+
+      await emailjs.send(
+        'service_s07r2vh',
+        'template_rt8vqll',
+        templateParams,
+        'aTPXNWpLxPnwXerpq'
+      );
+
+      setSubmitting(false);
+      setSubmitted(true);
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { y: 0.5 }
       });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitting(false);
-        setSubmitted(true);
-        confetti({
-          particleCount: 100,
-          spread: 80,
-          origin: { y: 0.5 }
-        });
-      } else {
-        setSubmitting(false);
-        alert('Eroare la trimiterea emailului: ' + (data.message || 'Încearcă din nou'));
-      }
     } catch (error) {
       setSubmitting(false);
-      console.error('Eroare la trimiterea formularului:', error);
-      alert('Eroare de conexiune. Încearcă din nou.');
+      console.error('Eroare la trimiterea emailului:', error);
+      alert('Eroare la trimiterea emailului. Încearcă din nou.');
     }
   };
 

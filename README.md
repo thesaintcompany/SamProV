@@ -10,6 +10,7 @@
 - **Core:** React 19, TypeScript, Vite
 - **Styling:** Tailwind CSS v4, Glassmorphism & Motorsport Precision Design Tokens
 - **Iconografie & Animații:** Lucide React, Canvas Confetti
+- **Email:** EmailJS pentru trimiterea formularelor de contact
 - **Deployment:** Dockerfile multi-stage (Node 22 + Nginx Alpine) pre-configurat pentru **Coolify** pe portul **3043**.
 
 ---
@@ -37,15 +38,29 @@ npm run preview
 
 ## 📧 Configurare Trimitere Email
 
-Formularul de contact trimite emailuri prin PHP folosind funcția `mail()` (la fel ca buu.ro).
+Formularul de contact trimite emailuri prin **EmailJS** - serviciu de email as-a-service, fără backend propriu.
 
-### Fișier PHP Backend
-- `public/assets/send_email.php` - gestionează trimiterea emailurilor
-- Emailurile sunt trimise către: `contact@buu.ro`
-- Salvează log-uri în `public/assets/sampro_contacte.log`
+### Configurare EmailJS
+Credențialele sunt deja configurate în cod:
+- **Service ID:** `service_s07r2vh`
+- **Template ID:** `template_rt8vqll`
+- **Public Key:** `aTPXNWpLxPnwXerpq`
 
-### Pentru Development Local
-Pentru a testa local, ai nevoie de un server PHP (ex: XAMPP, WAMP sau PHP integrat în serverul web).
+### Modificare Template Email
+Pentru a modifica template-ul emailului:
+1. Accesează [EmailJS Dashboard](https://dashboard.emailjs.com/)
+2. Navighează la Email Templates
+3. Selectează template-ul `template_rt8vqll`
+4. Modifică conținutul HTML și variabilele
+
+### Variabile Disponibile
+Formularul trimite următoarele variabile către EmailJS:
+- `serviceName` - Numele service-ului auto
+- `contactName` - Persoana de contact
+- `phone` - Număr de telefon
+- `city` - Oraș/Județ
+- `hoists` - Număr elevatoare
+- `selectedPlan` - Pachet selectat
 
 ---
 
@@ -55,9 +70,7 @@ Pentru a testa local, ai nevoie de un server PHP (ex: XAMPP, WAMP sau PHP integr
 
 Dockerfile este configurat cu:
 - **Nginx** pentru servirea fișierelor statice
-- **PHP 8.1 + PHP-FPM** pentru procesarea fișierelor PHP
-- **Postfix** pentru trimiterea emailurilor
-- **Supervisor** pentru gestionarea tuturor serviciilor
+- **EmailJS** pentru trimiterea emailurilor (fără backend)
 
 **Pași în Coolify:**
 1. Conectează contul GitHub la Coolify sau folosește public repository
@@ -77,7 +90,7 @@ docker build -t sampro-web .
 docker run -d -p 3043:3043 --name sampro sampro-web
 ```
 
-### Deployment pe Hestia CP (Direct)
+### Deployment pe Hestia CP
 
 1. **Clonează repository pe server:**
 ```bash
@@ -94,14 +107,6 @@ npm run build
 3. **Configurează Nginx în Hestia CP:**
    - Fișierele build sunt în folderul `dist/`
    - Configurează root document către `dist/`
-   - PHP este deja activ pe serverul Hestia CP
-   - Fișierul `public/assets/send_email.php` va fi accesibil la `/assets/send_email.php`
-
-4. **Verificare permisiuni:**
-```bash
-chmod 755 public/assets
-chmod 644 public/assets/send_email.php
-```
 
 ---
 
@@ -180,7 +185,7 @@ git push -u origin main
 - `Dockerfile`: Multi-stage build (Node 22 -> Nginx Alpine pe portul 3043).
 - `nginx.conf`: Nginx cu compresie Gzip, cache pentru statice și fallback SPA pe portul 3043.
 - `docker-compose.yml`: Configurație Docker Compose gata de lansare în Coolify.
-- `public/assets/send_email.php`: Backend PHP pentru trimiterea emailurilor.
+- `src/components/DemoModal.tsx`: Formular de contact cu integrare EmailJS.
 
 ---
 
