@@ -47,23 +47,163 @@ export const DemoModal: React.FC<DemoModalProps> = ({
     setSubmitting(true);
 
     try {
+      const now = new Date();
+      const timestamp = now.toLocaleString('ro-RO', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        timeZone: 'Europe/Bucharest'
+      });
+
+      // ── Build the full HTML email body in code ──────────────────────
+      // The EmailJS template only needs: {{{message_html}}}
+      // (triple braces = unescaped HTML pass-through)
+      const message_html = `
+<div style="font-family:'Segoe UI',Roboto,Arial,sans-serif;max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;">
+
+  <!-- Header -->
+  <div style="background:linear-gradient(135deg,#0066FF 0%,#0040cc 100%);padding:28px 32px;text-align:center;">
+    <h1 style="margin:0;font-size:22px;font-weight:800;color:#ffffff;letter-spacing:-0.3px;">
+      🚀 Cerere Demo SAMpro
+    </h1>
+    <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.85);">
+      Solicitare nouă primită pe ${timestamp}
+    </p>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:28px 32px;">
+
+    <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+
+      <!-- Service Name -->
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;width:40%;">
+          <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">
+            🏢 Nume Service
+          </span>
+        </td>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;">
+          <span style="font-size:15px;font-weight:700;color:#0f172a;">
+            ${serviceName || '—'}
+          </span>
+        </td>
+      </tr>
+
+      <!-- Contact Person -->
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;">
+          <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">
+            👤 Persoană Contact
+          </span>
+        </td>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;">
+          <span style="font-size:15px;font-weight:700;color:#0f172a;">
+            ${contactName || '—'}
+          </span>
+        </td>
+      </tr>
+
+      <!-- Phone -->
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;">
+          <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">
+            📱 Telefon
+          </span>
+        </td>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;">
+          <a href="tel:${phone}" style="font-size:15px;font-weight:700;color:#0066FF;text-decoration:none;">
+            ${phone || '—'}
+          </a>
+        </td>
+      </tr>
+
+      <!-- City -->
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;">
+          <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">
+            📍 Oraș / Județ
+          </span>
+        </td>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;">
+          <span style="font-size:15px;font-weight:600;color:#0f172a;">
+            ${city || '—'}
+          </span>
+        </td>
+      </tr>
+
+      <!-- Hoists -->
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;">
+          <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">
+            🔧 Elevatoare / Mecanici
+          </span>
+        </td>
+        <td style="padding:12px 0;border-bottom:1px solid #f1f5f9;vertical-align:top;">
+          <span style="font-size:15px;font-weight:600;color:#0f172a;">
+            ${hoists || '—'}
+          </span>
+        </td>
+      </tr>
+
+      <!-- Selected Plan -->
+      <tr>
+        <td style="padding:12px 0;vertical-align:top;">
+          <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">
+            📦 Pachet Selectat
+          </span>
+        </td>
+        <td style="padding:12px 0;vertical-align:top;">
+          <span style="display:inline-block;padding:4px 12px;border-radius:20px;background:#EEF2FF;color:#0066FF;font-size:13px;font-weight:800;">
+            ${selectedPlan || '—'}
+          </span>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+  <!-- Footer -->
+  <div style="background:#f8fafc;padding:18px 32px;border-top:1px solid #e2e8f0;text-align:center;">
+    <p style="margin:0;font-size:11px;color:#94a3b8;">
+      Acord GDPR confirmat ✅ · Trimis de pe sampro.buu.ro · ${timestamp}
+    </p>
+  </div>
+
+</div>`;
+
       const templateParams = {
+        // ── Individual fields (in case the template uses them) ──
         serviceName,
         contactName,
         phone,
         city,
         hoists,
         selectedPlan,
+        timestamp,
+        // ── EmailJS standard fields ──
         from_name: contactName,
-        from_email: phone,
         reply_to: phone,
-        subject: `Cerere Demo SAMpro - ${serviceName || 'Nespecificat'}`,
-        message: `🏢 Service: ${serviceName || '–'}
-👤 Contact: ${contactName || '–'}
-📱 Telefon: ${phone || '–'}
-📍 Oraș/Județ: ${city || '–'}
-🔧 Elevatoare/Mecanic: ${hoists || '–'}
-📦 Pachet: ${selectedPlan || '–'}`
+        to_name: 'SAMpro Team',
+        subject: `🚀 Cerere Demo SAMpro — ${serviceName || 'Nespecificat'} (${selectedPlan})`,
+        // ── Full HTML body (template needs only {{{message_html}}}) ──
+        message_html,
+        // ── Plain-text fallback ──
+        message: [
+          `═══ CERERE DEMO SAMPRO ═══`,
+          ``,
+          `🏢 Service:       ${serviceName || '—'}`,
+          `👤 Contact:       ${contactName || '—'}`,
+          `📱 Telefon:       ${phone || '—'}`,
+          `📍 Oraș/Județ:    ${city || '—'}`,
+          `🔧 Elevatoare:    ${hoists || '—'}`,
+          `📦 Pachet:        ${selectedPlan || '—'}`,
+          ``,
+          `🕐 Data cerere:   ${timestamp}`,
+          `✅ GDPR:          Acord confirmat`,
+          ``,
+          `═══════════════════════════`,
+        ].join('\n'),
       };
 
       await emailjs.send(
