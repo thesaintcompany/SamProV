@@ -240,14 +240,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
             className="hidden sm:block absolute inset-x-0 top-0 h-36 z-[2]"
             style={{ background: `linear-gradient(to bottom, rgba(${bgRgb},0.85), transparent)` }}
           />
-          {/* Bottom fade into the cards section (desktop/tablet full fade, subtle on mobile) */}
+          {/* Bottom fade into the cards section: smooth cinematic fade on all screen sizes */}
           <div
-            className="hidden sm:block absolute inset-x-0 bottom-0 h-40 z-[2]"
-            style={{ background: `linear-gradient(to top, ${bg}, transparent)` }}
-          />
-          <div
-            className="sm:hidden absolute inset-x-0 bottom-0 h-14 z-[2]"
-            style={{ background: `linear-gradient(to top, ${bg}, transparent)` }}
+            className="absolute inset-x-0 bottom-0 h-32 sm:h-44 z-[2] pointer-events-none"
+            style={{
+              background: `linear-gradient(to bottom, transparent 0%, rgba(${bgRgb},0.2) 25%, rgba(${bgRgb},0.7) 65%, ${bg} 100%)`,
+            }}
           />
           {/* Subtle vignette for a cinematic finish on desktop */}
           <div
@@ -255,12 +253,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
             style={{ background: `radial-gradient(ellipse 120% 90% at 70% 60%, transparent 55%, rgba(${bgRgb},0.55) 100%)` }}
           />
 
-          {/* 4. Tracking widgets (desktop+) — positioned over the car area */}
-          <div className={`hidden lg:block absolute inset-y-0 right-0 w-1/2 2xl:w-[46%] z-[3] transition-all duration-700 ease-in-out ${
+          {/* 4. Tracking widgets (tablet & desktop) — positioned over the car area */}
+          <div className={`hidden md:block absolute inset-y-0 right-0 w-full md:w-1/2 2xl:w-[46%] z-[3] transition-all duration-700 ease-in-out ${
             showVideo ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
           }`}>
-            {/* ── TRACKING WIDGET 1: Mai multă productivitate ── */}
-            <div className="absolute top-[30%] left-[22%] z-20 flex flex-col items-center pointer-events-auto hero-float">
+            {/* ── TRACKING WIDGET 1: Mai multă productivitate (poziționat lângă mașină) ── */}
+            <div className="absolute top-[48%] md:top-[47%] lg:top-[46%] xl:top-[41%] 2xl:top-[36%] left-[16%] md:left-[19%] lg:left-[22%] z-20 flex flex-col items-center pointer-events-auto hero-float">
               <div className={`backdrop-blur-xl border rounded-2xl px-4 py-2.5 shadow-xl flex items-center gap-3 ${isDark ? 'bg-[#0c2246]/80 border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.5)]' : 'bg-white/90 border-slate-200/90 shadow-[0_12px_35px_rgba(0,102,255,0.10)]'}`}>
                 <div className="w-9 h-9 rounded-xl bg-[#1e3d75] flex items-center justify-center shadow-md shrink-0">
                   <Activity className="w-5 h-5 text-[#00d2ff] stroke-[2.5]" />
@@ -281,7 +279,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
             </div>
 
             {/* ── TRACKING WIDGET 2: Eficiență operațională ── */}
-            <div className="absolute bottom-[14%] left-[38%] z-20 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#0a2044]/90 backdrop-blur-md border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-white pointer-events-auto hero-float [animation-delay:1.2s]">
+            <div className="absolute bottom-[11%] md:bottom-[13%] lg:bottom-[14%] left-[26%] md:left-[32%] lg:left-[38%] z-20 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#0a2044]/90 backdrop-blur-md border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-white pointer-events-auto hero-float [animation-delay:1.2s]">
               <span className="text-[#00e5ff] font-black text-sm tracking-tight flex items-center gap-1">
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 4l-7 7h4v9h6v-9h4z"/></svg>
                 +37%
@@ -387,7 +385,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onScrollToSimulator: _on
       {/* ═══════════════════════════════════════════════════════════════════
           2.  PREMIUM FLOATING BENEFIT CARDS (Matches uploaded UI/UX sample)
       ═══════════════════════════════════════════════════════════════════ */}
-      <div className={`w-full py-12 sm:py-16 border-t relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#020b1b] border-white/10' : 'bg-gradient-to-b from-[#f8fafc] via-[#edf5ff] to-white border-slate-200/80'}`}>
+      <div className={`w-full py-10 sm:py-16 relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#020b1b]' : 'bg-gradient-to-b from-[#f8fafc] via-[#edf5ff] to-white border-t border-slate-200/80'}`}>
         
         {/* Subtle Background Futuristic Light Streaks (matches example image background) */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-75">
