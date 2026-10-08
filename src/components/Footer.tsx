@@ -257,15 +257,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal, onOpenC
             <div className="space-y-2.5 text-xs text-slate-300">
               <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4 text-[#00D2FF] shrink-0" />
-                <a href="https://www.buu.ro" target="_blank" rel="noopener noreferrer" className="hover:text-white font-mono">
-                  www.buu.ro
+                <a href="https://sampro.buu.ro" target="_blank" rel="noopener noreferrer" className="hover:text-white font-mono">
+                  sampro.buu.ro
                 </a>
               </div>
 
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#0066FF] shrink-0" />
                 <a href="mailto:contact@buu.ro" className="hover:text-white">
-                  contact@buu.ro • suport@sampro.ro
+                  contact@buu.ro
                 </a>
               </div>
 
