@@ -26,6 +26,7 @@ import {
   Search,
   Bell,
   ChevronRight,
+  ChevronLeft,
   Plus,
   QrCode,
   MessageSquare,
@@ -634,78 +635,44 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
             Alege un scenariu mai jos și testează cum aprobă clientul devizul pe WhatsApp, transmiterea cu 1-click a datelor către RAR AutoPass și organizarea elevatoarelor în atelier.
           </p>
 
-          {/* Navigation Tabs - Carousel on Mobile (< md), Grid on Tablet & Desktop (md+) */}
+          {/* Navigation Tabs - Modern Unified Segmented Control */}
           <div className="mt-8 w-full max-w-4xl mx-auto">
-            <div
-              ref={tabsRef}
-              onScroll={(e) => {
-                const el = e.currentTarget;
-                const scrollLeft = el.scrollLeft;
-                const children = Array.from(el.children) as HTMLElement[];
-                if (children.length > 0) {
-                  const offsets = children.map((c) => Math.abs(c.offsetLeft - scrollLeft - (el.offsetWidth - c.offsetWidth) / 2));
-                  const closest = offsets.indexOf(Math.min(...offsets));
-                  const tabKeys: ('whatsapp' | 'rar' | 'hoists')[] = ['whatsapp', 'rar', 'hoists'];
-                  if (closest >= 0 && closest < tabKeys.length && tabKeys[closest] !== activeTab) {
-                    setActiveTab(tabKeys[closest]);
-                  }
-                }
-              }}
-              className="p-1.5 rounded-2xl bg-slate-200/70 dark:bg-[#07172f] border border-slate-300/80 dark:border-white/15 flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none gap-2 md:grid-cols-3 -mx-2 px-2 sm:mx-0 sm:px-1.5"
-            >
+            <div className="grid grid-cols-3 gap-1 sm:gap-2 p-1.5 rounded-2xl bg-slate-200/80 dark:bg-[#06142a] border border-slate-300/80 dark:border-white/10 shadow-inner">
               <button
                 onClick={() => scrollToTab('whatsapp')}
-                className={`w-[82vw] xs:w-[76vw] sm:w-[50vw] md:w-full shrink-0 md:shrink snap-center py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'whatsapp'
+                className={`py-2.5 sm:py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex flex-col sm:flex-row items-center justify-center text-center gap-1 sm:gap-2 cursor-pointer ${activeTab === 'whatsapp'
                   ? 'bg-[#0066FF] text-white shadow-md'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
                   }`}
               >
                 <Smartphone className="w-4 h-4 shrink-0" />
-                <span className="leading-snug">1. Deviz WhatsApp (Client)</span>
+                <span className="sm:hidden leading-tight font-extrabold text-[11px]">WhatsApp</span>
+                <span className="hidden sm:inline leading-snug">1. Deviz WhatsApp (Client)</span>
               </button>
 
               <button
                 onClick={() => scrollToTab('rar')}
-                className={`w-[82vw] xs:w-[76vw] sm:w-[50vw] md:w-full shrink-0 md:shrink snap-center py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'rar'
+                className={`py-2.5 sm:py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex flex-col sm:flex-row items-center justify-center text-center gap-1 sm:gap-2 cursor-pointer ${activeTab === 'rar'
                   ? 'bg-[#0066FF] text-white shadow-md'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
                   }`}
               >
                 <Car className="w-4 h-4 shrink-0" />
-                <span className="leading-snug">2. Transmitere Date RAR AutoPass (1-Click)</span>
+                <span className="sm:hidden leading-tight font-extrabold text-[11px]">RAR AutoPass</span>
+                <span className="hidden sm:inline leading-snug">2. Transmitere Date RAR AutoPass (1-Click)</span>
               </button>
 
               <button
                 onClick={() => scrollToTab('hoists')}
-                className={`w-[82vw] xs:w-[76vw] sm:w-[50vw] md:w-full shrink-0 md:shrink snap-center py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center text-center gap-2 cursor-pointer ${activeTab === 'hoists'
+                className={`py-2.5 sm:py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 flex flex-col sm:flex-row items-center justify-center text-center gap-1 sm:gap-2 cursor-pointer ${activeTab === 'hoists'
                   ? 'bg-[#0066FF] text-white shadow-md'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5'
                   }`}
               >
                 <Calendar className="w-4 h-4 shrink-0" />
-                <span className="leading-snug">3. Gestiune Elevatoare Atelier</span>
+                <span className="sm:hidden leading-tight font-extrabold text-[11px]">Elevatoare</span>
+                <span className="hidden sm:inline leading-snug">3. Gestiune Elevatoare Atelier</span>
               </button>
-            </div>
-
-            {/* Mobile Carousel Indicators (< md) */}
-            <div className="md:hidden flex items-center justify-center gap-2 pt-3">
-              {[
-                { id: 'whatsapp', label: '1' },
-                { id: 'rar', label: '2' },
-                { id: 'hoists', label: '3' }
-              ].map((t) => (
-                <button
-                  key={t.id}
-                  type="button"
-                  onClick={() => scrollToTab(t.id as any)}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${
-                    activeTab === t.id
-                      ? 'w-6 h-2 bg-[#0066FF] dark:bg-[#00D2FF]'
-                      : 'w-2 h-2 bg-slate-300 dark:bg-white/20 hover:bg-slate-400'
-                  }`}
-                  aria-label={`Tab ${t.label}`}
-                />
-              ))}
             </div>
           </div>
         </div>
@@ -714,35 +681,95 @@ export const InteractiveSimulator: React.FC<InteractiveSimulatorProps> = ({ init
         {activeTab === 'whatsapp' && (
           <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in duration-300">
 
-            {/* 5-Step Interactive Progress Stepper */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-1.5 rounded-2xl bg-slate-100 dark:bg-[#07172f] border border-slate-200 dark:border-white/10">
-              {[
-                { step: 1, label: '1. Link WhatsApp', icon: Smartphone },
-                { step: 2, label: '2. Ofertă & Aprobare', icon: CheckCircle2 },
-                { step: 3, label: '3. Documente & Update', icon: FileText },
-                { step: 4, label: '4. Plată Online', icon: CreditCard },
-                { step: 5, label: '5. Gata de Predare', icon: Car },
-              ].map((item) => {
-                const ItemIcon = item.icon;
-                const isCurrent = waStep === item.step;
-                const isPassed = waStep > item.step;
-                return (
+            {/* 5-Step Interactive Workflow Control */}
+            <div className="p-3 sm:p-4 rounded-2xl bg-slate-100 dark:bg-[#07172f] border border-slate-200 dark:border-white/10 space-y-3">
+              {/* Step Title Header with Step Progress & Quick Arrows */}
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="px-2 py-0.5 rounded-lg bg-[#0066FF]/10 dark:bg-[#00D2FF]/15 text-[#0066FF] dark:text-[#00D2FF] font-mono font-bold text-[11px] shrink-0">
+                    PAS {waStep} / 5
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">
+                    {
+                      waStep === 1 ? '1. Trimitere Link WhatsApp către Client' :
+                      waStep === 2 ? '2. Ofertă Transparentă & Aprobare 1-Tap' :
+                      waStep === 3 ? '3. Documente Tehnice & Fotografii Piese' :
+                      waStep === 4 ? '4. Plată Securizată Online / e-Factura' :
+                      '5. Mașină Gata de Predare & Notificare'
+                    }
+                  </span>
+                </div>
+
+                {/* Quick Arrows for Mobile & Desktop Navigation */}
+                <div className="flex items-center gap-1 shrink-0">
                   <button
-                    key={item.step}
                     type="button"
-                    onClick={() => setWaStep(item.step as 1 | 2 | 3 | 4 | 5)}
-                    className={`py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${isCurrent
-                      ? 'bg-[#0066FF] text-white shadow-md'
-                      : isPassed
-                        ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-400/30'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                      }`}
+                    disabled={waStep === 1}
+                    onClick={() => setWaStep((prev) => Math.max(1, (prev - 1)) as 1 | 2 | 3 | 4 | 5)}
+                    className="p-1.5 rounded-lg bg-white dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-25 hover:bg-slate-50 transition-all cursor-pointer border border-slate-200/80 dark:border-white/10 shadow-2xs"
+                    aria-label="Pasul anterior"
                   >
-                    <ItemIcon className="w-3.5 h-3.5 shrink-0" />
-                    <span className="truncate">{item.label}</span>
+                    <ChevronLeft className="w-3.5 h-3.5" />
                   </button>
-                );
-              })}
+                  <button
+                    type="button"
+                    disabled={waStep === 5}
+                    onClick={() => setWaStep((prev) => Math.min(5, (prev + 1)) as 1 | 2 | 3 | 4 | 5)}
+                    className="p-1.5 rounded-lg bg-white dark:bg-white/10 text-slate-700 dark:text-white disabled:opacity-25 hover:bg-slate-50 transition-all cursor-pointer border border-slate-200/80 dark:border-white/10 shadow-2xs"
+                    aria-label="Pasul următor"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* 5-Segment Progress Track */}
+              <div className="grid grid-cols-5 gap-1.5">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <div
+                    key={s}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      waStep === s
+                        ? 'bg-[#0066FF] dark:bg-[#00D2FF] shadow-[0_0_8px_rgba(0,102,255,0.5)]'
+                        : waStep > s
+                          ? 'bg-emerald-500'
+                          : 'bg-slate-200 dark:bg-white/10'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Step Touch Chips: Scrollable Rail on Mobile (< sm), 5-Col Grid on Desktop (sm+) */}
+              <div className="flex sm:grid sm:grid-cols-5 gap-1.5 overflow-x-auto scrollbar-none pt-0.5">
+                {[
+                  { step: 1, label: '1. Link WhatsApp', shortLabel: '1. Link', icon: Smartphone },
+                  { step: 2, label: '2. Ofertă & Aprobare', shortLabel: '2. Ofertă', icon: CheckCircle2 },
+                  { step: 3, label: '3. Documente & Update', shortLabel: '3. Documente', icon: FileText },
+                  { step: 4, label: '4. Plată Online', shortLabel: '4. Plată', icon: CreditCard },
+                  { step: 5, label: '5. Gata de Predare', shortLabel: '5. Predare', icon: Car },
+                ].map((item) => {
+                  const ItemIcon = item.icon;
+                  const isCurrent = waStep === item.step;
+                  const isPassed = waStep > item.step;
+                  return (
+                    <button
+                      key={item.step}
+                      type="button"
+                      onClick={() => setWaStep(item.step as 1 | 2 | 3 | 4 | 5)}
+                      className={`shrink-0 sm:shrink py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer select-none ${isCurrent
+                        ? 'bg-[#0066FF] text-white shadow-md'
+                        : isPassed
+                          ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-400/30'
+                          : 'bg-white/60 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        }`}
+                    >
+                      <ItemIcon className="w-3.5 h-3.5 shrink-0" />
+                      <span className="sm:hidden whitespace-nowrap">{item.shortLabel}</span>
+                      <span className="hidden sm:inline truncate">{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Main Authentic WhatsApp Conversation Card */}
