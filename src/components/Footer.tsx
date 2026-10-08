@@ -30,7 +30,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo, onOpenLegal, onOpenC
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="/assets/logo-dark.png"
+                src="/assets/logo-white-full.png"
                 alt="SAMpro Logo"
                 className="h-8 sm:h-9 w-auto object-contain"
               />
